@@ -1,0 +1,1940 @@
+2023/09/19 12:29:29 server.go:3217: http: panic serving [::1]:56546: runtime error: invalid memory address or nil pointer dereference
+goroutine 61 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xbc37c0, 0x1163500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc0000a2100)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000a2100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b0ea0, 0xc0000a2100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b0ea0, {0xd6c270?, 0xc0004161c0}, 0xc000538100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00045e210?}, {0xd6c270, 0xc0004161c0}, 0xc000538100)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b8bd0, {0xd6c958, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:29:30 server.go:3217: http: panic serving [::1]:56550: runtime error: invalid memory address or nil pointer dereference
+goroutine 63 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xbc37c0, 0x1163500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc000538300)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000538300)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b0ea0, 0xc000538300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b0ea0, {0xd6c270?, 0xc0001ba0e0}, 0xc000538200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00045e570?}, {0xd6c270, 0xc0001ba0e0}, 0xc000538200)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b8e10, {0xd6c958, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:41:58 server.go:3217: http: panic serving [::1]:57603: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 109 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xbc9ba0, 0xc0004a0780})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0000a2100)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x835
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000a2100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000a2100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b0ea0, 0xc0000a2100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b0ea0, {0xd6c270?, 0xc0004f02a0}, 0xc0000a3b00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xd6aa00?}, {0xd6c270, 0xc0004f02a0}, 0xc0000a3b00)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0004ae1b0, {0xd6c958, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:41:58 server.go:3217: http: panic serving [::1]:57650: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 33 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xbc9ba0, 0xc0005204b0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0004b8e00)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x835
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0004b8e00)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0004b8e00)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b0ea0, 0xc0004b8e00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b0ea0, {0xd6c270?, 0xc0005121c0}, 0xc0004b9000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xd6aa00?}, {0xd6c270, 0xc0005121c0}, 0xc0004b9000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001fe750, {0xd6c958, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:43:05 server.go:3217: http: panic serving [::1]:57741: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 41 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x1059ba0, 0xc0002ba3f0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0000a0200)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x835
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000a0200)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000a0200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003deea0, 0xc0000a0200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003deea0, {0x11fc270?, 0xc0001ba1c0}, 0xc0001eae00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x11faa00?}, {0x11fc270, 0xc0001ba1c0}, 0xc0001eae00)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b8ab0, {0x11fc958, 0xc00045e3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:43:05 server.go:3217: http: panic serving [::1]:57742: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 14 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x1059ba0, 0xc0003c2720})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc00050a100)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x835
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00050a100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00050a100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003deea0, 0xc00050a100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003deea0, {0x11fc270?, 0xc000528000}, 0xc00050a000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x11faa00?}, {0x11fc270, 0xc000528000}, 0xc00050a000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00047c510, {0x11fc958, 0xc00045e3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:44:27 server.go:3217: http: panic serving [::1]:57850: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 55 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x1059ba0, 0xc0003fc570})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0000a0400)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x835
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000a0400)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000a0400)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003deea0, 0xc0000a0400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003deea0, {0x11fc270?, 0xc0004062a0}, 0xc0000a0600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x11faa00?}, {0x11fc270, 0xc0004062a0}, 0xc0000a0600)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0005146c0, {0x11fc958, 0xc00045e3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:44:27 server.go:3217: http: panic serving [::1]:57851: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 47 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x1059ba0, 0xc000566000})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc00050a300)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x835
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00050a300)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00050a300)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003deea0, 0xc00050a300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003deea0, {0x11fc270?, 0xc0005282a0}, 0xc00050a400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x11faa00?}, {0x11fc270, 0xc0005282a0}, 0xc00050a400)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b9170, {0x11fc958, 0xc00045e3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:47:07 server.go:3217: http: panic serving [::1]:58107: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 66 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x1059ba0, 0xc0003fc570})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0000cc000)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x835
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000cc000)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000cc000)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003deea0, 0xc0000cc000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003deea0, {0x11fc270?, 0xc0004060e0}, 0xc0000d6100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x11faa00?}, {0x11fc270, 0xc0004060e0}, 0xc0000d6100)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b8240, {0x11fc958, 0xc00045e3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:47:36 server.go:3217: http: panic serving [::1]:58231: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 15 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xefaba0, 0xc0000a2420})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0000b0100)
+	D:/GoWorks/src/chat/service/group_service.go:80 +0x875
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000b0100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000b0100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003bd040, 0xc0000b0100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003bd040, {0x109d2d0?, 0xc000416000}, 0xc0001eb900)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x109ba60?}, {0x109d2d0, 0xc000416000}, 0xc0001eb900)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b87e0, {0x109d9b8, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:48:22 server.go:3217: http: panic serving [::1]:58294: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 55 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xd2aba0, 0xc0003de8a0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc00050c200)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x875
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00050c200)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00050c200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000360ea0, 0xc00050c200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000360ea0, {0xecd2d0?, 0xc000394000}, 0xc00050c100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xecba60?}, {0xecd2d0, 0xc000394000}, 0xc00050c100)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001381b0, {0xecd9b8, 0xc0003de4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:48:23 server.go:3217: http: panic serving [::1]:58298: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 35 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xd2aba0, 0xc000510390})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc00016a100)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x875
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00016a100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00016a100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000360ea0, 0xc00016a100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000360ea0, {0xecd2d0?, 0xc00013a0e0}, 0xc00016a000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xecba60?}, {0xecd2d0, 0xc00013a0e0}, 0xc00016a000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0004a0000, {0xecd9b8, 0xc0003de4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:48:24 server.go:3217: http: panic serving [::1]:58304: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 60 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xd2aba0, 0xc0003deb10})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc00050c500)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x875
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00050c500)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00050c500)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000360ea0, 0xc00050c500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000360ea0, {0xecd2d0?, 0xc0003941c0}, 0xc00068c200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xecba60?}, {0xecd2d0, 0xc0003941c0}, 0xc00068c200)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001386c0, {0xecd9b8, 0xc0003de4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:48:48 server.go:3217: http: panic serving [::1]:58340: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 9 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xf4aba0, 0xc00045e8d0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0001ea100)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x8f6
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0001ea100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0001ea100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003e8ea0, 0xc0001ea100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003e8ea0, {0x10ed2f0?, 0xc000416000}, 0xc0001ea000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x10eba80?}, {0x10ed2f0, 0xc000416000}, 0xc0001ea000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00047e000, {0x10ed9d8, 0xc00045e3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:48:49 server.go:3217: http: panic serving [::1]:58343: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 38 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xf4aba0, 0xc0002ba2d0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc00051c300)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x8f6
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00051c300)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00051c300)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003e8ea0, 0xc00051c300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003e8ea0, {0x10ed2f0?, 0xc0001ba0e0}, 0xc00051c200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x10eba80?}, {0x10ed2f0, 0xc0001ba0e0}, 0xc00051c200)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0005ac000, {0x10ed9d8, 0xc00045e3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:48:50 server.go:3217: http: panic serving [::1]:58348: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 66 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xf4aba0, 0xc00045eba0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0001ea300)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x8f6
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0001ea300)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0001ea300)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003e8ea0, 0xc0001ea300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003e8ea0, {0x10ed2f0?, 0xc0004161c0}, 0xc00051c400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x10eba80?}, {0x10ed2f0, 0xc0004161c0}, 0xc00051c400)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00049a000, {0x10ed9d8, 0xc00045e3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:48:52 server.go:3217: http: panic serving [::1]:58354: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 67 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xf4aba0, 0xc00045ee10})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0001ea400)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x8f6
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0001ea400)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0001ea400)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003e8ea0, 0xc0001ea400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003e8ea0, {0x10ed2f0?, 0xc000416380}, 0xc00051c500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x10eba80?}, {0x10ed2f0, 0xc000416380}, 0xc00051c500)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00049a090, {0x10ed9d8, 0xc00045e3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:49:09 server.go:3217: http: panic serving [::1]:58380: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 66 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xc7aba0, 0xc00048e420})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0000a2100)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x8e5
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000a2100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000a2100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003c8ea0, 0xc0000a2100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003c8ea0, {0xe1d2f0?, 0xc00040e000}, 0xc0004a0000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xe1ba80?}, {0xe1d2f0, 0xc00040e000}, 0xc0004a0000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000706000, {0xe1d9d8, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:49:09 server.go:3217: http: panic serving [::1]:58384: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 54 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xc7aba0, 0xc00048e720})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0000a2300)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x8e5
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000a2300)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000a2300)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003c8ea0, 0xc0000a2300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003c8ea0, {0xe1d2f0?, 0xc00040e1c0}, 0xc0001ea000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xe1ba80?}, {0xe1d2f0, 0xc00040e1c0}, 0xc0001ea000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00068a120, {0xe1d9d8, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:49:32 server.go:3217: http: panic serving [::1]:58419: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 7 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xfeaba0, 0xc0000311d0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0001d6000)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x8e5
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0001d6000)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0001d6000)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000063a00, 0xc0001d6000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000063a00, {0x118d2f0?, 0xc00016c1c0}, 0xc00069c200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x118ba80?}, {0x118d2f0, 0xc00016c1c0}, 0xc00069c200)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000002000, {0x118d9d8, 0xc000030d50})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:49:32 server.go:3217: http: panic serving [::1]:58422: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 41 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xfeaba0, 0xc000031500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0001d6300)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x8e5
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0001d6300)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0001d6300)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000063a00, 0xc0001d6300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000063a00, {0x118d2f0?, 0xc00016c380}, 0xc0001d6200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x118ba80?}, {0x118d2f0, 0xc00016c380}, 0xc0001d6200)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0004d8000, {0x118d9d8, 0xc000030d50})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:50:41 server.go:3217: http: panic serving [::1]:58517: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 66 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xffaba0, 0xc0000be420})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0000a2200)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x8f6
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000a2200)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000a2200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003eeea0, 0xc0000a2200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003eeea0, {0x119d2d0?, 0xc000418000}, 0xc0001ed900)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x119ba60?}, {0x119d2d0, 0xc000418000}, 0xc0001ed900)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000688000, {0x119d9b8, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:50:42 server.go:3217: http: panic serving [::1]:58521: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 84 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xffaba0, 0xc00045e7b0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0001ec200)
+	D:/GoWorks/src/chat/service/group_service.go:79 +0x8f6
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0001ec200)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0001ec200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003eeea0, 0xc0001ec200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003eeea0, {0x119d2d0?, 0xc0001bc0e0}, 0xc0001ec100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x119ba60?}, {0x119d2d0, 0xc0001bc0e0}, 0xc0001ec100)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000688630, {0x119d9b8, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:51:03 server.go:3217: http: panic serving [::1]:58553: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 66 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x11caba0, 0xc0007043f0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0000a2100)
+	D:/GoWorks/src/chat/service/group_service.go:80 +0x936
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000a2100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000a2100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003d6ea0, 0xc0000a2100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003d6ea0, {0x136d2f0?, 0xc000420000}, 0xc0004a4000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x136ba80?}, {0x136d2f0, 0xc000420000}, 0xc0004a4000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000588000, {0x136d9d8, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:51:58 server.go:3217: http: panic serving [::1]:58624: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 9 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xdaaba0, 0xc0002ba4b0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc00050e200)
+	D:/GoWorks/src/chat/service/group_service.go:81 +0x9c5
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00050e200)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00050e200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000408ea0, 0xc00050e200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000408ea0, {0xf4d350?, 0xc000416000}, 0xc0001ea000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xf4bae0?}, {0xf4d350, 0xc000416000}, 0xc0001ea000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00047e000, {0xf4da38, 0xc00045e3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 12:52:30 server.go:3217: http: panic serving [::1]:58674: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 9 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xb6aba0, 0xc0004a4630})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.JoinGroup(0xc0001ea100)
+	D:/GoWorks/src/chat/service/group_service.go:81 +0x9c5
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0001ea100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0001ea100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000580b60, 0xc0001ea100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000580b60, {0xd0d370?, 0xc0004860e0}, 0xc0001ea000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xd0bb00?}, {0xd0d370, 0xc0004860e0}, 0xc0001ea000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00047c000, {0xd0da58, 0xc0004a4150})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 13:05:51 server.go:3217: http: panic serving [::1]:59805: runtime error: invalid memory address or nil pointer dereference
+goroutine 99 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x12b37e0, 0x1853500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc00068e100)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00068e100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003c7040, 0xc00068e100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003c7040, {0x145c210?, 0xc0006ba000}, 0xc00068e000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0000b4030?}, {0x145c210, 0xc0006ba000}, 0xc00068e000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0004fc000, {0x145c8f8, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 13:15:55 server.go:3217: http: panic serving [::1]:60660: runtime error: invalid memory address or nil pointer dereference
+goroutine 143 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x13a37e0, 0x1943500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc0000b8200)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000b8200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000408ea0, 0xc0000b8200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000408ea0, {0x154c210?, 0xc00041a000}, 0xc0001ec600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0004000f0?}, {0x154c210, 0xc00041a000}, 0xc0001ec600)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001bb290, {0x154c8f8, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 13:15:58 server.go:3217: http: panic serving [::1]:60669: runtime error: invalid memory address or nil pointer dereference
+goroutine 101 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x13a37e0, 0x1943500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc000094100)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000094100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000408ea0, 0xc000094100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000408ea0, {0x154c210?, 0xc0005b6000}, 0xc000094000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0002ba000?}, {0x154c210, 0xc0005b6000}, 0xc000094000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0004f01b0, {0x154c8f8, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 13:22:23 server.go:3217: http: panic serving [::1]:61210: runtime error: invalid memory address or nil pointer dereference
+goroutine 114 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xd437e0, 0x12e3500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc00058f800)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00058f800)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003d8ea0, 0xc00058f800)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003d8ea0, {0xeec210?, 0xc0004ca1c0}, 0xc0004af000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00031ad80?}, {0xeec210, 0xc0004ca1c0}, 0xc0004af000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000598000, {0xeec8f8, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 13:22:25 server.go:3217: http: panic serving [::1]:61221: runtime error: invalid memory address or nil pointer dereference
+goroutine 76 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xd437e0, 0x12e3500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc00058e100)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00058e100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003d8ea0, 0xc00058e100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003d8ea0, {0xeec210?, 0xc0001ba1c0}, 0xc0000b4200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc000242840?}, {0xeec210, 0xc0001ba1c0}, 0xc0000b4200)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000492510, {0xeec8f8, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 19:31:58 server.go:3217: http: panic serving [::1]:62561: runtime error: invalid memory address or nil pointer dereference
+goroutine 37 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x10247e0, 0x15c4500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc00060e000)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00060e000)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003ecea0, 0xc00060e000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003ecea0, {0x11cd250?, 0xc000418000}, 0xc0004bc000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc000512060?}, {0x11cd250, 0xc000418000}, 0xc0004bc000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000702000, {0x11cd938, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 19:31:58 server.go:3217: http: panic serving [::1]:62563: runtime error: invalid memory address or nil pointer dereference
+goroutine 38 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x10247e0, 0x15c4500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc00047a100)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00047a100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003ecea0, 0xc00047a100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003ecea0, {0x11cd250?, 0xc0001ba0e0}, 0xc00047a000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00043d3e0?}, {0x11cd250, 0xc0001ba0e0}, 0xc00047a000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000702090, {0x11cd938, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 21:01:24 server.go:3217: http: panic serving [::1]:51978: runtime error: invalid memory address or nil pointer dereference
+goroutine 10 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x15947e0, 0x1b34500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc0000aa200)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000aa200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003eb1e0, 0xc0000aa200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003eb1e0, {0x173d2b0?, 0xc0003fc000}, 0xc0000aa100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00045c060?}, {0x173d2b0, 0xc0003fc000}, 0xc0000aa100)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b81b0, {0x173d998, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 21:06:48 server.go:3217: http: panic serving [::1]:53499: runtime error: invalid memory address or nil pointer dereference
+goroutine 66 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x15947e0, 0x1b34500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc0000aa200)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000aa200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003eb1e0, 0xc0000aa200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003eb1e0, {0x173d2b0?, 0xc0003fc1c0}, 0xc0000aa400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0000922a0?}, {0x173d2b0, 0xc0003fc1c0}, 0xc0000aa400)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b8bd0, {0x173d998, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 21:12:31 server.go:3217: http: panic serving [::1]:61650: runtime error: invalid memory address or nil pointer dereference
+goroutine 32 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xc047c0, 0x11a4500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc0000ba000)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000ba000)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003e8ea0, 0xc0000ba000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003e8ea0, {0xdad230?, 0xc00024e000}, 0xc000616400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc000123050?}, {0xdad230, 0xc00024e000}, 0xc000616400)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0002da000, {0xdad918, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 21:12:31 server.go:3217: http: panic serving [::1]:61656: runtime error: invalid memory address or nil pointer dereference
+goroutine 60 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xc047c0, 0x11a4500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc0001ee600)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0001ee600)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003e8ea0, 0xc0001ee600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003e8ea0, {0xdad230?, 0xc000632380}, 0xc000616500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0001234a0?}, {0xdad230, 0xc000632380}, 0xc000616500)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0004a46c0, {0xdad918, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/19 21:19:45 server.go:3217: http: panic serving [::1]:63661: runtime error: invalid memory address or nil pointer dereference
+goroutine 45 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x10f47c0, 0x1694500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc0000aa100)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000aa100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003daea0, 0xc0000aa100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003daea0, {0x129d250?, 0xc0000d2000}, 0xc0000c8000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00031e030?}, {0x129d250, 0xc0000d2000}, 0xc0000c8000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0000ca000, {0x129d938, 0xc00045e4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 10:14:23 server.go:3217: http: panic serving [::1]:62765: runtime error: invalid memory address or nil pointer dereference
+goroutine 101 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x15848e0, 0x1b24500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc00050c200)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00050c200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000584340, 0xc00050c200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000584340, {0x172d490?, 0xc00009c000}, 0xc00047e000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00045c1b0?}, {0x172d490, 0xc00009c000}, 0xc00047e000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b82d0, {0x172db78, 0xc000480240})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 10:14:46 server.go:3217: http: panic serving [::1]:62957: runtime error: invalid memory address or nil pointer dereference
+goroutine 54 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x15848e0, 0x1b24500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc00047e100)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00047e100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000584340, 0xc00047e100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000584340, {0x172d490?, 0xc0005ac0e0}, 0xc00047e000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00045c060?}, {0x172d490, 0xc0005ac0e0}, 0xc00047e000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b8240, {0x172db78, 0xc000480240})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 10:27:05 client_basic.go:48: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/20 10:27:57 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/20 10:28:57 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/20 10:30:19 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/20 10:31:39 server.go:3217: http: panic serving [::1]:64369: runtime error: invalid memory address or nil pointer dereference
+goroutine 67 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xf848e0, 0x1524500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc000516100)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000516100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003e3040, 0xc000516100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003e3040, {0x112d4f0?, 0xc00051c1c0}, 0xc000516300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00045d230?}, {0x112d4f0, 0xc00051c1c0}, 0xc000516300)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000491a70, {0x112dbd8, 0xc00045c3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 10:32:14 server.go:3217: http: panic serving [::1]:64429: runtime error: invalid memory address or nil pointer dereference
+goroutine 85 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xc948e0, 0x1234500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc0000a0200)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000a0200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003cf040, 0xc0000a0200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003cf040, {0xe3d4f0?, 0xc00040a0e0}, 0xc0000a0300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc000123050?}, {0xe3d4f0, 0xc00040a0e0}, 0xc0000a0300)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00048cbd0, {0xe3dbd8, 0xc00045c3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 10:32:28 server.go:3217: http: panic serving [::1]:64451: runtime error: invalid memory address or nil pointer dereference
+goroutine 68 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xc948e0, 0x1234500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc0001ef900)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0001ef900)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003cf040, 0xc0001ef900)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003cf040, {0xe3d4f0?, 0xc0001bc1c0}, 0xc0001ef700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00045d2c0?}, {0xe3d4f0, 0xc0001bc1c0}, 0xc0001ef700)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0006262d0, {0xe3dbd8, 0xc00045c3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 10:50:14 server.go:3217: http: panic serving [::1]:49425: runtime error: invalid memory address or nil pointer dereference
+goroutine 74 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xdb48e0, 0x1354500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc0004b0100)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0004b0100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0004011e0, 0xc0004b0100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0004011e0, {0xf5d530?, 0xc0004ba000}, 0xc0004b0000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00049c090?}, {0xf5d530, 0xc0004ba000}, 0xc0004b0000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000537290, {0xf5dc18, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 11:34:43 server.go:3217: http: panic serving [::1]:52473: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 9 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x94acc0, 0xc000404780})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.ExitGroup(0xc000496100)
+	D:/GoWorks/src/chat/service/group_service.go:147 +0x5d5
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000496100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000496100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b1040, 0xc000496100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b1040, {0xaed650?, 0xc0004a01c0}, 0xc000496300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xaebde0?}, {0xaed650, 0xc0004a01c0}, 0xc000496300)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b87e0, {0xaedd38, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 11:34:43 server.go:3217: http: panic serving [::1]:52507: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 70 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x94acc0, 0xc0001b75c0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.ExitGroup(0xc000520100)
+	D:/GoWorks/src/chat/service/group_service.go:147 +0x5d5
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000520100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000520100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b1040, 0xc000520100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b1040, {0xaed650?, 0xc0001ba1c0}, 0xc0001edc00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xaebde0?}, {0xaed650, 0xc0001ba1c0}, 0xc0001edc00)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00048a750, {0xaedd38, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 11:34:51 server.go:3217: http: panic serving [::1]:52527: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 45 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x94acc0, 0xc0002b8cf0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.ExitGroup(0xc000521a00)
+	D:/GoWorks/src/chat/service/group_service.go:147 +0x5d5
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000521a00)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000521a00)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b1040, 0xc000521a00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b1040, {0xaed650?, 0xc00040a460}, 0xc000521d00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xaebde0?}, {0xaed650, 0xc00040a460}, 0xc000521d00)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b9200, {0xaedd38, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 11:34:51 server.go:3217: http: panic serving [::1]:52528: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 46 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x94acc0, 0xc0002b9260})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.ExitGroup(0xc000521f00)
+	D:/GoWorks/src/chat/service/group_service.go:147 +0x5d5
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000521f00)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000521f00)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b1040, 0xc000521f00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b1040, {0xaed650?, 0xc00040a620}, 0xc000521e00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xaebde0?}, {0xaed650, 0xc00040a620}, 0xc000521e00)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b9290, {0xaedd38, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 11:34:53 server.go:3217: http: panic serving [::1]:52530: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 71 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x94acc0, 0xc000404ed0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.ExitGroup(0xc000496400)
+	D:/GoWorks/src/chat/service/group_service.go:147 +0x5d5
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000496400)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000496400)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b1040, 0xc000496400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b1040, {0xaed650?, 0xc0004a0380}, 0xc0002c8000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xaebde0?}, {0xaed650, 0xc0004a0380}, 0xc0002c8000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00048a7e0, {0xaedd38, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 11:36:17 server.go:3217: http: panic serving [::1]:52691: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 9 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xa6acc0, 0xc00068cf90})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.ExitGroup(0xc00009e100)
+	D:/GoWorks/src/chat/service/group_service.go:148 +0x615
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00009e100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00009e100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003f4ea0, 0xc00009e100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003f4ea0, {0xc0d6b0?, 0xc0001ba2a0}, 0xc00009e300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0be40?}, {0xc0d6b0, 0xc0001ba2a0}, 0xc00009e300)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b87e0, {0xc0dd98, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 11:36:17 server.go:3217: http: panic serving [::1]:52702: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 26 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xa6acc0, 0xc0005982d0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.ExitGroup(0xc00060c100)
+	D:/GoWorks/src/chat/service/group_service.go:148 +0x615
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00060c100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00060c100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003f4ea0, 0xc00060c100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003f4ea0, {0xc0d6b0?, 0xc00040e1c0}, 0xc00013d300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0be40?}, {0xc0d6b0, 0xc00040e1c0}, 0xc00013d300)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b8870, {0xc0dd98, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 11:36:26 server.go:3217: http: panic serving [::1]:52721: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 75 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xa6acc0, 0xc00045c750})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.ExitGroup(0xc000616100)
+	D:/GoWorks/src/chat/service/group_service.go:148 +0x615
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000616100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000616100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003f4ea0, 0xc000616100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003f4ea0, {0xc0d6b0?, 0xc0006280e0}, 0xc000616200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0be40?}, {0xc0d6b0, 0xc0006280e0}, 0xc000616200)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000688fc0, {0xc0dd98, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 11:36:26 server.go:3217: http: panic serving [::1]:52722: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 84 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xa6acc0, 0xc0005985a0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.ExitGroup(0xc00013d500)
+	D:/GoWorks/src/chat/service/group_service.go:148 +0x615
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00013d500)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00013d500)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003f4ea0, 0xc00013d500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003f4ea0, {0xc0d6b0?, 0xc00040e380}, 0xc00013d400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0be40?}, {0xc0d6b0, 0xc00040e380}, 0xc00013d400)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000620360, {0xc0dd98, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 11:36:57 server.go:3217: http: panic serving [::1]:52791: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 27 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x150acc0, 0xc0004cb9e0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.ExitGroup(0xc0001ec200)
+	D:/GoWorks/src/chat/service/group_service.go:147 +0x615
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0001ec200)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0001ec200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003eaea0, 0xc0001ec200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003eaea0, {0x16ad6b0?, 0xc0001ba380}, 0xc0004c5300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x16abe40?}, {0x16ad6b0, 0xc0001ba380}, 0xc0004c5300)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b81b0, {0x16add98, 0xc00045c3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 11:36:57 server.go:3217: http: panic serving [::1]:52799: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 74 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x150acc0, 0xc00045c6f0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.ExitGroup(0xc0000b4100)
+	D:/GoWorks/src/chat/service/group_service.go:147 +0x615
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000b4100)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000b4100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003eaea0, 0xc0000b4100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003eaea0, {0x16ad6b0?, 0xc0000c2000}, 0xc0000b4000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x16abe40?}, {0x16ad6b0, 0xc0000c2000}, 0xc0000b4000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000491170, {0x16add98, 0xc00045c3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 11:36:58 server.go:3217: http: panic serving [::1]:52801: interface conversion: interface {} is *models.UserClaim, not models.UserClaim
+goroutine 11 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x150acc0, 0xc00045c960})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.ExitGroup(0xc0000b4300)
+	D:/GoWorks/src/chat/service/group_service.go:147 +0x615
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000b4300)
+	D:/GoWorks/src/chat/service/middleware.go:43 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000b4300)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003eaea0, 0xc0000b4300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003eaea0, {0x16ad6b0?, 0xc0000c21c0}, 0xc0000b4200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x16abe40?}, {0x16ad6b0, 0xc0000c21c0}, 0xc0000b4200)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00047c1b0, {0x16add98, 0xc00045c3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 12:39:35 message_basic.go:39: Error 1062 (23000): Duplicate entry '2' for key 'UQE_group_message_user_id'
+2023/09/20 12:40:39 message_basic.go:39: Error 1364 (HY000): Field 'user_uuid' doesn't have a default value
+2023/09/20 12:40:54 server.go:3217: http: panic serving [::1]:60206: runtime error: invalid memory address or nil pointer dereference
+goroutine 34 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x15c4880, 0x1b65500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc0000a0200)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0000a0200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003faea0, 0xc0000a0200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003faea0, {0x176d650?, 0xc000414000}, 0xc0000a0100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc000122c30?}, {0x176d650, 0xc000414000}, 0xc0000a0100)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b81b0, {0x176dd38, 0xc00045c3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 12:41:05 message_basic.go:39: Error 1364 (HY000): Field 'user_uuid' doesn't have a default value
+2023/09/20 17:48:16 server.go:3217: http: panic serving [::1]:59269: runtime error: invalid memory address or nil pointer dereference
+goroutine 29 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x1584860, 0x1b25500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc000560300)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000560300)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003d1040, 0xc000560300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003d1040, {0x172d630?, 0xc00041a000}, 0xc000560200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00045c060?}, {0x172d630, 0xc00041a000}, 0xc000560200)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00050e000, {0x172dd18, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 17:48:17 server.go:3217: http: panic serving [::1]:59280: runtime error: invalid memory address or nil pointer dereference
+goroutine 85 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x1584860, 0x1b25500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc000560400)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000560400)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003d1040, 0xc000560400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003d1040, {0x172d630?, 0xc00041a1c0}, 0xc0001ec000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0005660f0?}, {0x172d630, 0xc00041a1c0}, 0xc0001ec000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b8360, {0x172dd18, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 17:48:55 server.go:3217: http: panic serving [::1]:49902: runtime error: invalid memory address or nil pointer dereference
+goroutine 71 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x1584860, 0x1b25500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc000560300)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000560300)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003d1040, 0xc000560300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003d1040, {0x172d630?, 0xc00041a000}, 0xc000560200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc000566090?}, {0x172d630, 0xc00041a000}, 0xc000560200)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b81b0, {0x172dd18, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 19:12:39 server.go:3217: http: panic serving [::1]:57799: runtime error: invalid memory address or nil pointer dereference
+goroutine 56 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x1275860, 0x1816500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc0005a2300)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0005a2300)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0004071e0, 0xc0005a2300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0004071e0, {0x141e8d0?, 0xc0001ba2a0}, 0xc0004b2000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0003ca1e0?}, {0x141e8d0, 0xc0001ba2a0}, 0xc0004b2000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000094e10, {0x141efb8, 0xc00045a4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 19:25:49 server.go:3217: http: panic serving [::1]:61834: runtime error: invalid memory address or nil pointer dereference
+goroutine 60 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xa75860, 0x1016500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc00058c200)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00058c200)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000408ea0, 0xc00058c200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000408ea0, {0xc1e910?, 0xc000404000}, 0xc00058c000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0001b6d20?}, {0xc1e910, 0xc000404000}, 0xc00058c000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00059e000, {0xc1eff8, 0xc00045c3c0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/20 19:25:53 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 12:34:24 server.go:3217: http: panic serving [::1]:56054: runtime error: invalid memory address or nil pointer dereference
+goroutine 9 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xf85860, 0x1526500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc000520100)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000520100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003f5040, 0xc000520100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003f5040, {0x112e8d0?, 0xc000406000}, 0xc000520000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00050e030?}, {0x112e8d0, 0xc000406000}, 0xc000520000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001467e0, {0x112efb8, 0xc00045c4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/21 12:47:22 server.go:3217: http: panic serving [::1]:57550: runtime error: invalid memory address or nil pointer dereference
+goroutine 48 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0xf75860, 0x1516500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc00060a100)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00060a100)
+	D:/GoWorks/src/chat/service/middleware.go:26 +0x15f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000346ea0, 0xc00060a100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000346ea0, {0x111e9b0?, 0xc0006121c0}, 0xc00060b000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc000238d80?}, {0x111e9b0, 0xc0006121c0}, 0xc00060b000)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc000446870, {0x111f098, 0xc0003dc4b0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/21 15:09:38 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:11:32 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:11:34 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:12:40 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:12:40 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:12:50 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:12:50 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:13:16 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:13:16 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:14:16 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:14:16 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:14:39 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:14:39 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:14:44 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:14:44 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:14:45 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:14:45 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:15:09 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:15:09 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:15:12 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/21 15:15:14 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 17:58:02 server.go:3217: http: panic serving [::1]:61436: runtime error: invalid memory address or nil pointer dereference
+goroutine 268 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x7159a0, 0xcb6500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc00024ec00)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00024ec00)
+	D:/GoWorks/src/chat/service/middleware.go:27 +0x182
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000084820, 0xc00024ec00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000084820, {0x8bed70?, 0xc0000b80e0}, 0xc00024ee00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc0001b54d0?}, {0x8bed70, 0xc0000b80e0}, 0xc00024ee00)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b82d0, {0x8bf458, 0xc000094cc0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/23 17:58:39 server.go:3217: http: panic serving [::1]:61494: runtime error: invalid memory address or nil pointer dereference
+goroutine 279 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x7159a0, 0xcb6500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc000475700)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000475700)
+	D:/GoWorks/src/chat/service/middleware.go:27 +0x182
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000084820, 0xc000475700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000084820, {0x8bed70?, 0xc0001ba460}, 0xc000475a00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc000095440?}, {0x8bed70, 0xc0001ba460}, 0xc000475a00)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0000ce120, {0x8bf458, 0xc000094cc0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/23 21:37:53 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 21:38:07 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 21:39:37 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 21:42:35 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 21:44:43 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 22:15:29 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 22:26:47 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 22:28:57 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 22:32:48 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 22:33:21 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 22:33:44 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 22:33:47 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/23 22:43:52 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 11:58:34 server.go:3217: http: panic serving [::1]:60945: runtime error: invalid memory address or nil pointer dereference
+goroutine 531 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x7159a0, 0xcb6500})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/service.Connectws(0xc00024ec00)
+	D:/GoWorks/src/chat/service/ws_service.go:30 +0xaa
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc00024ec00)
+	D:/GoWorks/src/chat/service/middleware.go:27 +0x182
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000084820, 0xc00024ec00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000084820, {0x8bed70?, 0xc0001ba1c0}, 0xc00024eb00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xc00045c060?}, {0x8bed70, 0xc0001ba1c0}, 0xc00024eb00)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b81b0, {0x8bf458, 0xc000094cc0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/24 12:04:45 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 12:05:26 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 12:17:59 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 15:01:45 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 15:36:00 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 15:36:27 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 15:36:52 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 15:36:57 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 15:37:03 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 15:37:48 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 15:38:09 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 15:45:55 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 15:47:31 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 15:52:48 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 16:23:39 server.go:3217: http: panic serving [::1]:61927: assignment to entry in nil map
+goroutine 16 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x1126b20, 0x12cb2a0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/models.(*GroupUserRelative).Association(0xc000454a10, 0xc0007567e0, {0x3d, {0xc000410e70, 0x24}, 0x7, {0xc0002bb290, 0x5}, {0xc0002bb295, 0x5}, ...})
+	D:/GoWorks/src/chat/models/group_user_relative_basic.go:27 +0x165
+go-websocket-server/service.CreateGroup(0xc0002cf200)
+	D:/GoWorks/src/chat/service/group_service.go:74 +0x79b
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0002cf200)
+	D:/GoWorks/src/chat/service/middleware.go:44 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc0002cf200)
+	D:/GoWorks/src/chat/service/middleware.go:27 +0x182
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000486820, 0xc0002cf200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000486820, {0x12cfe30?, 0xc00075e2a0}, 0xc0002cf600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x12ce5c0?}, {0x12cfe30, 0xc00075e2a0}, 0xc0002cf600)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc00047e120, {0x12d0518, 0xc00045d3e0})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/24 16:37:03 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/24 16:38:09 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/25 19:33:32 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/25 19:37:52 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/25 19:38:37 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/25 19:42:26 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/26 20:26:16 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:02:54 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:03:59 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:04:42 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:05:17 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:05:49 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:06:53 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:07:11 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:11:52 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:12:32 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:18:52 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:20:52 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:21:47 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:22:03 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:22:25 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:25:35 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:28:47 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:31:29 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/27 13:34:02 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/28 11:49:22 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/28 11:53:52 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/28 12:53:18 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/28 13:21:07 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/28 14:19:46 server.go:3217: http: panic serving [::1]:59395: assignment to entry in nil map
+goroutine 55 [running]:
+net/http.(*conn).serve.func1()
+	D:/Go/src/net/http/server.go:1854 +0xbf
+panic({0x16e26a0, 0x189b6e0})
+	D:/Go/src/runtime/panic.go:890 +0x263
+go-websocket-server/models.(*GroupUserRelative).Association(0xc000148850, 0xc000622c60, {0x43, {0xc0006a1140, 0x24}, 0xe, {0xc000688d30, 0xb}, {0xc000688d28, 0x4}, ...})
+	D:/GoWorks/src/hichat-service/models/group_user_relative_basic.go:27 +0x165
+go-websocket-server/service.CreateGroup(0xc000698b00)
+	D:/GoWorks/src/hichat-service/service/group_service.go:89 +0xa18
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000698b00)
+	D:/GoWorks/src/hichat-service/service/middleware.go:44 +0x16c
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.Cors.func1(0xc000698b00)
+	D:/GoWorks/src/hichat-service/service/middleware.go:27 +0x182
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0006149c0, 0xc000698b00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0006149c0, {0x18a0350?, 0xc0006321c0}, 0xc000643100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x189ea68?}, {0x18a0350, 0xc0006321c0}, 0xc000643100)
+	D:/Go/src/net/http/server.go:2936 +0x316
+net/http.(*conn).serve(0xc0001b8990, {0x18a0a38, 0xc00045d440})
+	D:/Go/src/net/http/server.go:1995 +0x612
+created by net/http.(*Server).Serve
+	D:/Go/src/net/http/server.go:3089 +0x5ed
+2023/09/28 14:22:11 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/30 22:56:29 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/30 22:58:30 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/30 23:05:37 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/30 23:07:02 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/30 23:07:07 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/30 23:07:43 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/30 23:14:11 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/09/30 23:20:14 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/01 00:38:07 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/01 20:31:19 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/01 22:49:23 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/01 22:52:42 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/01 22:55:47 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/01 22:55:49 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/01 23:27:25 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/02 00:35:51 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/02 16:30:27 login_server.go:36: 结果: []
+2023/10/02 16:30:46 login_server.go:36: 结果: []
+2023/10/02 17:24:25 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/02 17:37:49 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/02 17:41:38 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/02 17:44:56 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/02 17:51:39 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/02 21:58:48 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/03 21:04:17 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/03 21:09:12 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/03 21:12:20 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/03 21:26:51 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/03 22:36:11 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/03 22:41:32 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/03 23:03:32 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/03 23:13:31 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/03 23:53:37 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/04 00:11:17 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/04 00:22:57 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/04 01:08:34 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/04 02:20:58 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/04 02:25:07 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/04 02:29:23 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/04 02:38:43 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/04 14:28:05 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)
+2023/10/04 14:33:42 client_basic.go:49: IsUnexpectedCloseError: websocket: close 1005 (no status)

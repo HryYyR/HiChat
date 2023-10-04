@@ -1,0 +1,27 @@
+# syntax=docker/dockerfile:1
+
+FROM golang:1.20-alpine
+
+# 创建一个工作目录，之后源码或编译产物都存放在该目录中
+WORKDIR /app  
+COPY go.mod ./
+COPY go.sum ./
+ENV GOPROXY https://proxy.golang.com.cn,direct
+
+RUN go mod download
+
+COPY *.go ./
+COPY ADB ./ADB
+COPY file ./file
+COPY config ./config
+COPY models ./models
+COPY middleware ./middleware
+COPY service ./service
+COPY util ./util
+
+RUN go build -o /hichat-file-service
+
+EXPOSE 3006
+EXPOSE 3307
+
+CMD [ "/hichat-file-service" ]
