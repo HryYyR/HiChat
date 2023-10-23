@@ -12,6 +12,8 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import ContextMenu from '@imengyu/vue3-context-menu'
 
+export const fileurl = 'localhost:3006'
+export const url = 'localhost:3004'
 
 axios.defaults.baseURL = "http://localhost:3004"
 axios.defaults.timeout = 4000;
@@ -26,7 +28,7 @@ axios.interceptors.request.use(
         return config
     },
     err => {
-        return Promise.reject(err)
+        return err.response
     }
 );
 

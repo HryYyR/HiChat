@@ -123,12 +123,12 @@
     /* 滚动条滑块 */
     ::-webkit-scrollbar-thumb {
         border-radius: 10px;
-        background-color: rgb(255, 236, 236);
+        background-color: rgb(255, 230, 230);
     }
 
     /* 滚动条轨道 */
     ::-webkit-scrollbar-track {
-        border-radius: 10px;
+        border-radius: 1px;
         background: white;
     }
 
@@ -136,79 +136,20 @@
 
     .left_list {
         height: 100%;
-        width: 300px;
+        width: 32%;
         border-top: 1px solid @borderc;
-        ;
         border-right: 1px solid @borderc;
         display: flex;
         flex-direction: column;
 
-        .userinfo {
-            position: relative;
-            margin: 20px 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            .userinfo_item {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                position: relative;
-
-                .userinfo_header {
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    img{
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 50%;
-                    }
-                }
-
-                .userinfo_name {
-                    position: relative;
-                    left: 15px;
-                }
-
-                .edit_selfinfo {
-                    position: relative;
-                    padding: 5px 8px;
-                    left: 65px;
-                    border-radius: 10px;
-                    font-size: 0.8rem;
-                    font-weight: 900;
-                    cursor: pointer;
-                    color: rgba(0, 0, 0, 0.6);
-                    border: 1px solid rgb(213, 213, 213);
-                    transition: 0.2s;
-
-                    &:hover {
-                        background-color: rgba(0, 0, 0, 0.1);
-                        border: 1px solid transparent;
-                        color: black;
-
-
-                    }
-                }
-            }
-
-            .userinfo_email {
-                position: relative;
-                left: 20px;
-                top: 10px;
-            }
-
-        }
 
         .group_tools {
-            height: 20px;
+            height: 60px;
             display: flex;
             padding: 10px;
             justify-content: center;
             align-items: center;
-            margin: 10px 0;
+            background-color: white;
 
             input {
                 height: 20px;
@@ -241,53 +182,69 @@
             }
         }
 
+        .apply_msg_list {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            padding-left: 20px;
+            color: #3a3b3c;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+            user-select: none;
+
+            &:hover {
+                background-color: rgb(229, 229, 229);
+            }
+
+            .apply_msg_list_left {
+                display: flex;
+
+                span {
+                    text-align: center;
+                    width: 20px;
+                    height: 20px;
+                    background-color: #8795ff;
+                    border-radius: 50%;
+                    color: white;
+                    font-size: 0.7rem;
+                    line-height: 1.3rem;
+                    margin-left: 10px;
+                }
+            }
+
+            .apply_msg_list_right {
+                position: relative;
+                margin-right: 20px;
+            }
+
+        }
+
         .group_list {
             overflow: auto;
             position: relative;
             height: 100%;
             margin-bottom: 40px;
+            overflow: auto;
 
-
-            .group_item {
-                height: 70px;
-                transition: 0.2s;
-                display: flex;
-                align-items: center;
-                padding: 0 10px;
-                position: relative;
-                cursor: pointer;
-                user-select: none;
-
-                .group_item_header {
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    position: relative;
-                    margin-right: 20px;
-                    background-color: white;
-
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 50%;
-
-                    }
-                }
-
-                .group_lastmsg {
-                    font-weight: 100;
-                    min-height: 20px
-                }
-
-                &:hover {
-                    background-color: rgba(0, 0, 0, 0.1) !important;
-                }
-
-            }
+  
 
             .checkgroup {
                 background-color: rgb(0, 153, 255);
                 color: white !important;
+
+                .group_msginfo {
+                    & :nth-child(1) {
+                        color: white;
+                    }
+
+                    & :nth-child(2) {
+                        background-color: white;
+                        color: black;
+                    }
+                }
 
                 &:hover {
                     background-color: rgb(0, 153, 255) !important;
@@ -298,7 +255,7 @@
 
     .right_list {
         height: 100%;
-        width: calc(100% - 300px);
+        width: 68%;
         border-top: 1px solid @borderc;
         display: flex;
         flex-direction: column;
@@ -307,18 +264,17 @@
 
         .rightlist_option {
             position: relative;
-            padding-left: 20px;
             display: flex;
             align-items: center;
             font-size: 1.2rem;
-            height: 50px;
+            padding: 10px 0 10px 25px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .message_unread {
-            position: fixed;
-            bottom: 0px;
-            right: 0;
+            position: sticky;
+            bottom: 0;
+            left: calc(50% - 50px);
             width: 100px;
             height: 25px;
             background-color: rgb(62, 107, 255);
@@ -326,8 +282,6 @@
             justify-content: center;
             align-items: center;
             border-radius: 10px 10px 0PX 0PX;
-            margin-bottom: 30vh;
-            margin-right: 40vw;
             color: white;
             font-size: 0.8rem;
             opacity: 0.6;
@@ -339,62 +293,30 @@
             position: relative;
             padding: 20px 20px 0 20px;
             overflow: auto;
-            height: calc(70% - 50px);
+            height: calc(65% - 50px);
 
 
-            .msg_item {
-                display: flex;
-                margin: 20px 0;
-                justify-content: flex-end;
 
-                .msg_header {
-                    width: 40px;
-                    height: 40px;
-                    background-color: red;
-                    border-radius: 50%;
-                    position: relative;
-                    margin: 0 10px;
-
-                }
-
-                .msg_text {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-end;
-                    align-items: flex-end;
-
-                    .msg_info {
-                        background-color: rgb(231, 231, 231);
-                        padding: 8px 10px;
-                        margin: 3px 0;
-                        border-radius: 10px;
-                    }
-
-                    .selfinfo {
-                        color: white;
-                        background-color: rgb(0, 153, 255);
-                    }
-                }
-
-                .msg_quit {
-                    padding: 5px 10px;
-                    border-radius: 10px;
-                    color: #636363;
-                    font-size: 0.8rem;
-                    background-color: #ebebeb;
-                    user-select: none;
-                }
-            }
         }
 
         .rightlist_input {
-            height: 30%;
-            min-height: 130px;
+            height: 35%;
             border-top: 1px solid @borderc;
 
             .input_tool {
-                // height: 35px;
-                background-color: rgba(0, 0, 0, 0.2);
+                height: 25px;
+                display: flex;
+                align-items: center;
+                padding: 0 10px;
+                margin-top: 5px;
+
+                .tool_image{
+                    font-size: 1.5rem;
+                    color: #3a3b3c;
+                    & :hover{
+                        color: #8795ff;
+                    }
+                }
             }
 
             textarea {
@@ -445,34 +367,46 @@
     }
 }
 
-.creategroup_dialog {
+
+.apply_join_geoup_dialog_grouplist_item {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+
+    .group_number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.apply_msg_list_dialog {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    position: relative;
-    padding-top: 40px;
+    
 
-    img {
-        width: 78px;
-        height: 78px;
-    }
-
-    .avatar-uploader {
+    &>div {
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 20px;
+        border-radius: 10px;
         margin: 10px 0;
-
-        .avatar-uploader-icon {
-            font-size: 28px;
-            color: #8c939d;
-            width: 78px;
-            height: 78px;
-            text-align: center;
-            border: 1px solid #c7c7c7;
-            border-radius: 10px;
+        p span {
+            color: skyblue;
+            & p{
+                word-spacing: 10px;
+            }
         }
     }
 
-    .creategroup_groupname_input {
-        width: 270px;
-    }
 }

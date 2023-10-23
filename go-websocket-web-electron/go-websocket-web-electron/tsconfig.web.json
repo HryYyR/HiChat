@@ -9,7 +9,7 @@
     "src/preload/*.d.ts",
   ],
   "files": [
-    "d:/GoWorks/src/go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/store/common.ts",
+    "d:/GoWorks/src/HiChat/go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/store/common.ts",
   ],
   "compilerOptions": {
     "composite": true,

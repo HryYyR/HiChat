@@ -1,0 +1,65 @@
+
+.userinfo {
+    position: relative;
+    margin: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .userinfo_item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+
+        .userinfo_header {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
+        }
+
+        .userinfo_name {
+            width: 85px;
+            position: relative;
+            left: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+
+        .edit_selfinfo {
+            position: relative;
+            padding: 5px 8px;
+            left: 25px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgb(213, 213, 213);
+            transition: 0.2s;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+                border: 1px solid transparent;
+                color: black;
+
+
+            }
+        }
+    }
+
+    .userinfo_email {
+        position: relative;
+        left: 20px;
+        top: 10px;
+    }
+
+}

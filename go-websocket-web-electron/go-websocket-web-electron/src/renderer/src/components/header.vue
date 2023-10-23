@@ -23,7 +23,7 @@ const toClose = () => {
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
-    -webkit-app-region: drag; // 设置可拖动
+    align-items: center; 
+    -webkit-app-region: drag; //设置可拖动
 }
 </style>

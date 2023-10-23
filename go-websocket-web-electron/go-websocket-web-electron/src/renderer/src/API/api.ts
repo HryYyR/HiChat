@@ -33,7 +33,24 @@ export function registerapi(username: string, password: string, email: string, e
         code: emailcode
     }
 
-    return axios.post("/register", registerinfo)
+    return axios({
+        url: staticurl + "/register",
+        method: "POST",
+        data: registerinfo
+    })
+}
+
+// 发送邮箱验证码
+export function emailcodeapi(email: string) {
+    const msg = {
+        email: email
+    }
+
+    return axios({
+        url: staticurl + "/emailcode",
+        method: "POST",
+        data: msg
+    })
 }
 
 // 刷新列表
@@ -53,11 +70,17 @@ export function searchGroupapi(text: string) {
 }
 
 // 加入群聊
-export function joingroupapi(GroupName: string) {
+export function joingroupapi(applyid: number,status: number) {
     let msg = {
-        GroupName: GroupName,
+        ApplyID: applyid,
+        HandleStatus:status
     }
     return axios.post("/user/joingroup", msg)
+}
+
+export function applyjoingroupapi(applydata: any) {
+
+    return axios.post("/user/applyjoingroup", applydata)
 }
 
 // 创建群聊
@@ -77,10 +100,3 @@ export function exitgroupapi(id: number) {
     return axios.post("/user/exitgroup", msg)
 }
 
-// 发送邮箱验证码
-export function emailcodeapi(email: string) {
-    const msg = {
-        email: email
-    }
-    return axios.post("/emailcode", msg)
-}

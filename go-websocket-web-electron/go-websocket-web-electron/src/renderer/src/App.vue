@@ -36,7 +36,7 @@
             <div class="view_input" style="display: flex;">
                 <el-input placeholder="邮箱验证码" v-model="data.registerdata.emailcode" size="large"
                     style="margin-right: 10px;"></el-input><el-button type="success" size="large" @click="sendemailCode"
-                    :disabled="data.registerdata.sendemailbtnvisible">发送验证码</el-button>
+                    :disabled="data.registerdata.sendemailbtnvisible">{{ data.registerdata.sendcodebtn }}</el-button>
 
 
             </div>
@@ -58,105 +58,72 @@
     <!-- 主面板 -->
     <div v-show="data.islogin" class="index">
         <div class="left_list">
-            <div class="userinfo">
-                <div class="userinfo_item">
-                    <div class="userinfo_header">
-                        <img :src="data.userdata.Avatar.length==0?`http://${fileurl}/static/icon.png`:data.userdata.Avatar" >
-                    </div>
-                    <p class="userinfo_name">{{ data.userdata.UserName }}</p>
-                    <div class="edit_selfinfo">个人信息</div>
-                </div>
+            <UserInfoVue :username="data.userdata.UserName" :userheader="data.userdata.Avatar" />
+
+            <!-- 群工具 -->
+            <div class="group_tools">
+                <input type="text" v-model="data.searchgroupinput" placeholder="搜索">
+                <el-dropdown trigger="click">
+                    <el-icon class="open_addgroup_dialog_btn">
+                        <Plus />
+                    </el-icon>
+                    <template #dropdown>
+                        <el-dropdown-menu>
+                            <el-dropdown-item>
+                                <div @click="data.addgroupdata.addGroupDialogVisible = true">
+                                    添加群聊
+                                </div>
+                            </el-dropdown-item>
+                            <el-dropdown-item>
+                                <div @click="data.creategroupdata.createGroupDialogVisible = true">
+                                    创建群聊
+                                </div>
+                            </el-dropdown-item>
+                        </el-dropdown-menu>
+                    </template>
+                </el-dropdown>
             </div>
 
-
+            <!-- 申请消息列表 -->
+            <div class="apply_msg_list" v-if="data.islogin" @click="data.applymsgdata.applyMsgDialogVisible = true">
+                <div class="apply_msg_list_left">
+                    <p>消息通知</p><span v-show="data.userdata.ApplyList.filter(i => i.HandleStatus == 0).length != 0">{{
+                        data.userdata.ApplyList.filter(i => i.HandleStatus == 0).length
+                    }}</span>
+                </div>
+                <p class="apply_msg_list_right"><el-icon>
+                        <ArrowRightBold />
+                    </el-icon></p>
+            </div>
             <!-- 群列表 -->
             <div class="group_list">
-                <!-- 群工具 -->
-                <div class="group_tools">
-                    <input type="text" v-model="data.searchgroupinput" placeholder="搜索">
-
-
-                    <el-dropdown trigger="click">
-                        <el-icon class="open_addgroup_dialog_btn">
-                            <Plus />
-                        </el-icon>
-                        <template #dropdown>
-                            <el-dropdown-menu>
-                                <el-dropdown-item>
-                                    <div @click="data.addgroupdata.addGroupDialogVisible = true">
-                                        添加群聊
-                                    </div>
-                                </el-dropdown-item>
-                                <el-dropdown-item>
-                                    <div @click="data.creategroupdata.createGroupDialogVisible = true">
-                                        创建群聊
-                                    </div>
-                                </el-dropdown-item>
-                            </el-dropdown-menu>
-                        </template>
-                    </el-dropdown>
-
-                </div>
-                <div class="group_item" v-for="(item) in data.grouplist" :key="item.GroupInfo.ID"
-                    @click="setcurrentgrouplist(item)" @contextmenu.prevent.stop="openeditgroupmenu($event, item)"
-                    :class="{ checkgroup: JSON.stringify(data.currentgroupdata) == '{}' ? false : item.GroupInfo.ID == data.currentgroupdata.GroupInfo.ID }">
-                    <div>
-                        <div class="group_item_header">
-                            <img :src="item.GroupInfo.Avatar || `http://${fileurl}/static/default_group_avatar.png`">
-                        </div>
-                    </div>
-                    <div>
-                        <p>{{ item.GroupInfo.GroupName }}</p>
-                        <p class="group_lastmsg">
-                            {{ item.MessageList.length != 0 ?
-                                item.MessageList.at(-1)?.MsgType == 1 ?
-                                    `${item.MessageList.at(-1)?.UserName}:
-                                                        ${item.MessageList.at(-1)?.Msg}` :
-                                    item.MessageList.at(-1)?.Msg : ''
-
-                            }}
-                        </p>
-                    </div>
-                </div>
+                <GroupItemVue v-for="(item) in data.grouplist" :key="item.GroupInfo.ID" :item="item"
+                    :currentgroupdata="data.currentgroupdata" @setcurrentgrouplist="setcurrentgrouplist"
+                    @openeditgroupmenu="openeditgroupmenu" />
             </div>
 
-            <div @click="outlogin" class="outlogin"><el-icon>
+            <div @click="outlogin" class="outlogin">
+                <el-icon>
                     <ArrowLeftBold />
-                </el-icon>退出登录</div>
+                </el-icon>退出登录
+            </div>
         </div>
 
         <div class="right_list" v-if="JSON.stringify(data.currentgroupdata) != '{}'">
             <div class="rightlist_option">
                 {{ data.currentgroupdata.GroupInfo.GroupName || "" }} ({{ data.currentgroupdata.GroupInfo.MemberCount }})
+                {{ data.currentgroupdata.MessageList.length }}
             </div>
 
             <!-- 消息列表 -->
             <div class="rightlist_container" ref="msglist">
-                <div class="msg_item"
-                    :style="{ justifyContent: item.MsgType == 1 ? item.UserID == data.userdata.ID ? 'flex-end' : 'flex-start' : 'center' }"
-                    v-for="item in data.currentgroupdata.MessageList" :key="item.ID">
-
-                    <!-- 左头像 -->
-                    <div class="msg_header" v-if="item.UserID != data.userdata.ID && item.MsgType == 1">
-                    </div>
-
-                    <!-- 内容 -->
-                    <div v-if="item.MsgType == 1" class="msg_text"
-                        :style="{ alignItems: item.UserID == data.userdata.ID ? 'flex-end' : 'flex-start' }">
-                        <p>{{ item.UserName }}</p>
-                        <p class="msg_info" :class="item.UserID == data.userdata.ID ? 'selfinfo' : ''">{{ item.Msg }}</p>
-                    </div>
-
-                    <!-- 右头像 -->
-                    <div class="msg_header" v-if="item.UserID == data.userdata.ID && item.MsgType == 1">
-                    </div>
-
-                    <!-- 用户退出消息 -->
-                    <div class="msg_quit" v-if="item.MsgType == 201">
-                        {{ item.Msg }}
-                    </div>
-
-                </div>
+                <MessageItemVue
+                v-for="item in data.currentgroupdata.MessageList" :key="item.ID"
+                :item="item"
+                :userdata="data.userdata"
+                :currentgroupdata="data.currentgroupdata"
+                @openMsgHandleMenu="openMsgHandleMenu"
+                />
 
                 <!-- 消息未读 -->
                 <div class="message_unread" @click="scrolltonew(0, true)" v-show="data.messageunreaddata.unreadnumber != 0">
@@ -167,10 +134,16 @@
                         <ArrowDown />
                     </el-icon>
                 </div>
-
             </div>
+
             <div class="rightlist_input">
-                <div class="input_tool"></div>
+                <div class="input_tool">
+
+                    <el-icon class="tool_image" @click="sendimage">
+                        <Picture />
+                    </el-icon>
+
+                </div>
                 <textarea cols="30" rows="10" v-model="data.input"></textarea>
                 <div @click="send" class="sendbtn" :style="{ color: data.input ? 'white' : 'rgba(255,255,255,0.4)' }">
                     发送
@@ -179,62 +152,49 @@
         </div>
 
 
-        <!-- 添加群聊对话框 -->
-        <el-dialog v-model="data.addgroupdata.addGroupDialogVisible" title="添加群聊" width="40%">
+        <!-- 申请加入群聊对话框 -->
+        <el-dialog :before-close="beforeCloseAddGroupEvent" v-model="data.addgroupdata.addGroupDialogVisible" title="添加群聊"
+            width="40%">
             <div style="display: flex;">
                 <el-input style="margin-right: 3px;" v-model="data.addgroupdata.addgroupinput" placeholder="支持模糊搜索"
                     size="default" clearable @change=""></el-input>
                 <el-button type="primary" size="default" @click="searchgroup">搜索</el-button>
             </div>
             <div>
-                <div v-for="item in data.addgroupdata.addgroupsearchlist" :key="item.ID">
-                    <span>{{ item.GroupName }}</span><el-button type="primary" size="default"
-                        @click="applyentergroup(item)">加入</el-button>
+                <div v-for="item in data.addgroupdata.addgroupsearchlist" :key="item.ID"
+                    class="apply_join_geoup_dialog_grouplist_item">
+                    <img :src="`http://${fileurl}/${item.Avatar}`" alt="">
+                    <p>{{ item.GroupName }}</p>
+                    <p class="group_number"><el-icon>
+                            <User />
+                        </el-icon>{{ item.MemberCount }}</p>
+                    <el-button type="primary" size="default" @click="preapplyentergroup(item)">申请</el-button>
+
                 </div>
+
             </div>
         </el-dialog>
 
-        <!-- 创建群聊对话框 -->
-        <el-dialog v-model="data.creategroupdata.createGroupDialogVisible" title="创建群聊" width="40%">
-            <el-steps :space="180" :active="data.creategroupdata.createstep" simple>
-                <el-step title="群名称" />
-                <el-step title="群头像" />
-            </el-steps>
-            <div class="creategroup_dialog">
-                <el-input v-show="data.creategroupdata.createstep == 1" class="creategroup_groupname_input"
-                    v-model="data.creategroupdata.creategroupinput" placeholder="" size="default" clearable>
-                    <template #prepend>群聊名称:</template>
-                </el-input>
-                <el-upload v-show="data.creategroupdata.createstep == 2" class="avatar-uploader"
-                    :action="data.creategroupdata.headeruploadurl" :show-file-list="false"
-                    :on-success="uploadcreategroupheaderSuccess">
-                    <img v-if="data.creategroupdata.headerurl" :src="data.creategroupdata.headerurl" class="avatar" />
-                    <el-icon v-else class="avatar-uploader-icon">
-                        <Plus />
-                    </el-icon>
-                </el-upload>
-            </div>
+        <!-- 填写申请加入群聊理由对话框 -->
+        <el-dialog :before-close="beforeCloseAddGroupEvent" v-model="data.addgroupdata.preaddGroupDialogVisible"
+            title="申请理由" width="40%">
+            <el-input placeholder="申请理由" v-model="data.applyjoingroupdata.Msg" type="textarea" />
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button v-show="data.creategroupdata.createstep != 1" type="primary"
-                        @click="() => data.creategroupdata.createstep--">
-                        上一步
-                    </el-button>
-                    <el-button v-show="data.creategroupdata.createstep != 2" type="primary"
-                        @click="() => data.creategroupdata.createstep++">
-                        下一步
-                    </el-button>
-                    <el-button
-                        :disabled="data.creategroupdata.headerurl == '' || data.creategroupdata.creategroupinput == ''"
-                        v-show="data.creategroupdata.createstep == 2" type="primary" @click="creategroup">
-                        完成
+                    <el-button type="primary" @click="applyentergroup">
+                        提交
                     </el-button>
                 </span>
             </template>
         </el-dialog>
 
+        <!-- 创建群聊对话框 -->
+        <CreateGroupDialog :creategroupdata="data.creategroupdata" @changestep="changestep" @creategroup="creategroup"
+            @uploadcreategroupheaderSuccess="uploadcreategroupheaderSuccess" />
+
         <!-- 确定退出(解散)群聊对话框 -->
         <el-dialog v-model="data.quitgroupdata.quitGroupDialogVisible" :title="data.quitgroupdata.title" width="30%">
+            <p>退出后不会通知群聊中其他成员，且不会再接收此群消息</p>
             <template #footer>
                 <span class="dialog-footer">
                     <el-button @click="data.quitgroupdata.quitGroupDialogVisible = false">取消</el-button>
@@ -245,14 +205,48 @@
             </template>
         </el-dialog>
 
+        <!-- 消息通知对话框 -->
+        <el-dialog style="background-color: rgb(229,229,229);" v-model="data.applymsgdata.applyMsgDialogVisible"
+            title="消息通知" width="60%">
+
+            <div class="apply_msg_list_dialog">
+                <div v-for="item in data.userdata.ApplyList" :key="item.ID">
+                    <p>
+                    <p style="display: flex;">
+                        <span> {{ item.ApplyUserName }} </span>
+                    <p style="margin: 0 5px;">申请加入群聊</p> <span> {{ data.grouplist.filter(i => i.GroupInfo.ID ==
+                        item.GroupID)[0].GroupInfo.GroupName
+                    }}</span>
+                    <p style="font-size: 0.8rem;line-height: 1.2rem;margin-left: 10px;color: rgb(168, 168, 168);">{{
+                        item.CreatedAt.slice(11, 19) }}</p>
+                    </p>
+                    <p>
+                        留言:{{ item.ApplyMsg }}
+                    </p>
+                    </p>
+                    <div v-show="item.HandleStatus == 0">
+                        <el-button type="primary" size="default" @click="handleapplymsg(item, 1)">同意</el-button>
+                        <el-button type="danger" size="default" @click="handleapplymsg(item, -1)">拒绝</el-button>
+                    </div>
+                    <div v-show="item.HandleStatus == 1">已同意</div>
+                    <div v-show="item.HandleStatus == -1">已拒绝</div>
+                </div>
+            </div>
+        </el-dialog>
+
     </div>
 </template>
 
 <script setup lang="ts">
 // const { ipcRenderer } = require('electron')
+import {url,fileurl} from './main'
 import { onMounted, reactive, ref, watch } from 'vue';
 import useCounter from './store/common'
 import { ElMessage, UploadProps } from 'element-plus';
+import UserInfoVue from './components/userinfo/userinfo.vue'
+import GroupItemVue from './components/groupitem/groupitem.vue'
+import MessageItemVue from './components/messageitem/message_item.vue'
+import CreateGroupDialog from './components/creategroupdialog/create_group_dialog.vue'
 // import { GroupList,Group,GroupInfo,GroupinfoList,Userdata } from './models/models';
 import {
     loginapi,
@@ -262,15 +256,13 @@ import {
     joingroupapi,
     creategroupapi,
     exitgroupapi,
-    emailcodeapi
+    emailcodeapi,
+    applyjoingroupapi
 } from './API/api'
 import ContextMenu from '@imengyu/vue3-context-menu'
 
 const win: any = window
 let Store = useCounter()
-const url = 'localhost:3004'
-// const staticurl = 'http://localhost:3005'
-const fileurl = 'localhost:3006'
 const msglist: any = ref(null)
 
 onMounted(() => {
@@ -303,6 +295,7 @@ const data = reactive({
         checkpassword: "",
         email: "",
         emailcode: "",
+        sendcodebtn: "发送验证码",
         sendemailbtnvisible: false
     },
     ws: {
@@ -312,13 +305,14 @@ const data = reactive({
     messageunreaddata: {
         unreadnumber: 0
     },
-    input: "hello!",  //聊天对话框
+    input: "hello!",  //聊天输入框
     searchgroupinput: "", //搜索群输入框
     loginloading: false, //是否加载中
     addgroupdata: {
         addgroupinput: "",   //添加群输入框
         addgroupsearchlist: <GroupinfoList>[], //添加群搜索列表
         addGroupDialogVisible: false,  //是否展示添加群对话框
+        preaddGroupDialogVisible: false,  //是否展示添加群理由对话框
     },
     creategroupdata: {
         headeruploadurl: `http://${fileurl}/uploadfile`,
@@ -333,6 +327,15 @@ const data = reactive({
         targetgroupdata: <GroupList>{
 
         }
+    },
+    applyjoingroupdata: {
+        GroupName: "",
+        GroupID: -1,
+        Msg: "",
+        ApplyWay: 1
+    },
+    applymsgdata: {
+        applyMsgDialogVisible: false
     }
 
 })
@@ -348,6 +351,7 @@ const send = () => {
     let message = {
         UserID: data.userdata.ID,
         UserName: data.userdata.UserName,
+        UserAvatar: data.userdata.Avatar == "" ? `http://${fileurl}/static/icon.png` : data.userdata.Avatar,
         GroupID: data.currentgroupdata.GroupInfo.ID,
         Msg: data.input,
         MsgType: 1,
@@ -358,11 +362,12 @@ const send = () => {
     }
     data.ws.wsconn.send(JSON.stringify(message))
     data.input = ""
-    scrolltonew(300, true)
+    scrolltonew(200, true)
     console.log(msglist);
 
 }
 
+// 设置选中,清除未读消息,监听滚动
 const setcurrentgrouplist = (group: GroupList) => {
     const setcurrentlistener = () => {
         const { scrollHeight, scrollTop, offsetHeight } = msglist.value
@@ -372,12 +377,17 @@ const setcurrentgrouplist = (group: GroupList) => {
         }
     }
 
+
     data.currentgroupdata = group
+    if (data.currentgroupdata.GroupInfo.UnreadMessage != 0) clearcurrentmsg()
     data.messageunreaddata.unreadnumber = 0 //清空未读
     scrolltonew()
     setTimeout(() => {
         msglist.value.addEventListener("scroll", setcurrentlistener)
     }, 0);
+
+    group.GroupInfo.UnreadMessage = 0
+
 }
 
 // 登录
@@ -456,36 +466,21 @@ const handleMsg = (msg: any) => {
 
     const DefaultMsg = () => {
         data.grouplist.forEach((group) => {
-            console.log(group.GroupInfo.ID, msg.GroupID);
-
+            // console.log(group.GroupInfo.ID, msg.GroupID);
             if (group.GroupInfo.ID == msg.GroupID) {
                 if (group.MessageList == null) { group.MessageList = [] }
                 group.MessageList.push(msg)
             }
         })
-
-        if (msglist.value == null) return
-        const { scrollHeight, scrollTop, offsetHeight } = msglist.value
-        // console.log(scrollHeight, scrollTop, offsetHeight);
-        if (msg.GroupID == data.currentgroupdata.GroupInfo.ID &&
-            msg.UserID != data.userdata.ID
-        ) {
-            if (scrollTop + offsetHeight + (3 * 83.6) > scrollHeight) {
-                scrolltonew(0, true)
-            } else {
-                data.messageunreaddata.unreadnumber += 1
-            }
-        }
     }
 
-    const refreshGroupMsg = () => {
+    const refreshGroupMsg = async () => {
         console.log("收到刷新消息");
-        refreshgrouplist()
+        await refreshgrouplist()
         return
     }
 
-    const QuitGroupMsg = async (msg) => {
-
+    const QuitGroupMsg = async () => {
         if (JSON.stringify(data.currentgroupdata) != "{}") {
             if (msg.UserID == data.currentgroupdata.GroupInfo.CreaterID) {
                 console.log("清空当前列表");
@@ -493,36 +488,55 @@ const handleMsg = (msg: any) => {
             }
         }
         await refreshgrouplist()
-        // 添加一个退出群聊提示消息
-        data.grouplist.forEach(group => {
-            console.log(group.GroupInfo.ID, msg.GroupID);
+    }
 
-            if (group.GroupInfo.ID == msg.GroupID) {
-                let quitmsg: MessageListitem = {
-                    MsgType: 201,
-                    Msg: `${msg.UserName}退出了群聊`,
-                    CreatedAt: msg.CreatedAt,
-                    ID: 0,
-                    Context: null,
-                    GroupID: msg.GroupID,
-                    IsReply: false,
-                    ReplyUserID: 0,
-                    UserID: msg.UserID,
-                    UserName: msg.UserName,
-                    UserUUID: "",
-                }
-                group.MessageList.push(quitmsg)
-            }
-        })
+    const JoginGroupMsg = async () => {
+        await refreshgrouplist()
     }
 
     const typelist = {
         1: DefaultMsg,
         200: refreshGroupMsg,
-        201: QuitGroupMsg
+        201: QuitGroupMsg,
+        202: JoginGroupMsg
     }
     const msgtype = msg.MsgType
     typelist[msgtype](msg)
+
+    if (msg.UserID != data.userdata.ID) {
+        if (JSON.stringify(data.currentgroupdata) != "{}") {
+            if (data.currentgroupdata.GroupInfo.ID != msg.GroupID) {
+                data.grouplist.forEach(group => {
+                    if (group.GroupInfo.ID == msg.GroupID) {
+                        group.GroupInfo.UnreadMessage++
+                    }
+                })
+            } else {
+                clearcurrentmsg()
+            }
+        } else {
+            data.grouplist.forEach(group => {
+                if (group.GroupInfo.ID == msg.GroupID) {
+                    group.GroupInfo.UnreadMessage++
+                }
+            })
+        }
+
+    }
+
+    if (msglist.value == null || JSON.stringify(data.currentgroupdata) == '{}') return
+    const { scrollHeight, scrollTop, offsetHeight } = msglist.value
+    // console.log(scrollHeight, scrollTop, offsetHeight);
+    if (msg.GroupID == data.currentgroupdata.GroupInfo.ID &&
+        msg.UserID != data.userdata.ID
+    ) {
+        if (scrollTop + offsetHeight + (3 * 83.6) > scrollHeight) {
+            scrolltonew(0, true)
+        } else {
+            data.messageunreaddata.unreadnumber += 1
+        }
+    }
+
 }
 
 // 退出登录
@@ -579,11 +593,16 @@ const register = () => {
             checkpassword: "",
             email: "",
             emailcode: "",
-            sendemailbtnvisible: false
+            sendemailbtnvisible: false,
+            sendcodebtn: "发送验证码"
         }
     }).catch(err => {
         tip("error", err.response.data.msg)
     })
+}
+
+const sendimage = () => {
+
 }
 
 // 刷新列表
@@ -593,6 +612,8 @@ const refreshgrouplist = async () => {
         return alert("获取群列表失败!")
     }
     console.log("刷新群列表", datares.data);
+
+    data.userdata.ApplyList = datares.data.applylist == null ? [] : datares.data.applylist
     if (datares.data.usergrouplist != null) {
         data.grouplist = datares.data.usergrouplist.map((group: any) => {
             if (group.MessageList == null) {
@@ -617,6 +638,10 @@ const refreshgrouplist = async () => {
 
 }
 
+const changestep = (i: number) => {
+    i == 0 ? (data.creategroupdata.createstep--) : (data.creategroupdata.createstep++)
+}
+
 // 提示
 function tip(type: any, message: string) {
     ElMessage({
@@ -632,6 +657,8 @@ const searchgroup = () => {
             tip("Error", res.data.msg)
             return
         }
+        console.log(res.data.grouplist);
+
         data.addgroupdata.addgroupsearchlist = res.data.grouplist == null ? [] : res.data.grouplist
 
     }).catch(_ => {
@@ -639,40 +666,66 @@ const searchgroup = () => {
     })
 }
 
-// 加入群聊
-const applyentergroup = async (group: GroupInfo) => {
-    let res = await joingroupapi(group.GroupName)
-    console.log(res);
-
-    if (res.status != 200) {
-        tip("Error", res.data.msg)
-        return
-    }
-    tip("success", "加入成功！")
-    data.addgroupdata.addGroupDialogVisible = false
+// 关闭添加群聊对话框之前
+const beforeCloseAddGroupEvent = (done: any) => {
+    data.addgroupdata.addgroupsearchlist = <GroupinfoList>{}
     data.addgroupdata.addgroupinput = ""
-    setTimeout(() => {
-        refreshgrouplist()
-    }, 500);
+    done()
+}
+
+// 填写添加群聊理由前(绑定当前选择数据)
+const preapplyentergroup = (group: GroupInfo) => {
+    data.applyjoingroupdata.GroupID = group.ID
+    data.applyjoingroupdata.GroupName = group.GroupName
+    data.addgroupdata.preaddGroupDialogVisible = true
+}
+
+// 申请加入群聊
+const applyentergroup = async () => {
+    console.log(data.applyjoingroupdata);
+
+    applyjoingroupapi(data.applyjoingroupdata).then(res => {
+        console.log(res);
+        tip("success", res.data.msg)
+    }).catch(err => {
+        tip("error", err.response.data.msg)
+    })
+    data.addgroupdata.addgroupinput = ""
+    data.addgroupdata.preaddGroupDialogVisible = false
+    data.addgroupdata.addGroupDialogVisible = false
+    data.addgroupdata.addgroupsearchlist = <GroupinfoList>{}
+
 }
 
 // 创建群聊
 const creategroup = async () => {
     const { creategroupinput, headerurl } = data.creategroupdata
-    let res = await creategroupapi(creategroupinput, headerurl)
-    if (res.status != 200) {
-        tip('error', res.data.msg)
-        return
-    }
-    tip('success', res.data.msg)
-    refreshgrouplist()
-    data.creategroupdata = {
-        headeruploadurl: `http://${fileurl}/uploadfile`,
-        creategroupinput: "",
-        createGroupDialogVisible: false,
-        headerurl: "",
-        createstep: 1
-    }
+    creategroupapi(creategroupinput, headerurl).then(res => {
+        tip('success', res.data.msg)
+        refreshgrouplist()
+        data.creategroupdata = {
+            headeruploadurl: `http://${fileurl}/uploadfile`,
+            creategroupinput: "",
+            createGroupDialogVisible: false,
+            headerurl: "",
+            createstep: 1
+        }
+    }).catch(err => {
+        tip('error', err.response.data.msg)
+    })
+    // if (res.status != 200) {
+    //     tip('error', res.data.msg)
+    //     return
+    // }
+    // tip('success', res.data.msg)
+    // refreshgrouplist()
+    // data.creategroupdata = {
+    //     headeruploadurl: `http://${fileurl}/uploadfile`,
+    //     creategroupinput: "",
+    //     createGroupDialogVisible: false,
+    //     headerurl: "",
+    //     createstep: 1
+    // }
 }
 
 // 退出群聊
@@ -688,7 +741,21 @@ const quitgroup = async () => {
     tip("success", GroupInfo.CreaterID == data.userdata.ID ? "解散成功!" : "退出成功!")
 }
 
-// 打开右键菜单
+const handleapplymsg = (apply: ApplyItem, status: number) => {
+
+    joingroupapi(apply.ID, status).then(res => {
+        console.log(res.data);
+        tip("success", res.data.msg)
+        apply.HandleStatus = status
+
+    }).catch(error => {
+        console.log(error);
+        tip("error", error)
+
+    })
+}
+
+// 打开群聊右键菜单
 const openeditgroupmenu = (e: any, item: GroupList) => {
     if (e.type == "contextmenu") {
         ContextMenu.showContextMenu({
@@ -707,6 +774,30 @@ const openeditgroupmenu = (e: any, item: GroupList) => {
         });
     }
 
+}
+
+// 打开消息右键菜单
+const openMsgHandleMenu = (e: any, item: MessageListitem) => {
+    if (e.type == "contextmenu") {
+        ContextMenu.showContextMenu({
+            x: e.clientX,
+            y: e.clientY,
+            items: [
+                {
+                    label: "复制",
+                    onClick: () => {
+                        let text = window.getSelection()?.toString() || ""
+                        if (text.length == 0) {
+                            navigator.clipboard.writeText(item.Msg)
+                        } else {
+                            navigator.clipboard.writeText(text)
+
+                        }
+                    }
+                }
+            ]
+        });
+    }
 }
 
 // 初始化键盘监听
@@ -730,7 +821,15 @@ const sendemailCode = () => {
     }
 
     data.registerdata.sendemailbtnvisible = true
+    let i = 59
+    data.registerdata.sendcodebtn = `60s`
+    let downtime = setInterval(() => {
+        data.registerdata.sendcodebtn = `${i}s`
+        i--
+    }, 1000)
     setTimeout(() => {
+        clearInterval(downtime)
+        data.registerdata.sendcodebtn = "发送验证码"
         data.registerdata.sendemailbtnvisible = false
     }, 60000);
 
@@ -754,7 +853,7 @@ const uploadcreategroupheaderSuccess: UploadProps['onSuccess'] = (response) => {
         return
     }
     tip("success", response.msg)
-    data.creategroupdata.headerurl = `http://${fileurl}/${response.fileurl}`
+    data.creategroupdata.headerurl = response.fileurl
 }
 
 // 滚动到最新
@@ -765,6 +864,17 @@ const scrolltonew = (delay: number = 0, smooth: boolean = false) => {
     }, delay);
 }
 
+const clearcurrentmsg = () => {
+    let message = {
+        UserID: data.userdata.ID,
+        UserName: data.userdata.UserName,
+        GroupID: data.currentgroupdata.GroupInfo.ID,
+        MsgType: 401,
+        CreatedAt: new Date()
+    }
+    data.ws.wsconn.send(JSON.stringify(message))
+}
+
 export type Userdata = {
     ID: number
     NikeName: string
@@ -772,10 +882,23 @@ export type Userdata = {
     Email: string
     CreatedTime: string
     LoginTime: string
-    Avatar:string
+    Avatar: string
     GroupList: Array<GroupList>
+    ApplyList: Array<ApplyItem>
 }
+type ApplyItem = {
+    ID: number
+    GroupID: number
+    ApplyMsg: string
+    ApplyUserID: number
+    ApplyUserName: string
+    ApplyWay: number
+    CreatedAt: string
+    DeletedAt: string
+    UpdatedAt: string
+    HandleStatus: number
 
+}
 export type GroupList = {
     GroupInfo: GroupInfo
     MessageList: Array<MessageListitem>
@@ -793,6 +916,7 @@ export type GroupInfo = {
     DeletedAt: string
     Grade: number
     MemberCount: number
+    UnreadMessage: number
     GroupName: string
     ID: number
     UUID: string
@@ -810,6 +934,7 @@ export type MessageListitem = {
     UserID: number
     UserName: string
     UserUUID: string
+    UserAvatar: string
 }
 
 
