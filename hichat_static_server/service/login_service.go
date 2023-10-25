@@ -51,23 +51,17 @@ func Login(c *gin.Context) {
 		return
 	}
 	if util.Md5(data.Password+userdata.Salt) != userdata.Password {
-		c.JSON(http.StatusBadRequest, gin.H{
+		c.JSON(http.StatusBadGateway, gin.H{
 			"msg": "password mismatch",
 		})
 		return
 	}
 	// 获取用户的群列表
-	// usergrouplist, err := userdata.GetUserGroupList()
-	// jsonData, _ := json.MarshalIndent(usergrouplist, "", "  ")
-	// fmt.Println(string(jsonData))
-	// fmt.Println("--------------------------------")
-	rpcusergrouplist, _ := rpcserver.GetUserGroupList(userdata.ID)
-	// rpcjsonData, _ := json.MarshalIndent(rpcusergrouplist, "", "  ")
-	// fmt.Println(string(rpcjsonData))
+	rpcusergrouplist, err := rpcserver.GetUserGroupList(userdata.ID)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "qurey grouplist failed",
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"msg": "查询群聊消息失败!",
 		})
 		return
 	}
@@ -84,13 +78,19 @@ func Login(c *gin.Context) {
 		"msg":   "login success",
 		"token": token,
 		"userdata": models.ResponseUserData{
-			ID:          userdata.ID,
-			UserName:    userdata.UserName,
-			NikeName:    userdata.NikeName,
-			Email:       userdata.Email,
-			CreatedTime: userdata.CreatedAt,
-			LoginTime:   userdata.LoginTime,
-			GroupList:   rpcusergrouplist,
+			ID:            userdata.ID,
+			UserName:      userdata.UserName,
+			NikeName:      userdata.NikeName,
+			Email:         userdata.Email,
+			CreatedTime:   util.FormatTime(userdata.CreatedAt),
+			LoginTime:     userdata.LoginTime,
+			Avatar:        userdata.Avatar,
+			Age:           userdata.Age,
+			City:          userdata.City,
+			GroupList:     rpcusergrouplist.GroupDetail,
+			ApplyList:     rpcusergrouplist.ApplyJoinGroupMessage,
+			ApplyUserList: rpcusergrouplist.ApplyAddUserMessage,
+			FriendList:    rpcusergrouplist.FriendList,
 		},
 	})
 

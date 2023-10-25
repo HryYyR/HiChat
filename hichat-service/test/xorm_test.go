@@ -11,7 +11,17 @@ import (
 func TestXormTest(t *testing.T) {
 	adb.InitMySQL()
 	// err := adb.Engine.CreateTables(&models.User{})
-	err := adb.Ssql.Sync2(new(models.Users), new(models.Group), new(models.GroupMessage), new(models.GroupUserRelative))
+	err := adb.Ssql.Sync2(
+		new(models.UserMessage),
+		new(models.UserUserRelative),
+		new(models.ApplyJoinGroup),
+		new(models.ApplyAddUser),
+		new(models.GroupUnreadMessage),
+		new(models.Users),
+		new(models.Group),
+		new(models.GroupMessage),
+		new(models.GroupUserRelative),
+	)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -46,9 +56,7 @@ func TestGetUserGroupList(t *testing.T) {
 		}
 		grouplist[groupid] = groupitem
 	}
-
 	fmt.Printf("%+v\n", grouplist)
-
 }
 
 func TestUserToClient(t *testing.T) {
@@ -67,15 +75,26 @@ func TestUserToClient(t *testing.T) {
 			t.Fatal(err)
 		}
 		client := models.UserClient{
-			ClientID:        uuid,
-			UserID:          userdata.ID,
-			UserUUID:        userdata.UUID,
-			UserName:        userdata.UserName,
-			Send:            make(chan []byte, 256),
-			Status:          false,
-			Groups:          grouplist,
-			CachingMessages: make(map[int]int, 0),
+			ClientID: uuid,
+			UserID:   userdata.ID,
+			UserUUID: userdata.UUID,
+			UserName: userdata.UserName,
+			Send:     make(chan []byte, 256),
+			Status:   false,
+			Groups:   grouplist,
+			// CachingMessages: make(map[int]int, 0),
 		}
 		mockservicecenter[userdata.ID] = client
 	}
+}
+
+func TestSyncMsg(t *testing.T) {
+	adb.InitMySQL()
+	id := 1
+	var unreadmsglist []models.GroupUnreadMessage
+	err := adb.Ssql.Table("group_unread_message").Where("user_id = ?", id).Find(&unreadmsglist)
+	if err != nil {
+		t.Fatal(err)
+	}
+	fmt.Printf("%+v\n", unreadmsglist)
 }

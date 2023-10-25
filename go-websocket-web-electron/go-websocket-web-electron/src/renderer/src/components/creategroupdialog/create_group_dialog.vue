@@ -1,5 +1,6 @@
 <template>
-    <el-dialog v-model="props.creategroupdata.createGroupDialogVisible" title="创建群聊" width="40%">
+    <el-dialog :before-close="closecreategroupdialog" v-model="props.creategroupdata.createGroupDialogVisible" title="创建群聊"
+        width="40%">
         <el-steps :space="180" :active="props.creategroupdata.createstep" simple>
             <el-step title="群名称" />
             <el-step title="群头像" />
@@ -21,12 +22,10 @@
         </div>
         <template #footer>
             <span class="dialog-footer">
-                <el-button v-show="props.creategroupdata.createstep != 1" type="primary"
-                    @click="changestep(0)">
+                <el-button v-show="props.creategroupdata.createstep != 1" type="primary" @click="changestep(0)">
                     上一步
                 </el-button>
-                <el-button v-show="props.creategroupdata.createstep != 2" type="primary"
-                    @click="changestep(1)">
+                <el-button v-show="props.creategroupdata.createstep != 2" type="primary" @click="changestep(1)">
                     下一步
                 </el-button>
                 <el-button :disabled="props.creategroupdata.headerurl == '' || props.creategroupdata.creategroupinput == ''"
@@ -39,8 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import {fileurl} from '../../main'
-const emit = defineEmits(['creategroup', 'uploadcreategroupheaderSuccess', 'changestep'])
+import { fileurl } from '../../main'
+const emit = defineEmits(['creategroup', 'uploadcreategroupheaderSuccess', 'changestep', 'closecreategroupdialog'])
 
 const props = defineProps({
     creategroupdata: {
@@ -50,7 +49,7 @@ const props = defineProps({
 })
 
 const uploadcreategroupheaderSuccess = (response) => {
-    emit('uploadcreategroupheaderSuccess',response)
+    emit('uploadcreategroupheaderSuccess', response)
 }
 const creategroup = () => {
     emit('creategroup')
@@ -60,6 +59,10 @@ const changestep = (i: number) => {
     emit('changestep', i)
 }
 
+const closecreategroupdialog = () => {
+    emit('closecreategroupdialog')
+}
+closecreategroupdialog
 </script>
 
 <style scoped lang="less">

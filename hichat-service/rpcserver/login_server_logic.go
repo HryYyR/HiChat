@@ -5,21 +5,21 @@ import (
 	adb "go-websocket-server/ADB"
 	"go-websocket-server/models"
 	pb "go-websocket-server/proto"
-	"sync"
+	"strconv"
 
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-var mu sync.Mutex // 创建一个全局的互斥锁
+// var mu sync.Mutex // 创建一个全局的互斥锁
 func GetUserGroupList(ID int) ([]*pb.GroupDetail, error) {
-	mu.Lock()         // 加锁
-	defer mu.Unlock() // 在函数结束时解锁，确保释放资源
 	session := adb.Ssql.NewSession()
+	defer session.Close()
+	session.Begin()
 	var usergouplist []*pb.GroupDetail
 
 	// 查询用户加入的群列表(没有详情)
 	var gur []models.GroupUserRelative
-	if err := adb.Ssql.Table("group_user_relative").Where("user_id=?", ID).Find(&gur); err != nil {
+	if err := session.Table("group_user_relative").Where("user_id=?", ID).Find(&gur); err != nil {
 		fmt.Println("查询用户加入的群列表error:", err)
 		session.Rollback()
 		return []*pb.GroupDetail{}, err
@@ -27,7 +27,7 @@ func GetUserGroupList(ID int) ([]*pb.GroupDetail, error) {
 
 	// 查询用户的所有消息
 	var usermessagelist []models.GroupMessage
-	if err := adb.Ssql.Table("group_message").Find(&usermessagelist); err != nil {
+	if err := session.Table("group_message").Find(&usermessagelist); err != nil {
 		fmt.Println("查询所有消息error:", err)
 		session.Rollback()
 		return []*pb.GroupDetail{}, err
@@ -40,6 +40,9 @@ func GetUserGroupList(ID int) ([]*pb.GroupDetail, error) {
 			UserId:      int32(m.UserID),
 			UserUuid:    m.UserUUID,
 			UserName:    m.UserName,
+			UserAvatar:  m.UserAvatar,
+			UserCity:    m.UserCity,
+			UserAge:     m.UserAge,
 			GroupId:     int32(m.GroupID),
 			Msg:         m.Msg,
 			MsgType:     int32(m.MsgType),
@@ -52,39 +55,56 @@ func GetUserGroupList(ID int) ([]*pb.GroupDetail, error) {
 		})
 	}
 
-	for _, g := range gur {
-		var group models.Group             //群详情
-		var messagelist []*pb.GroupMessage //群消息列表
+	// 查询用户的未读消息
+	var rawunreadmsglist []models.GroupUnreadMessage
+	if err := session.Table("group_unread_message").Where("user_id = ?", ID).Find(&rawunreadmsglist); err != nil {
+		fmt.Println("查询未读消息error:", err)
+		session.Rollback()
+		return []*pb.GroupDetail{}, err
+	}
+	unreadmsglist := make(map[int]int, 0)
+	for _, UnreadMessage := range rawunreadmsglist {
+		unreadmsglist[UnreadMessage.GroupID] = UnreadMessage.UnreadNumber
+	}
 
+	for _, g := range gur {
 		// 查询该用户加入的每个群聊的人数
-		membercount, err := adb.Ssql.Table("group_user_relative").Where("group_id=?", g.GroupID).Count()
+		membercount, err := session.Table("group_user_relative").Where("group_id=?", g.GroupID).Count()
 		if err != nil {
 			fmt.Println("查询用户加入的每个群聊的人数error:", err)
 			session.Rollback()
 			return []*pb.GroupDetail{}, err
 		}
 
+		var unreadmsg int
+		if num, has := unreadmsglist[g.GroupID]; has {
+			unreadmsg = num
+		}
+
+		var group models.Group //群详情
 		//  根据群id查询群的详细信息
-		_, err = adb.Ssql.Table("group").Where("uuid=?", g.GroupUUID).Get(&group)
+		_, err = session.Table("group").Where("uuid=?", g.GroupUUID).Get(&group)
 		if err != nil {
 			fmt.Println("根据群id查询群的详细信息error:", err)
 			session.Rollback()
 			return []*pb.GroupDetail{}, err
 		}
 		pbgroup := pb.Group{
-			Id:          int32(group.ID),
-			Uuid:        group.UUID,
-			CreaterId:   int32(group.CreaterID),
-			CreaterName: group.CreaterName,
-			GroupName:   group.GroupName,
-			Avatar:      group.Avatar,
-			Grade:       int32(group.Grade),
-			CreatedAt:   timestamppb.New(group.CreatedAt),
-			DeletedAt:   timestamppb.New(group.DeletedAt),
-			UpdatedAt:   timestamppb.New(group.UpdatedAt),
-			MemberCount: int32(membercount),
+			Id:            int32(group.ID),
+			Uuid:          group.UUID,
+			CreaterId:     int32(group.CreaterID),
+			CreaterName:   group.CreaterName,
+			GroupName:     group.GroupName,
+			Avatar:        group.Avatar,
+			Grade:         int32(group.Grade),
+			MemberCount:   int32(membercount),
+			UnreadMessage: int32(unreadmsg),
+			CreatedAt:     timestamppb.New(group.CreatedAt),
+			DeletedAt:     timestamppb.New(group.DeletedAt),
+			UpdatedAt:     timestamppb.New(group.UpdatedAt),
 		}
 
+		var messagelist []*pb.GroupMessage //群消息列表
 		// 将该群聊的消息放入消息列表
 		for _, m := range pbusermessagelist {
 			// fmt.Printf("%+v-----%+v\n", m.GroupID, g.ID)
@@ -103,62 +123,107 @@ func GetUserGroupList(ID int) ([]*pb.GroupDetail, error) {
 	return usergouplist, nil
 }
 
-// func GetUserGroupList(uid int) ([]models.GroupDetail, error) {
-// 	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
-// 	if err != nil {
-// 		return []models.GroupDetail{}, err
-// 	}
-// 	defer conn.Close()
+// 获取该用户的通知列表
+func GetUserApplyJoinGroupList(ID int) ([]*pb.ApplyJoinGroupMessage, error) {
+	// 该用户创建的群聊列表
+	var usercreategrouplist []models.Group
+	if err := adb.Ssql.Table("group").Where("creater_id=?", ID).Find(&usercreategrouplist); err != nil {
+		return nil, err
+	}
+	userapplylist := make([]*pb.ApplyJoinGroupMessage, 0)
+	for _, group := range usercreategrouplist {
+		var applyuserlist []models.ApplyJoinGroup
+		adb.Ssql.Table("apply_join_group").Where("group_id = ?", group.ID).Find(&applyuserlist)
+		for _, applyuser := range applyuserlist {
+			userapplylist = append(userapplylist, &pb.ApplyJoinGroupMessage{
+				Id:           int32(applyuser.ID),
+				ApplyUserId:  int32(applyuser.ApplyUserID),
+				AplyUserName: applyuser.ApplyUserName,
+				GroupId:      int32(applyuser.GroupID),
+				ApplyMsg:     applyuser.ApplyMsg,
+				ApplyWay:     int32(applyuser.ApplyWay),
+				HandleStatus: int32(applyuser.HandleStatus),
+				CreatedAt:    timestamppb.New(applyuser.CreatedAt),
+				DeletedAt:    timestamppb.New(applyuser.DeletedAt),
+				UpdatedAt:    timestamppb.New(applyuser.UpdatedAt),
+			})
+		}
+	}
 
-// 	c := pb.NewLoginClient(conn) //初始化客户端
+	return userapplylist, nil
+}
 
-// 	ctx, cancel := context.WithTimeout(context.Background(), time.Second) // 初始化上下文，设置请求超时时间为1秒
-// 	defer cancel()
+// 获取该用户的好友通知列表
+func GetUserApplyAddUserList(ID int) ([]*pb.ApplyAddUserMessage, error) {
 
-// 	r, err := c.GetUserGroupList(ctx, &pb.UserData{Userid: int32(uid)})
-// 	if err != nil {
-// 		return []models.GroupDetail{}, err
-// 	}
+	var userapplyadduserlist []models.ApplyAddUser
+	if err := adb.Ssql.Table("apply_add_user").Where("pre_apply_user_id=? or apply_user_id=?", ID, ID).Find(&userapplyadduserlist); err != nil {
+		return []*pb.ApplyAddUserMessage{}, err
+	}
 
-// 	var data []models.GroupDetail
-// 	for _, g := range r.GroupDetail {
+	adduserlist := make([]*pb.ApplyAddUserMessage, 0)
+	for _, applyuser := range userapplyadduserlist {
+		adduserlist = append(adduserlist, &pb.ApplyAddUserMessage{
+			Id:               int32(applyuser.ID),
+			PreApplyUserId:   int32(applyuser.PreApplyUserID),
+			PreApplyUserName: applyuser.PreApplyUserName,
+			ApplyUserId:      int32(applyuser.ApplyUserID),
+			ApplyUserName:    applyuser.ApplyUserName,
+			ApplyMsg:         applyuser.ApplyMsg,
+			ApplyWay:         int32(applyuser.ApplyWay),
+			HandleStatus:     int32(applyuser.HandleStatus),
+			CreatedAt:        timestamppb.New(applyuser.CreatedAt),
+			DeletedAt:        timestamppb.New(applyuser.DeletedAt),
+			UpdatedAt:        timestamppb.New(applyuser.UpdatedAt),
+		})
+	}
+	return adduserlist, nil
+}
 
-// 		var messageList []models.GroupMessage
-// 		for _, m := range g.MessageList {
-// 			messageList = append(messageList, models.GroupMessage{
-// 				ID:          int(m.Id),
-// 				UserID:      int(m.UserId),
-// 				UserUUID:    m.UserUuid,
-// 				UserName:    m.UserName,
-// 				GroupID:     int(m.GroupId),
-// 				Msg:         m.Msg,
-// 				MsgType:     int(m.MsgType),
-// 				IsReply:     m.IsReply,          //是否是回复消息
-// 				ReplyUserID: int(m.ReplyUserId), //如果是,被回复的用户id
-// 				Context:     m.Context,
-// 				CreatedAt:   m.CreatedAt.AsTime(),
-// 				DeletedAt:   m.DeletedAt.AsTime(),
-// 				UpdatedAt:   m.UpdatedAt.AsTime(),
-// 			})
-// 		}
-// 		data = append(data, models.GroupDetail{
-// 			GroupInfo: models.Group{
-// 				ID:          int(g.GroupInfo.Id),
-// 				UUID:        g.GroupInfo.Uuid,
-// 				CreaterID:   int(g.GroupInfo.CreaterId),
-// 				CreaterName: g.GroupInfo.CreaterName,
-// 				GroupName:   g.GroupInfo.GroupName,
-// 				Avatar:      g.GroupInfo.Avatar,
-// 				Grade:       int(g.GroupInfo.Grade),
-// 				CreatedAt:   g.GroupInfo.CreatedAt.AsTime(),
-// 				DeletedAt:   g.GroupInfo.DeletedAt.AsTime(),
-// 				UpdatedAt:   g.GroupInfo.UpdatedAt.AsTime(),
-// 			},
-// 			MessageList: messageList,
-// 		})
-// 	}
-// 	// copier.CopyWithOption(&data, &r.GroupDetail, copier.Option{DeepCopy: true})
-// 	fmt.Printf("%+v\n", data)
+func GetFriendList(ID int) ([]*pb.FriendList, error) {
+	var friendrelativelist []models.UserUserRelative
+	err := adb.Ssql.Table("user_user_relative").Where("pre_user_id = ? or back_user_id=?", ID, ID).Find(&friendrelativelist)
+	if err != nil {
+		fmt.Println("获取用户关系失败")
+		return []*pb.FriendList{}, err
+	}
 
-// 	return data, nil
-// }
+	var friendlist []*pb.FriendList
+
+	for _, relative := range friendrelativelist {
+		var frienddata models.Users
+		if relative.BackUserID == ID {
+			exit, err := adb.Ssql.Table("users").Where("id = ?", relative.PreUserID).Get(&frienddata)
+			if err != nil {
+				fmt.Println("获取用户信息失败")
+				return []*pb.FriendList{}, err
+			}
+			if !exit {
+				continue
+			}
+		} else {
+			exit, err := adb.Ssql.Table("users").Where("id = ?", relative.BackUserID).Get(&frienddata)
+			if err != nil {
+				fmt.Println("获取用户信息失败")
+				return []*pb.FriendList{}, err
+			}
+			if !exit {
+				continue
+			}
+		}
+		friendlist = append(friendlist, &pb.FriendList{
+			Id:        int32(frienddata.ID),
+			UserName:  frienddata.UserName,
+			NikeName:  frienddata.NikeName,
+			Email:     frienddata.Email,
+			Avatar:    frienddata.Avatar,
+			City:      frienddata.City,
+			Age:       strconv.Itoa(frienddata.Age),
+			CreatedAt: timestamppb.New(frienddata.CreatedAt),
+			DeletedAt: timestamppb.New(frienddata.DeletedAt),
+			UpdatedAt: timestamppb.New(frienddata.UpdatedAt),
+		})
+	}
+
+	return friendlist, nil
+}

@@ -5,9 +5,12 @@ import "time"
 // 群聊消息
 type GroupMessage struct {
 	ID          int `xorm:"pk autoincr"`
-	UserID      int `xorm:"notnull"`
+	UserID      int `xorm:"notnull index"`
 	UserUUID    string
 	UserName    string
+	UserAvatar  string
+	UserCity    string
+	UserAge     string
 	GroupID     int    `xorm:"notnull"`
 	Msg         string `xorm:"notnull"`
 	MsgType     int

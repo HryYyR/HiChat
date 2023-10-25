@@ -25,6 +25,7 @@ message Group
     string avatar = 6;  
     int32 grade = 7;  
     int32 member_count = 8;
+    int32 unread_message =12;
     google.protobuf.Timestamp created_at = 9;  
     google.protobuf.Timestamp deleted_at = 10;  
     google.protobuf.Timestamp updated_at = 11;  
@@ -34,7 +35,10 @@ message GroupMessage {
     int32 id = 1;  
     int32 user_id = 2;  
     string user_uuid = 3;  
-    string user_name = 4;  
+    string user_name = 4; 
+    string user_avatar =14;
+    string user_city =15;
+    string user_age = 16;
     int32 group_id = 5;  
     string msg = 6;  
     int32 msg_type = 7;  
@@ -45,15 +49,58 @@ message GroupMessage {
     google.protobuf.Timestamp deleted_at = 12;  
     google.protobuf.Timestamp updated_at = 13;  
 }  
-    
+
+message ApplyJoinGroupMessage {
+    int32 id = 1;  
+    int32 apply_user_id = 2; 
+    string aply_user_name = 3; 
+    int32 group_id = 4; 
+    string apply_msg = 5; 
+    int32 apply_way = 6; 
+    int32 handle_status = 10;
+    google.protobuf.Timestamp created_at = 7;  
+    google.protobuf.Timestamp deleted_at = 8;  
+    google.protobuf.Timestamp updated_at = 9;  
+}
+
 message GroupDetail {  
     Group group_info = 1;  
     repeated GroupMessage message_list = 2;  
+    
 }
 
+message ApplyAddUserMessage {
+    int32 id = 1;  
+    int32 pre_apply_user_id = 2; 
+    string pre_apply_user_name = 3; 
+    int32 apply_user_id = 4; 
+    string apply_user_name = 5; 
+    string apply_msg = 11; 
+    int32 apply_way = 6; 
+    int32 handle_status = 10;
+    google.protobuf.Timestamp created_at = 7;  
+    google.protobuf.Timestamp deleted_at = 8;  
+    google.protobuf.Timestamp updated_at = 9;  
+}
+
+message FriendList {
+    int32 id = 1;  
+    string user_name =2;
+    string nike_name =3;
+    string email =4;
+    string avatar=5;
+    string city =6;
+    string age =7;
+    google.protobuf.Timestamp created_at = 9;  
+    google.protobuf.Timestamp deleted_at = 10;  
+    google.protobuf.Timestamp updated_at = 11;   
+}
 
 message UserGroupList {
     repeated GroupDetail group_detail = 1;
+    repeated ApplyJoinGroupMessage apply_join_group_list = 3; 
+    repeated ApplyAddUserMessage apply_add_user_list = 4;
+    repeated FriendList friend_list = 5;
 }
 
 // 定义login服务

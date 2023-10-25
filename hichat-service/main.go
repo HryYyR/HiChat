@@ -22,10 +22,11 @@ func main() {
 
 	flag.Parse()
 
-	go systeminit.PrintRoomInfo()
+	// go systeminit.PrintRoomInfo()
 
 	adb.InitMySQL()
 	adb.InitRedis()
+	adb.InitMQ()
 	if err := systeminit.InitClientsToGrouplist(); err != nil {
 		panic(err.Error())
 	}
@@ -40,21 +41,19 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	engine := gin.New()
 	engine.Use(service.Cors())
-	// engine.POST("/login", service.Login)         //登录
-	engine.POST("/register", service.Register)   //注册
-	engine.POST("/emailcode", service.EmailCode) //邮箱验证码
 
 	engine.GET("/ws", service.Connectws) //用户连接
 
-	// wsgroup := engine.Group("ws")
-	// wsgroup.GET("/:roomid", service.ServeWs) //用户进入房间
-
 	usergroup := engine.Group("user", service.IdentityCheck)
 	usergroup.POST("/creategroup", service.CreateGroup)           //创建群聊
-	usergroup.POST("/joingroup", service.JoinGroup)               //加入群聊
+	usergroup.POST("/handlejoingroup", service.HandleJoinGroup)   //加入群聊
+	usergroup.POST("/applyjoingroup", service.ApplyJoinGroup)     //申请加入群聊
 	usergroup.POST("/exitgroup", service.ExitGroup)               //退出群聊
 	usergroup.POST("/RefreshGroupList", service.RefreshGroupList) //获取用户信息
 	usergroup.POST("/searchGroup", service.SearchGroup)           //获取用户信息
+
+	usergroup.POST("/applyadduser", service.ApplyAddUser)   //申请添加好友
+	usergroup.POST("/handleadduser", service.HandleAddUser) //处理添加好友
 
 	go rpcserver.ListenGetUserGroupListRpcServer()
 

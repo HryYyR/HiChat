@@ -1,13 +1,8 @@
-// Copyright 2013 The Gorilla WebSocket Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
 package models
 
 import (
-	"encoding/json"
 	"fmt"
-	"log"
+	"sync"
 	"time"
 
 	"github.com/gorilla/websocket"
@@ -15,15 +10,16 @@ import (
 
 // 用户客户端
 type UserClient struct {
-	ClientID        string
-	UserID          int
-	UserUUID        string
-	UserName        string
-	Conn            *websocket.Conn
-	Status          bool
-	Send            chan []byte
-	Groups          map[int]Group //群聊列表  key:group_id  value:group
-	CachingMessages map[int]int   // key:groupid  value:未读数量
+	ClientID string
+	UserID   int
+	UserUUID string
+	UserName string
+	Conn     *websocket.Conn
+	Status   bool
+	Send     chan []byte
+	Groups   map[int]Group //群聊列表  key:group_id  value:group
+	// CachingMessages map[int]int   // key:groupid  value:未读数量
+	Mutex *sync.RWMutex // 互斥锁     多个结构体实例可以共享同一个锁时用指针,此处只会创建一个,所以不用指针
 }
 
 // 读取用户发送的信息
@@ -46,22 +42,10 @@ func (c *UserClient) ReadPump() {
 				ServiceCenter.Loginout <- c
 			}
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-				log.Printf("IsUnexpectedCloseError: %v", err)
+				fmt.Printf("IsUnexpectedCloseError: %v", err)
 			}
 			break
 		}
-
-		// 保存消息进数据库
-		var msgstruct *Message
-		if err := json.Unmarshal(message, &msgstruct); err != nil {
-			fmt.Println(err)
-		}
-		err = msgstruct.SaveToDb()
-		if err != nil {
-			fmt.Println("消息保存失败,取消发送", err)
-			return
-		}
-		// end
 
 		// message = bytes.TrimSpace(bytes.Replace(message, Newline, Space, -1))
 		ServiceCenter.Broadcast <- message
@@ -107,6 +91,7 @@ func (c *UserClient) WritePump() {
 				return
 			}
 		case <-ticker.C:
+			// fmt.Println("ping")
 			c.Conn.SetWriteDeadline(time.Now().Add(WriteWait))
 			if err := c.Conn.WriteMessage(websocket.PingMessage, nil); err != nil {
 				return

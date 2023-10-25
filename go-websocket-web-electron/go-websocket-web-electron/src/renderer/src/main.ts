@@ -12,10 +12,16 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import ContextMenu from '@imengyu/vue3-context-menu'
 
-export const fileurl = 'localhost:3006'
-export const url = 'localhost:3004'
+// export const fileurl = 'hyyyh.top:3006'
+// const staticurl = "hyyyh.top:3005"
+// export const url = 'hyyyh.top:3004'
+// axios.defaults.baseURL = "http://hyyyh.top:3004"
 
+export const fileurl = 'localhost:3006'
+export const staticurl = "localhost:3005"
+export const url = 'localhost:3004'
 axios.defaults.baseURL = "http://localhost:3004"
+
 axios.defaults.timeout = 4000;
 
 // http request 请求拦截器

@@ -8,12 +8,12 @@
 .container {
     overflow: hidden !important;
     height: 498px;
-    width: 360px;
+    width: 400px;
     user-select: none;
 }
 
 .view_container {
-    width: 360px;
+    width: 400px;
     height: 550px;
     display: flex;
     justify-content: start;
@@ -141,6 +141,7 @@
         border-right: 1px solid @borderc;
         display: flex;
         flex-direction: column;
+        -webkit-user-drag: drag;
 
 
         .group_tools {
@@ -202,6 +203,10 @@
             .apply_msg_list_left {
                 display: flex;
 
+                p {
+                    font-size: 0.9rem;
+                }
+
                 span {
                     text-align: center;
                     width: 20px;
@@ -222,35 +227,87 @@
 
         }
 
-        .group_list {
-            overflow: auto;
+        .change_tab {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+
+            & div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex: 1;
+                text-align: center;
+                height: 100%;
+                transition: 0.1s;
+                font-size: 1.1rem;
+            }
+
+            & div:hover {
+                background-color: rgb(229, 229, 229);
+            }
+
+            .checktab {
+                background-color: rgb(229, 229, 229);
+                color: rgb(59, 59, 254);
+            }
+        }
+
+        .list_container {
+            overflow: hidden;
             position: relative;
             height: 100%;
             margin-bottom: 40px;
-            overflow: auto;
 
-  
+            .list {
+                overflow: auto;
+                position: absolute;
+                height: 100%;
+                margin-bottom: 40px;
+                width: 32vw;
+                transition: 0.2s;
+            }
 
-            .checkgroup {
-                background-color: rgb(0, 153, 255);
-                color: white !important;
+            .checkf {
+                right: 0 !important;
+            }
 
-                .group_msginfo {
-                    & :nth-child(1) {
-                        color: white;
+            .checkg {
+                left: 0 !important;
+            }
+
+            .friend_list {
+                right: 100%;
+            }
+
+            .group_list {
+                left: 100%;
+
+                .checkgroup {
+                    background-color: rgb(0, 153, 255);
+                    color: white !important;
+
+                    .group_msginfo {
+                        & :nth-child(1) {
+                            color: white;
+                        }
+
+                        & :nth-child(2) {
+                            background-color: white;
+                            color: black;
+                        }
                     }
 
-                    & :nth-child(2) {
-                        background-color: white;
-                        color: black;
+                    &:hover {
+                        background-color: rgb(0, 153, 255) !important;
                     }
-                }
-
-                &:hover {
-                    background-color: rgb(0, 153, 255) !important;
                 }
             }
         }
+
+
     }
 
     .right_list {
@@ -268,7 +325,7 @@
             align-items: center;
             font-size: 1.2rem;
             padding: 10px 0 10px 25px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            // border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .message_unread {
@@ -310,13 +367,34 @@
                 padding: 0 10px;
                 margin-top: 5px;
 
-                .tool_image{
+                .tool_item {
                     font-size: 1.5rem;
                     color: #3a3b3c;
-                    & :hover{
+                    margin-right: 10px;
+
+                    & :hover {
                         color: #8795ff;
                     }
+
                 }
+
+            }
+
+            .tool_sound {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                flex-direction: column;
+
+                i {
+                    font-size: 3rem;
+                }
+
+                p {
+                    font-size: 0.8rem;
+                }
+
             }
 
             textarea {
@@ -346,6 +424,10 @@
             }
         }
     }
+}
+
+.sound_record_active {
+    color: #8795ff !important;
 }
 
 .outlogin {
@@ -385,28 +467,4 @@
         justify-content: center;
         align-items: center;
     }
-}
-
-.apply_msg_list_dialog {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-
-    &>div {
-        background-color: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px 20px;
-        border-radius: 10px;
-        margin: 10px 0;
-        p span {
-            color: skyblue;
-            & p{
-                word-spacing: 10px;
-            }
-        }
-    }
-
 }

@@ -1,0 +1,36 @@
+img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.add_user_dialog_container {
+    display: flex;
+    margin-bottom: 30px;
+
+    & :nth-child(1) {
+        margin-right: 10px;
+    }
+
+    .user_info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        & p:nth-child(1){
+            font-weight: 900;
+            color: black;
+            font-size: 1.2rem;
+        }
+
+        p {
+            margin: 5px 0;
+            span{
+                background-color: rgb(230, 230, 230);
+                border-radius: 5px;
+                padding: 1px 5px;
+                font-size: 0.8rem;
+            }
+        }
+    }
+}

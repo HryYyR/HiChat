@@ -1,4 +1,4 @@
-.group_item {
+.list_item {
     height: 70px;
     transition: 0.2s;
     display: flex;
@@ -8,14 +8,12 @@
     cursor: pointer;
     user-select: none;
 
-    .group_item_header {
+    .list_item_header {
         width: 50px;
         height: 50px;
-        border-radius: 50%;
         position: relative;
         left: 10px;
         margin-right: 20px;
-        background-color: white;
 
         img {
             width: 100%;
@@ -35,18 +33,18 @@
 
     }
 
-    .group_lastmsg {
+    .list_lastmsg {
         font-size: 0.8rem;
         font-weight: 100;
         min-height: 20px;
-        width: 80%;
+        width: 19vw;
     }
 
     &:hover {
         background-color: rgba(0, 0, 0, 0.1) !important;
     }
 
-    .group_msginfo {
+    .list_msginfo {
         display: flex;
         flex-direction: column;
         align-items: flex-end;

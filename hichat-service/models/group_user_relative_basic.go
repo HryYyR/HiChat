@@ -22,13 +22,16 @@ func (GroupUserRelative) TableName() string {
 	return "group_user_relative"
 }
 
-func (r *GroupUserRelative) Association(userdata *UserClaim, group Group) error {
+func (r *GroupUserRelative) Association(group Group) error {
 	_, err := adb.Ssql.Table("group_user_relative").Insert(&r) //插入关系
 	if err != nil {
 		fmt.Println(err)
 		return err
 	}
-	ServiceCenter.Clients[userdata.ID].Groups[group.ID] = group
-	GroupUserList[group] = append(GroupUserList[group], userdata.ID)
+	ServiceCenter.Clients[r.UserID].Mutex.Lock()
+	ServiceCenter.Clients[r.UserID].Groups[group.ID] = group
+	GroupUserList[group] = append(GroupUserList[group], r.UserID)
+	ServiceCenter.Clients[r.UserID].Mutex.Unlock()
+
 	return nil
 }

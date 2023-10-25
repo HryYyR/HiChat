@@ -2,23 +2,35 @@ import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
-const api:api = {
-  settitle:()=>{
+const api: api = {
+  settitle: () => {
     ipcRenderer.send('settitle')
   },
-  backtologin:()=>{
+  backtologin: () => {
     ipcRenderer.send('backtologin')
   },
-  changWindowSize:()=>{
+  changWindowSize: () => {
     ipcRenderer.send('changWindowSize')
+  },
+  toMin: () => {
+    ipcRenderer.send('toMin')
+  },
+  toMax: () => {
+    ipcRenderer.send('toMax')
+  },
+  toClose: () => {
+    ipcRenderer.send('toClose')
   },
 
 }
-type api ={
+type api = {
   settitle: Function
-  backtologin:Function
-  changWindowSize:Function
-} 
+  backtologin: Function
+  changWindowSize: Function
+  toMin: Function
+  toMax: Function
+  toClose: Function
+}
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise

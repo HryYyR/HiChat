@@ -11,7 +11,7 @@ function createWindow(): void {
     width: 400,
     height: 550,
     show: false,
-    // frame: false, //取消window自带的关闭最小化等
+    frame: false, //取消window自带的关闭最小化等
     resizable: false, //禁止改变主窗口尺寸
     autoHideMenuBar: true,
     title: "Hichat",
@@ -80,12 +80,31 @@ function createWindow(): void {
     mainWindow.setTitle("Hichat")
   })
 
+  
+  ipcMain.on('toMin', () => {
+    if (mainWindow) {
+      mainWindow.minimize()
+    }
+  })
+
+  ipcMain.on('toMax', () => {
+    if (!mainWindow.isMaximizable())return
+    if (mainWindow.isMaximized() ) {
+      mainWindow.unmaximize()
+    }else{
+    mainWindow.maximize()
+    }
+  })
+
+  ipcMain.on('toClose', () => {
+    mainWindow.close()
+  })
+
 
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
-
 
 
 

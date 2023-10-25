@@ -1,29 +1,57 @@
 <template>
-    <div class="header">123
-        <span class="float-right btn-opt text-white">
-            <i class="el-icon-minus mr-10" @click="toMin()"></i>
-            <i class="el-icon-close" @click="toClose()"></i>
-        </span>
+    <div class="header"></div>
+    <div class="tabbar">
+        <el-icon @click="toMin">
+            <Minus />
+        </el-icon>
+        <el-icon @click="toMax">
+            <CopyDocument />
+        </el-icon>
+        <el-icon @click="toClose">
+            <Close />
+        </el-icon>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ipcRenderer } from 'electron';
+
+const win: any = window
+console.log(win);
 
 const toMin = () => {
-    ipcRenderer.send('min-app')
+    win.api.toMin()
 }
 const toClose = () => {
-    ipcRenderer.send('close-app')
+    win.api.toClose()
+}
+const toMax = () => {
+    win.api.toMax()
 }
 </script>
 
 <style scoped lang="less" >
-.header {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center; 
-    -webkit-app-region: drag; //设置可拖动
+.header{
+    position: absolute;
+    -webkit-app-region: drag;
+    width: 55vw;
+    height: 45px;
+    right: 110px;
 }
-</style>
+.tabbar {
+    width: 110px;
+    position: absolute;
+    right: 0;
+    display: flex;
+    z-index: 999;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 45px;
+
+    i {
+        padding: 6px 10px;
+    }
+
+    i:hover {
+        background-color: rgb(228, 228, 228);
+    }
+}</style>

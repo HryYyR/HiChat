@@ -17,6 +17,7 @@ func InitMySQL() {
 	if err != nil {
 		fmt.Println(err)
 		log.Fatal(err)
+		panic(err.Error())
 	}
 	engine.SetMapper(names.GonicMapper{})
 	// engine.CreateTables(&models.User{})

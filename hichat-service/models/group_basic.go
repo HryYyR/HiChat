@@ -7,17 +7,18 @@ import (
 )
 
 type Group struct {
-	ID          int    `xorm:"pk autoincr notnull index"`
-	UUID        string `xorm:"notnull unique"`
-	CreaterID   int    `xorm:"notnull"`
-	CreaterName string `xorm:"notnull"`
-	GroupName   string `xorm:"notnull unique"`
-	Avatar      string
-	Grade       int `xorm:"default(1)"`
-	MemberCount int
-	CreatedAt   time.Time `xorm:"created"`
-	DeletedAt   time.Time `xorm:"deleted"`
-	UpdatedAt   time.Time `xorm:"updated"`
+	ID            int    `xorm:"pk autoincr notnull index"`
+	UUID          string `xorm:"notnull unique"`
+	CreaterID     int    `xorm:"notnull"`
+	CreaterName   string `xorm:"notnull"`
+	GroupName     string `xorm:"notnull unique"`
+	Avatar        string
+	Grade         int `xorm:"default(1)"`
+	MemberCount   int
+	UnreadMessage int
+	CreatedAt     time.Time `xorm:"created"`
+	DeletedAt     time.Time `xorm:"deleted"`
+	UpdatedAt     time.Time `xorm:"updated"`
 }
 
 func (Group) TableName() string {
@@ -45,4 +46,13 @@ func GetUserGroupList(ID int) (map[int]Group, error) {
 	}
 
 	return grouplist, nil
+}
+
+func (g Group) GetMemberCount() int {
+	num, err := adb.Ssql.Table("group_user_relative").Where("group_id=?", g.ID).Count()
+	if err != nil {
+		fmt.Println("获取用户成员数量失败!", err)
+		return 0
+	}
+	return int(num)
 }

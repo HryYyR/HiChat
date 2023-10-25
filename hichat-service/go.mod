@@ -13,6 +13,8 @@ require (
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/jinzhu/copier v0.4.0 // indirect
+	github.com/rabbitmq/amqp091-go v1.9.0 // indirect
+	github.com/streadway/amqp v1.1.0 // indirect
 	github.com/syndtr/goleveldb v1.0.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230711160842-782d3b101e98 // indirect
 	google.golang.org/grpc v1.58.2 // indirect

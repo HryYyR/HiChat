@@ -2,93 +2,17 @@ package service
 
 import (
 	"encoding/json"
-	"fmt"
 	adb "go-websocket-server/ADB"
+	"go-websocket-server/config"
 	"go-websocket-server/models"
 	"go-websocket-server/util"
-	"log"
 	"net/http"
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
-type registerpostform struct {
-	Username string
-	Password string
-	Email    string
-	Code     string
-}
-
-func Register(c *gin.Context) {
-	// username := c.PostForm("username")
-	// password := c.PostForm("password")
-	// email := c.PostForm("email")
-	// fmt.Println(username, password, email)
-
-	databyte, _ := c.GetRawData()
-
-	var data registerpostform
-	json.Unmarshal(databyte, &data)
-	fmt.Printf("%+v\n", data)
-
-	if data.Username == "" || data.Password == "" || !util.EmailValid(data.Email) {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "Invalid username or password or email",
-		})
-		return
-	}
-	emailcode := adb.Rediss.Get(data.Email).Val()
-	if emailcode != data.Code {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "无效验证码!",
-		})
-		return
-	}
-
-	// 查询邮箱是否已被注册
-	hasemail, err := adb.Ssql.Table("users").Where("email = ? or user_name=? ", data.Email, data.Username).Exist()
-	if err != nil {
-		fmt.Println(err.Error())
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "查询邮箱失败!",
-		})
-		return
-	}
-	if hasemail {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "邮箱或者用户名已被注册!",
-		})
-		return
-	}
-
-	salt := fmt.Sprintln(time.Now().Unix())
-	encodepwd := util.Md5(data.Password + salt)
-	user := &models.Users{
-		UUID:     util.GenerateUUID(),
-		UserName: data.Username,
-		NikeName: data.Username,
-		Password: encodepwd,
-		Email:    data.Email,
-		Salt:     salt,
-	}
-	_, err = adb.Ssql.Table(&models.Users{}).InsertOne(&user)
-	if err != nil {
-		fmt.Println(err)
-		log.Println(err.Error())
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "register failed",
-		})
-		return
-	}
-	c.JSON(http.StatusOK, gin.H{
-		"msg": "registered successfully",
-	})
-}
-
-// /user/RefreshGroupList
-// 获取指定id用户的数据(刷新数据)
-func RefreshGroupList(c *gin.Context) {
+// 申请添加好友
+func ApplyAddUser(c *gin.Context) {
 	rawbyte, err := c.GetRawData()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -96,8 +20,8 @@ func RefreshGroupList(c *gin.Context) {
 		})
 		return
 	}
-	var user models.Users
-	err = json.Unmarshal(rawbyte, &user)
+	var data models.ApplyAddUser
+	err = json.Unmarshal(rawbyte, &data)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "json Unmarshal failed",
@@ -105,76 +29,140 @@ func RefreshGroupList(c *gin.Context) {
 		return
 	}
 
-	usergrouplist, err := user.GetUserGroupList()
+	// fmt.Printf("%+v", data)
+	exit, err := adb.Ssql.Table("apply_add_user").
+		Where("pre_apply_user_id=?  and apply_user_id=?  and handle_status=0",
+			data.PreApplyUserID, data.ApplyUserID).Exist()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "get usergrouplist failed",
+			"msg":   "查询申请信息失败!",
+			"error": err.Error(),
 		})
 		return
 	}
+	if exit {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "申请已存在!",
+		})
+		return
+	}
+	exit, err = adb.Ssql.Table("apply_add_user").
+		Where("pre_apply_user_id=?  and apply_user_id=?  and handle_status=0",
+			data.ApplyUserID, data.PreApplyUserID).Exist()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"msg":   "查询申请信息失败!",
+			"error": err.Error(),
+		})
+		return
+	}
+	if exit {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "申请已存在!",
+		})
+		return
+	}
+
+	if _, err = adb.Ssql.Table("apply_add_user").Insert(&data); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"msg": "申请添加好友失败!",
+		})
+		return
+	}
+	msg := models.Message{
+		UserID:   data.ApplyUserID,
+		UserName: data.ApplyUserName,
+		GroupID:  0,
+		MsgType:  config.MsgTypeRefreshFriendNotice,
+	}
+	msgbyte, _ := json.Marshal(msg)
+	models.ServiceCenter.Clients[data.PreApplyUserID].Send <- msgbyte
+	models.ServiceCenter.Clients[data.ApplyUserID].Send <- msgbyte
+
 	c.JSON(http.StatusOK, gin.H{
-		"msg":           "query userdata success",
-		"usergrouplist": usergrouplist,
+		"msg": "申请成功!",
 	})
 }
 
-type emailcode struct {
-	Email string
+type handleadduserinfo struct {
+	ApplyID      int `json:"ApplyID"`
+	HandleStatus int `json:"HandleStatus"`
 }
 
-func EmailCode(c *gin.Context) {
-	rawbyte, err := c.GetRawData()
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "getrawdata failed",
-		})
-		return
-	}
-
-	var emaildata emailcode
-	err = json.Unmarshal(rawbyte, &emaildata)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "json Unmarshal failed",
-		})
-		return
-	}
-
-	// 查询邮箱是否已被注册
-	hasemail, err := adb.Ssql.Table("users").Where("email = ?  ", emaildata.Email).Exist()
-	if err != nil {
-		fmt.Println(err.Error())
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "查询邮箱失败!",
-		})
-		return
-	}
-	if hasemail {
+// 处理添加好友
+func HandleAddUser(c *gin.Context) {
+	data := new(handleadduserinfo)
+	if err := util.HandleJsonArgument(c, data); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "邮箱已被注册!",
+			"msg":   "参数有误",
+			"error": err.Error(),
+		})
+		return
+	}
+	var applyadduserdata models.ApplyAddUser
+	exit, err := adb.Ssql.Table("apply_add_user").ID(data.ApplyID).Get(&applyadduserdata)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"msg":   "查询申请失败",
+			"error": err.Error(),
+		})
+		return
+	}
+	if !exit {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"msg": "申请不存在",
 		})
 		return
 	}
 
-	mail := adb.Rediss.Get(emaildata.Email).Val()
-	if len(mail) != 0 {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "请勿重复发送!",
-		})
-		return
-	}
-	code := util.RandCode()
-	adb.Rediss.Set(emaildata.Email, code, 1*time.Minute) //验证码存redis
-	err = util.MailSendCode(emaildata.Email, code)       //发送验证码
-	if err != nil {
-		fmt.Println(err)
+	session := adb.Ssql.NewSession()
+	// 更新申请
+	if _, err = session.Table("apply_add_user").ID(data.ApplyID).Update(&models.ApplyAddUser{HandleStatus: data.HandleStatus}); err != nil {
+		session.Rollback()
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "发送验证码失败,请稍后再试!",
+			"msg":   "更新申请失败",
+			"error": err.Error(),
 		})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{
-		"msg": "发送验证码成功!",
-	})
+
+	if data.HandleStatus == -1 {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "拒绝成功",
+		})
+		return
+	} else {
+		insertdata := &models.UserUserRelative{
+			PreUserID:    applyadduserdata.PreApplyUserID,
+			PreUserName:  applyadduserdata.PreApplyUserName,
+			BackUserID:   applyadduserdata.ApplyUserID,
+			BackUserName: applyadduserdata.ApplyUserName,
+		}
+		// 插入关系
+		if _, err = session.Table("user_user_relative").Insert(&insertdata); err != nil {
+			session.Rollback()
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"msg":   "处理好友请求失败",
+				"error": err.Error(),
+			})
+			return
+		}
+		session.Commit()
+
+		refreshmsg := models.Message{
+			UserID:   applyadduserdata.ApplyUserID,
+			UserName: applyadduserdata.ApplyUserName,
+			GroupID:  0,
+			MsgType:  config.MsgTypeRefreshFriend,
+		}
+		msgbyte, _ := json.Marshal(refreshmsg)
+		models.ServiceCenter.Clients[applyadduserdata.PreApplyUserID].Send <- msgbyte
+		models.ServiceCenter.Clients[applyadduserdata.ApplyUserID].Send <- msgbyte
+
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "同意成功",
+		})
+		return
+	}
 
 }

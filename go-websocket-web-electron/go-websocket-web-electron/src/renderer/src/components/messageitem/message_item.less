@@ -1,6 +1,6 @@
 .msg_item {
     display: flex;
-    margin: 20px 0;
+    margin: 20px 0 40px 0;
     justify-content: flex-end;
 
     .msg_header {
@@ -9,6 +9,7 @@
         border-radius: 50%;
         position: relative;
         margin: 0 10px;
+        cursor: pointer;
 
         img {
             width: 100%;
@@ -39,12 +40,65 @@
         }
     }
 
+
     .msg_quit {
         padding: 5px 10px;
         border-radius: 10px;
         color: #636363;
         font-size: 0.8rem;
-        background-color: #ebebeb;
+        background-color: #cdcdcd;
         user-select: none;
     }
+
+    audio {
+        height: 30px;
+        width: 140px;
+    }
+
+    //： 控制面板的容器。
+    ::-webkit-media-controls-panel {
+        background-color: #e2e2e2;
+
+    }
+
+    //： 控制面板上的静音按钮。
+    // ::-webkit-media-controls-mute-button {
+    //     // display: none;
+    // }
+
+
+    //： 控制面板上的播放按钮。
+    ::-webkit-media-controls-play-button {
+        margin-left: 0;
+        padding-left: 0;
+        position: relative;
+        left: -10px;
+        // display: none;
+
+    }
+
+    //： 控制面板上展示当前播放时间的文字。
+    ::-webkit-media-controls-current-time-display {
+        display: none;
+    }
+
+    //： 控制面板上展示总播放时长的文字。
+    ::-webkit-media-controls-time-remaining-display {
+        display: none;
+
+    }
+
+    //： 控制面板上的播放时间线。
+    ::-webkit-media-controls-timeline {
+        display: none;
+
+    }
+
+    //： 控制面板上控制音量的滚动条，在 Chrome 上滚动条会出现在悬浮在静音按钮上时
+    // ::-webkit-media-controls-volume-slider {
+    //     // display: none;
+    // }
+
+
+
 }

@@ -6,17 +6,21 @@ import (
 	"crypto/md5"
 	random "crypto/rand"
 	"crypto/tls"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"hichat_static_server/config"
 	"hichat_static_server/models"
 	"math/rand"
 	"net/smtp"
-	"time"
+	"sort"
+	time "time"
 
+	"github.com/gin-gonic/gin"
 	"github.com/gofrs/uuid"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/jordan-wright/email"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // md5加密
@@ -24,7 +28,7 @@ func Md5(s string) string {
 	return fmt.Sprintf("%x", md5.Sum([]byte(s)))
 }
 
-func generateEcdsaPrivateKey() (*ecdsa.PrivateKey, error) {
+func GenerateEcdsaPrivateKey() (*ecdsa.PrivateKey, error) {
 	return ecdsa.GenerateKey(elliptic.P256(), random.Reader)
 }
 
@@ -88,4 +92,57 @@ func RandCode() string {
 func GenerateUUID() string {
 	u1, _ := uuid.NewV4()
 	return u1.String()
+}
+
+func TimeSortApplyJoinGroupList(arr []models.ApplyJoinGroup, order string) {
+	sort.Slice(arr, func(i, j int) bool {
+		return arr[i].CreatedAt.After(arr[j].CreatedAt)
+	})
+}
+
+func TimeSortAddUserList(arr []models.ApplyAddUser, order string) {
+	switch order {
+	case "desc":
+		sort.Slice(arr, func(i, j int) bool {
+			return arr[i].CreatedAt.After(arr[j].CreatedAt)
+		})
+	case "asc":
+		sort.Slice(arr, func(i, j int) bool {
+			return arr[i].CreatedAt.Before(arr[j].CreatedAt)
+		})
+	}
+
+}
+
+func FormatTampTime(tamptime *timestamppb.Timestamp) time.Time {
+	return tamptime.AsTime().Local().UTC().Add(time.Hour * -8)
+}
+
+func FormatTime(targettime time.Time) time.Time {
+	return targettime.Local().UTC().Add(time.Hour * -8)
+}
+
+// 处理server参数 json -> struct
+func HandleJsonArgument(c *gin.Context, data *models.Users) error {
+	rawbyte, err := c.GetRawData()
+	if err != nil {
+		return err
+	}
+	// var data models.ApplyAddUser
+	err = json.Unmarshal(rawbyte, &data)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func GroupTimeSort(arr []models.ApplyJoinGroup, order string) {
+	sort.Slice(arr, func(i, j int) bool {
+		return arr[i].CreatedAt.After(arr[j].CreatedAt)
+	})
+}
+func UserTimeSort(arr []models.ApplyAddUser, order string) {
+	sort.Slice(arr, func(i, j int) bool {
+		return arr[i].CreatedAt.After(arr[j].CreatedAt)
+	})
 }

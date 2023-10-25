@@ -16,3 +16,5 @@ func InitRedis() {
 	})
 	Rediss = rdb
 }
+
+// func Init

@@ -1,27 +1,9 @@
 <template>
+    <HeaderVue />
+
     <div class="container" v-loading="data.loginloading" v-show="!data.islogin">
         <!-- 登录 -->
-        <div class="view_container login_container" :style="{ marginTop: data.logindata.offset ? '-500px' : '0px' }">
-            <div class="headericon">
-                <el-icon size="30" color="white">
-                    <Plus />
-                </el-icon>
-            </div>
-            <el-input class="view_input" v-model="data.logindata.username" placeholder="账号" size="large"
-                clearable></el-input>
-            <el-input type="password" class="view_input" v-model="data.logindata.password" show-password placeholder="密码"
-                size="large" clearable></el-input>
-            <div class="option">
-                <div class="option_item">
-                    <span>记住密码: <el-switch size="small" v-model="data.logindata.rememberpassword" />
-                    </span>
-                </div>
-                <div class="option_item">
-                    <span>自动登录: <el-switch size="small" v-model="data.logindata.autologin" /></span>
-                </div>
-            </div>
-            <div class="btn" @click="login">登录</div>
-        </div>
+        <LoginVue :logindata="data.logindata" @login="login" />
 
         <!-- 注册 -->
         <div class="view_container register_container">
@@ -56,9 +38,10 @@
     </div>
 
     <!-- 主面板 -->
-    <div v-show="data.islogin" class="index">
+    <div v-show="data.islogin" class="index" v-loading="data.wsconnecting">
         <div class="left_list">
-            <UserInfoVue :username="data.userdata.UserName" :userheader="data.userdata.Avatar" />
+            <UserInfoVue @edituserdata="edituserdata" @userdetaildialoghandleClose="userdetaildialoghandleClose"
+                :UserDetailDialogVisible="data.userdetaildata.UserDetailDialogVisible" :userdata="data.userdata" />
 
             <!-- 群工具 -->
             <div class="group_tools">
@@ -69,6 +52,11 @@
                     </el-icon>
                     <template #dropdown>
                         <el-dropdown-menu>
+                            <el-dropdown-item>
+                                <div @click="data.addUserdata.addUserDialogVisible = true">
+                                    添加好友
+                                </div>
+                            </el-dropdown-item>
                             <el-dropdown-item>
                                 <div @click="data.addgroupdata.addGroupDialogVisible = true">
                                     添加群聊
@@ -87,20 +75,42 @@
             <!-- 申请消息列表 -->
             <div class="apply_msg_list" v-if="data.islogin" @click="data.applymsgdata.applyMsgDialogVisible = true">
                 <div class="apply_msg_list_left">
-                    <p>消息通知</p><span v-show="data.userdata.ApplyList.filter(i => i.HandleStatus == 0).length != 0">{{
-                        data.userdata.ApplyList.filter(i => i.HandleStatus == 0).length
-                    }}</span>
+                    <p>消息通知</p>
+                    <span v-show="filterapplyjoingrouplist != 0 || filterapplyadduserlist != 0">
+                        {{
+                            filterapplyjoingrouplist + filterapplyadduserlist
+                        }}
+                    </span>
                 </div>
                 <p class="apply_msg_list_right"><el-icon>
                         <ArrowRightBold />
                     </el-icon></p>
             </div>
-            <!-- 群列表 -->
-            <div class="group_list">
-                <GroupItemVue v-for="(item) in data.grouplist" :key="item.GroupInfo.ID" :item="item"
-                    :currentgroupdata="data.currentgroupdata" @setcurrentgrouplist="setcurrentgrouplist"
-                    @openeditgroupmenu="openeditgroupmenu" />
+
+            <!-- tab切换栏 -->
+            <div class="change_tab">
+                <div @click="data.currentSelectTab = true" :class="{ checktab: data.currentSelectTab }"><el-icon>
+                        <User />
+                    </el-icon></div>
+                <div @click="data.currentSelectTab = false" :class="{ checktab: !data.currentSelectTab }"><el-icon>
+                        <ChatRound />
+                    </el-icon></div>
             </div>
+
+            <div class="list_container">
+                <!-- 好友列表 -->
+                <div class="friend_list list" :class="{ checkf: data.currentSelectTab }">
+                    <FriendItemVue v-for="(item) in data.userdata.FriendList" :key="item.Id" :item="item"
+                        @setcurrentfriendlist="setcurrentfriendlist" />
+                </div>
+                <!-- 群列表 -->
+                <div class="group_list list" :class="{ checkg: !data.currentSelectTab }">
+                    <GroupItemVue v-for="(item) in data.grouplist" :key="item.GroupInfo.ID" :item="item"
+                        :currentgroupdata="data.currentgroupdata" @setcurrentgrouplist="setcurrentgrouplist"
+                        @openeditgroupmenu="openeditgroupmenu" />
+                </div>
+            </div>
+
 
             <div @click="outlogin" class="outlogin">
                 <el-icon>
@@ -109,23 +119,27 @@
             </div>
         </div>
 
-        <div class="right_list" v-if="JSON.stringify(data.currentgroupdata) != '{}'">
+
+
+        <div class="right_list" v-if="data.currentSelectType == 2">
             <div class="rightlist_option">
-                {{ data.currentgroupdata.GroupInfo.GroupName || "" }} ({{ data.currentgroupdata.GroupInfo.MemberCount }})
-                {{ data.currentgroupdata.MessageList.length }}
+                {{ data.currentfrienddata.NikeName || "" }}
+            </div>
+        </div>
+
+
+        <div class="right_list" v-if="data.currentSelectType == 1 && JSON.stringify(data.currentgroupdata) != '{}'">
+            <div class="rightlist_option">
+                {{ JSON.stringify(data.currentgroupdata) != '{}'? data.currentgroupdata.GroupInfo.GroupName : "" }} ({{ JSON.stringify(data.currentgroupdata) != '{}'? data.currentgroupdata.GroupInfo.MemberCount:'' }})
             </div>
 
-            <!-- 消息列表 -->
             <div class="rightlist_container" ref="msglist">
-                <MessageItemVue
-                v-for="item in data.currentgroupdata.MessageList" :key="item.ID"
-                :item="item"
-                :userdata="data.userdata"
-                :currentgroupdata="data.currentgroupdata"
-                @openMsgHandleMenu="openMsgHandleMenu"
-                />
+                <MessageItemVue @changeHeaderDialog="changeHeaderDialog"
+                    v-for="(item, index) in data.currentgroupdata.MessageList" :key="item.ID" :item="item"
+                    :preitem="(index != 0 && data.currentgroupdata.MessageList.length > 1) ? data.currentgroupdata.MessageList[index - 1] : data.currentgroupdata.MessageList[index]"
+                    :userdata="data.userdata" :currentgroupdata="data.currentgroupdata"
+                    @openMsgHandleMenu="openMsgHandleMenu" />
 
-                <!-- 消息未读 -->
                 <div class="message_unread" @click="scrolltonew(0, true)" v-show="data.messageunreaddata.unreadnumber != 0">
                     <span>
                         {{ data.messageunreaddata.unreadnumber }}条未读
@@ -138,14 +152,32 @@
 
             <div class="rightlist_input">
                 <div class="input_tool">
-
-                    <el-icon class="tool_image" @click="sendimage">
-                        <Picture />
-                    </el-icon>
-
+                    <el-upload ref="uploadimg" method="POST" :headers="{ 'authorization': Store.token }"
+                        :action="`http://${fileurl}/uploadfile`" :limit="10" :before-upload="beforeUploadImg"
+                        :on-success="onSuccessUploadImg" :on-error="onErrorUploadImg" :auto-upload="true"
+                        :show-file-list="false" multiple>
+                        <template #trigger>
+                            <el-icon class="tool_item">
+                                <Picture />
+                            </el-icon>
+                        </template>
+                    </el-upload>
+                    <div class="tool_item">
+                        <el-icon class="tool_item" :class="{ 'sound_record_active': data.soundrecorddata.visible }"
+                            @click="handlesoundrecord">
+                            <Microphone />
+                        </el-icon>
+                    </div>
                 </div>
-                <textarea cols="30" rows="10" v-model="data.input"></textarea>
-                <div @click="send" class="sendbtn" :style="{ color: data.input ? 'white' : 'rgba(255,255,255,0.4)' }">
+                <textarea v-show="!data.soundrecorddata.visible" cols="30" rows="10" v-model="data.input"></textarea>
+                <div class="tool_sound" v-show="data.soundrecorddata.visible">
+                    <el-icon :class="{ 'sound_record_active': data.soundrecorddata.recordStatus }">
+                        <Microphone />
+                    </el-icon>
+                    <p>按住空格开始录音，松开发送录音</p>
+                </div>
+                <div @click="send" class="sendbtn" :style="{ color: data.input ? 'white' : 'rgba(255,255,255,0.4)' }"
+                    v-show="!data.soundrecorddata.visible">
                     发送
                 </div>
             </div>
@@ -153,31 +185,12 @@
 
 
         <!-- 申请加入群聊对话框 -->
-        <el-dialog :before-close="beforeCloseAddGroupEvent" v-model="data.addgroupdata.addGroupDialogVisible" title="添加群聊"
-            width="40%">
-            <div style="display: flex;">
-                <el-input style="margin-right: 3px;" v-model="data.addgroupdata.addgroupinput" placeholder="支持模糊搜索"
-                    size="default" clearable @change=""></el-input>
-                <el-button type="primary" size="default" @click="searchgroup">搜索</el-button>
-            </div>
-            <div>
-                <div v-for="item in data.addgroupdata.addgroupsearchlist" :key="item.ID"
-                    class="apply_join_geoup_dialog_grouplist_item">
-                    <img :src="`http://${fileurl}/${item.Avatar}`" alt="">
-                    <p>{{ item.GroupName }}</p>
-                    <p class="group_number"><el-icon>
-                            <User />
-                        </el-icon>{{ item.MemberCount }}</p>
-                    <el-button type="primary" size="default" @click="preapplyentergroup(item)">申请</el-button>
-
-                </div>
-
-            </div>
-        </el-dialog>
+        <ApplyJoinGroupDialog :addgroupdata="data.addgroupdata" @preapplyentergroup="preapplyentergroup"
+            @searchgroup="searchgroup" @beforeCloseAddGroupEvent="beforeCloseAddGroupEvent" />
 
         <!-- 填写申请加入群聊理由对话框 -->
-        <el-dialog :before-close="beforeCloseAddGroupEvent" v-model="data.addgroupdata.preaddGroupDialogVisible"
-            title="申请理由" width="40%">
+        <el-dialog :close="beforeCloseAddGroupEvent" v-model="data.addgroupdata.preaddGroupDialogVisible" title="申请理由"
+            width="40%">
             <el-input placeholder="申请理由" v-model="data.applyjoingroupdata.Msg" type="textarea" />
             <template #footer>
                 <span class="dialog-footer">
@@ -189,7 +202,8 @@
         </el-dialog>
 
         <!-- 创建群聊对话框 -->
-        <CreateGroupDialog :creategroupdata="data.creategroupdata" @changestep="changestep" @creategroup="creategroup"
+        <CreateGroupDialog @closecreategroupdialog="closecreategroupdialog" :creategroupdata="data.creategroupdata"
+            @changestep="changestep" @creategroup="creategroup"
             @uploadcreategroupheaderSuccess="uploadcreategroupheaderSuccess" />
 
         <!-- 确定退出(解散)群聊对话框 -->
@@ -206,64 +220,80 @@
         </el-dialog>
 
         <!-- 消息通知对话框 -->
-        <el-dialog style="background-color: rgb(229,229,229);" v-model="data.applymsgdata.applyMsgDialogVisible"
-            title="消息通知" width="60%">
+        <MessageNoticeDialog :userdata="data.userdata" :grouplist="data.grouplist" :applymsgdata="data.applymsgdata"
+            :filterapplyjoingrouplist="filterapplyjoingrouplist" :filterapplyadduserlist="filterapplyadduserlist"
+            @handleapplymsg="handleapplymsg" @handleapplyaddusermsg="handleapplyaddusermsg" />
 
-            <div class="apply_msg_list_dialog">
-                <div v-for="item in data.userdata.ApplyList" :key="item.ID">
-                    <p>
-                    <p style="display: flex;">
-                        <span> {{ item.ApplyUserName }} </span>
-                    <p style="margin: 0 5px;">申请加入群聊</p> <span> {{ data.grouplist.filter(i => i.GroupInfo.ID ==
-                        item.GroupID)[0].GroupInfo.GroupName
-                    }}</span>
-                    <p style="font-size: 0.8rem;line-height: 1.2rem;margin-left: 10px;color: rgb(168, 168, 168);">{{
-                        item.CreatedAt.slice(11, 19) }}</p>
-                    </p>
-                    <p>
-                        留言:{{ item.ApplyMsg }}
-                    </p>
-                    </p>
-                    <div v-show="item.HandleStatus == 0">
-                        <el-button type="primary" size="default" @click="handleapplymsg(item, 1)">同意</el-button>
-                        <el-button type="danger" size="default" @click="handleapplymsg(item, -1)">拒绝</el-button>
-                    </div>
-                    <div v-show="item.HandleStatus == 1">已同意</div>
-                    <div v-show="item.HandleStatus == -1">已拒绝</div>
-                </div>
-            </div>
-        </el-dialog>
+        <ApplyAddUserDialog :userdata="data.userdata" @changeHeaderDialog="changeHeaderDialog"
+            :addUserDialogVisible="data.addUserdata.addUserDialogVisible"
+            :targetuserdata="data.addUserdata.targetUserData" />
 
     </div>
 </template>
 
 <script setup lang="ts">
 // const { ipcRenderer } = require('electron')
-import {url,fileurl} from './main'
-import { onMounted, reactive, ref, watch } from 'vue';
+import { url, fileurl } from './main'
+import { toRef, onMounted, reactive, ref, watch, computed } from 'vue';
 import useCounter from './store/common'
-import { ElMessage, UploadProps } from 'element-plus';
+import { UploadFile, UploadFiles, UploadProps, UploadRawFile } from 'element-plus';
+import { tip, SendGroupResourceMsg } from './utils/utils'
+import HeaderVue from './components/header.vue'
+import LoginVue from './components/login/login.vue'
+
+
 import UserInfoVue from './components/userinfo/userinfo.vue'
 import GroupItemVue from './components/groupitem/groupitem.vue'
-import MessageItemVue from './components/messageitem/message_item.vue'
+import FriendItemVue from './components/frienditem/friend_item.vue'
+import MessageItemVue from './components/messageitem/message_item.vue';
+
 import CreateGroupDialog from './components/creategroupdialog/create_group_dialog.vue'
-// import { GroupList,Group,GroupInfo,GroupinfoList,Userdata } from './models/models';
+import MessageNoticeDialog from './components/messagenoticedialog/message_notice_dialog.vue'
+import ApplyJoinGroupDialog from './components/applyjoingroupdialog/apply_join_group_dialog.vue'
+import ApplyAddUserDialog from './components/adduserdialog/add_user_dialog.vue'
 import {
     loginapi,
     registerapi,
+
+    // RefreshAllapi,
     RefreshGroupListapi,
+    RefreshFriendListapi,
+    RefreshApplyJoinGroupListapi,
+    RefreshApplyAddFriendListapi,
+
     searchGroupapi,
+    applyjoingroupapi,
     joingroupapi,
     creategroupapi,
     exitgroupapi,
+
+    adduserapi,
+
     emailcodeapi,
-    applyjoingroupapi
+    uploadresourceapi
 } from './API/api'
+
+import {
+    Userdata,
+    ApplyUserItem,
+    ApplyItem,
+    GroupList,
+    Group,
+    GroupinfoList,
+    MessageListitem,
+    Friend,
+
+} from './models/models'
+
+
 import ContextMenu from '@imengyu/vue3-context-menu'
 
 const win: any = window
 let Store = useCounter()
+
 const msglist: any = ref(null)
+const uploadimg: any = ref(null)
+let reconnectnum = 0
 
 onMounted(() => {
     win.api.settitle()
@@ -279,12 +309,30 @@ onMounted(() => {
 })
 
 const data = reactive({
-    grouplist: <Group>[],//群信息
-    currentgroupdata: <GroupList>{},
+    ws: {
+        wsconn: <any>null,  //ws连接
+    },
+    wsconnecting: true,
+    islogin: false, //是否登录
+    loginloading: false, //是否加载中
+
     userdata: <Userdata>{},  //用户信息
+    grouplist: <Group>[],//群信息
+
+    input: "hello!",  //聊天输入框
+    searchgroupinput: "", //搜索群输入框
+
+    currentgroupdata: <GroupList>{},//当前群聊对话框
+    currentfrienddata: <Friend>{},  //当前好友对话框
+    currentSelectTab: true, //true:好友  false:群聊
+    currentSelectType: <0 | 1 | 2>0,  // 0:未选中   1:群聊   2:好友
+
+    userdetaildata: {
+        UserDetailDialogVisible: true
+    },
     logindata: { //登录信息
-        username: "niko",
-        password: "Hyyyh1527",
+        username: "",
+        password: "",
         rememberpassword: localStorage.getItem("rememberpassword") == "1" ? true : false,
         autologin: localStorage.getItem("autologin") == "1" ? true : false,
         offset: false
@@ -298,16 +346,13 @@ const data = reactive({
         sendcodebtn: "发送验证码",
         sendemailbtnvisible: false
     },
-    ws: {
-        wsconn: <any>null,  //ws连接
-    },
-    islogin: false, //是否登录
     messageunreaddata: {
         unreadnumber: 0
     },
-    input: "hello!",  //聊天输入框
-    searchgroupinput: "", //搜索群输入框
-    loginloading: false, //是否加载中
+    addUserdata: {
+        addUserDialogVisible: false,
+        targetUserData: <any>{}
+    },
     addgroupdata: {
         addgroupinput: "",   //添加群输入框
         addgroupsearchlist: <GroupinfoList>[], //添加群搜索列表
@@ -324,15 +369,20 @@ const data = reactive({
     quitgroupdata: {
         quitGroupDialogVisible: false,
         title: "退出群聊",
-        targetgroupdata: <GroupList>{
-
-        }
+        targetgroupdata: <GroupList>{}
     },
     applyjoingroupdata: {
         GroupName: "",
         GroupID: -1,
         Msg: "",
         ApplyWay: 1
+    },
+    soundrecorddata: {
+        data: [] as Array<Blob>,
+        visible: false,
+        recordStatus: false,
+        mediaRecorder: <MediaRecorder>{},
+        targeturl: ""
     },
     applymsgdata: {
         applyMsgDialogVisible: false
@@ -345,13 +395,18 @@ watch(data.logindata, (newValue, _) => {
     localStorage.setItem("autologin", newValue.autologin ? "1" : "0")
 })
 
+const filterapplyjoingrouplist = computed(() => data.userdata.ApplyList ? data.userdata.ApplyList.filter(i => i.HandleStatus == 0).length : 0)
+const filterapplyadduserlist = computed(() => data.userdata.ApplyUserList ? data.userdata.ApplyUserList.filter(i => i.HandleStatus == 0 && i.ApplyUserID != data.userdata.ID).length : 0)
 
 // 发送消息
 const send = () => {
+    if (data.input.length == 0) return
     let message = {
         UserID: data.userdata.ID,
         UserName: data.userdata.UserName,
         UserAvatar: data.userdata.Avatar == "" ? `http://${fileurl}/static/icon.png` : data.userdata.Avatar,
+        UserCity: data.userdata.City,
+        UserAge: JSON.stringify(data.userdata.Age),
         GroupID: data.currentgroupdata.GroupInfo.ID,
         Msg: data.input,
         MsgType: 1,
@@ -367,8 +422,9 @@ const send = () => {
 
 }
 
-// 设置选中,清除未读消息,监听滚动
+// 设置选中群聊对话框,清除未读消息,监听滚动
 const setcurrentgrouplist = (group: GroupList) => {
+    data.currentSelectType = 1
     const setcurrentlistener = () => {
         const { scrollHeight, scrollTop, offsetHeight } = msglist.value
         if (scrollHeight - scrollTop - 3 * 83.6 < offsetHeight
@@ -377,17 +433,21 @@ const setcurrentgrouplist = (group: GroupList) => {
         }
     }
 
-
     data.currentgroupdata = group
     if (data.currentgroupdata.GroupInfo.UnreadMessage != 0) clearcurrentmsg()
     data.messageunreaddata.unreadnumber = 0 //清空未读
-    scrolltonew()
+    scrolltonew(0)
     setTimeout(() => {
         msglist.value.addEventListener("scroll", setcurrentlistener)
     }, 0);
-
     group.GroupInfo.UnreadMessage = 0
+}
 
+// 设置选中好友对话框,清除未读消息,监听滚动
+const setcurrentfriendlist = (frienddata: Friend) => {
+    data.currentfrienddata = frienddata
+
+    data.currentSelectType = 2
 }
 
 // 登录
@@ -418,37 +478,14 @@ const login = () => {
             localStorage.removeItem("password")
         }
 
-        // 连接ws
-        data.ws.wsconn = new WebSocket(`ws://${url}/ws?token=${localStorage.getItem("token")}`),
-
-            data.ws.wsconn.onopen = function () {
-                // console.log(evt);
-                console.log("connect success!");
-            }
-
-        data.ws.wsconn.onclose = function () {
-            // console.log(evt);
-            console.log("connect close!");
-        }
-        // 接收消息
-        data.ws.wsconn.onmessage = function (evt: any) {
-            var msgstr = evt.data.split('\n');
-            let msg = JSON.parse(msgstr)
-            console.log("收到消息:", msg);
-            handleMsg(msg)
-        }
-
-        data.ws.wsconn.onerror = function (evt: any) {
-            console.log(evt);
-        }
+        connectws()
+        // 设置显示
 
         setTimeout(() => {
             data.loginloading = false
             win.api.changWindowSize()
             data.islogin = true
         }, 1000);
-
-        // 设置显示
 
     }).catch((err) => {
         console.log(err);
@@ -461,22 +498,43 @@ const login = () => {
     })
 }
 
+// 退出登录
+const outlogin = () => {
+    // ipcRenderer.send('backtologin')
+    win.api.backtologin()
+    setTimeout(() => {
+        data.islogin = false
+    }, 50);
+    data.ws.wsconn.close()
+    data.currentgroupdata = <GroupList>{}
+    data.currentSelectType = 0
+    data.currentSelectTab = true
+    data.input = ""
+    data.searchgroupinput = ""
+    data.addgroupdata.addgroupinput = ""
+    data.addgroupdata.addgroupsearchlist = <GroupinfoList>[]
+    data.soundrecorddata.visible = false
+    data.addUserdata.targetUserData = {}
+}
+
 // 处理消息
 const handleMsg = (msg: any) => {
-
     const DefaultMsg = () => {
-        data.grouplist.forEach((group) => {
+        data.grouplist.forEach((group, index) => {
             // console.log(group.GroupInfo.ID, msg.GroupID);
             if (group.GroupInfo.ID == msg.GroupID) {
                 if (group.MessageList == null) { group.MessageList = [] }
                 group.MessageList.push(msg)
+                let temp = data.grouplist[index]
+                data.grouplist[index] = data.grouplist[0]
+                data.grouplist[0] = temp
             }
         })
     }
 
     const refreshGroupMsg = async () => {
         console.log("收到刷新消息");
-        await refreshgrouplist()
+        await refreshgrouplistdata()
         return
     }
 
@@ -487,18 +545,25 @@ const handleMsg = (msg: any) => {
                 data.currentgroupdata = <GroupList>{}
             }
         }
-        await refreshgrouplist()
+        await refreshgrouplistdata()
     }
 
     const JoginGroupMsg = async () => {
-        await refreshgrouplist()
+        refreshgroupnoticedata()
+        refreshgrouplistdata()
     }
 
     const typelist = {
         1: DefaultMsg,
+        2: DefaultMsg,
+        3: DefaultMsg,
         200: refreshGroupMsg,
         201: QuitGroupMsg,
-        202: JoginGroupMsg
+        202: JoginGroupMsg,
+        500: refreshgrouplistdata,
+        501: refreshfriendlistdata,
+        502: refreshgroupnoticedata,
+        503: refreshfriendnoticedata,
     }
     const msgtype = msg.MsgType
     typelist[msgtype](msg)
@@ -526,7 +591,6 @@ const handleMsg = (msg: any) => {
 
     if (msglist.value == null || JSON.stringify(data.currentgroupdata) == '{}') return
     const { scrollHeight, scrollTop, offsetHeight } = msglist.value
-    // console.log(scrollHeight, scrollTop, offsetHeight);
     if (msg.GroupID == data.currentgroupdata.GroupInfo.ID &&
         msg.UserID != data.userdata.ID
     ) {
@@ -536,22 +600,6 @@ const handleMsg = (msg: any) => {
             data.messageunreaddata.unreadnumber += 1
         }
     }
-
-}
-
-// 退出登录
-const outlogin = () => {
-    // ipcRenderer.send('backtologin')
-    win.api.backtologin()
-    setTimeout(() => {
-        data.islogin = false
-    }, 50);
-    data.ws.wsconn.close()
-    data.currentgroupdata = <GroupList>{}
-    data.input = ""
-    data.searchgroupinput = ""
-    data.addgroupdata.addgroupinput = ""
-    data.addgroupdata.addgroupsearchlist = <GroupinfoList>[]
 }
 
 // 去注册页面
@@ -601,76 +649,78 @@ const register = () => {
     })
 }
 
-const sendimage = () => {
-
+// 打开录音窗口
+const handlesoundrecord = () => {
+    data.soundrecorddata.visible = !data.soundrecorddata.visible
 }
 
-// 刷新列表
-const refreshgrouplist = async () => {
-    let datares = await RefreshGroupListapi(data.userdata.ID)
-    if (datares.status != 200) {
-        return alert("获取群列表失败!")
-    }
-    console.log("刷新群列表", datares.data);
+const refreshgrouplistdata = async () => {
+    RefreshGroupListapi(data.userdata.ID).then(res => {
+        console.log(res.data);
+        if (res.data.data == null) {
+            data.currentgroupdata = <GroupList>{}
 
-    data.userdata.ApplyList = datares.data.applylist == null ? [] : datares.data.applylist
-    if (datares.data.usergrouplist != null) {
-        data.grouplist = datares.data.usergrouplist.map((group: any) => {
+            data.grouplist = []
+            return
+        }
+        data.grouplist = res.data.data.map(group => {
             if (group.MessageList == null) {
                 group.MessageList = []
             }
             return group
         })
-    } else {
-        data.grouplist = []
-    }
 
-    // 解决当有人退出然后重进后,发送消息丢失响应式的bug
-    if (JSON.stringify(data.currentgroupdata) != "{}") {
-        const currentid = data.currentgroupdata.GroupInfo.ID
-        data.grouplist.forEach(group => {
-            if (group.GroupInfo.ID == currentid) {
-                data.currentgroupdata = group
-            }
-        })
-    }
-
-
-}
-
-const changestep = (i: number) => {
-    i == 0 ? (data.creategroupdata.createstep--) : (data.creategroupdata.createstep++)
-}
-
-// 提示
-function tip(type: any, message: string) {
-    ElMessage({
-        "type": type,
-        "message": message
-    })
-}
-
-// 搜索群聊
-const searchgroup = () => {
-    searchGroupapi(data.addgroupdata.addgroupinput).then((res) => {
-        if (res.status != 200) {
-            tip("Error", res.data.msg)
-            return
+        // 解决当有人退出然后重进后,发送消息丢失响应式的bug
+        if (JSON.stringify(data.currentgroupdata) != "{}") {
+            const currentid = data.currentgroupdata.GroupInfo.ID
+            data.grouplist.forEach(group => {
+                if (group.GroupInfo.ID == currentid) {
+                    data.currentgroupdata = group
+                }
+            })
         }
-        console.log(res.data.grouplist);
 
-        data.addgroupdata.addgroupsearchlist = res.data.grouplist == null ? [] : res.data.grouplist
+        console.log(data.userdata);
 
-    }).catch(_ => {
-        tip("Error", "发起请求失败！")
+    }).catch(err => {
+        tip('error', err.response)
     })
 }
+
+const refreshfriendlistdata = async () => {
+    RefreshFriendListapi(data.userdata.ID).then(res => {
+        console.log(res.data);
+        data.userdata.FriendList = res.data.data
+        console.log(data.userdata);
+    }).catch(err => {
+        tip('error', err.response)
+    })
+}
+const refreshgroupnoticedata = async () => {
+    RefreshApplyJoinGroupListapi(data.userdata.ID).then(res => {
+        console.log(res.data);
+        data.userdata.ApplyList = res.data.data
+        console.log(data.userdata);
+
+    }).catch(err => {
+        tip('error', err.response)
+    })
+}
+const refreshfriendnoticedata = async () => {
+    RefreshApplyAddFriendListapi(data.userdata.ID).then(res => {
+        console.log(res.data);
+        data.userdata.ApplyUserList = res.data.data
+        console.log(data.userdata);
+    }).catch(err => {
+        tip('error', err.response)
+    })
+}
+
 
 // 关闭添加群聊对话框之前
-const beforeCloseAddGroupEvent = (done: any) => {
+const beforeCloseAddGroupEvent = () => {
     data.addgroupdata.addgroupsearchlist = <GroupinfoList>{}
     data.addgroupdata.addgroupinput = ""
-    done()
 }
 
 // 填写添加群聊理由前(绑定当前选择数据)
@@ -701,8 +751,13 @@ const applyentergroup = async () => {
 const creategroup = async () => {
     const { creategroupinput, headerurl } = data.creategroupdata
     creategroupapi(creategroupinput, headerurl).then(res => {
+        let newgrouplist = [toRef(res.data.data).value].concat(data.grouplist)
+        data.grouplist = newgrouplist
+
+        console.log(data.grouplist);
+
         tip('success', res.data.msg)
-        refreshgrouplist()
+        // refreshgrouplist()
         data.creategroupdata = {
             headeruploadurl: `http://${fileurl}/uploadfile`,
             creategroupinput: "",
@@ -713,45 +768,82 @@ const creategroup = async () => {
     }).catch(err => {
         tip('error', err.response.data.msg)
     })
-    // if (res.status != 200) {
-    //     tip('error', res.data.msg)
-    //     return
-    // }
-    // tip('success', res.data.msg)
-    // refreshgrouplist()
-    // data.creategroupdata = {
-    //     headeruploadurl: `http://${fileurl}/uploadfile`,
-    //     creategroupinput: "",
-    //     createGroupDialogVisible: false,
-    //     headerurl: "",
-    //     createstep: 1
-    // }
+}
+
+// 切换创建群聊的步骤
+const changestep = (i: number) => {
+    i == 0 ? (data.creategroupdata.createstep--) : (data.creategroupdata.createstep++)
 }
 
 // 退出群聊
 const quitgroup = async () => {
     const GroupInfo = data.quitgroupdata.targetgroupdata.GroupInfo
-    let res = await exitgroupapi(GroupInfo.ID)
-    data.quitgroupdata.quitGroupDialogVisible = false
-    if (res.status != 200) {
-        tip("error", res.data.msg)
-        return
-    }
-    data.currentgroupdata = <GroupList>{}
-    tip("success", GroupInfo.CreaterID == data.userdata.ID ? "解散成功!" : "退出成功!")
+    console.log(GroupInfo);
+
+    exitgroupapi(GroupInfo.ID).then(() => {
+        data.quitgroupdata.quitGroupDialogVisible = false
+        if (JSON.stringify(data.currentgroupdata) != '{}') {
+            if (data.currentgroupdata.GroupInfo.ID == GroupInfo.ID) {
+                data.currentgroupdata = <GroupList>{
+                    // GroupInfo: <GroupInfo>{
+                    //     GroupName: "",
+                    //     MemberCount: 0
+                    // },
+                    // MessageList: [] as Array<MessageListitem>
+                }
+            }
+        }
+
+        tip("success", GroupInfo.CreaterID == data.userdata.ID ? "解散成功!" : "退出成功!")
+
+    })
+    // .catch(err => {
+    //     console.log(err);
+    //     tip("error", err)
+    // })
+
+    // data.currentgroupdata = <GroupList>{
+    //     GroupInfo: <GroupInfo>{},
+    //     MessageList: [] as Array<MessageListitem>
+    // }
 }
 
-const handleapplymsg = (apply: ApplyItem, status: number) => {
+// 搜索群聊
+const searchgroup = () => {
+    searchGroupapi(data.addgroupdata.addgroupinput).then((res) => {
+        if (res.status != 200) {
+            tip("Error", res.data.msg)
+            return
+        }
+        console.log(res.data.grouplist);
 
+        data.addgroupdata.addgroupsearchlist = res.data.grouplist == null ? [] : res.data.grouplist
+
+    }).catch(_ => {
+        tip("Error", "发起请求失败！")
+    })
+}
+
+// 处理添加群聊通知
+const handleapplymsg = (apply: ApplyItem, status: number) => {
     joingroupapi(apply.ID, status).then(res => {
         console.log(res.data);
         tip("success", res.data.msg)
         apply.HandleStatus = status
-
     }).catch(error => {
         console.log(error);
-        tip("error", error)
+        tip("error", error.response.data.msg)
+    })
+}
 
+// 处理添加好友通知
+const handleapplyaddusermsg = (apply: ApplyUserItem, status: number) => {
+    apply.HandleStatus = status
+    adduserapi(apply.ID, status).then(res => {
+        tip("success", res.data.msg)
+    }).catch(err => {
+        console.log(err);
+        tip("error", err.response.data.msg)
     })
 }
 
@@ -776,7 +868,7 @@ const openeditgroupmenu = (e: any, item: GroupList) => {
 
 }
 
-// 打开消息右键菜单
+// 打开消息的右键菜单
 const openMsgHandleMenu = (e: any, item: MessageListitem) => {
     if (e.type == "contextmenu") {
         ContextMenu.showContextMenu({
@@ -804,10 +896,60 @@ const openMsgHandleMenu = (e: any, item: MessageListitem) => {
 const initListener = () => {
     window.addEventListener('keydown', (event) => {
         if (event.key == "Enter") {
-            data.input += "\n"
-            return
+            if (event.ctrlKey == true) {
+                data.input += "\n"
+                return
+            } else {
+                send()
+            }
+
+        }
+        if (event.code == "Space" && data.soundrecorddata.visible == true && data.soundrecorddata.recordStatus != true) {
+            data.soundrecorddata.recordStatus = true
+            const constraints = { audio: true };
+            navigator.mediaDevices.getUserMedia(constraints).then(
+                stream => {
+                    console.log("授权成功！");
+                    data.soundrecorddata.mediaRecorder = new MediaRecorder(stream);
+                    data.soundrecorddata.mediaRecorder.start()
+                    data.soundrecorddata.mediaRecorder.ondataavailable = function (e) {
+                        data.soundrecorddata.data.push(e.data);
+                    };
+                    data.soundrecorddata.mediaRecorder.onstop = () => {
+                        var blob = new Blob(data.soundrecorddata.data, { type: "audio/mp3; codecs=opus" });
+                        let file = new File([blob], 'audio.mp3', { type: 'application/octet-stream' });
+
+                        let formData = new FormData();
+                        formData.append('file', file);
+                        uploadresourceapi(formData).then(res => {
+                            let msg = SendGroupResourceMsg(res.data.fileurl,
+                                3,
+                                data.userdata,
+                                data.currentgroupdata.GroupInfo.ID
+                            )
+                            data.ws.wsconn.send(msg)
+                            scrolltonew(500, true)
+                        }).catch(err => {
+                            tip('error', err.response.msg)
+                        })
+                        data.soundrecorddata.data = [];
+                        var audioURL = window.URL.createObjectURL(blob);
+                        data.soundrecorddata.targeturl = audioURL;
+                    };
+                }
+            );
         }
     })
+
+    window.addEventListener('keyup', (event) => {
+        if (data.soundrecorddata.visible == true && event.code == "Space") {
+            console.log("结束录音");
+            data.soundrecorddata.recordStatus = false
+            data.soundrecorddata.mediaRecorder.stop()
+        }
+
+    })
+
 }
 
 // 发送邮箱验证码
@@ -864,6 +1006,7 @@ const scrolltonew = (delay: number = 0, smooth: boolean = false) => {
     }, delay);
 }
 
+// 清除当前消息
 const clearcurrentmsg = () => {
     let message = {
         UserID: data.userdata.ID,
@@ -875,38 +1018,95 @@ const clearcurrentmsg = () => {
     data.ws.wsconn.send(JSON.stringify(message))
 }
 
-export type Userdata = {
-    ID: number
-    NikeName: string
-    UserName: string
-    Email: string
-    CreatedTime: string
-    LoginTime: string
-    Avatar: string
-    GroupList: Array<GroupList>
-    ApplyList: Array<ApplyItem>
+// 上传图片之前
+const beforeUploadImg = (rawFile: UploadRawFile) => {
+    console.log(rawFile);
 }
-type ApplyItem = {
-    ID: number
-    GroupID: number
-    ApplyMsg: string
-    ApplyUserID: number
-    ApplyUserName: string
-    ApplyWay: number
-    CreatedAt: string
-    DeletedAt: string
-    UpdatedAt: string
-    HandleStatus: number
+// 上传图片成功
+const onSuccessUploadImg = (response: any, uploadFile: any) => {
+    console.log(response, uploadFile);
+    uploadimg.value.clearFiles(["success"])
+
+    let msg = SendGroupResourceMsg(uploadFile.response.fileurl, 2, data.userdata, data.currentgroupdata.GroupInfo.ID)
+    data.ws.wsconn.send(msg)
+    scrolltonew(500, true)
 
 }
-export type GroupList = {
-    GroupInfo: GroupInfo
-    MessageList: Array<MessageListitem>
+// 上传图片失败
+const onErrorUploadImg = (response: any, uploadFile: UploadFile, uploadFiles: UploadFiles) => {
+    console.log(response, uploadFile, uploadFiles);
+    uploadimg.value.clearFiles(["success"])
+    tip('error', "发送失败!")
 }
 
-export type Group = Array<GroupList>
+// 连接ws
+const connectws = () => {
+    // 连接ws
+    data.ws.wsconn = new WebSocket(`ws://${url}/ws?token=${localStorage.getItem("token")}`),
 
-export type GroupinfoList = Array<GroupInfo>
+        data.ws.wsconn.onopen = function () {
+            console.log("connect success!");
+            data.wsconnecting = false
+            reconnectnum = 0
+        }
+    data.ws.wsconn.onclose = function (evt: any) {
+        data.wsconnecting = true
+        // console.log(evt);
+        console.log("connect close!");
+
+        if (evt.code == 1005) return
+        tip('error', "网络连接超时,尝试重连中...")
+        if (reconnectnum >= 3) {
+            outlogin()
+            tip('error', "网络连接失败,请检查网络后重试!")
+            data.wsconnecting = false
+            reconnectnum = 0
+            return
+        }
+        setTimeout(() => {
+            console.log("尝试重连1...");
+            reconnectnum++
+            connectws()
+        }, 3000);
+    }
+    // 接收消息 
+    data.ws.wsconn.onmessage = function (evt: any) {
+        var msgstr = evt.data.split('\n');
+        let msg = JSON.parse(msgstr)
+        console.log("收到消息:", msg);
+        handleMsg(msg)
+    }
+
+    data.ws.wsconn.onerror = function (evt: any) {
+        console.log(evt);
+    }
+}
+
+// 打开用户详情对话框
+const userdetaildialoghandleClose = () => {
+    data.userdetaildata.UserDetailDialogVisible = !data.userdetaildata.UserDetailDialogVisible
+}
+
+// 修改用户信息
+const edituserdata = (age: number, city: string) => {
+    data.userdata.Age = age
+    data.userdata.City = city
+}
+
+// 打开添加用户对话框
+const changeHeaderDialog = (item: Userdata = <Userdata>{}) => {
+    data.addUserdata.targetUserData = item
+    data.addUserdata.addUserDialogVisible = !data.addUserdata.addUserDialogVisible
+}
+
+// 关闭创建用户对话框
+const closecreategroupdialog = () => {
+    data.creategroupdata.createstep = 1
+    data.creategroupdata.headerurl = ""
+    data.creategroupdata.creategroupinput = ""
+    data.creategroupdata.createGroupDialogVisible = false
+}
+
 
 export type GroupInfo = {
     Avatar: string
@@ -922,20 +1122,7 @@ export type GroupInfo = {
     UUID: string
     UpdatedAt: string
 }
-export type MessageListitem = {
-    ID: number
-    Context: any
-    CreatedAt: string
-    GroupID: number
-    IsReply: boolean
-    Msg: string
-    MsgType: number
-    ReplyUserID: number
-    UserID: number
-    UserName: string
-    UserUUID: string
-    UserAvatar: string
-}
+
 
 
 </script>

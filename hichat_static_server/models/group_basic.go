@@ -2,23 +2,31 @@ package models
 
 import "time"
 
+type UserGroupList struct {
+	GroupDetail           []GroupDetail
+	ApplyJoinGroupMessage []ApplyJoinGroup
+	ApplyAddUserMessage   []ApplyAddUser
+	FriendList            []Friend
+}
+
 type GroupDetail struct {
 	GroupInfo   Group
 	MessageList []GroupMessage
 }
 
 type Group struct {
-	ID          int    `xorm:"pk autoincr notnull index"`
-	UUID        string `xorm:"notnull unique"`
-	CreaterID   int    `xorm:"notnull"`
-	CreaterName string `xorm:"notnull"`
-	GroupName   string `xorm:"notnull"`
-	Avatar      string
-	Grade       int `xorm:"default(1)"`
-	MemberCount int
-	CreatedAt   time.Time `xorm:"created"`
-	DeletedAt   time.Time `xorm:"deleted"`
-	UpdatedAt   time.Time `xorm:"updated"`
+	ID            int    `xorm:"pk autoincr notnull index"`
+	UUID          string `xorm:"notnull unique"`
+	CreaterID     int    `xorm:"notnull"`
+	CreaterName   string `xorm:"notnull"`
+	GroupName     string `xorm:"notnull"`
+	Avatar        string
+	Grade         int `xorm:"default(1)"`
+	MemberCount   int
+	UnreadMessage int
+	CreatedAt     time.Time `xorm:"created"`
+	DeletedAt     time.Time `xorm:"deleted"`
+	UpdatedAt     time.Time `xorm:"updated"`
 }
 
 // 群聊消息
@@ -27,6 +35,9 @@ type GroupMessage struct {
 	UserID      int `xorm:"notnull"`
 	UserUUID    string
 	UserName    string
+	UserAvatar  string
+	UserCity    string
+	UserAge     string
 	GroupID     int    `xorm:"notnull"`
 	Msg         string `xorm:"notnull"`
 	MsgType     int
@@ -46,4 +57,17 @@ type GroupUserRelative struct {
 	CreatedAt time.Time `xorm:"created"`
 	DeletedAt time.Time `xorm:"deleted"`
 	UpdatedAt time.Time `xorm:"updated"`
+}
+
+type Friend struct {
+	Id        int32
+	UserName  string
+	NikeName  string
+	Email     string
+	Avatar    string
+	City      string
+	Age       string
+	CreatedAt time.Time
+	DeletedAt time.Time
+	UpdatedAt time.Time
 }

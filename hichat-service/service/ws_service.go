@@ -6,6 +6,7 @@ import (
 	"go-websocket-server/util"
 	"log"
 	"net/http"
+	"sync"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
@@ -20,6 +21,7 @@ var upgrader = websocket.Upgrader{
 	},
 }
 
+// 连接ws
 func Connectws(c *gin.Context) {
 	token := c.Query("token")
 
@@ -44,18 +46,21 @@ func Connectws(c *gin.Context) {
 	}
 
 	client := models.UserClient{
-		ClientID:        uuid,
-		UserID:          userdata.ID,
-		UserUUID:        userdata.UUID,
-		UserName:        userdata.UserName,
-		Conn:            Conn,
-		Send:            make(chan []byte, 256),
-		Status:          true,
-		Groups:          grouplist,
-		CachingMessages: make(map[int]int, 0),
+		ClientID: uuid,
+		UserID:   userdata.ID,
+		UserUUID: userdata.UUID,
+		UserName: userdata.UserName,
+		Conn:     Conn,
+		Send:     make(chan []byte, 256),
+		Status:   true,
+		Groups:   grouplist,
+		// CachingMessages: make(map[int]int, 0),
+		Mutex: &sync.RWMutex{},
 	}
 
+	models.ServiceCenter.Mutex.Lock()
 	models.ServiceCenter.Clients[userdata.ID] = client
+	models.ServiceCenter.Mutex.Unlock()
 
 	go client.WritePump()
 	go client.ReadPump()

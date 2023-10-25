@@ -48,6 +48,7 @@ func UploadFile(c *gin.Context) {
 		".bmp":  "bmp",
 		".tiff": "tiff",
 		".gif":  "gif",
+		".mp3":  "mp3",
 	}
 	_, ok := extmap[extstring]
 	if !ok {

@@ -11,7 +11,7 @@ import (
 func PrintRoomInfo() {
 	fmt.Println("init prinroominfo...")
 	for {
-		time.Sleep(20 * time.Second)
+		time.Sleep(10 * time.Second)
 		prinstr := "\n用户列表 :[\n"
 		for _, j := range models.ServiceCenter.Clients {
 			prinstr += fmt.Sprintf("id:%v name:%v status:%v groups:[", j.UserID, j.UserName, j.Status)
@@ -31,18 +31,7 @@ func PrintRoomInfo() {
 		}
 		printgroupstr += "]\n"
 
-		printunreadstr := "未读消息: [\n"
-		for unreaduserid, unreaduserclient := range models.ServiceCenter.Clients {
-			printunreadstr += fmt.Sprintf("%v: ", unreaduserid)
-			for unreadgroupid, unreadnum := range unreaduserclient.CachingMessages {
-				printunreadstr += fmt.Sprintf("%v:%v ", unreadgroupid, unreadnum)
-			}
-			printunreadstr += "\n"
-		}
-		printunreadstr += " ]\n"
-
 		fmt.Println(prinstr)
-		fmt.Println(printunreadstr)
 		fmt.Println(printgroupstr)
 
 	}
@@ -64,14 +53,14 @@ func InitUserToClient() error {
 			return err
 		}
 		client := models.UserClient{
-			ClientID:        uuid,
-			UserID:          userdata.ID,
-			UserUUID:        userdata.UUID,
-			UserName:        userdata.UserName,
-			Send:            make(chan []byte, 256),
-			Status:          false,
-			Groups:          grouplist,
-			CachingMessages: make(map[int]int, 0),
+			ClientID: uuid,
+			UserID:   userdata.ID,
+			UserUUID: userdata.UUID,
+			UserName: userdata.UserName,
+			Send:     make(chan []byte, 256),
+			Status:   false,
+			Groups:   grouplist,
+			// CachingMessages: make(map[int]int, 0),
 		}
 		models.ServiceCenter.Clients[userdata.ID] = client
 	}

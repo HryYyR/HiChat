@@ -19,11 +19,36 @@ func (s *GetUserGroupListrpcserver) GetUserGroupList(ctx context.Context, in *pb
 	// 处理逻辑后返回
 	grouplist, err := GetUserGroupList(int(in.Userid))
 	if err != nil {
-		fmt.Printf("获取数据失败!%v", err)
+		log.Println(err.Error())
+		fmt.Printf("获取群聊列表数据失败!%v", err)
+		return &pb.UserGroupList{}, err
 	}
-	fmt.Printf("%+v\n", in)
+	applyjoingrouplist, err := GetUserApplyJoinGroupList(int(in.Userid))
+	if err != nil {
+		log.Println(err.Error())
+		fmt.Printf("获取群聊通知失败!%v", err)
+		return &pb.UserGroupList{}, err
+	}
+
+	applyadduserlist, err := GetUserApplyAddUserList(int(in.Userid))
+	if err != nil {
+		log.Println(err.Error())
+		fmt.Printf("获取好友通知失败!%v", err)
+		return &pb.UserGroupList{}, err
+	}
+
+	friendlist, err := GetFriendList(int(in.Userid))
+	if err != nil {
+		log.Println(err.Error())
+		fmt.Printf("获取好友列表失败!%v", err.Error())
+		return &pb.UserGroupList{}, err
+	}
+
 	return &pb.UserGroupList{
-		GroupDetail: grouplist,
+		GroupDetail:        grouplist,
+		ApplyJoinGroupList: applyjoingrouplist,
+		ApplyAddUserList:   applyadduserlist,
+		FriendList:         friendlist,
 	}, nil
 }
 
