@@ -11,7 +11,6 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-
 )
 
 type registerpostform struct {
@@ -26,7 +25,11 @@ func Register(c *gin.Context) {
 	databyte, _ := c.GetRawData()
 
 	var data registerpostform
-	json.Unmarshal(databyte, &data)
+	err := json.Unmarshal(databyte, &data)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	fmt.Printf("%+v\n", data)
 
 	if data.Username == "" || data.Password == "" || !util.EmailValid(data.Email) {

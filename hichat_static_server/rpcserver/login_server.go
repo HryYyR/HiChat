@@ -107,19 +107,20 @@ func GetUserGroupList(uid int) (models.UserGroupList, error) {
 	util.TimeSortAddUserList(applyadduserdata, "desc")
 
 	// 处理好友列表相关数据
-	friendlist := make([]models.Friend, 0)
+	friendlist := make([]models.FriendResponse, 0)
 	for _, Friend := range r.FriendList {
-		friendlist = append(friendlist, models.Friend{
-			Id:        Friend.Id,
-			UserName:  Friend.UserName,
-			NikeName:  Friend.NikeName,
-			Email:     Friend.Email,
-			Avatar:    Friend.Avatar,
-			City:      Friend.City,
-			Age:       Friend.Age,
-			CreatedAt: util.FormatTampTime(Friend.CreatedAt),
-			DeletedAt: util.FormatTampTime(Friend.DeletedAt),
-			UpdatedAt: util.FormatTampTime(Friend.UpdatedAt),
+		friendlist = append(friendlist, models.FriendResponse{
+			Id:          Friend.Id,
+			UserName:    Friend.UserName,
+			NikeName:    Friend.NikeName,
+			Email:       Friend.Email,
+			Avatar:      Friend.Avatar,
+			City:        Friend.City,
+			Age:         Friend.Age,
+			MessageList: []models.UserMessageItem{},
+			CreatedAt:   util.FormatTampTime(Friend.CreatedAt),
+			DeletedAt:   util.FormatTampTime(Friend.DeletedAt),
+			UpdatedAt:   util.FormatTampTime(Friend.UpdatedAt),
 		})
 	}
 

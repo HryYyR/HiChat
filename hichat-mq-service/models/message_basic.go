@@ -43,7 +43,7 @@ func (m *Message) AccordingToGroupidGetUserlist() ([]int, error) {
 	return useridlist, nil
 }
 
-func (m *Message) SaveToDb() error {
+func (m *Message) SaveGroupMsgToDb() error {
 	// fmt.Printf("%+v\n", m)
 	if _, err := adb.Ssql.Table("group_message").Insert(&m); err != nil {
 		fmt.Println(err.Error())
@@ -52,7 +52,7 @@ func (m *Message) SaveToDb() error {
 	return nil
 }
 
-func (m *Message) SyncToDb() error {
+func (m *Message) SyncGroupMsgToDb() error {
 	// fmt.Printf("%+v\n", m)
 	useridlist, err := m.AccordingToGroupidGetUserlist() //获取群里所有用户id
 	if err != nil {
@@ -109,39 +109,9 @@ func (m *Message) SyncToDb() error {
 		}
 	}
 	return nil
-
-	// var groupunreadmessage GroupUnreadMessage
-	// isexit, err := adb.Ssql.Table("group_unread_message").Where("group_id=? and user_id=?", m.GroupID, m.UserID).Get(&groupunreadmessage)
-	// if err != nil {
-	// 	fmt.Printf("查询失败%s\n", err)
-	// 	return err
-	// }
-	// if isexit {
-	// 	M.Lock()
-	// 	_, err := adb.Ssql.Table("group_unread_message").ID(groupunreadmessage.ID).Cols("unread_number").Update(GroupUnreadMessage{
-	// 		UnreadNumber: groupunreadmessage.UnreadNumber + 1,
-	// 	})
-	// 	M.Unlock()
-	// 	if err != nil {
-	// 		fmt.Printf("更新失败%s\n", err)
-	// 		return err
-	// 	}
-	// } else {
-	// 	newmsg := GroupUnreadMessage{
-	// 		UserName:     m.UserName,
-	// 		UserID:       m.UserID,
-	// 		GroupID:      m.GroupID,
-	// 		UnreadNumber: 1,
-	// 	}
-	// 	_, err := adb.Ssql.Table("group_unread_message").Insert(&newmsg)
-	// 	if err != nil {
-	// 		fmt.Printf("插入失败%s\n", err)
-	// 		return err
-	// 	}
-	// }
 }
 
-func (m *Message) ClearMsgNum() error {
+func (m *Message) ClearGroupMsgNum() error {
 	var willcleardata GroupUnreadMessage
 	is, err := adb.Ssql.Table("group_unread_message").Where("user_id = ? and group_id=?", m.UserID, m.GroupID).Get(&willcleardata)
 	if err != nil {

@@ -14,13 +14,13 @@ import (
 	"math/rand"
 	"net/smtp"
 	"sort"
-	time "time"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gofrs/uuid"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/jordan-wright/email"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // md5加密
@@ -122,7 +122,7 @@ func FormatTime(targettime time.Time) time.Time {
 	return targettime.Local().UTC().Add(time.Hour * -8)
 }
 
-// 处理server参数 json -> struct
+// 处理server参数 json -> user struct
 func HandleJsonArgument(c *gin.Context, data *models.Users) error {
 	rawbyte, err := c.GetRawData()
 	if err != nil {

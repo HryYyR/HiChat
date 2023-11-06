@@ -28,14 +28,20 @@ var MsgTypeDefault = 1 //群聊文字消息
 var MsgTypeImage = 2   //群聊图片消息
 var MsgTypeAudio = 3   //群聊音频消息
 
-var MsgTypeRefreshGroup = 500        //刷新群聊列表
-var MsgTypeRefreshFriend = 501       //刷新好友列表
-var MsgTypeRefreshGroupNotice = 502  //刷新群聊通知列表
-var MsgTypeRefreshFriendNotice = 503 //刷新好友通知列表
-
 var MsgTypeQuitGroup = 201      //退出群聊
 var MsgTypeJoinGroup = 202      //加入群聊
 var MsgTypeApplyJoinGroup = 203 //申请加入群聊
 
 var MsgTypeSyncMsg = 400      //同步消息
 var MsgTypeClearSyncMsg = 401 //同步消息清零
+
+var MsgTypeRefreshGroup = 500        //刷新群聊列表
+var MsgTypeRefreshFriend = 501       //刷新好友列表
+var MsgTypeRefreshGroupNotice = 502  //刷新群聊通知列表
+var MsgTypeRefreshFriendNotice = 503 //刷新好友通知列表
+
+var MsgTypeFriendDefault = 1001      //好友文字消息
+var MsgTypeFriendImage = 1002        //好友图片消息
+var MsgTypeFriendAudio = 1003        //好友音频消息
+var MsgTypeSyncFriendMsg = 1400      //同步好友消息
+var MsgTypeClearSyncFriendMsg = 1401 //同步好友消息清零

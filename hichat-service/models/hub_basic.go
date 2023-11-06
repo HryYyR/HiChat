@@ -3,6 +3,8 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+	"log"
+	"strconv"
 	"sync"
 )
 
@@ -43,13 +45,26 @@ func (h *Hub) Run() {
 
 		// 消息广播到指定group
 		case message := <-h.Broadcast:
+
+			// 群聊消息
 			var msgstruct *Message
-			if err := json.Unmarshal(message, &msgstruct); err != nil {
-				fmt.Println(err)
+			err := json.Unmarshal(message, &msgstruct)
+			if err == nil && len(strconv.Itoa(msgstruct.MsgType)) < 4 {
+				fmt.Println("groupmsg:", msgstruct.MsgType)
+				HandleGroupMsgMap[msgstruct.MsgType](msgstruct, message)
+				continue
 			}
-			// fmt.Println(msgstruct)
-			fmt.Println(msgstruct.MsgType)
-			HandleMsgMap[msgstruct.MsgType](msgstruct, message)
+
+			// 私聊消息
+			var usermsgstruct *UserMessage
+			err = json.Unmarshal(message, &usermsgstruct)
+			if err == nil {
+				fmt.Println("friendmsg:", msgstruct.MsgType)
+				HandleFriendMsgMap[msgstruct.MsgType](usermsgstruct, message)
+			} else {
+				log.Println(err)
+			}
+
 		}
 	}
 }

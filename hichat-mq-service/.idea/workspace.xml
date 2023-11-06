@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f746ac52-31e6-4de7-b32e-e2ea3fe7dd1b" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/API/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/API/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/axios/axios.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/axios/axios.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/components/frienditem/friend_item.less" beforeDir="false" afterPath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/components/frienditem/friend_item.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/components/frienditem/friend_item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/components/frienditem/friend_item.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/components/groupitem/groupitem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/components/groupitem/groupitem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/components/messageitem/message_item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/components/messageitem/message_item.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/components/messageitem/messagetime/message_time.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/components/messageitem/messagetime/message_time.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/index.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/models/models.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/models/models.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/utils/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../go-websocket-web-electron/go-websocket-web-electron/src/renderer/src/utils/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-file-service/hichat-file-service.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-file-service/hichat-file-service.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-file-service/service/file_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-file-service/service/file_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hichat-mq-service.exe" beforeDir="false" afterPath="$PROJECT_DIR$/hichat-mq-service.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/message_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/message_basic.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/go-websocket-server.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/go-websocket-server.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/log.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/models/handle_msg_func.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/handle_msg_func.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/models/hub_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/hub_basic.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/models/user_message_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/user_message_basic.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/models/user_user_relative_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/user_user_relative_basic.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/proto/loginserver.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/proto/loginserver.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/service/group_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/service/group_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/test/xorm_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/test/xorm_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/hichat_static_server.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/hichat_static_server.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/models/group_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/models/group_basic.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/models/user_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/models/user_basic.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/rpcserver/login_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/rpcserver/login_server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/service/login_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/service/login_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/service/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/service/user_service.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2XT4wQwSmDWMSO05f1YqG3AFAAY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "D:/GoWorks/src/HiChat/hichat-file-service"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

@@ -1,12 +1,16 @@
 package models
 
-import "time"
+import (
+	adb "hichat_static_server/ADB"
+	"sort"
+	"time"
+)
 
 type UserGroupList struct {
 	GroupDetail           []GroupDetail
 	ApplyJoinGroupMessage []ApplyJoinGroup
 	ApplyAddUserMessage   []ApplyAddUser
-	FriendList            []Friend
+	FriendList            []FriendResponse
 }
 
 type GroupDetail struct {
@@ -29,7 +33,7 @@ type Group struct {
 	UpdatedAt     time.Time `xorm:"updated"`
 }
 
-// 群聊消息
+// GroupMessage 群聊消息
 type GroupMessage struct {
 	ID          int `xorm:"pk autoincr"`
 	UserID      int `xorm:"notnull"`
@@ -59,15 +63,25 @@ type GroupUserRelative struct {
 	UpdatedAt time.Time `xorm:"updated"`
 }
 
-type Friend struct {
-	Id        int32
-	UserName  string
-	NikeName  string
-	Email     string
-	Avatar    string
-	City      string
-	Age       string
-	CreatedAt time.Time
-	DeletedAt time.Time
-	UpdatedAt time.Time
+func (g *Group) GetMessageList(grouplist *[]GroupMessage, currentnum int) error {
+	msglist := make([]GroupMessage, 0)
+	count, err := adb.Ssql.Table("group_message").Where("group_id = ?", g.ID).Count()
+	if err != nil {
+		return err
+	}
+	if currentnum >= int(count) {
+		return nil
+	}
+
+	err = adb.Ssql.Table("group_message").Where("group_id = ?", g.ID).Desc("id").Limit(10, currentnum).Find(&msglist)
+	if err != nil {
+		return err
+	}
+
+	sort.Slice(msglist, func(i, j int) bool {
+		return msglist[i].ID < (msglist[j].ID)
+	})
+
+	*grouplist = msglist
+	return nil
 }

@@ -6,12 +6,14 @@ import (
 	"go-websocket-server/models"
 	"go-websocket-server/util"
 	"testing"
+	"time"
 )
 
 func TestXormTest(t *testing.T) {
 	adb.InitMySQL()
 	// err := adb.Engine.CreateTables(&models.User{})
 	err := adb.Ssql.Sync2(
+		new(models.UserUnreadMessage),
 		new(models.UserMessage),
 		new(models.UserUserRelative),
 		new(models.ApplyJoinGroup),
@@ -30,7 +32,18 @@ func TestXormTest(t *testing.T) {
 func TestXormsql(t *testing.T) {
 	adb.InitMySQL()
 	// err := adb.Engine.CreateTables(&models.User{})
-	adb.Ssql.Table("users")
+	_, err := adb.Ssql.Table("user_unread_message").Insert(&models.UserUnreadMessage{
+		UserName:     "666",
+		UserID:       8,
+		FriendID:     9,
+		UnreadNumber: 0,
+		CreatedAt:    time.Time{},
+		DeletedAt:    time.Time{},
+		UpdatedAt:    time.Time{},
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
 }
 
 func TestGetUserGroupList(t *testing.T) {

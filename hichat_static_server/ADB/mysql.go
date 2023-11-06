@@ -18,6 +18,7 @@ func InitMySQL() {
 		fmt.Println(err)
 		log.Fatal(err)
 	}
+	engine.ShowSQL(true)
 	engine.SetMapper(names.GonicMapper{})
 	// engine.CreateTables(&models.User{})
 	Ssql = engine

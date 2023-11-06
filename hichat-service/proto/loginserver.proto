@@ -91,10 +91,31 @@ message FriendList {
     string avatar=5;
     string city =6;
     string age =7;
+    // repeated FriendMessageItem friend_message_item =8;
     google.protobuf.Timestamp created_at = 9;  
     google.protobuf.Timestamp deleted_at = 10;  
     google.protobuf.Timestamp updated_at = 11;   
 }
+
+// message FriendMessageItem {
+//     int32 id = 1;  
+//     string user_name =2;
+//     string nike_name =3;
+//     string avatar=5;
+
+//     string msg = 6;  
+//     int32 msg_type = 7;  
+//     bool is_reply = 8;  
+//     int32 reply_user_id = 9;  
+
+//     string receive_user_name =10;
+//     string receive_nike_name =11;
+//     string receive_avatar=12;
+
+//     google.protobuf.Timestamp created_at = 13;  
+//     google.protobuf.Timestamp deleted_at = 14;  
+//     google.protobuf.Timestamp updated_at = 15;   
+// }
 
 message UserGroupList {
     repeated GroupDetail group_detail = 1;

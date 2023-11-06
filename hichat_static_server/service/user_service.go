@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+	"fmt"
 	adb "hichat_static_server/ADB"
 	"hichat_static_server/models"
 	"hichat_static_server/util"
@@ -26,6 +27,13 @@ func EditUserData(c *gin.Context) {
 	// fmt.Printf("%+v\n", data)
 	age, err := strconv.Atoi(data.Age)
 	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"msg": "信息输入有误!",
+		})
+		return
+	}
+
+	if age < 0 || age > 200 {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"msg": "信息输入有误!",
 		})
@@ -88,8 +96,8 @@ func GetUserGroupList(c *gin.Context) {
 		})
 		return
 	}
-
-	grouplist, err := data.GetUserGroupList()
+	grouplist := make([]models.GroupDetail, 0)
+	data.GetUserGroupList(&grouplist)
 	// fmt.Println("消息长度为:", len(grouplist[0].MessageList))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -114,8 +122,8 @@ func GetUserFriendList(c *gin.Context) {
 		return
 	}
 
-	var friendlist []models.Friend
-	if err = data.GetFriendList(&friendlist); err != nil {
+	friendlist := make([]models.FriendResponse, 0)
+	if err = data.GetFriendListAndMEssage(&friendlist); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "获取用户的好友列表失败!",
 		})
@@ -138,7 +146,7 @@ func GetUserApplyJoinGroupList(c *gin.Context) {
 		return
 	}
 
-	var applyjoingrouplist []models.ApplyJoinGroup
+	applyjoingrouplist := make([]models.ApplyJoinGroup, 0)
 	if err = data.GetApplyMsgList(&applyjoingrouplist); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "获取用户的群聊通知列表失败!",
@@ -164,7 +172,7 @@ func GetUserApplyAddFriendList(c *gin.Context) {
 		return
 	}
 
-	var applyaddfriendlist []models.ApplyAddUser
+	applyaddfriendlist := make([]models.ApplyAddUser, 0)
 	if err = data.GetApplyAddUserList(&applyaddfriendlist); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "获取用户的好友申请列表失败!",
@@ -175,5 +183,78 @@ func GetUserApplyAddFriendList(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"msg":  "获取用户的好友申请列表成功!",
 		"data": applyaddfriendlist,
+	})
+}
+
+type searchfriendingo struct {
+	Searchstr string
+}
+
+// 搜索用户
+func SearchUser(c *gin.Context) {
+	ud, _ := c.Get("userdata")
+	userdata := ud.(*models.UserClaim)
+
+	uudata := models.Users{
+		ID:       userdata.ID,
+		UserName: userdata.UserName,
+	}
+
+	var uufriendlist []models.Friend //发起人的好友列表
+	if err := uudata.GetFriendList(&uufriendlist); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"msg": "查询好友列表失败!",
+		})
+		return
+	}
+	uufriendmap := make(map[int]int, 0)
+	for _, f := range uufriendlist {
+		uufriendmap[int(f.Id)] = int(f.Id)
+	}
+
+	var data searchfriendingo
+	rawbyte, err := c.GetRawData()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"msg": err.Error(),
+		})
+		return
+	}
+	err = json.Unmarshal(rawbyte, &data)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"msg": err.Error(),
+		})
+		return
+	}
+	if len(data.Searchstr) == 0 {
+		c.JSON(http.StatusOK, gin.H{
+			"msg":  "搜索成功!",
+			"data": []models.Users{},
+		})
+	}
+
+	friendlist := make([]models.Users, 0)
+	err = adb.Ssql.Table("users").Omit("ip,password,salt,grade,uuid").Where("user_name LIKE ?  and user_name !=?",
+		"%"+data.Searchstr+"%", userdata.UserName).Find(&friendlist)
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"msg": "搜索失败!",
+		})
+		return
+	}
+
+	resultfriendlist := make([]models.Users, 0)
+	// 筛除已经成为的好友
+	for _, ff := range friendlist {
+		if _, ok := uufriendmap[ff.ID]; !ok {
+			resultfriendlist = append(resultfriendlist, ff)
+		}
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg":  "搜索成功!",
+		"data": resultfriendlist,
 	})
 }

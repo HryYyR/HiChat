@@ -5,7 +5,6 @@ import (
 	"fmt"
 	adb "hichat_static_server/ADB"
 	"hichat_static_server/models"
-	"hichat_static_server/rpcserver"
 	"hichat_static_server/util"
 	"log"
 	"net/http"
@@ -24,7 +23,7 @@ func Login(c *gin.Context) {
 
 	var data loginpostform
 	json.Unmarshal(databyte, &data)
-	fmt.Printf("%+v\n", data)
+	//fmt.Printf("%+v\n", data)
 
 	if data.Username == "" || data.Password == "" {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -57,41 +56,56 @@ func Login(c *gin.Context) {
 		return
 	}
 	// 获取用户的群列表
-	rpcusergrouplist, err := rpcserver.GetUserGroupList(userdata.ID)
+	// rpcusergrouplist, err := rpcserver.GetUserGroupList(userdata.ID)
 
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "查询群聊消息失败!",
-		})
-		return
-	}
+	// if err != nil {
+	// 	c.JSON(http.StatusInternalServerError, gin.H{
+	// 		"msg": "查询群聊消息失败!",
+	// 	})
+	// 	return
+	// }
 	token, err := util.GenerateToken(userdata.ID, userdata.UUID, userdata.UserName, 24*time.Hour)
 	if err != nil {
-		log.Println(err)
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "Generate Token failed",
 		})
 		return
 	}
+
+	ResponseUserData := new(models.ResponseUserData)
+	err = userdata.Login(ResponseUserData)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"err": err.Error(),
+		})
+		return
+	}
+
 	c.JSON(http.StatusOK, gin.H{
-		"msg":   "login success",
-		"token": token,
-		"userdata": models.ResponseUserData{
-			ID:            userdata.ID,
-			UserName:      userdata.UserName,
-			NikeName:      userdata.NikeName,
-			Email:         userdata.Email,
-			CreatedTime:   util.FormatTime(userdata.CreatedAt),
-			LoginTime:     userdata.LoginTime,
-			Avatar:        userdata.Avatar,
-			Age:           userdata.Age,
-			City:          userdata.City,
-			GroupList:     rpcusergrouplist.GroupDetail,
-			ApplyList:     rpcusergrouplist.ApplyJoinGroupMessage,
-			ApplyUserList: rpcusergrouplist.ApplyAddUserMessage,
-			FriendList:    rpcusergrouplist.FriendList,
-		},
+		"msg":      "login success",
+		"token":    token,
+		"userdata": ResponseUserData,
+	})
+
+}
+
+func Test(c *gin.Context) {
+	userdata := models.Users{
+		ID: 1008,
+	}
+
+	friendmsg := new(models.ResponseUserData)
+	err := userdata.Login(friendmsg)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"err": err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"data": friendmsg,
 	})
 
 }

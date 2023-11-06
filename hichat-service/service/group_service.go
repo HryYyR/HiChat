@@ -517,7 +517,7 @@ func SearchGroup(c *gin.Context) {
 		})
 		return
 	}
-	var grouplist []models.Group
+	grouplist := make([]models.Group, 0)
 	err = adb.Ssql.Table("group").Where("group_name LIKE ? and creater_id !=?", "%"+rawdata.Searchstr+"%", userdata.ID).Find(&grouplist)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{

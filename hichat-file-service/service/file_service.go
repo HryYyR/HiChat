@@ -10,6 +10,7 @@ import (
 	"path"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -49,8 +50,9 @@ func UploadFile(c *gin.Context) {
 		".tiff": "tiff",
 		".gif":  "gif",
 		".mp3":  "mp3",
+		".webp": "webp",
 	}
-	_, ok := extmap[extstring]
+	_, ok := extmap[strings.ToLower(extstring)]
 	if !ok {
 		c.JSON(http.StatusOK, gin.H{
 			"code": 1,
