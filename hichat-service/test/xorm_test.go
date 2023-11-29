@@ -5,6 +5,7 @@ import (
 	adb "go-websocket-server/ADB"
 	"go-websocket-server/models"
 	"go-websocket-server/util"
+	"net"
 	"testing"
 	"time"
 )
@@ -13,16 +14,16 @@ func TestXormTest(t *testing.T) {
 	adb.InitMySQL()
 	// err := adb.Engine.CreateTables(&models.User{})
 	err := adb.Ssql.Sync2(
-		new(models.UserUnreadMessage),
-		new(models.UserMessage),
-		new(models.UserUserRelative),
-		new(models.ApplyJoinGroup),
-		new(models.ApplyAddUser),
-		new(models.GroupUnreadMessage),
-		new(models.Users),
-		new(models.Group),
+		//new(models.UserUnreadMessage),
+		//new(models.UserMessage),
+		//new(models.UserUserRelative),
+		//new(models.ApplyJoinGroup),
+		//new(models.ApplyAddUser),
+		//new(models.GroupUnreadMessage),
+		//new(models.Users),
+		//new(models.Group),
 		new(models.GroupMessage),
-		new(models.GroupUserRelative),
+		//new(models.GroupUserRelative),
 	)
 	if err != nil {
 		t.Fatal(err)
@@ -110,4 +111,23 @@ func TestSyncMsg(t *testing.T) {
 		t.Fatal(err)
 	}
 	fmt.Printf("%+v\n", unreadmsglist)
+}
+
+func TestGetIP(t *testing.T) {
+	addrs, err := net.InterfaceAddrs()
+	if err != nil {
+		fmt.Println("Error:", err)
+		t.Fatal(err)
+	}
+
+	for _, addr := range addrs {
+		ipnet, ok := addr.(*net.IPNet)
+		if !ok {
+			continue
+		}
+		if ipnet.IP.To4() != nil && !ipnet.IP.IsLoopback() && ipnet.IP.String()[:3] != "169" { // IPv4 address
+			ip := ipnet.IP.String()
+			fmt.Println(ip)
+		}
+	}
 }

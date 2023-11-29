@@ -21,6 +21,7 @@ type Users struct {
 	Avatar    string
 	City      string
 	Age       int
+	Introduce string
 	Grade     int       `xorm:"default(1)"`
 	CreatedAt time.Time `xorm:"created"`
 	DeletedAt time.Time `xorm:"deleted"`
@@ -33,7 +34,7 @@ func (u *Users) TableName() string {
 	return "users"
 }
 
-// 获取用户的群列表及群消息
+// GetUserGroupList 获取用户的群列表及群消息
 func (u *Users) GetUserGroupList() ([]GroupDetail, error) {
 	var usergouplist []GroupDetail
 
@@ -96,7 +97,7 @@ func (u *Users) GetUserGroupList() ([]GroupDetail, error) {
 	return usergouplist, nil
 }
 
-// 获取用户的申请消息通知
+// GetApplyMsgList 获取用户的申请消息通知
 func (u *Users) GetApplyMsgList(applylist *[]ApplyJoinGroup) error {
 	var grouplist []Group
 	if err := adb.Ssql.Table("group").Where("creater_id=?", u.ID).Find(&grouplist); err != nil {
@@ -122,7 +123,7 @@ func (u *Users) GetApplyAddUserList(applylist *[]ApplyAddUser) error {
 	return nil
 }
 
-// 获取好友列表
+// GetFriendList 获取好友列表
 func (u *Users) GetFriendList(friendlist *[]Friend) error {
 	var friendrelativelist []UserUserRelative
 	err := adb.Ssql.Table("user_user_relative").Where("pre_user_id = ? or back_user_id=?", u.ID, u.ID).Find(&friendrelativelist)

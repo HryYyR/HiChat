@@ -15,3 +15,7 @@ type ApplyAddUser struct {
 	DeletedAt        time.Time `xorm:"deleted"`
 	UpdatedAt        time.Time `xorm:"updated"`
 }
+
+func (ApplyAddUser) TableName() string {
+	return "apply_add_user"
+}

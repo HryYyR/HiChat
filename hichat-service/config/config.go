@@ -2,7 +2,13 @@ package config
 
 import "time"
 
+var ServerPort = 3004
+var ConsulAddress = "127.0.0.1:8500"
+
 var JwtKey = "Hyyyh1527"
+
+// var MysqlAddress = "host.docker.internal:3306" //docker
+var MysqlAddress = "localhost:3306" //localhost
 
 var MysqlUserName = "root"
 var MysqlPassword = "root"
@@ -31,6 +37,7 @@ var MsgTypeAudio = 3   //群聊音频消息
 var MsgTypeQuitGroup = 201      //退出群聊
 var MsgTypeJoinGroup = 202      //加入群聊
 var MsgTypeApplyJoinGroup = 203 //申请加入群聊
+var MsgTypeDissolveGroup = 204  //解散群聊
 
 var MsgTypeSyncMsg = 400      //同步消息
 var MsgTypeClearSyncMsg = 401 //同步消息清零

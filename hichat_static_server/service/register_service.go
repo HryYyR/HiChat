@@ -73,16 +73,16 @@ func Register(c *gin.Context) {
 		Salt:     salt,
 		Avatar:   "static/icon.png",
 	}
-	_, err = adb.Ssql.Table(&models.Users{}).InsertOne(&user)
+	_, err = adb.Ssql.Table(&models.Users{}).Insert(&user)
 	if err != nil {
 		fmt.Println(err)
 		log.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "register failed",
+			"msg": "注册失败!",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "registered successfully",
+		"msg": "注册成功!",
 	})
 }

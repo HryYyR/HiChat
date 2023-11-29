@@ -7,23 +7,23 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	adb "go-websocket-server/ADB"
 	systeminit "go-websocket-server/SystemInit"
+	"go-websocket-server/config"
 	_ "go-websocket-server/log"
 	"go-websocket-server/models"
-	"go-websocket-server/rpcserver"
 	"go-websocket-server/service"
+	"go-websocket-server/service_registry"
 	"go-websocket-server/util"
+	util2 "go-websocket-server/util"
 	"log"
-
-	"github.com/gin-gonic/gin"
+	"strconv"
 )
 
 func main() {
 
 	flag.Parse()
-
-	// go systeminit.PrintRoomInfo()
 
 	adb.InitMySQL()
 	adb.InitRedis()
@@ -51,19 +51,35 @@ func main() {
 
 	usergroup := engine.Group("user", service.IdentityCheck)
 	usergroup.POST("/creategroup", service.CreateGroup)         //创建群聊
-	usergroup.POST("/handlejoingroup", service.HandleJoinGroup) //加入群聊
+	usergroup.POST("/handlejoingroup", service.HandleJoinGroup) //处理加入群聊
 	usergroup.POST("/applyjoingroup", service.ApplyJoinGroup)   //申请加入群聊
 	usergroup.POST("/exitgroup", service.ExitGroup)             //退出群聊
+	usergroup.POST("/searchGroup", service.SearchGroup)         //搜索群聊
+
 	// usergroup.POST("/RefreshGroupList", service.RefreshGroupList) //获取用户信息
-	usergroup.POST("/searchGroup", service.SearchGroup) //获取用户信息
 
 	usergroup.POST("/applyadduser", service.ApplyAddUser)   //申请添加好友
 	usergroup.POST("/handleadduser", service.HandleAddUser) //处理添加好友
 
-	go rpcserver.ListenGetUserGroupListRpcServer()
+	//go rpcserver.ListenGetUserGroupListRpcServer()
 
-	fmt.Println("service run in 3004")
-	err := engine.Run(":3004")
+	//服务注册
+	addressIP := util2.GetIP()
+	dis := service_registry.DiscoveryConfig{
+		ID:      util2.GenerateUUID(),
+		Name:    "hichat-ws-server",
+		Tags:    nil,
+		Port:    config.ServerPort,
+		Address: addressIP,
+	}
+	err := service_registry.RegisterService(dis)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("service run in ", config.ServerPort)
+	serverpost := fmt.Sprintf(":%s", strconv.Itoa(config.ServerPort))
+	err = engine.Run(serverpost)
 	if err != nil {
 		fmt.Println(err)
 		return

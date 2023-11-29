@@ -3,9 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/hichat-file-service.iml" filepath="$PROJECT_DIR$/.idea/hichat-file-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../hichat-mq-service/.idea/hichat-mq-service.iml" filepath="$PROJECT_DIR$/../hichat-mq-service/.idea/hichat-mq-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../hichat-service/.idea/hichat-service.iml" filepath="$PROJECT_DIR$/../hichat-service/.idea/hichat-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../hichat_static_server/.idea/hichat_static_server.iml" filepath="$PROJECT_DIR$/../hichat_static_server/.idea/hichat_static_server.iml" />
     </modules>
   </component>
 </project>

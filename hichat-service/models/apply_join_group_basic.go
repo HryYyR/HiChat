@@ -14,3 +14,7 @@ type ApplyJoinGroup struct {
 	DeletedAt     time.Time `xorm:"deleted"`
 	UpdatedAt     time.Time `xorm:"updated"`
 }
+
+func (ApplyJoinGroup) TableName() string {
+	return "apply_join_group"
+}

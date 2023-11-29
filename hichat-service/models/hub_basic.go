@@ -63,8 +63,8 @@ func (h *Hub) Run() {
 				HandleFriendMsgMap[msgstruct.MsgType](usermsgstruct, message)
 			} else {
 				log.Println(err)
+				fmt.Println("解析消息体失败:error", err)
 			}
-
 		}
 	}
 }

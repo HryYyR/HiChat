@@ -7,8 +7,12 @@ import (
 	"go-websocket-server/config"
 	"go-websocket-server/models"
 	"go-websocket-server/util"
+	"log"
 	"net/http"
+	"strconv"
+	"strings"
 	"sync"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,7 +27,7 @@ type groupinfo struct {
 	// Creatername string
 }
 
-// 创建群聊
+// CreateGroup 创建群聊
 func CreateGroup(c *gin.Context) {
 	info, _ := c.Get("userdata")
 	userdata := info.(*models.UserClaim)
@@ -49,9 +53,6 @@ func CreateGroup(c *gin.Context) {
 		MemberCount: 1,
 	}
 
-	GroupLock.Lock()
-	defer GroupLock.Unlock() //解锁
-	session := adb.Ssql.NewSession()
 	//判断群是否已存在,存在就禁止创建
 	isexit, err := adb.Ssql.Table("group").Where("group_name = ?", rowdata.Groupname).Exist()
 	if err != nil {
@@ -64,9 +65,8 @@ func CreateGroup(c *gin.Context) {
 		return
 	}
 
-	_, err = session.Table("group").Insert(&group) //插入群聊
+	_, err = adb.Ssql.Table("group").Insert(&group) //插入群聊
 	if err != nil {
-		session.Rollback()
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "插入群聊失败!",
@@ -74,9 +74,17 @@ func CreateGroup(c *gin.Context) {
 		return
 	}
 
+	GroupLock.Lock()
+	defer GroupLock.Unlock() //解锁
+
+	session := adb.Ssql.NewSession()
+	defer session.Close()
+	session.Begin()
+
 	var groupdata models.Group
 	_, err = session.Table("group").Where("uuid=?", UUID).Get(&groupdata) // 查群聊完整信息
 	if err != nil {
+		session.Rollback()
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "查询群聊失败",
@@ -89,8 +97,19 @@ func CreateGroup(c *gin.Context) {
 		GroupUUID: UUID,
 		GroupID:   groupdata.ID,
 	}
-	err = gur.Association(groupdata) //连接关系
+	err = gur.Association(groupdata, session) //连接关系
 	if err != nil {
+		session.Rollback()
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"msg": "创建群聊失败",
+		})
+		return
+	}
+
+	err = adb.Rediss.RPush(fmt.Sprintf("gm%s", strconv.Itoa(groupdata.ID)), "0").Err()
+	if err != nil {
+		log.Println(err.Error())
+		fmt.Println(err.Error())
 		session.Rollback()
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "创建群聊失败",
@@ -117,7 +136,7 @@ type applyjoingroupinfo struct {
 	ApplyWay  int    `json:"ApplyWay"`
 }
 
-// 申请加入群聊
+// ApplyJoinGroup 申请加入群聊
 func ApplyJoinGroup(c *gin.Context) {
 	ud, _ := c.Get("userdata")
 	userdata := ud.(*models.UserClaim)
@@ -135,7 +154,7 @@ func ApplyJoinGroup(c *gin.Context) {
 		})
 		return
 	}
-	fmt.Println(userdata.ID, rawdata.GroupID)
+	//fmt.Println(userdata.ID, rawdata.GroupID)
 	exitgroup, err := adb.Ssql.Table("group_user_relative").Where("user_id = ? and group_id=?", userdata.ID, rawdata.GroupID).Exist()
 	if err != nil {
 		fmt.Println(err)
@@ -202,7 +221,7 @@ func ApplyJoinGroup(c *gin.Context) {
 		UserID:   userdata.ID,
 		UserName: userdata.UserName,
 		GroupID:  applydata.GroupID,
-		MsgType:  config.MsgTypeJoinGroup,
+		MsgType:  config.MsgTypeRefreshGroupNotice,
 	}
 	msgbyte, _ := json.Marshal(msg)
 	//向群主发送验证申请信息
@@ -218,7 +237,7 @@ type joingroupinfo struct {
 	HandleStatus int `json:"HandleStatus"`
 }
 
-// 处理加入群聊
+// HandleJoinGroup 处理加入群聊
 func HandleJoinGroup(c *gin.Context) {
 	// ud, _ := c.Get("userdata")
 	// userdata := ud.(*models.UserClaim)
@@ -265,7 +284,6 @@ func HandleJoinGroup(c *gin.Context) {
 		})
 		return
 	}
-
 	if !has {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"msg": "群聊不存在!",
@@ -298,6 +316,10 @@ func HandleJoinGroup(c *gin.Context) {
 			})
 			return
 		}
+		//通知申请人,申请已被拒绝(刷新通知列表)
+		groupmsg := models.GroupMessage{
+			MsgType: config.MsgTypeRefreshGroupNotice,
+		}
 		c.JSON(http.StatusOK, gin.H{
 			"msg": "拒绝成功!",
 		})
@@ -313,7 +335,7 @@ func HandleJoinGroup(c *gin.Context) {
 		GroupID:   grouplist.ID,
 		GroupUUID: grouplist.UUID,
 	}
-	err = addggur.Association(grouplist) //连接关系
+	err = addggur.Association(grouplist, session) //连接关系
 	if err != nil {
 		session.Rollback()
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -329,11 +351,14 @@ func HandleJoinGroup(c *gin.Context) {
 		return
 	}
 	groupmsg := models.GroupMessage{
-		UserID:   applyuserdata.ID,
-		UserName: applyuserdata.UserName,
-		GroupID:  grouplist.ID,
-		Msg:      fmt.Sprintf("%s加入了群聊", applyuserdata.UserName),
-		MsgType:  config.MsgTypeJoinGroup,
+		UserID:     applyuserdata.ID,
+		UserName:   applyuserdata.UserName,
+		UserAvatar: applyuserdata.Avatar,
+		UserAge:    applyuserdata.Age,
+		UserCity:   applyuserdata.City,
+		GroupID:    grouplist.ID,
+		Msg:        fmt.Sprintf("%s加入了群聊", applyuserdata.UserName),
+		MsgType:    config.MsgTypeJoinGroup,
 	}
 	_, err = session.Table("group_message").Insert(&groupmsg)
 	if err != nil {
@@ -363,7 +388,7 @@ func HandleJoinGroup(c *gin.Context) {
 	})
 }
 
-// 退出群
+// ExitGroup 退出群
 func ExitGroup(c *gin.Context) {
 	ud, _ := c.Get("userdata")
 	userdata := ud.(*models.UserClaim)
@@ -385,11 +410,12 @@ func ExitGroup(c *gin.Context) {
 		return
 	}
 
+	//查群聊是否存在
 	var groupinfo models.Group
 	has, err := adb.Ssql.Table("group").Where("id = ?", rawdata.ID).Get(&groupinfo)
 	if !has {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "Group not found",
+			"msg": "群聊不存在!",
 		})
 		return
 	}
@@ -400,11 +426,29 @@ func ExitGroup(c *gin.Context) {
 		return
 	}
 
+	//查用户是否存在
+	var handleuserdata models.Users
+	has, err = adb.Ssql.Table("users").Where("id = ?", userdata.ID).Get(&handleuserdata)
+	if !has {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"msg": "用户不存在!",
+		})
+		return
+	}
+	if err != nil {
+		log.Println(err.Error())
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"err": "操作失败",
+		})
+		return
+	}
+
 	// 相关删除操作
 	groupuserlist := models.GroupUserList[groupinfo]
 	session := adb.Ssql.NewSession()
 	defer session.Close()
 	session.Begin()
+
 	GroupLock.Lock()
 	if groupinfo.CreaterID == userdata.ID { //说明他是群主,删除所有联系
 		var willbedeleteuseridlist []int //将被删除的用户群聊关系的用户id
@@ -416,7 +460,9 @@ func ExitGroup(c *gin.Context) {
 			})
 			return
 		}
-		_, err = session.Table("group_user_relative").Where("group_id = ?", groupinfo.ID).Delete()
+
+		rkey := fmt.Sprintf("gm%s", strconv.Itoa(groupinfo.ID))
+		err = adb.Rediss.Del(rkey).Err()
 		if err != nil {
 			session.Rollback()
 			c.JSON(http.StatusInternalServerError, gin.H{
@@ -424,6 +470,16 @@ func ExitGroup(c *gin.Context) {
 			})
 			return
 		}
+
+		//唯一性约束自动删除
+		//_, err = session.Table("group_user_relative").Where("group_id = ?", groupinfo.ID).Delete()
+		//if err != nil {
+		//	session.Rollback()
+		//	c.JSON(http.StatusInternalServerError, gin.H{
+		//		"msg": err.Error(),
+		//	})
+		//	return
+		//}
 		_, err = session.Table("group").Where("id = ?", groupinfo.ID).Delete() //删群
 		if err != nil {
 			session.Rollback()
@@ -441,6 +497,17 @@ func ExitGroup(c *gin.Context) {
 			delete(models.ServiceCenter.Clients[userid].Groups, groupinfo.ID)
 		}
 		delete(models.GroupUserList, groupinfo) //同步群列表里相关信息
+
+		groupmsg := models.GroupMessage{
+			MsgType: config.MsgTypeDissolveGroup,
+			GroupID: groupinfo.ID,
+		}
+		// 通知群里的其他成员群聊已解散
+		msgbyte, _ := json.Marshal(groupmsg)
+		for _, userid := range groupuserlist {
+			models.ServiceCenter.Clients[userid].Send <- msgbyte
+		}
+
 	} else { //只删除该用户对群的联系
 		_, err := session.Table("group_user_relative").Where("user_id = ? and group_id=?", userdata.ID, rawdata.ID).Delete()
 		if err != nil {
@@ -452,11 +519,15 @@ func ExitGroup(c *gin.Context) {
 		}
 		// 保存退出消息
 		groupmsg := models.GroupMessage{
-			UserID:   userdata.ID,
-			UserName: userdata.UserName,
-			GroupID:  groupinfo.ID,
-			Msg:      fmt.Sprintf("%s退出了群聊", userdata.UserName),
-			MsgType:  config.MsgTypeQuitGroup,
+			UserID:     userdata.ID,
+			UserName:   userdata.UserName,
+			UserCity:   handleuserdata.City,
+			UserAge:    handleuserdata.Age,
+			UserAvatar: handleuserdata.Avatar,
+			GroupID:    groupinfo.ID,
+			Msg:        fmt.Sprintf("%s退出了群聊", userdata.UserName),
+			MsgType:    config.MsgTypeQuitGroup,
+			CreatedAt:  time.Now().Local(),
 		}
 		_, err = session.Table("group_message").Insert(&groupmsg)
 		if err != nil {
@@ -473,21 +544,28 @@ func ExitGroup(c *gin.Context) {
 				models.GroupUserList[groupinfo] = append(models.GroupUserList[groupinfo][:index], models.GroupUserList[groupinfo][index+1:]...)
 			}
 		}
+
+		// 通知群里的其他成员有用户退出
+		msgbyte, _ := json.Marshal(groupmsg)
+		for _, userid := range groupuserlist {
+			models.ServiceCenter.Clients[userid].Send <- msgbyte
+		}
+
 	}
 	session.Commit()
 	GroupLock.Unlock()
 
 	// 通知群里的其他成员有用户退出
-	msg := models.Message{
-		MsgType:  config.MsgTypeRefreshGroup,
-		UserID:   userdata.ID,
-		UserName: userdata.UserName,
-		GroupID:  rawdata.ID,
-	}
-	msgbyte, _ := json.Marshal(msg)
-	for _, userid := range groupuserlist {
-		models.ServiceCenter.Clients[userid].Send <- msgbyte
-	}
+	//msg := models.Message{
+	//	MsgType:  config.MsgTypeQuitGroup,
+	//	UserID:   userdata.ID,
+	//	UserName: userdata.UserName,
+	//	GroupID:  rawdata.ID,
+	//}
+	//msgbyte, _ := json.Marshal(groupmsg)
+	//for _, userid := range groupuserlist {
+	//	models.ServiceCenter.Clients[userid].Send <- msgbyte
+	//}
 	c.JSON(http.StatusOK, gin.H{
 		"msg": "退出群聊成功!",
 	})
@@ -498,7 +576,7 @@ type searchgroupinfo struct {
 	Searchstr string
 }
 
-// 搜索群聊
+// SearchGroup 搜索群聊
 func SearchGroup(c *gin.Context) {
 	ud, _ := c.Get("userdata")
 	userdata := ud.(*models.UserClaim)
@@ -517,8 +595,22 @@ func SearchGroup(c *gin.Context) {
 		})
 		return
 	}
+
+	if len(strings.TrimSpace(rawdata.Searchstr)) == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"msg": "关键词不能为空!",
+		})
+		return
+	}
+
+	var searchint int
+	v, err := strconv.Atoi(rawdata.Searchstr)
+	if err == nil {
+		searchint = v
+	}
+
 	grouplist := make([]models.Group, 0)
-	err = adb.Ssql.Table("group").Where("group_name LIKE ? and creater_id !=?", "%"+rawdata.Searchstr+"%", userdata.ID).Find(&grouplist)
+	err = adb.Ssql.Table("group").Where("group_name LIKE ? or id=? and creater_id !=?", "%"+rawdata.Searchstr+"%", searchint, userdata.ID).Find(&grouplist)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),

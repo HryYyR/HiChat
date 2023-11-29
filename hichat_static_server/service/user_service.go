@@ -3,27 +3,36 @@ package service
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	adb "hichat_static_server/ADB"
 	"hichat_static_server/models"
 	"hichat_static_server/util"
+	"log"
 	"net/http"
 	"strconv"
-
-	"github.com/gin-gonic/gin"
+	"sync"
 )
 
 type edituserdataform struct {
-	City string `json:"city"`
-	Age  string `json:"age"`
+	City      string `json:"city"`
+	Age       string `json:"age"`
+	Introduce string `json:"introduce"`
 }
 
 func EditUserData(c *gin.Context) {
+	var mlock sync.Mutex
 	ud, _ := c.Get("userdata")
 	userdata := ud.(*models.UserClaim)
 
 	databyte, _ := c.GetRawData()
 	var data edituserdataform
-	json.Unmarshal(databyte, &data)
+	err := json.Unmarshal(databyte, &data)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"msg": "信息输入有误!",
+		})
+		return
+	}
 	// fmt.Printf("%+v\n", data)
 	age, err := strconv.Atoi(data.Age)
 	if err != nil {
@@ -40,13 +49,22 @@ func EditUserData(c *gin.Context) {
 		return
 	}
 
+	mlock.Lock()
+	defer mlock.Unlock()
+
 	if _, err := adb.Ssql.Table("users").Where("id=?", userdata.ID).Update(&models.Users{
-		City: data.City,
-		Age:  age,
+		City:      data.City,
+		Age:       age,
+		Introduce: data.Introduce,
 	}); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "修改失败!",
 		})
+		return
+	}
+	err = adb.Rediss.Del(strconv.Itoa(userdata.ID)).Err()
+	if err != nil {
+		log.Println(err.Error())
 		return
 	}
 
@@ -86,7 +104,7 @@ func GetUserData(c *gin.Context) {
 	})
 }
 
-// 获取用户的群聊列表
+// GetUserGroupList 获取用户的群聊列表
 func GetUserGroupList(c *gin.Context) {
 	data := new(models.Users)
 	err := util.HandleJsonArgument(c, data)
@@ -97,12 +115,13 @@ func GetUserGroupList(c *gin.Context) {
 		return
 	}
 	grouplist := make([]models.GroupDetail, 0)
-	data.GetUserGroupList(&grouplist)
+	err = data.GetUserGroupList(&grouplist)
 	// fmt.Println("消息长度为:", len(grouplist[0].MessageList))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "获取用户的群聊列表!",
 		})
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -111,7 +130,7 @@ func GetUserGroupList(c *gin.Context) {
 	})
 }
 
-// 获取用户的好友列表
+// GetUserFriendList 获取用户的好友列表
 func GetUserFriendList(c *gin.Context) {
 	data := new(models.Users)
 	err := util.HandleJsonArgument(c, data)
@@ -135,7 +154,7 @@ func GetUserFriendList(c *gin.Context) {
 	})
 }
 
-// //获取用户的群聊通知列表
+// GetUserApplyJoinGroupList //获取用户的群聊通知列表
 func GetUserApplyJoinGroupList(c *gin.Context) {
 	data := new(models.Users)
 	err := util.HandleJsonArgument(c, data)
@@ -146,7 +165,7 @@ func GetUserApplyJoinGroupList(c *gin.Context) {
 		return
 	}
 
-	applyjoingrouplist := make([]models.ApplyJoinGroup, 0)
+	applyjoingrouplist := make([]models.ApplyJoinGroupResponse, 0)
 	if err = data.GetApplyMsgList(&applyjoingrouplist); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "获取用户的群聊通知列表失败!",
@@ -161,7 +180,7 @@ func GetUserApplyJoinGroupList(c *gin.Context) {
 	})
 }
 
-// //获取用户的好友申请列表
+// GetUserApplyAddFriendList //获取用户的好友申请列表
 func GetUserApplyAddFriendList(c *gin.Context) {
 	data := new(models.Users)
 	err := util.HandleJsonArgument(c, data)
@@ -190,7 +209,7 @@ type searchfriendingo struct {
 	Searchstr string
 }
 
-// 搜索用户
+// SearchUser 搜索用户
 func SearchUser(c *gin.Context) {
 	ud, _ := c.Get("userdata")
 	userdata := ud.(*models.UserClaim)
@@ -232,6 +251,7 @@ func SearchUser(c *gin.Context) {
 			"msg":  "搜索成功!",
 			"data": []models.Users{},
 		})
+		return
 	}
 
 	friendlist := make([]models.Users, 0)

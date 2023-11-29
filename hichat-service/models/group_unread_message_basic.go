@@ -16,7 +16,3 @@ type GroupUnreadMessage struct {
 func (GroupUnreadMessage) TableName() string {
 	return "group_unread_message"
 }
-
-func (g GroupUnreadMessage) GetAllUnreadMsg() {
-
-}

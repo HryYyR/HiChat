@@ -16,6 +16,7 @@ type Users struct {
 	Avatar    string
 	City      string
 	Age       int
+	Introduce string
 	Grade     int       `xorm:"default(1)"`
 	CreatedAt time.Time `xorm:"created"`
 	DeletedAt time.Time `xorm:"deleted"`

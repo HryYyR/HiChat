@@ -10,8 +10,8 @@ type GroupMessage struct {
 	UserName    string
 	UserAvatar  string
 	UserCity    string
-	UserAge     string
-	GroupID     int    `xorm:"notnull"`
+	UserAge     int
+	GroupID     int    `xorm:"notnull index"`
 	Msg         string `xorm:"notnull"`
 	MsgType     int
 	IsReply     bool //是否是回复消息

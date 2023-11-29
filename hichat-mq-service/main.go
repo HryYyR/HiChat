@@ -4,6 +4,8 @@ import (
 	adb "HiChat/hichat-mq-service/ADB"
 	"HiChat/hichat-mq-service/config"
 	"HiChat/hichat-mq-service/models"
+	"HiChat/hichat-mq-service/service_registry"
+	"HiChat/hichat-mq-service/util"
 	"encoding/json"
 	"fmt"
 	"strconv"
@@ -12,9 +14,12 @@ import (
 type GroupMsgfun func() error
 type FriendMsgfun func() error
 
+//type RedisMsgfun func() error
+
 func main() {
 	adb.InitMQ()
 	adb.InitMySQL()
+	adb.InitRedis()
 
 	// 获取接收消息的Delivery通道
 	msgs, err := adb.MQc.Consume(
@@ -28,124 +33,84 @@ func main() {
 	)
 	if err != nil {
 		fmt.Println("接收失败!")
+		panic(err)
 	}
-	forever := make(chan bool)
 
-	go func() {
-		fmt.Println("开始消费!")
-		for d := range msgs {
+	//服务注册
+	addressIP := util.GetIP()
+	dis := service_registry.DiscoveryConfig{
+		ID:      util.GenerateUUID(),
+		Name:    "hichat-mq-server",
+		Tags:    nil,
+		Port:    config.ServerPort,
+		Address: addressIP,
+	}
+	err = service_registry.RegisterService(dis)
+	if err != nil {
+		panic(err)
+	}
+	serverpost := fmt.Sprintf(":%s", strconv.Itoa(config.ServerPort))
+	go service_registry.StartTcp(serverpost)
+	fmt.Println("服务注册在", serverpost)
 
-			// 群聊消息
-			var msgstruct *models.Message
-			err := json.Unmarshal(d.Body, &msgstruct)
-			if err == nil && len(strconv.Itoa(msgstruct.MsgType)) < 4 {
-
-				fmt.Println(msgstruct.MsgType)
-				HandleMap := map[int]GroupMsgfun{
-					config.MsgTypeDefault:      msgstruct.SaveGroupMsgToDb,
-					config.MsgTypeImage:        msgstruct.SaveGroupMsgToDb,
-					config.MsgTypeAudio:        msgstruct.SaveGroupMsgToDb,
-					config.MsgTypeSyncMsg:      msgstruct.SyncGroupMsgToDb,
-					config.MsgTypeClearSyncMsg: msgstruct.ClearGroupMsgNum,
-				}
-				err := HandleMap[msgstruct.MsgType]()
-				if err != nil {
-					fmt.Println(err.Error())
-				}
-				continue
-				// if msgstruct.MsgType == config.MsgTypeDefault {
-				// 	err = msgstruct.SaveGroupMsgToDb()
-				// 	if err != nil {
-				// 		fmt.Printf("保存群聊消息失败%s\n", err)
-				// 	}
-				// }
-				// if msgstruct.MsgType == config.MsgTypeImage {
-				// 	err = msgstruct.SaveGroupMsgToDb()
-				// 	if err != nil {
-				// 		fmt.Printf("保存群聊消息失败%s\n", err)
-				// 	}
-				// }
-				// if msgstruct.MsgType == config.MsgTypeAudio {
-				// 	err = msgstruct.SaveGroupMsgToDb()
-				// 	if err != nil {
-				// 		fmt.Printf("保存群聊消息失败%s\n", err)
-				// 	}
-				// }
-
-				// if msgstruct.MsgType == config.MsgTypeSyncMsg {
-				// 	err = msgstruct.SyncGroupMsgToDb()
-				// 	if err != nil {
-				// 		fmt.Printf("同步进数据库失败%s\n", err)
-				// 	}
-				// }
-				// if msgstruct.MsgType == config.MsgTypeClearSyncMsg {
-				// 	err = msgstruct.ClearGroupMsgNum()
-				// 	if err != nil {
-				// 		fmt.Printf("清除未读数据库失败%s\n", err)
-				// 	}
-				// }
-				// continue
+	//go func() {
+	fmt.Println("开始消费!")
+	for d := range msgs {
+		// 群聊消息
+		var msgstruct *models.Message
+		err := json.Unmarshal(d.Body, &msgstruct)
+		if err == nil && msgstruct.MsgType < 500 {
+			//fmt.Println(msgstruct.MsgType)
+			HandleMap := map[int]GroupMsgfun{
+				config.MsgTypeDefault:      msgstruct.SaveGroupMsgToDb,
+				config.MsgTypeImage:        msgstruct.SaveGroupMsgToDb,
+				config.MsgTypeAudio:        msgstruct.SaveGroupMsgToDb,
+				config.MsgTypeSyncMsg:      msgstruct.SyncGroupMsgToDb,
+				config.MsgTypeClearSyncMsg: msgstruct.ClearGroupMsgNum,
 			}
-
-			// 私聊消息
-			var usermsgstruct *models.UserMessage
-			err = json.Unmarshal(d.Body, &usermsgstruct)
-			if err == nil {
-
-				fmt.Println(msgstruct.MsgType)
-
-				HandleMap := map[int]FriendMsgfun{
-					config.MsgTypeFriendDefault:      usermsgstruct.SaveFriendMsgToDb,
-					config.MsgTypeFriendImage:        usermsgstruct.SaveFriendMsgToDb,
-					config.MsgTypeFriendAudio:        usermsgstruct.SaveFriendMsgToDb,
-					config.MsgTypeSyncFriendMsg:      usermsgstruct.SyncFriendMsgToDb,
-					config.MsgTypeClearSyncFriendMsg: usermsgstruct.ClearFriendMsgNum,
-				}
-				err := HandleMap[msgstruct.MsgType]()
-				if err != nil {
-					fmt.Println(err.Error())
-				}
-				continue
-
-				// if msgstruct.MsgType == config.MsgTypeFriendDefault {
-				// 	err = usermsgstruct.SaveFriendMsgToDb()
-				// 	if err != nil {
-				// 		fmt.Printf("保存好友消息失败%s\n", err)
-				// 	}
-				// }
-
-				// if msgstruct.MsgType == config.MsgTypeFriendImage {
-				// 	err = usermsgstruct.SaveFriendMsgToDb()
-				// 	if err != nil {
-				// 		fmt.Printf("保存好友消息失败%s\n", err)
-				// 	}
-				// }
-
-				// if msgstruct.MsgType == config.MsgTypeFriendAudio {
-				// 	err = usermsgstruct.SaveFriendMsgToDb()
-				// 	if err != nil {
-				// 		fmt.Printf("保存好友消息失败%s\n", err)
-				// 	}
-				// }
-
-				// if msgstruct.MsgType == config.MsgTypeSyncFriendMsg {
-				// 	err = usermsgstruct.SyncFriendMsgToDb()
-				// 	if err != nil {
-				// 		fmt.Printf("同步好友信息失败%s\n", err)
-				// 	}
-				// }
-				// if msgstruct.MsgType == config.MsgTypeClearSyncFriendMsg {
-				// 	err = usermsgstruct.ClearFriendMsgNum()
-				// 	if err != nil {
-				// 		fmt.Printf("清除好友同步信息失败%s\n", err)
-				// 	}
-				// }
-				// continue
+			err := HandleMap[msgstruct.MsgType]()
+			if err != nil {
+				fmt.Println(err.Error())
 			}
-
+			continue
 		}
-	}()
 
-	<-forever
+		// 私聊消息
+		var usermsgstruct *models.UserMessage
+		err = json.Unmarshal(d.Body, &usermsgstruct)
+		if err == nil && msgstruct.MsgType > 1000 && msgstruct.MsgType < 1500 {
+			//fmt.Println(msgstruct.MsgType)
+			HandleMap := map[int]FriendMsgfun{
+				config.MsgTypeFriendDefault:      usermsgstruct.SaveFriendMsgToDb,
+				config.MsgTypeFriendImage:        usermsgstruct.SaveFriendMsgToDb,
+				config.MsgTypeFriendAudio:        usermsgstruct.SaveFriendMsgToDb,
+				config.MsgTypeSyncFriendMsg:      usermsgstruct.SyncFriendMsgToDb,
+				config.MsgTypeClearSyncFriendMsg: usermsgstruct.ClearFriendMsgNum,
+			}
+			err := HandleMap[msgstruct.MsgType]()
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+			continue
+		}
+
+		//// redis消息
+		//var redismsgstruct *models.RedisMessage
+		//err = json.Unmarshal(d.Body, &redismsgstruct)
+		//if err == nil {
+		//	HandleMap := map[int]RedisMsgfun{
+		//		config.MsgTypeRedisDelKey:    redismsgstruct.RedisDelKey,
+		//		config.MsgTypeRedisSetString: redismsgstruct.RedisSetString,
+		//		config.MsgTypeRedisRpushList: redismsgstruct.RedisRpushList,
+		//	}
+		//	err := HandleMap[redismsgstruct.MsgType]()
+		//	if err != nil {
+		//		fmt.Println(err.Error())
+		//	}
+		//	continue
+		//}
+
+	}
+	//}()
 
 }

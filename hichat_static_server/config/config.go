@@ -2,7 +2,13 @@ package config
 
 import "time"
 
+var ServerPort = 3005
+var ConsulAddress = "127.0.0.1:8500"
+
 var JwtKey = "Hyyyh1527"
+
+// var MysqlAddress = "host.docker.internal:3306" //docker
+var MysqlAddress = "localhost:3306" //localhost
 
 var MysqlUserName = "root"
 var MysqlPassword = "root"
@@ -11,6 +17,8 @@ var MysqlDatabase = "go_websocket"
 var RedisAddr = "localhost:6379"
 var RedisPassword = ""
 var RedisDB = 0
+
+var RabbitMQAddress = "amqp://guest:guest@localhost:5672/"
 
 var EmailAccount = "2452719312@qq.com"
 var EmailPassword = "hdabghzavlyeeajj"
@@ -27,3 +35,7 @@ var MsgTypeRefreshGroup = 200 //刷新群聊
 var MsgTypeQuitGroup = 201    //退出群聊
 var MsgTypeSyncMsg = 400      //同步消息
 var MsgTypeClearSyncMsg = 401 //同步消息清零
+
+var MsgTypeRedisDelKey = 1601    //redis删除key
+var MsgTypeRedisSetString = 1602 //redis设置string
+var MsgTypeRedisRpushList = 1603 //redis向List添加元素

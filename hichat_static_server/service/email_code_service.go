@@ -56,8 +56,15 @@ func EmailCode(c *gin.Context) {
 		return
 	}
 	code := util.RandCode()
+
 	adb.Rediss.Set(emaildata.Email, code, 1*time.Minute) //验证码存redis
-	go util.MailSendCode(emaildata.Email, code)          //发送验证码
+	go func() {
+		err := util.MailSendCode(emaildata.Email, code)
+		if err != nil {
+			fmt.Println("验证码发送失败")
+		}
+	}()
+	//发送验证码
 	// if err != nil {
 	// 	fmt.Println(err)
 	// 	c.JSON(http.StatusInternalServerError, gin.H{

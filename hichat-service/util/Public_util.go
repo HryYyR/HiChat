@@ -4,6 +4,9 @@ import (
 	// "crypto/ecdsa"
 	// "crypto/elliptic"
 	"crypto/md5"
+	"github.com/golang-jwt/jwt/v4"
+	"net"
+
 	// random "crypto/rand"
 	"crypto/tls"
 	"encoding/json"
@@ -19,7 +22,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gofrs/uuid"
-	"github.com/golang-jwt/jwt/v4"
 	"github.com/jordan-wright/email"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -125,4 +127,24 @@ func FormatTampTime(tamptime *timestamppb.Timestamp) time.Time {
 
 func FormatTime(targettime time.Time) time.Time {
 	return targettime.Local().UTC().Add(time.Hour * -8)
+}
+
+func GetIP() string {
+	addrs, err := net.InterfaceAddrs()
+	if err != nil {
+		fmt.Println("Error:", err)
+		return ""
+	}
+
+	for _, addr := range addrs {
+		ipnet, ok := addr.(*net.IPNet)
+		if !ok {
+			continue
+		}
+		if ipnet.IP.To4() != nil && !ipnet.IP.IsLoopback() && ipnet.IP.String()[:3] != "169" { // IPv4 address
+			ip := ipnet.IP.String()
+			return ip
+		}
+	}
+	return ""
 }

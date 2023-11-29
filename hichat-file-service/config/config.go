@@ -2,11 +2,13 @@ package config
 
 import "time"
 
+var ServerPort = 3006
+var ConsulAddress = "127.0.0.1:8500"
+
 var JwtKey = "Hyyyh1527"
 
 // var MysqlAddress = "host.docker.internal:3306" //docker
-var MysqlAddress = "localhost:3306"          //localhost
-var MysqllocalhostAddress = "localhost:3306" //localhost
+var MysqlAddress = "localhost:3306" //localhost
 var MysqlUserName = "root"
 var MysqlPassword = "root"
 var MysqlDatabase = "go_websocket"

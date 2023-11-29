@@ -20,7 +20,7 @@ var HandleGroupMsgMap = map[int]GroupMsgfun{
 	401: HandleGroupClearSyncMsg, //群聊清除同步库
 }
 
-// 1
+// 1 默认消息
 func HandleDefaultGroupMsg(msgstruct *Message, msg []byte) {
 	// 保存消息进数据库
 	go func(msg []byte) {
@@ -73,7 +73,7 @@ func HandleGroupClearSyncMsg(msgstruct *Message, msg []byte) {
 	}(msg)
 }
 
-// 写入同步消息
+// 群聊写入同步消息
 func GroupWriteSyncMsg(msgstruct *Message) {
 	msgstruct.MsgType = config.MsgTypeSyncMsg
 	// 写入同步库

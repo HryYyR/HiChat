@@ -2,8 +2,10 @@ package models
 
 import (
 	adb "HiChat/hichat-mq-service/ADB"
+	"encoding/json"
 	"fmt"
 	"log"
+	"strconv"
 	"sync"
 	"time"
 )
@@ -48,6 +50,15 @@ func (m *Message) SaveGroupMsgToDb() error {
 	if _, err := adb.Ssql.Table("group_message").Insert(&m); err != nil {
 		fmt.Println(err.Error())
 		return err
+	}
+	jsondata, err := json.Marshal(m)
+	if err != nil {
+		fmt.Println(err.Error())
+		//todo
+	}
+	err = adb.Rediss.RPush(fmt.Sprintf("gm%s", strconv.Itoa(m.GroupID)), string(jsondata)).Err()
+	if err != nil {
+		fmt.Println(err)
 	}
 	return nil
 }

@@ -22,12 +22,18 @@ func Login(c *gin.Context) {
 	databyte, _ := c.GetRawData()
 
 	var data loginpostform
-	json.Unmarshal(databyte, &data)
+	err := json.Unmarshal(databyte, &data)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"msg": "内容格式有误,请检查后重试!",
+		})
+		return
+	}
 	//fmt.Printf("%+v\n", data)
 
 	if data.Username == "" || data.Password == "" {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "Invalid username or password",
+			"msg": "内容格式有误,请检查后重试!",
 		})
 		return
 	}
@@ -39,7 +45,7 @@ func Login(c *gin.Context) {
 		log.Println(err)
 		// fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "failed to query userdata  ",
+			"msg": "failed to query userdata",
 		})
 		return
 	}
@@ -55,15 +61,6 @@ func Login(c *gin.Context) {
 		})
 		return
 	}
-	// 获取用户的群列表
-	// rpcusergrouplist, err := rpcserver.GetUserGroupList(userdata.ID)
-
-	// if err != nil {
-	// 	c.JSON(http.StatusInternalServerError, gin.H{
-	// 		"msg": "查询群聊消息失败!",
-	// 	})
-	// 	return
-	// }
 	token, err := util.GenerateToken(userdata.ID, userdata.UUID, userdata.UserName, 24*time.Hour)
 	if err != nil {
 		fmt.Println(err)
@@ -73,17 +70,20 @@ func Login(c *gin.Context) {
 		return
 	}
 
+	// 获取用户的信息列表
 	ResponseUserData := new(models.ResponseUserData)
 	err = userdata.Login(ResponseUserData)
 	if err != nil {
+		fmt.Println(err)
+		log.Println(err.Error())
 		c.JSON(http.StatusOK, gin.H{
-			"err": err.Error(),
+			"err": "登陆失败!",
 		})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"msg":      "login success",
+		"msg":      "登陆成功!",
 		"token":    token,
 		"userdata": ResponseUserData,
 	})

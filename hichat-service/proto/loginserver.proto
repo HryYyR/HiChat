@@ -65,8 +65,7 @@ message ApplyJoinGroupMessage {
 
 message GroupDetail {  
     Group group_info = 1;  
-    repeated GroupMessage message_list = 2;  
-    
+    repeated GroupMessage message_list = 2;
 }
 
 message ApplyAddUserMessage {
@@ -96,27 +95,6 @@ message FriendList {
     google.protobuf.Timestamp deleted_at = 10;  
     google.protobuf.Timestamp updated_at = 11;   
 }
-
-// message FriendMessageItem {
-//     int32 id = 1;  
-//     string user_name =2;
-//     string nike_name =3;
-//     string avatar=5;
-
-//     string msg = 6;  
-//     int32 msg_type = 7;  
-//     bool is_reply = 8;  
-//     int32 reply_user_id = 9;  
-
-//     string receive_user_name =10;
-//     string receive_nike_name =11;
-//     string receive_avatar=12;
-
-//     google.protobuf.Timestamp created_at = 13;  
-//     google.protobuf.Timestamp deleted_at = 14;  
-//     google.protobuf.Timestamp updated_at = 15;   
-// }
-
 message UserGroupList {
     repeated GroupDetail group_detail = 1;
     repeated ApplyJoinGroupMessage apply_join_group_list = 3; 
@@ -129,9 +107,3 @@ service login {
     // 定义GetUserGroupList方法，接受UserData消息， 并返回UserGroupList消息
 rpc GetUserGroupList (UserData) returns (UserGroupList) {}
 }
-
-// // 定义HelloReply消息
-// message UserGroupList {
-//   // message字段
-//   repeated GroupDetail groupdetail = 2;
-// }

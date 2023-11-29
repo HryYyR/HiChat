@@ -48,6 +48,7 @@ func GetUserGroupList(ID int) (map[int]Group, error) {
 	return grouplist, nil
 }
 
+// 获取成员数量
 func (g Group) GetMemberCount() int {
 	num, err := adb.Ssql.Table("group_user_relative").Where("group_id=?", g.ID).Count()
 	if err != nil {

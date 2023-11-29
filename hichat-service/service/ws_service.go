@@ -28,6 +28,7 @@ func Connectws(c *gin.Context) {
 	userdata, err := util.DecryptToken(token)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 	fmt.Printf("用户%v加入了房间\n", userdata.ID)
 

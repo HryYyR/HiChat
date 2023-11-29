@@ -2,8 +2,8 @@ package models
 
 import (
 	"fmt"
-	adb "go-websocket-server/ADB"
 	"time"
+	"xorm.io/xorm"
 )
 
 var GroupUserList = make(map[Group][]int, 0) //群和用户的关系列表 k:group  v:user_id
@@ -22,16 +22,15 @@ func (GroupUserRelative) TableName() string {
 	return "group_user_relative"
 }
 
-func (r *GroupUserRelative) Association(group Group) error {
-	_, err := adb.Ssql.Table("group_user_relative").Insert(&r) //插入关系
+func (r *GroupUserRelative) Association(group Group, session *xorm.Session) error {
+	_, err := session.Table("group_user_relative").Insert(&r) //插入关系
 	if err != nil {
 		fmt.Println(err)
 		return err
 	}
 	ServiceCenter.Clients[r.UserID].Mutex.Lock()
+	defer ServiceCenter.Clients[r.UserID].Mutex.Unlock()
 	ServiceCenter.Clients[r.UserID].Groups[group.ID] = group
 	GroupUserList[group] = append(GroupUserList[group], r.UserID)
-	ServiceCenter.Clients[r.UserID].Mutex.Unlock()
-
 	return nil
 }
