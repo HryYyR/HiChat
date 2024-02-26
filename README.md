@@ -1,5 +1,5 @@
 
-# Server
+# Service
 Go
 # Cache
 Redis
@@ -7,5 +7,5 @@ Redis
 Mysql
 # MQ
 Rabitmq
-# ServerFind
+# ServiceDiscovery
 Consul
