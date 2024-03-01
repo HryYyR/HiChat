@@ -61,7 +61,7 @@ func EmailCode(c *gin.Context) {
 	go func() {
 		err := util.MailSendCode(emaildata.Email, code)
 		if err != nil {
-			fmt.Println("验证码发送失败")
+			fmt.Println("验证码发送失败", err)
 		}
 	}()
 	//发送验证码

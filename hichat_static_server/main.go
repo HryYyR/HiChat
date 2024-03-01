@@ -7,6 +7,7 @@ import (
 	_ "hichat_static_server/log"
 	"hichat_static_server/service"
 	"hichat_static_server/service_registry"
+	"hichat_static_server/tool"
 	"hichat_static_server/util"
 	"strconv"
 
@@ -16,7 +17,7 @@ import (
 func main() {
 	adb.InitMySQL()
 	adb.InitRedis()
-	adb.InitMQ()
+	//adb.InitMQ()
 
 	gin.SetMode(gin.ReleaseMode)
 	engine := gin.New()
@@ -43,7 +44,7 @@ func main() {
 	groupgroup.POST("/getgroupmessagelist", service.GetGroupMessageList) //获取指定群聊的消息(限定条数)
 
 	//服务注册
-	addressIP := util.GetIP()
+	addressIP := tool.GetIP()
 	dis := service_registry.DiscoveryConfig{
 		ID:      util.GenerateUUID(),
 		Name:    "hichat-static-server",
@@ -51,10 +52,16 @@ func main() {
 		Port:    config.ServerPort,
 		Address: addressIP,
 	}
-	err := service_registry.RegisterService(dis)
+	err := service_registry.ConsulRegisterService(dis)
 	if err != nil {
 		panic(err)
 	}
+
+	//注册login服务
+	go service_registry.LoginRegistryService(service_registry.LoginRegistryServiceConfig{
+		RpcAddr:  config.LoginRpcAddr,
+		HttpAddr: config.LoginHttpAddr,
+	})
 
 	fmt.Println("service run in ", config.ServerPort)
 	serverpost := fmt.Sprintf(":%s", strconv.Itoa(config.ServerPort))

@@ -58,8 +58,9 @@ func main() {
 
 	// usergroup.POST("/RefreshGroupList", service.RefreshGroupList) //获取用户信息
 
-	usergroup.POST("/applyadduser", service.ApplyAddUser)   //申请添加好友
-	usergroup.POST("/handleadduser", service.HandleAddUser) //处理添加好友
+	usergroup.POST("/applyadduser", service.ApplyAddUser)                         //申请添加好友
+	usergroup.POST("/handleadduser", service.HandleAddUser)                       //处理添加好友
+	usergroup.POST("/startusertouservideocall", service.StartUserToUserVideoCall) //检查指定用户登录状态
 
 	//go rpcserver.ListenGetUserGroupListRpcServer()
 
@@ -74,14 +75,13 @@ func main() {
 	}
 	err := service_registry.RegisterService(dis)
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
 
 	fmt.Println("service run in ", config.ServerPort)
 	serverpost := fmt.Sprintf(":%s", strconv.Itoa(config.ServerPort))
 	err = engine.Run(serverpost)
 	if err != nil {
-		fmt.Println(err)
-		return
+		log.Fatalln(err)
 	}
 }

@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type LoginClient interface {
 	// 定义GetUserGroupList方法，接受UserData消息， 并返回UserGroupList消息
-	GetUserGroupList(ctx context.Context, in *UserData, opts ...grpc.CallOption) (*UserGroupList, error)
+	UserLogin(ctx context.Context, in *UserData, opts ...grpc.CallOption) (*LoginResponse, error)
 }
 
 type loginClient struct {
@@ -34,9 +34,9 @@ func NewLoginClient(cc grpc.ClientConnInterface) LoginClient {
 	return &loginClient{cc}
 }
 
-func (c *loginClient) GetUserGroupList(ctx context.Context, in *UserData, opts ...grpc.CallOption) (*UserGroupList, error) {
-	out := new(UserGroupList)
-	err := c.cc.Invoke(ctx, "/proto.login/GetUserGroupList", in, out, opts...)
+func (c *loginClient) UserLogin(ctx context.Context, in *UserData, opts ...grpc.CallOption) (*LoginResponse, error) {
+	out := new(LoginResponse)
+	err := c.cc.Invoke(ctx, "/proto.login/UserLogin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -48,15 +48,15 @@ func (c *loginClient) GetUserGroupList(ctx context.Context, in *UserData, opts .
 // for forward compatibility
 type LoginServer interface {
 	// 定义GetUserGroupList方法，接受UserData消息， 并返回UserGroupList消息
-	GetUserGroupList(context.Context, *UserData) (*UserGroupList, error)
+	UserLogin(context.Context, *UserData) (*LoginResponse, error)
 }
 
 // UnimplementedLoginServer should be embedded to have forward compatible implementations.
 type UnimplementedLoginServer struct {
 }
 
-func (UnimplementedLoginServer) GetUserGroupList(context.Context, *UserData) (*UserGroupList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserGroupList not implemented")
+func (UnimplementedLoginServer) UserLogin(context.Context, *UserData) (*LoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserLogin not implemented")
 }
 
 // UnsafeLoginServer may be embedded to opt out of forward compatibility for this service.
@@ -70,20 +70,20 @@ func RegisterLoginServer(s grpc.ServiceRegistrar, srv LoginServer) {
 	s.RegisterService(&Login_ServiceDesc, srv)
 }
 
-func _Login_GetUserGroupList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Login_UserLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LoginServer).GetUserGroupList(ctx, in)
+		return srv.(LoginServer).UserLogin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.login/GetUserGroupList",
+		FullMethod: "/proto.login/UserLogin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LoginServer).GetUserGroupList(ctx, req.(*UserData))
+		return srv.(LoginServer).UserLogin(ctx, req.(*UserData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -96,8 +96,8 @@ var Login_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*LoginServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetUserGroupList",
-			Handler:    _Login_GetUserGroupList_Handler,
+			MethodName: "UserLogin",
+			Handler:    _Login_UserLogin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

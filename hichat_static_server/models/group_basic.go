@@ -57,15 +57,16 @@ type GroupMessage struct {
 	UpdatedAt   time.Time `xorm:"updated"`
 }
 
-type GroupUserRelative struct {
-	ID        int `xorm:"pk autoincr notnull index"`
-	UserID    int
-	GroupID   int
-	GroupUUID string
-	CreatedAt time.Time `xorm:"created"`
-	DeletedAt time.Time `xorm:"deleted"`
-	UpdatedAt time.Time `xorm:"updated"`
-}
+//
+//type GroupUserRelative struct {
+//	ID        int `xorm:"pk autoincr notnull index"`
+//	UserID    int
+//	GroupID   int
+//	GroupUUID string
+//	CreatedAt time.Time `xorm:"created"`
+//	DeletedAt time.Time `xorm:"deleted"`
+//	UpdatedAt time.Time `xorm:"updated"`
+//}
 
 func (g *Group) GetMessageList(grouplist *[]GroupMessage, currentnum int) error {
 	msglist := make([]GroupMessage, 0)

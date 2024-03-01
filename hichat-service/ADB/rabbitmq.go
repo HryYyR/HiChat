@@ -19,7 +19,7 @@ func InitMQ() {
 	if err != nil {
 		panic(err.Error())
 	}
-	// 3. 声明消息要发送到的队列
+	// 声明消息要发送到的队列
 	q, err := channel.QueueDeclare(
 		"msgsync", // name
 		false,     // durable

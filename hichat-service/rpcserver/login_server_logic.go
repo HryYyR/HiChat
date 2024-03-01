@@ -10,7 +10,7 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-// var mu sync.Mutex // 创建一个全局的互斥锁
+// GetUserGroupList var mu sync.Mutex // 创建一个全局的互斥锁
 func GetUserGroupList(ID int) ([]*pb.GroupDetail, error) {
 	session := adb.Ssql.NewSession()
 	defer session.Close()
@@ -42,7 +42,7 @@ func GetUserGroupList(ID int) ([]*pb.GroupDetail, error) {
 			UserName:    m.UserName,
 			UserAvatar:  m.UserAvatar,
 			UserCity:    m.UserCity,
-			UserAge:     m.UserAge,
+			UserAge:     strconv.Itoa(m.UserAge),
 			GroupId:     int32(m.GroupID),
 			Msg:         m.Msg,
 			MsgType:     int32(m.MsgType),
@@ -123,7 +123,7 @@ func GetUserGroupList(ID int) ([]*pb.GroupDetail, error) {
 	return usergouplist, nil
 }
 
-// 获取该用户的通知列表
+// GetUserApplyJoinGroupList 获取该用户的通知列表
 func GetUserApplyJoinGroupList(ID int) ([]*pb.ApplyJoinGroupMessage, error) {
 	// 该用户创建的群聊列表
 	var usercreategrouplist []models.Group
@@ -153,7 +153,7 @@ func GetUserApplyJoinGroupList(ID int) ([]*pb.ApplyJoinGroupMessage, error) {
 	return userapplylist, nil
 }
 
-// 获取该用户的好友通知列表
+// GetUserApplyAddUserList 获取该用户的好友通知列表
 func GetUserApplyAddUserList(ID int) ([]*pb.ApplyAddUserMessage, error) {
 
 	var userapplyadduserlist []models.ApplyAddUser

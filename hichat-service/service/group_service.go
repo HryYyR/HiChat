@@ -316,76 +316,95 @@ func HandleJoinGroup(c *gin.Context) {
 			})
 			return
 		}
-		//通知申请人,申请已被拒绝(刷新通知列表)
-		groupmsg := models.GroupMessage{
-			MsgType: config.MsgTypeRefreshGroupNotice,
-		}
+
 		c.JSON(http.StatusOK, gin.H{
 			"msg": "拒绝成功!",
 		})
-		return
+
+	} else if rawdata.HandleStatus == 1 {
+		// 同意申请
+		session := adb.Ssql.NewSession()
+		session.Begin()
+		defer session.Close()
+
+		addggur := models.GroupUserRelative{
+			UserID:    applyjoindata.ApplyUserID,
+			GroupID:   grouplist.ID,
+			GroupUUID: grouplist.UUID,
+		}
+		err = addggur.Association(grouplist, session) //连接关系
+		if err != nil {
+			session.Rollback()
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"msg": "同意加入群聊失败!",
+			})
+			return
+		}
+		// 修改申请状态
+		if _, err = session.Table("apply_join_group").ID(applyjoindata.ID).Update(models.ApplyJoinGroup{HandleStatus: rawdata.HandleStatus}); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"msg": "同意失败!",
+			})
+			return
+		}
+		groupmsg := models.GroupMessage{
+			UserID:     applyuserdata.ID,
+			UserName:   applyuserdata.UserName,
+			UserAvatar: applyuserdata.Avatar,
+			UserAge:    applyuserdata.Age,
+			UserCity:   applyuserdata.City,
+			GroupID:    grouplist.ID,
+			Msg:        fmt.Sprintf("%s加入了群聊", applyuserdata.UserName),
+			MsgType:    config.MsgTypeJoinGroup,
+		}
+		_, err = session.Table("group_message").Insert(&groupmsg)
+		if err != nil {
+			session.Rollback()
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"msg": err.Error(),
+			})
+			return
+		}
+		session.Commit()
+
+		// 通知群里的其他成员有用户加入
+		groupuserlist := models.GroupUserList[grouplist]
+		msgbyte, _ := json.Marshal(groupmsg)
+		for _, userid := range groupuserlist {
+			models.ServiceCenter.Clients[userid].Send <- msgbyte
+		}
+
+		//通知申请用户刷新群聊列表
+		selfmsg := models.Message{
+			UserID:   applyuserdata.ID,
+			UserName: applyuserdata.UserName,
+			GroupID:  grouplist.ID,
+			MsgType:  config.MsgTypeRefreshGroup,
+		}
+		selfmsgbyte, _ := json.Marshal(selfmsg)
+		models.ServiceCenter.Clients[applyuserdata.ID].Send <- selfmsgbyte
+
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "用户已加入!",
+		})
 	}
 
-	// 同意申请
-	session := adb.Ssql.NewSession()
-	defer session.Close()
-	session.Begin()
-	addggur := models.GroupUserRelative{
-		UserID:    applyjoindata.ApplyUserID,
-		GroupID:   grouplist.ID,
-		GroupUUID: grouplist.UUID,
-	}
-	err = addggur.Association(grouplist, session) //连接关系
-	if err != nil {
-		session.Rollback()
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "同意加入群聊失败!",
-		})
-		return
-	}
-	// 修改申请状态
-	if _, err = session.Table("apply_join_group").ID(applyjoindata.ID).Update(models.ApplyJoinGroup{HandleStatus: rawdata.HandleStatus}); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "同意失败!",
-		})
-		return
-	}
+	//通知申请人,申请已被处理(刷新通知列表)
 	groupmsg := models.GroupMessage{
-		UserID:     applyuserdata.ID,
-		UserName:   applyuserdata.UserName,
-		UserAvatar: applyuserdata.Avatar,
-		UserAge:    applyuserdata.Age,
-		UserCity:   applyuserdata.City,
-		GroupID:    grouplist.ID,
-		Msg:        fmt.Sprintf("%s加入了群聊", applyuserdata.UserName),
-		MsgType:    config.MsgTypeJoinGroup,
-	}
-	_, err = session.Table("group_message").Insert(&groupmsg)
-	if err != nil {
-		session.Rollback()
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": err.Error(),
-		})
-		return
-	}
-	session.Commit()
-
-	groupuserlist := models.GroupUserList[grouplist]
-	// 通知群里的其他成员有用户加入
-	msg := models.Message{
 		UserID:   applyuserdata.ID,
 		UserName: applyuserdata.UserName,
 		GroupID:  grouplist.ID,
-		MsgType:  config.MsgTypeJoinGroup,
+		MsgType:  config.MsgTypeRefreshGroupNotice,
 	}
-	msgbyte, _ := json.Marshal(msg)
-	for _, userid := range groupuserlist {
-		models.ServiceCenter.Clients[userid].Send <- msgbyte
+	bytemsg, err := json.Marshal(groupmsg)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"msg": "处理失败!",
+		})
+		return
 	}
+	models.ServiceCenter.Clients[applyuserdata.ID].Send <- bytemsg
 
-	c.JSON(http.StatusOK, gin.H{
-		"msg": "用户已加入!",
-	})
 }
 
 // ExitGroup 退出群

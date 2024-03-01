@@ -5,64 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f746ac52-31e6-4de7-b32e-e2ea3fe7dd1b" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/../hichat-file-service/service_registry/service_registry.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ADB/redis.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/redis_message_basic.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service_registry/service_registry.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/Public_util.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hichat-service/service_registry/service_registry.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hichat_static_server/ADB/rabbitmq.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hichat_static_server/log/log.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hichat_static_server/models/redis_message_basic.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hichat_static_server/service_registry/service_registry.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server-center/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-file-service/.idea/hichat-file-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-file-service/.idea/hichat-file-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-file-service/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-file-service/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-file-service/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-file-service/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-file-service/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-file-service/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-file-service/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-file-service/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hichat_static_server/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hichat_static_server/models/group_user_relative_basic.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hichat_static_server/proto/google/api/annotations.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hichat_static_server/proto/google/api/http.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hichat_static_server/service_registry/login_service_registry.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hichat_static_server/tool/common_tool.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat-file-service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-file-service/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-file-service/util/util.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-file-service/util/util.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/message_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/message_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/user_basic.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat-service/ADB/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/ADB/mysql.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/ADB/rabbitmq.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/ADB/rabbitmq.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat-service/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/log.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/models/apply_add_user_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/apply_add_user_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/models/apply_join_group_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/apply_join_group_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/models/group_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/group_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/models/group_message_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/group_message_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/models/group_unread_message_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/group_unread_message_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/models/group_user_relative_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/group_user_relative_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/models/handle_msg_func.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/handle_msg_func.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/models/hub_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/hub_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/models/user_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/user_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/proto/loginserver.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/proto/loginserver.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/models/message_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/message_basic.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat-service/service/group_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/service/group_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/service/ws_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/service/ws_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/test/xorm_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/test/xorm_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/util/Public_util.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/util/Public_util.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/service/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/service/user_service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/ADB/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/ADB/mysql.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/config/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/hichat_static_server.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/hichat_static_server.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/log.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/models/friend_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/models/friend_basic.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/models/group_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/models/group_basic.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/models/user_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/models/user_basic.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/proto/loginserver.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/proto/loginserver.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/proto/loginserver.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/proto/loginserver.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/proto/loginserver_grpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/proto/loginserver_grpc.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/rpcserver/login_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/rpcserver/login_server.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/service/email_code_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/service/email_code_service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/service/login_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/service/login_service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/service/register_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/service/register_service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/service/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/service/user_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/service_registry/service_registry.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/service_registry/consul_service_registry.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/test/xorm_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/test/xorm_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/util/Public_util.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/util/Public_util.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../start-ws.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../start-ws.bat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +54,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Go" />
+  <component name="GOROOT" url="file://C:/Program Files/Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>

@@ -52,3 +52,5 @@ var MsgTypeFriendImage = 1002        //好友图片消息
 var MsgTypeFriendAudio = 1003        //好友音频消息
 var MsgTypeSyncFriendMsg = 1400      //同步好友消息
 var MsgTypeClearSyncFriendMsg = 1401 //同步好友消息清零
+
+var MsgTypeStartUserToUserVideoCall = 1501 //用户之间发起视频通话

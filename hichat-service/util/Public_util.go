@@ -148,3 +148,10 @@ func GetIP() string {
 	}
 	return ""
 }
+
+func H(c *gin.Context, status int, msg string, err error) {
+	c.JSON(status, gin.H{
+		"msg":   msg,
+		"error": err,
+	})
+}

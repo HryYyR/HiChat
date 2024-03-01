@@ -680,13 +680,14 @@ type FriendList struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id        int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserName  string                 `protobuf:"bytes,2,opt,name=user_name,json=userName,proto3" json:"user_name,omitempty"`
-	NikeName  string                 `protobuf:"bytes,3,opt,name=nike_name,json=nikeName,proto3" json:"nike_name,omitempty"`
-	Email     string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
-	Avatar    string                 `protobuf:"bytes,5,opt,name=avatar,proto3" json:"avatar,omitempty"`
-	City      string                 `protobuf:"bytes,6,opt,name=city,proto3" json:"city,omitempty"`
-	Age       string                 `protobuf:"bytes,7,opt,name=age,proto3" json:"age,omitempty"`
+	Id       int32  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserName string `protobuf:"bytes,2,opt,name=user_name,json=userName,proto3" json:"user_name,omitempty"`
+	NikeName string `protobuf:"bytes,3,opt,name=nike_name,json=nikeName,proto3" json:"nike_name,omitempty"`
+	Email    string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	Avatar   string `protobuf:"bytes,5,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	City     string `protobuf:"bytes,6,opt,name=city,proto3" json:"city,omitempty"`
+	Age      string `protobuf:"bytes,7,opt,name=age,proto3" json:"age,omitempty"`
+	// repeated FriendMessageItem friend_message_item =8;
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	DeletedAt *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
 	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`

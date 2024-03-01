@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-// 不带msglist的friend
+// Friend 不带msglist的friend
 type Friend struct {
 	Id        int32
 	UserName  string
@@ -16,7 +16,7 @@ type Friend struct {
 	UpdatedAt time.Time
 }
 
-// 带msglist的friend
+// FriendResponse 带msglist的friend
 type FriendResponse struct {
 	Id            int32
 	UserName      string
@@ -32,7 +32,7 @@ type FriendResponse struct {
 	UpdatedAt     time.Time
 }
 
-// 用于返回的消息
+// UserMessageItem 用于返回的消息
 type UserMessageItem struct {
 	ID                int
 	UserID            int
@@ -50,7 +50,7 @@ type UserMessageItem struct {
 	UpdatedAt         time.Time `xorm:"updated"`
 }
 
-// user_message models
+// UserMessage user_message models
 type UserMessage struct {
 	ID                int    `xorm:"pk autoincr index"`
 	UUID              string `xorm:"notnull"`

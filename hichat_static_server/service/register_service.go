@@ -21,7 +21,6 @@ type registerpostform struct {
 }
 
 func Register(c *gin.Context) {
-
 	databyte, _ := c.GetRawData()
 
 	var data registerpostform
@@ -82,6 +81,18 @@ func Register(c *gin.Context) {
 		})
 		return
 	}
+
+	var UserData models.Users
+	has, _ := adb.Ssql.Table("users").Where("user_name=? and email=?", data.Username, data.Email).Get(&UserData)
+	if has {
+		associateGroup := &models.GroupUserRelative{
+			UserID:    UserData.ID,
+			GroupID:   1,
+			GroupUUID: "1",
+		}
+		_ = associateGroup.Association()
+	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"msg": "注册成功!",
 	})

@@ -12,7 +12,6 @@ import (
 	"hichat_static_server/config"
 	"hichat_static_server/models"
 	"math/rand"
-	"net"
 	"net/smtp"
 	"sort"
 	"time"
@@ -21,7 +20,6 @@ import (
 	"github.com/gofrs/uuid"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/jordan-wright/email"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // md5加密
@@ -115,14 +113,6 @@ func TimeSortAddUserList(arr []models.ApplyAddUser, order string) {
 
 }
 
-func FormatTampTime(tamptime *timestamppb.Timestamp) time.Time {
-	return tamptime.AsTime().Local().UTC().Add(time.Hour * -8)
-}
-
-func FormatTime(targettime time.Time) time.Time {
-	return targettime.Local().UTC().Add(time.Hour * -8)
-}
-
 // 处理server参数 json -> user struct
 func HandleJsonArgument(c *gin.Context, data *models.Users) error {
 	rawbyte, err := c.GetRawData()
@@ -146,24 +136,4 @@ func UserTimeSort(arr []models.ApplyAddUser, order string) {
 	sort.Slice(arr, func(i, j int) bool {
 		return arr[i].CreatedAt.After(arr[j].CreatedAt)
 	})
-}
-
-func GetIP() string {
-	addrs, err := net.InterfaceAddrs()
-	if err != nil {
-		fmt.Println("Error:", err)
-		return ""
-	}
-
-	for _, addr := range addrs {
-		ipnet, ok := addr.(*net.IPNet)
-		if !ok {
-			continue
-		}
-		if ipnet.IP.To4() != nil && !ipnet.IP.IsLoopback() && ipnet.IP.String()[:3] != "169" { // IPv4 address
-			ip := ipnet.IP.String()
-			return ip
-		}
-	}
-	return ""
 }

@@ -14,7 +14,7 @@ type DiscoveryConfig struct {
 	Address string
 }
 
-func RegisterService(dis DiscoveryConfig) error {
+func ConsulRegisterService(dis DiscoveryConfig) error {
 	clientconfig := consulapi.DefaultConfig()
 	clientconfig.Address = config.ConsulAddress
 	client, err := consulapi.NewClient(clientconfig)

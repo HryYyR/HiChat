@@ -2,135 +2,61 @@ package rpcserver
 
 import (
 	"context"
+	"errors"
+	"fmt"
+	adb "hichat_static_server/ADB"
 	"hichat_static_server/models"
-	pb "hichat_static_server/proto"
+	"hichat_static_server/proto"
 	"hichat_static_server/util"
 	"time"
-
-	"google.golang.org/grpc"
 )
 
-func GetUserGroupList(uid int) (models.UserGroupList, error) {
-	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
+type Server struct {
+	proto.UnimplementedLoginServer
+}
+
+func NewServer() *Server {
+	return &Server{}
+}
+
+func (s *Server) UserLogin(ctx context.Context, in *proto.UserData) (*proto.LoginResponse, error) {
+	if in.Username == "" || in.Password == "" {
+		return nil, errors.New("内容格式有误,请检查后重试")
+	}
+
+	// 查询用户是否存在
+	var userdata models.Users
+	hasuser, err := adb.Ssql.Table(&models.Users{}).Where("user_name = ?", in.Username).Get(&userdata)
 	if err != nil {
-		return models.UserGroupList{}, err
+		return nil, errors.New("查询用户信息失败")
 	}
-	defer conn.Close()
+	if !hasuser {
+		return nil, errors.New("用户不存在")
+	}
 
-	c := pb.NewLoginClient(conn) //初始化客户端
+	if util.Md5(in.Password+userdata.Salt) != userdata.Password {
+		return nil, errors.New("密码错误")
+	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*3) // 初始化上下文，设置请求超时时间为3秒
-	defer cancel()
-
-	r, err := c.GetUserGroupList(ctx, &pb.UserData{Userid: int32(uid)})
+	token, err := util.GenerateToken(userdata.ID, userdata.UUID, userdata.UserName, 24*time.Hour)
 	if err != nil {
-		return models.UserGroupList{}, err
-	}
-	// 处理群相关数据
-	groupdata := make([]models.GroupDetail, 0)
-	for _, g := range r.GroupDetail {
-		var messageList []models.GroupMessage
-		for _, m := range g.MessageList {
-			messageList = append(messageList, models.GroupMessage{
-				ID:          int(m.Id),
-				UserID:      int(m.UserId),
-				UserUUID:    m.UserUuid,
-				UserName:    m.UserName,
-				UserAvatar:  m.UserAvatar,
-				UserCity:    m.UserCity,
-				UserAge:     m.UserAge,
-				GroupID:     int(m.GroupId),
-				Msg:         m.Msg,
-				MsgType:     int(m.MsgType),
-				IsReply:     m.IsReply,          //是否是回复消息
-				ReplyUserID: int(m.ReplyUserId), //如果是,被回复的用户id
-				Context:     m.Context,
-				CreatedAt:   util.FormatTampTime(m.CreatedAt),
-				DeletedAt:   util.FormatTampTime(m.DeletedAt),
-				UpdatedAt:   util.FormatTampTime(m.UpdatedAt),
-			})
-		}
-		groupdata = append(groupdata, models.GroupDetail{
-			GroupInfo: models.Group{
-				ID:            int(g.GroupInfo.Id),
-				UUID:          g.GroupInfo.Uuid,
-				CreaterID:     int(g.GroupInfo.CreaterId),
-				CreaterName:   g.GroupInfo.CreaterName,
-				GroupName:     g.GroupInfo.GroupName,
-				Avatar:        g.GroupInfo.Avatar,
-				Grade:         int(g.GroupInfo.Grade),
-				UnreadMessage: int(g.GroupInfo.UnreadMessage),
-				MemberCount:   int(g.GroupInfo.MemberCount),
-				CreatedAt:     util.FormatTampTime(g.GroupInfo.CreatedAt),
-				DeletedAt:     util.FormatTampTime(g.GroupInfo.DeletedAt),
-				UpdatedAt:     util.FormatTampTime(g.GroupInfo.UpdatedAt),
-			},
-			MessageList: messageList,
-		})
+		return nil, errors.New("生成签名失败")
 	}
 
-	// 处理群聊申请消息相关数据
-	applydata := make([]models.ApplyJoinGroup, 0)
-	for _, applyuser := range r.ApplyJoinGroupList {
-		applydata = append(applydata, models.ApplyJoinGroup{
-			ID:            int(applyuser.Id),
-			ApplyUserID:   int(applyuser.ApplyUserId),
-			ApplyUserName: applyuser.AplyUserName,
-			GroupID:       int(applyuser.GroupId),
-			ApplyMsg:      applyuser.ApplyMsg,
-			ApplyWay:      int(applyuser.ApplyWay),
-			HandleStatus:  int(applyuser.HandleStatus),
-			CreatedAt:     util.FormatTampTime(applyuser.CreatedAt),
-			DeletedAt:     util.FormatTampTime(applyuser.DeletedAt),
-			UpdatedAt:     util.FormatTampTime(applyuser.UpdatedAt),
-		})
-	}
-	util.TimeSortApplyJoinGroupList(applydata, "desc")
-
-	// 处理好友申请消息相关数据
-	applyadduserdata := make([]models.ApplyAddUser, 0)
-	for _, applyuser := range r.ApplyAddUserList {
-		applyadduserdata = append(applyadduserdata, models.ApplyAddUser{
-			ID:               int(applyuser.Id),
-			PreApplyUserID:   int(applyuser.PreApplyUserId),
-			PreApplyUserName: applyuser.PreApplyUserName,
-			ApplyUserID:      int(applyuser.ApplyUserId),
-			ApplyUserName:    applyuser.ApplyUserName,
-			ApplyMsg:         applyuser.ApplyMsg,
-			ApplyWay:         applyuser.ApplyWay,
-			HandleStatus:     int(applyuser.HandleStatus),
-			CreatedAt:        util.FormatTampTime(applyuser.CreatedAt),
-			DeletedAt:        util.FormatTampTime(applyuser.DeletedAt),
-			UpdatedAt:        util.FormatTampTime(applyuser.UpdatedAt),
-		})
-	}
-	util.TimeSortAddUserList(applyadduserdata, "desc")
-
-	// 处理好友列表相关数据
-	friendlist := make([]models.FriendResponse, 0)
-	for _, Friend := range r.FriendList {
-		friendlist = append(friendlist, models.FriendResponse{
-			Id:          Friend.Id,
-			UserName:    Friend.UserName,
-			NikeName:    Friend.NikeName,
-			Email:       Friend.Email,
-			Avatar:      Friend.Avatar,
-			City:        Friend.City,
-			Age:         Friend.Age,
-			MessageList: []models.UserMessageItem{},
-			CreatedAt:   util.FormatTampTime(Friend.CreatedAt),
-			DeletedAt:   util.FormatTampTime(Friend.DeletedAt),
-			UpdatedAt:   util.FormatTampTime(Friend.UpdatedAt),
-		})
+	//获取登录信息
+	ResponseUserData := new(models.ResponseUserData)
+	err = userdata.Login(ResponseUserData)
+	if err != nil {
+		fmt.Println(err)
+		return nil, errors.New("登录失败")
 	}
 
-	UserGroupList := models.UserGroupList{
-		GroupDetail:           groupdata,
-		ApplyJoinGroupMessage: applydata,
-		ApplyAddUserMessage:   applyadduserdata,
-		FriendList:            friendlist,
-	}
-	// fmt.Printf("%+v\n", UserGroupList)
+	ProtoStruct := ResponseUserData.ResponseUserDataToProto()
 
-	return UserGroupList, nil
+	res := new(proto.LoginResponse)
+	res.Token = token
+	res.Msg = "登陆成功"
+	res.Userdata = ProtoStruct
+
+	return res, nil
 }

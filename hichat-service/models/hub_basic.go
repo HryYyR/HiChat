@@ -36,12 +36,13 @@ func (h *Hub) Run() {
 	for {
 		select {
 		// 退出登录
-		case UserClient := <-h.Loginout:
-			client := ServiceCenter.Clients[UserClient.UserID]
+		case UC := <-h.Loginout:
+			client := ServiceCenter.Clients[UC.UserID]
 			client.Status = false
-			ServiceCenter.Clients[UserClient.UserID].Mutex.Lock()
-			ServiceCenter.Clients[UserClient.UserID] = client
-			ServiceCenter.Clients[UserClient.UserID].Mutex.Unlock()
+			client.Conn = nil
+			ServiceCenter.Clients[UC.UserID].Mutex.Lock()
+			ServiceCenter.Clients[UC.UserID] = client
+			ServiceCenter.Clients[UC.UserID].Mutex.Unlock()
 
 		// 消息广播到指定group
 		case message := <-h.Broadcast:

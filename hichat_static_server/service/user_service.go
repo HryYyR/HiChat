@@ -172,6 +172,7 @@ func GetUserApplyJoinGroupList(c *gin.Context) {
 		})
 	}
 
+	fmt.Println(applyjoingrouplist)
 	util.GroupTimeSort(applyjoingrouplist, "desc")
 
 	c.JSON(http.StatusOK, gin.H{

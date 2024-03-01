@@ -1,24 +1,35 @@
 package config
 
-import "time"
+import (
+	"time"
+)
 
 var ServerPort = 3005
 var ConsulAddress = "127.0.0.1:8500"
 
+var LoginRpcAddr = ":8080"
+var LoginHttpAddr = ":8090"
+
 var JwtKey = "Hyyyh1527"
 
-// var MysqlAddress = "host.docker.internal:3306" //docker
 var MysqlAddress = "localhost:3306" //localhost
+//var MysqlAddress = os.Getenv("DB_HOST") + ":3306" //localhost
+// var MysqlAddress = "host.docker.internal:3306" //docker
 
 var MysqlUserName = "root"
 var MysqlPassword = "root"
 var MysqlDatabase = "go_websocket"
 
+// var RedisAddr = "host.docker.internal:6379"
 var RedisAddr = "localhost:6379"
+
+// var RedisAddr = os.Getenv("REDIS_HOST") + ":6379"
 var RedisPassword = ""
 var RedisDB = 0
 
-var RabbitMQAddress = "amqp://guest:guest@localhost:5672/"
+var RabbitMQAddress = "amqp://guest:guest@host.docker.internal:5672/"
+
+//var RabbitMQAddress = "amqp://guest:guest@" + os.Getenv("MQ_HOST") + ":5672/"
 
 var EmailAccount = "2452719312@qq.com"
 var EmailPassword = "hdabghzavlyeeajj"

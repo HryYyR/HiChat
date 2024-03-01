@@ -21,7 +21,7 @@ var upgrader = websocket.Upgrader{
 	},
 }
 
-// 连接ws
+// Connectws 连接ws
 func Connectws(c *gin.Context) {
 	token := c.Query("token")
 

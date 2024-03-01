@@ -17,7 +17,8 @@ func main() {
 	gin.SetMode("release")
 	engine := gin.New()
 	engine.Use(middleware.Cors())
-	engine.POST("/uploadfile", service.UploadFile)
+	g := engine.Group("file")
+	g.POST("/uploadfile", service.UploadFile)
 
 	engine.Static("/static", "./file")
 

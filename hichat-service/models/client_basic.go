@@ -25,6 +25,8 @@ type UserClient struct {
 // 读取用户发送的信息
 func (c *UserClient) ReadPump() {
 	defer func() {
+		fmt.Println("close reader")
+
 		ServiceCenter.Loginout <- c
 		c.Conn.Close()
 	}()
@@ -38,11 +40,11 @@ func (c *UserClient) ReadPump() {
 		if err != nil {
 			fmt.Println(err)
 			if websocket.IsCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-				fmt.Println("有用户退出了")
+				fmt.Println("用户退出了")
 				ServiceCenter.Loginout <- c
 			}
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-				fmt.Printf("IsUnexpectedCloseError: %v", err)
+				fmt.Printf("IsUnexpectedCloseError: %v\n", err)
 			}
 			break
 		}
@@ -57,11 +59,15 @@ func (c *UserClient) WritePump() {
 	ticker := time.NewTicker(PingPeriod)
 
 	defer func() {
+		fmt.Println("close writer")
 		ticker.Stop()
 		c.Conn.Close()
 	}()
 
 	for {
+		if c.Status == false {
+			break
+		}
 		select {
 		case message, ok := <-c.Send:
 			c.Conn.SetWriteDeadline(time.Now().Add(WriteWait))

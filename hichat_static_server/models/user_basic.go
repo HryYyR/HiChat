@@ -1,14 +1,19 @@
 package models
 
 import (
+	"context"
+	"errors"
 	"fmt"
 	"github.com/goinggo/mapstructure"
+	"github.com/golang-jwt/jwt/v4"
+	"google.golang.org/protobuf/types/known/timestamppb"
 	adb "hichat_static_server/ADB"
+	"hichat_static_server/proto"
+	"hichat_static_server/tool"
 	"sort"
 	"strconv"
+	"sync"
 	"time"
-
-	"github.com/golang-jwt/jwt/v4"
 )
 
 type UserClaim struct {
@@ -35,18 +40,154 @@ type ResponseUserData struct {
 	FriendList    []FriendResponse
 }
 
+func (r *ResponseUserData) ResponseUserDataToProto() *proto.ResponseUserData {
+	GroupList := make([]*proto.GroupList, 0)
+	for _, d := range r.GroupList {
+		ginfo := proto.Group{
+			Id:            int32(d.GroupInfo.ID),
+			Uuid:          d.GroupInfo.UUID,
+			CreaterId:     int32(d.GroupInfo.CreaterID),
+			CreaterName:   d.GroupInfo.CreaterName,
+			GroupName:     d.GroupInfo.GroupName,
+			Avatar:        d.GroupInfo.Avatar,
+			Grade:         int32(d.GroupInfo.Grade),
+			MemberCount:   int32(d.GroupInfo.MemberCount),
+			UnreadMessage: int32(d.GroupInfo.UnreadMessage),
+			CreatedAt:     timestamppb.New(d.GroupInfo.CreatedAt),
+			DeletedAt:     timestamppb.New(d.GroupInfo.DeletedAt),
+			UpdatedAt:     timestamppb.New(d.GroupInfo.UpdatedAt),
+		}
+		mlist := make([]*proto.GroupMessage, 0)
+		for _, m := range d.MessageList {
+			gmsg := proto.GroupMessage{
+				Id:          int32(m.ID),
+				UserId:      int32(m.UserID),
+				UserUuid:    m.UserUUID,
+				UserName:    m.UserName,
+				UserAvatar:  m.UserAvatar,
+				UserCity:    m.UserCity,
+				UserAge:     m.UserAge,
+				GroupId:     int32(m.GroupID),
+				Msg:         m.Msg,
+				MsgType:     int32(m.MsgType),
+				IsReply:     m.IsReply,
+				ReplyUserId: int32(m.ReplyUserID),
+				Context:     m.Context,
+				CreatedAt:   timestamppb.New(m.CreatedAt),
+				DeletedAt:   timestamppb.New(m.DeletedAt),
+				UpdatedAt:   timestamppb.New(m.UpdatedAt),
+			}
+			mlist = append(mlist, &gmsg)
+		}
+		GroupList = append(GroupList, &proto.GroupList{
+			GroupInfo:   &ginfo,
+			MessageList: mlist,
+		})
+	}
+
+	ApplyList := make([]*proto.ApplyGroupList, 0)
+	for _, r := range r.ApplyList {
+		ApplyList = append(ApplyList, &proto.ApplyGroupList{
+			Id:            int32(r.ID),
+			ApplyUserId:   int32(r.ApplyUserID),
+			ApplyUserName: r.ApplyUserName,
+			GroupId:       int32(r.GroupID),
+			GroupName:     r.GroupName,
+			ApplyMsg:      r.ApplyMsg,
+			ApplyWay:      int32(r.ApplyWay),
+			HandleStatus:  int32(r.HandleStatus),
+			CreatedAt:     timestamppb.New(r.CreatedAt),
+			DeletedAt:     timestamppb.New(r.DeletedAt),
+			UpdatedAt:     timestamppb.New(r.UpdatedAt),
+		})
+	}
+
+	ApplyUserList := make([]*proto.ApplyUserList, 0)
+	for _, user := range r.ApplyUserList {
+		ApplyUserList = append(ApplyUserList, &proto.ApplyUserList{
+			Id:               int32(user.ID),
+			PreApplyUserId:   int32(user.PreApplyUserID),
+			PreApplyUserName: user.PreApplyUserName,
+			ApplyUserId:      int32(user.ApplyUserID),
+			ApplyUserName:    user.ApplyUserName,
+			ApplyMsg:         user.ApplyMsg,
+			ApplyWay:         user.ApplyWay,
+			HandleStatus:     int32(user.HandleStatus),
+			CreatedAt:        timestamppb.New(user.CreatedAt),
+			DeletedAt:        timestamppb.New(user.DeletedAt),
+			UpdatedAt:        timestamppb.New(user.UpdatedAt),
+		})
+	}
+
+	Friendlist := make([]*proto.FriendList, 0)
+	for _, f := range r.FriendList {
+		msglist := make([]*proto.UserMessage, 0)
+		for _, msg := range f.MessageList {
+			msglist = append(msglist, &proto.UserMessage{
+				ID:                int32(msg.ID),
+				UserID:            int32(msg.UserID),
+				UserName:          msg.UserName,
+				UserAvatar:        msg.UserAvatar,
+				ReceiveUserID:     int32(msg.ReceiveUserID),
+				ReceiveUserName:   msg.ReceiveUserName,
+				ReceiveUserAvatar: msg.ReceiveUserAvatar,
+				Msg:               msg.Msg,
+				MsgType:           int32(msg.MsgType),
+				IsReply:           msg.IsReply,
+				ReplyUserID:       int32(msg.ReplyUserID),
+				CreatedAt:         timestamppb.New(msg.CreatedAt),
+				DeletedAt:         timestamppb.New(msg.DeletedAt),
+				UpdatedAt:         timestamppb.New(msg.UpdatedAt),
+			})
+		}
+
+		Friendlist = append(Friendlist, &proto.FriendList{
+			Id:            f.Id,
+			UserName:      f.UserName,
+			NikeName:      f.NikeName,
+			Email:         f.Email,
+			Avatar:        f.Avatar,
+			City:          f.City,
+			Age:           f.Age,
+			UnreadMessage: int32(f.UnreadMessage),
+			MessageList:   msglist,
+			CreatedAt:     timestamppb.New(f.CreatedAt),
+			DeletedAt:     timestamppb.New(f.DeletedAt),
+			UpdatedAt:     timestamppb.New(f.UpdatedAt),
+		})
+	}
+
+	return &proto.ResponseUserData{
+		ID:            int32(r.ID),
+		UserName:      r.UserName,
+		NikeName:      r.NikeName,
+		Email:         r.Email,
+		CreatedTime:   timestamppb.New(r.CreatedTime),
+		LoginTime:     r.LoginTime,
+		Avatar:        r.Avatar,
+		Age:           int32(r.Age),
+		City:          r.City,
+		Introduce:     r.Introduce,
+		GroupList:     GroupList,
+		ApplyList:     ApplyList,
+		ApplyUserList: ApplyUserList,
+		FriendList:    Friendlist,
+	}
+
+}
+
 func (u *Users) SaveToRedis() error {
 	_, err := adb.Rediss.HMSet(strconv.Itoa(u.ID), map[string]interface{}{
-		"ID":          u.ID,
-		"UserName":    u.UserName,
-		"NikeName":    u.NikeName,
-		"Email":       u.Email,
-		"CreatedTime": u.CreatedAt.Local().String(),
-		"LoginTime":   u.LoginTime,
-		"Avatar":      u.Avatar,
-		"Age":         u.Age,
-		"City":        u.City,
-		"Introduce":   u.Introduce,
+		"ID":        u.ID,
+		"UserName":  u.UserName,
+		"NikeName":  u.NikeName,
+		"Email":     u.Email,
+		"CreatedAt": tool.FormatTime(u.CreatedAt),
+		"LoginTime": u.LoginTime,
+		"Avatar":    u.Avatar,
+		"Age":       u.Age,
+		"City":      u.City,
+		"Introduce": u.Introduce,
 		//"GroupList":   ru.GroupList,
 		//"ApplyList"     []ApplyJoinGroupResponse
 		//"ApplyUserList" []ApplyAddUser
@@ -89,26 +230,29 @@ func (u *Users) GetUserData(userdata *Users) error {
 	//从redis获取数据
 	var udata = adb.Rediss.HGetAll(strconv.Itoa(u.ID)).Val()
 	if len(udata) != 0 {
+		fmt.Println("走redis")
 		_ = mapstructure.Decode(udata, &userinfo)
 		userinfo.ID, _ = strconv.Atoi(udata["ID"])
 		userinfo.Age, _ = strconv.Atoi(udata["Age"])
-		//fmt.Printf("%+v", userinfo)
+		fmt.Printf("%+v", userinfo)
 		*userdata = userinfo
 		return nil
 	}
-	//fmt.Println("走数据库")
+	fmt.Println("走mysql")
 
 	exit, err := adb.Ssql.Omit("Password,Salt,Grade,IP").Table("users").Where("id =?", u.ID).Get(&userinfo)
 	if !exit {
 		return fmt.Errorf("用户不存在")
 	}
 	if err != nil {
+		fmt.Println("mysql查询失败", err)
 		return err
 	}
 
 	err = u.SaveToRedis()
 	if err != nil {
-		return err
+		fmt.Println("保存到redis失败", err)
+		//return err
 	}
 
 	*userdata = userinfo
@@ -369,48 +513,79 @@ func (u *Users) GetFriendListAndMEssage(friendresponselist *[]FriendResponse) er
 }
 
 func (u *Users) Login(logindata *ResponseUserData) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	cctx, ccancel := context.WithCancel(ctx)
+
+	wg := sync.WaitGroup{}
+	wg.Add(5)
+
 	// 群聊通知列表
 	applygrouplist := make([]ApplyJoinGroupResponse, 0)
-	err := u.GetApplyMsgList(&applygrouplist)
-	if err != nil {
-		return err
-	}
-	sort.Slice(applygrouplist, func(i, j int) bool {
-		return applygrouplist[i].CreatedAt.After(applygrouplist[j].CreatedAt)
-	})
+	go func(c context.Context) {
+		err := u.GetApplyMsgList(&applygrouplist)
+		if err != nil {
+			fmt.Println("群聊通知列表", err)
+			ccancel()
+		}
+		sort.Slice(applygrouplist, func(i, j int) bool {
+			return applygrouplist[i].CreatedAt.After(applygrouplist[j].CreatedAt)
+		})
+		wg.Done()
+	}(cctx)
 
 	// 好友申请列表
 	applyuserlist := make([]ApplyAddUser, 0)
-	err = u.GetApplyAddUserList(&applyuserlist)
-	if err != nil {
-		return err
-	}
+	go func(c context.Context) {
+		err := u.GetApplyAddUserList(&applyuserlist)
+		if err != nil {
+			fmt.Println("好友申请列表", err)
+			ccancel()
+		}
+		wg.Done()
+	}(cctx)
 
 	// 好友列表
 	friendlist := make([]FriendResponse, 0)
-	err = u.GetFriendListAndMEssage(&friendlist)
-	if err != nil {
-		return err
-	} //根据未读消息排序
-	sort.Slice(friendlist, func(i, j int) bool {
-		return friendlist[i].UnreadMessage > friendlist[j].UnreadMessage
-	})
+	go func(c context.Context) {
+		err := u.GetFriendListAndMEssage(&friendlist)
+		if err != nil {
+			fmt.Println("好友列表", err)
+			ccancel()
+		}
+		//根据未读消息排序
+		sort.Slice(friendlist, func(i, j int) bool {
+			return friendlist[i].UnreadMessage > friendlist[j].UnreadMessage
+		})
+		wg.Done()
+	}(cctx)
 
 	// 群聊列表
 	grouplist := make([]GroupDetail, 0)
-	err = u.GetUserGroupList(&grouplist)
-	if err != nil {
-		return err
-	} //根据未读消息排序
-	sort.Slice(grouplist, func(i, j int) bool {
-		return grouplist[i].GroupInfo.UnreadMessage > friendlist[j].UnreadMessage
-	})
+	go func(c context.Context) {
+		err := u.GetUserGroupList(&grouplist)
+		if err != nil {
+			fmt.Println("群聊列表", err)
+			ccancel()
+		}
+		//根据未读消息排序
+		sort.Slice(grouplist, func(i, j int) bool {
+			return grouplist[i].GroupInfo.UnreadMessage > friendlist[j].UnreadMessage
+		})
+		wg.Done()
+	}(cctx)
 
 	var userdata Users
-	err = u.GetUserData(&userdata)
-	if err != nil {
-		return err
-	}
+	go func(c context.Context) {
+		err := u.GetUserData(&userdata)
+		if err != nil {
+			fmt.Println("获取用户数据error:", err)
+			ccancel()
+		}
+		wg.Done()
+	}(cctx)
+
+	wg.Wait()
 
 	*logindata = ResponseUserData{
 		ID:            userdata.ID,
@@ -429,5 +604,19 @@ func (u *Users) Login(logindata *ResponseUserData) error {
 		FriendList:    friendlist,
 	}
 
-	return nil
+	var reserr error
+	select {
+	case <-cctx.Done():
+		err := cctx.Err()
+		fmt.Println(err)
+		if err == context.Canceled {
+			reserr = errors.New("请求失败(请求被取消)")
+		} else if err == context.DeadlineExceeded {
+			reserr = errors.New("请求超时")
+		}
+	default:
+		fmt.Println("登录成功")
+	}
+
+	return reserr
 }

@@ -45,19 +45,20 @@ func Login(c *gin.Context) {
 		log.Println(err)
 		// fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "failed to query userdata",
+			"msg":   "failed to query userdata",
+			"error": err,
 		})
 		return
 	}
 	if !hasuser {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "user not exit",
+			"msg": "用户不存在",
 		})
 		return
 	}
 	if util.Md5(data.Password+userdata.Salt) != userdata.Password {
 		c.JSON(http.StatusBadGateway, gin.H{
-			"msg": "password mismatch",
+			"msg": "密码错误",
 		})
 		return
 	}
