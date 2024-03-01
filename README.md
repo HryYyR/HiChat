@@ -1,8 +1,11 @@
-# Client
-Electron(vue3+typescript)
-# Server
+
+# Service
 Go
 # Cache
 Redis
 # Database
 Mysql
+# MQ
+Rabitmq
+# ServiceDiscovery
+Consul
