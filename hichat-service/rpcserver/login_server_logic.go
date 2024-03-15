@@ -12,7 +12,7 @@ import (
 
 // GetUserGroupList var mu sync.Mutex // 创建一个全局的互斥锁
 func GetUserGroupList(ID int) ([]*pb.GroupDetail, error) {
-	session := adb.Ssql.NewSession()
+	session := adb.SqlStruct.Conn.NewSession()
 	defer session.Close()
 	session.Begin()
 	var usergouplist []*pb.GroupDetail
@@ -127,13 +127,13 @@ func GetUserGroupList(ID int) ([]*pb.GroupDetail, error) {
 func GetUserApplyJoinGroupList(ID int) ([]*pb.ApplyJoinGroupMessage, error) {
 	// 该用户创建的群聊列表
 	var usercreategrouplist []models.Group
-	if err := adb.Ssql.Table("group").Where("creater_id=?", ID).Find(&usercreategrouplist); err != nil {
+	if err := adb.SqlStruct.Conn.Table("group").Where("creater_id=?", ID).Find(&usercreategrouplist); err != nil {
 		return nil, err
 	}
 	userapplylist := make([]*pb.ApplyJoinGroupMessage, 0)
 	for _, group := range usercreategrouplist {
 		var applyuserlist []models.ApplyJoinGroup
-		adb.Ssql.Table("apply_join_group").Where("group_id = ?", group.ID).Find(&applyuserlist)
+		adb.SqlStruct.Conn.Table("apply_join_group").Where("group_id = ?", group.ID).Find(&applyuserlist)
 		for _, applyuser := range applyuserlist {
 			userapplylist = append(userapplylist, &pb.ApplyJoinGroupMessage{
 				Id:           int32(applyuser.ID),
@@ -157,7 +157,7 @@ func GetUserApplyJoinGroupList(ID int) ([]*pb.ApplyJoinGroupMessage, error) {
 func GetUserApplyAddUserList(ID int) ([]*pb.ApplyAddUserMessage, error) {
 
 	var userapplyadduserlist []models.ApplyAddUser
-	if err := adb.Ssql.Table("apply_add_user").Where("pre_apply_user_id=? or apply_user_id=?", ID, ID).Find(&userapplyadduserlist); err != nil {
+	if err := adb.SqlStruct.Conn.Table("apply_add_user").Where("pre_apply_user_id=? or apply_user_id=?", ID, ID).Find(&userapplyadduserlist); err != nil {
 		return []*pb.ApplyAddUserMessage{}, err
 	}
 
@@ -182,7 +182,7 @@ func GetUserApplyAddUserList(ID int) ([]*pb.ApplyAddUserMessage, error) {
 
 func GetFriendList(ID int) ([]*pb.FriendList, error) {
 	var friendrelativelist []models.UserUserRelative
-	err := adb.Ssql.Table("user_user_relative").Where("pre_user_id = ? or back_user_id=?", ID, ID).Find(&friendrelativelist)
+	err := adb.SqlStruct.Conn.Table("user_user_relative").Where("pre_user_id = ? or back_user_id=?", ID, ID).Find(&friendrelativelist)
 	if err != nil {
 		fmt.Println("获取用户关系失败")
 		return []*pb.FriendList{}, err
@@ -193,7 +193,7 @@ func GetFriendList(ID int) ([]*pb.FriendList, error) {
 	for _, relative := range friendrelativelist {
 		var frienddata models.Users
 		if relative.BackUserID == ID {
-			exit, err := adb.Ssql.Table("users").Where("id = ?", relative.PreUserID).Get(&frienddata)
+			exit, err := adb.SqlStruct.Conn.Table("users").Where("id = ?", relative.PreUserID).Get(&frienddata)
 			if err != nil {
 				fmt.Println("获取用户信息失败")
 				return []*pb.FriendList{}, err
@@ -202,7 +202,7 @@ func GetFriendList(ID int) ([]*pb.FriendList, error) {
 				continue
 			}
 		} else {
-			exit, err := adb.Ssql.Table("users").Where("id = ?", relative.BackUserID).Get(&frienddata)
+			exit, err := adb.SqlStruct.Conn.Table("users").Where("id = ?", relative.BackUserID).Get(&frienddata)
 			if err != nil {
 				fmt.Println("获取用户信息失败")
 				return []*pb.FriendList{}, err

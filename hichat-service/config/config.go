@@ -47,6 +47,8 @@ var MsgTypeRefreshFriend = 501       //刷新好友列表
 var MsgTypeRefreshGroupNotice = 502  //刷新群聊通知列表
 var MsgTypeRefreshFriendNotice = 503 //刷新好友通知列表
 
+var MsgTypeAckMsg = 888 //确认消息
+
 var MsgTypeFriendDefault = 1001      //好友文字消息
 var MsgTypeFriendImage = 1002        //好友图片消息
 var MsgTypeFriendAudio = 1003        //好友音频消息

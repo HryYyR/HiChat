@@ -26,8 +26,8 @@ func PrintRoomInfo() {
 		prinstr += "]\n"
 
 		printgroupstr := "群列表: [\n"
-		for group, useridarr := range models.GroupUserList {
-			printgroupstr += fmt.Sprintf("%v : %v\n", group.ID, useridarr)
+		for gid, useridarr := range models.GroupUserList {
+			printgroupstr += fmt.Sprintf("%v : %v\n", gid, useridarr)
 		}
 		printgroupstr += "]\n"
 
@@ -38,11 +38,11 @@ func PrintRoomInfo() {
 
 }
 
-// 初始化用户到内存中 ServiceCenter.Clients
+// InitUserToClient 初始化用户到内存中 ServiceCenter.Clients
 func InitUserToClient() error {
 	var userdatalist []models.Users
 
-	err := adb.Ssql.Table("users").Find(&userdatalist)
+	err := adb.SqlStruct.Conn.Table("users").Find(&userdatalist)
 	if err != nil {
 		return err
 	}
@@ -68,10 +68,10 @@ func InitUserToClient() error {
 	return nil
 }
 
-// 初始化群和用户的关系列表 GroupUserList
+// InitClientsToGrouplist 初始化群和用户的关系列表 GroupUserList
 func InitClientsToGrouplist() error {
 	var grouplist []models.Group
-	err := adb.Ssql.Table("group").Find(&grouplist) //查询所有的群
+	err := adb.SqlStruct.Conn.Table("group").Find(&grouplist) //查询所有的群
 	if err != nil {
 		fmt.Println(err.Error())
 		return err
@@ -79,11 +79,11 @@ func InitClientsToGrouplist() error {
 
 	for _, g := range grouplist {
 		var useridlist []int
-		err = adb.Ssql.Cols("user_id").Table("group_user_relative").Where("group_id=?", g.ID).Find(&useridlist)
+		err = adb.SqlStruct.Conn.Cols("user_id").Table("group_user_relative").Where("group_id=?", g.ID).Find(&useridlist)
 		if err != nil {
 			return err
 		}
-		models.GroupUserList[g] = useridlist
+		models.GroupUserList[g.ID] = useridlist
 	}
 
 	return nil

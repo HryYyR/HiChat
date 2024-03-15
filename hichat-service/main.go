@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	adb "go-websocket-server/ADB"
+	"go-websocket-server/Route"
 	systeminit "go-websocket-server/SystemInit"
 	"go-websocket-server/config"
 	_ "go-websocket-server/log"
@@ -28,6 +29,13 @@ func main() {
 	adb.InitMySQL()
 	adb.InitRedis()
 	adb.InitMQ()
+	defer func(SqlStruct *adb.Sql) {
+		err := SqlStruct.CloseConn()
+		if err != nil {
+			log.Println("mysql close error: ", err)
+		}
+	}(adb.SqlStruct)
+
 	if err := systeminit.InitClientsToGrouplist(); err != nil {
 		fmt.Println(err)
 		log.Println(err)
@@ -43,35 +51,34 @@ func main() {
 		panic(err.Error())
 	}
 
+	go systeminit.PrintRoomInfo()
+
 	gin.SetMode(gin.ReleaseMode)
 	engine := gin.New()
 	engine.Use(service.Cors())
-
 	engine.GET("/ws", service.Connectws) //用户连接
-
 	usergroup := engine.Group("user", service.IdentityCheck)
-	usergroup.POST("/creategroup", service.CreateGroup)         //创建群聊
-	usergroup.POST("/handlejoingroup", service.HandleJoinGroup) //处理加入群聊
-	usergroup.POST("/applyjoingroup", service.ApplyJoinGroup)   //申请加入群聊
-	usergroup.POST("/exitgroup", service.ExitGroup)             //退出群聊
-	usergroup.POST("/searchGroup", service.SearchGroup)         //搜索群聊
-
-	// usergroup.POST("/RefreshGroupList", service.RefreshGroupList) //获取用户信息
-
-	usergroup.POST("/applyadduser", service.ApplyAddUser)                         //申请添加好友
-	usergroup.POST("/handleadduser", service.HandleAddUser)                       //处理添加好友
-	usergroup.POST("/startusertouservideocall", service.StartUserToUserVideoCall) //检查指定用户登录状态
+	Route.InItUserGroupRouter(usergroup)
 
 	//go rpcserver.ListenGetUserGroupListRpcServer()
 
+	//go func() {
+	//	ticker := time.NewTicker(10 * time.Second)
+	//	defer ticker.Stop()
+	//	for range ticker.C {
+	//		for gid, useridgoup := range models.GroupUserList {
+	//			fmt.Printf("%v:%v \n", gid, useridgoup)
+	//		}
+	//	}
+	//}()
+
 	//服务注册
-	addressIP := util2.GetIP()
 	dis := service_registry.DiscoveryConfig{
 		ID:      util2.GenerateUUID(),
 		Name:    "hichat-ws-server",
 		Tags:    nil,
 		Port:    config.ServerPort,
-		Address: addressIP,
+		Address: util2.GetIP(),
 	}
 	err := service_registry.RegisterService(dis)
 	if err != nil {

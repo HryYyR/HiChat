@@ -71,7 +71,9 @@ func main() {
 			err := HandleMap[msgstruct.MsgType]()
 			if err != nil {
 				fmt.Println(err.Error())
+				//d.Nack(false, true)
 			}
+			//d.Ack(false)
 			continue
 		}
 

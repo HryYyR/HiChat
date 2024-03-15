@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"go-websocket-server/Token_packge"
 	"go-websocket-server/models"
 	"go-websocket-server/util"
 	"log"
@@ -25,7 +26,7 @@ var upgrader = websocket.Upgrader{
 func Connectws(c *gin.Context) {
 	token := c.Query("token")
 
-	userdata, err := util.DecryptToken(token)
+	userdata, err := Token_packge.DecryptToken(token)
 	if err != nil {
 		fmt.Println(err)
 		return

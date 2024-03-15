@@ -26,7 +26,6 @@ type UserClient struct {
 func (c *UserClient) ReadPump() {
 	defer func() {
 		fmt.Println("close reader")
-
 		ServiceCenter.Loginout <- c
 		c.Conn.Close()
 	}()

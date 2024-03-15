@@ -2,7 +2,7 @@ package service
 
 import (
 	"fmt"
-	"go-websocket-server/util"
+	"go-websocket-server/Token_packge"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -30,7 +30,7 @@ func Cors() gin.HandlerFunc {
 
 func IdentityCheck(c *gin.Context) {
 	token := c.GetHeader("Authorization")
-	userclaim, err := util.DecryptToken(token)
+	userclaim, err := Token_packge.DecryptToken(token)
 
 	if err != nil {
 		fmt.Println(err)

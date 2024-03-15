@@ -3,6 +3,7 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+	"go-websocket-server/config"
 	"log"
 	"strconv"
 	"sync"
@@ -44,7 +45,7 @@ func (h *Hub) Run() {
 			ServiceCenter.Clients[UC.UserID] = client
 			ServiceCenter.Clients[UC.UserID].Mutex.Unlock()
 
-		// 消息广播到指定group
+		// 消息广播给指定用户
 		case message := <-h.Broadcast:
 
 			// 群聊消息
@@ -52,20 +53,55 @@ func (h *Hub) Run() {
 			err := json.Unmarshal(message, &msgstruct)
 			if err == nil && len(strconv.Itoa(msgstruct.MsgType)) < 4 {
 				fmt.Println("groupmsg:", msgstruct.MsgType)
-				HandleGroupMsgMap[msgstruct.MsgType](msgstruct, message)
+				err := HandleGroupMsgMap[msgstruct.MsgType](msgstruct, message)
+				if err != nil {
+					log.Println(err)
+				}
+				//todo
+				//if msgstruct.MsgType < 100 {
+				//	if err != nil {
+				//		sendAckMsg(2, msgstruct.UserID, 0)
+				//	} else {
+				//		sendAckMsg(2, msgstruct.UserID, 1)
+				//	}
+				//}
 				continue
 			}
 
-			// 私聊消息
+			// 好友消息
 			var usermsgstruct *UserMessage
 			err = json.Unmarshal(message, &usermsgstruct)
 			if err == nil {
 				fmt.Println("friendmsg:", msgstruct.MsgType)
-				HandleFriendMsgMap[msgstruct.MsgType](usermsgstruct, message)
+				err := HandleFriendMsgMap[msgstruct.MsgType](usermsgstruct, message)
+				if err != nil {
+					log.Println(err)
+				}
+				//todo
+				//if usermsgstruct.MsgType < 1100 {
+				//	if err != nil {
+				//		sendAckMsg(1, usermsgstruct.UserID, 0)
+				//	} else {
+				//		sendAckMsg(1, usermsgstruct.UserID, 1)
+				//	}
+				//
+				//}
+
 			} else {
 				log.Println(err)
 				fmt.Println("解析消息体失败:error", err)
 			}
 		}
 	}
+}
+
+func sendAckMsg(msgsort, uid, status int) {
+	ackmsg := &AckMessage{
+		MsgType:   config.MsgTypeAckMsg,
+		AckStatus: status,
+		UserId:    uid,
+		MsgSort:   msgsort,
+	}
+	ackbytes, _ := json.Marshal(ackmsg)
+	ServiceCenter.Clients[uid].Send <- ackbytes
 }

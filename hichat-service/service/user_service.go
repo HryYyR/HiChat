@@ -27,7 +27,7 @@ func ApplyAddUser(c *gin.Context) {
 	}
 
 	// fmt.Printf("%+v", data)
-	exit, err := adb.Ssql.Table("apply_add_user").
+	exit, err := adb.SqlStruct.Conn.Table("apply_add_user").
 		Where("pre_apply_user_id=?  and apply_user_id=?  and handle_status=0",
 			data.PreApplyUserID, data.ApplyUserID).Exist()
 	if err != nil {
@@ -38,7 +38,7 @@ func ApplyAddUser(c *gin.Context) {
 		util.H(c, http.StatusOK, "申请已存在", nil)
 		return
 	}
-	exit, err = adb.Ssql.Table("apply_add_user").
+	exit, err = adb.SqlStruct.Conn.Table("apply_add_user").
 		Where("pre_apply_user_id=?  and apply_user_id=?  and handle_status=0",
 			data.ApplyUserID, data.PreApplyUserID).Exist()
 	if err != nil {
@@ -50,7 +50,7 @@ func ApplyAddUser(c *gin.Context) {
 		return
 	}
 
-	if _, err = adb.Ssql.Table("apply_add_user").Insert(&data); err != nil {
+	if _, err = adb.SqlStruct.Conn.Table("apply_add_user").Insert(&data); err != nil {
 		util.H(c, http.StatusInternalServerError, "申请添加好友失败", err)
 		return
 	}
@@ -80,7 +80,7 @@ func HandleAddUser(c *gin.Context) {
 		return
 	}
 	var applyadduserdata models.ApplyAddUser
-	exit, err := adb.Ssql.Table("apply_add_user").ID(data.ApplyID).Get(&applyadduserdata)
+	exit, err := adb.SqlStruct.Conn.Table("apply_add_user").ID(data.ApplyID).Get(&applyadduserdata)
 	if err != nil {
 		util.H(c, http.StatusInternalServerError, "查询申请失败", err)
 		return
@@ -90,7 +90,7 @@ func HandleAddUser(c *gin.Context) {
 		return
 	}
 
-	session := adb.Ssql.NewSession()
+	session := adb.SqlStruct.Conn.NewSession()
 	// 更新申请
 	if _, err = session.Table("apply_add_user").ID(data.ApplyID).Update(&models.ApplyAddUser{HandleStatus: data.HandleStatus}); err != nil {
 		session.Rollback()
@@ -147,7 +147,7 @@ func StartUserToUserVideoCall(c *gin.Context) {
 	}
 
 	var userinfo models.Users
-	has, err := adb.Ssql.Table("users").Where("id=?", data.Userid).Get(&userinfo)
+	has, err := adb.SqlStruct.Conn.Table("users").Where("id=?", data.Userid).Get(&userinfo)
 	if !has {
 		util.H(c, http.StatusBadRequest, "用户不存在", nil)
 		return
@@ -161,7 +161,6 @@ func StartUserToUserVideoCall(c *gin.Context) {
 		util.H(c, http.StatusBadRequest, "对方不在线", nil)
 		return
 	} else {
-
 		callmsg := models.UserMessage{
 			UserID:          userdata.ID,
 			UserName:        userdata.UserName,

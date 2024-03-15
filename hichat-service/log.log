@@ -23,3 +23,1271 @@
 2024/02/29 15:49:15 call_notice_videostream_server.go:41: could not call service: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50052: connectex: No connection could be made because the target machine actively refused it."
 2024/02/29 20:42:41 call_notice_videostream_server.go:41: could not call service: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50052: connectex: No connection could be made because the target machine actively refused it."
 2024/02/29 22:19:55 call_notice_videostream_server.go:41: could not call service: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50052: connectex: No connection could be made because the target machine actively refused it."
+2024/03/03 19:08:33 main.go:78: Put "http://127.0.0.1:8500/v1/agent/service/register": dial tcp 127.0.0.1:8500: connectex: No connection could be made because the target machine actively refused it.
+2024/03/05 13:26:54 main.go:89: Put "http://127.0.0.1:8500/v1/agent/service/register": dial tcp 127.0.0.1:8500: connectex: No connection could be made because the target machine actively refused it.
+2024/03/06 13:33:07 main.go:89: Put "http://127.0.0.1:8500/v1/agent/service/register": dial tcp 127.0.0.1:8500: connectex: No connection could be made because the target machine actively refused it.
+2024/03/14 14:19:41 main.go:86: Put "http://127.0.0.1:8500/v1/agent/service/register": dial tcp 127.0.0.1:8500: connectex: No connection could be made because the target machine actively refused it.
+2024/03/14 14:19:50 main.go:86: Put "http://127.0.0.1:8500/v1/agent/service/register": dial tcp 127.0.0.1:8500: connectex: No connection could be made because the target machine actively refused it.
+2024/03/14 15:50:08 group_service.go:110: redis: nil
+2024/03/14 15:54:16 group_service.go:109: redis: nil
+2024/03/14 15:56:54 group_service.go:109: redis: nil
+2024/03/14 15:57:37 group_service.go:109: redis: nil
+2024/03/14 15:58:08 group_service.go:109: redis: nil
+2024/03/14 15:58:31 group_service.go:109: redis: nil
+2024/03/14 16:00:40 group_service.go:109: redis: nil
+2024/03/14 16:04:20 server.go:3214: http: panic serving [::1]:61502: runtime error: invalid memory address or nil pointer dereference
+goroutine 67 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xb597a0?, 0x1344ca0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).Association(0xc000236770, {0xc4, {0xc0003ea3f0, 0x24}, 0x3f0, {0xc0002fdd98, 0x6}, {0xc0002fdda0, 0x5}, {0xc00030ba58, ...}, ...}, ...)
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:47 +0x308
+go-websocket-server/service.CreateGroup(0xc0003b0000)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:106 +0x865
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0003b0000)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0003b0000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc0003b0000)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000481040, 0xc0003b0000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000481040, {0xda67c0?, 0xc0001b22a0}, 0xc0003b0100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xda4758?}, {0xda67c0?, 0xc0001b22a0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0003a0090, {0xda8a60, 0xc000365d70})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 16:04:21 server.go:3214: http: panic serving [::1]:61504: runtime error: invalid memory address or nil pointer dereference
+goroutine 76 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xb597a0?, 0x1344ca0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).Association(0xc0001e3f80, {0xc5, {0xc00044cc90, 0x24}, 0x3f0, {0xc0001f2798, 0x6}, {0xc0001f27a0, 0x5}, {0xc000036990, ...}, ...}, ...)
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:47 +0x308
+go-websocket-server/service.CreateGroup(0xc00009a600)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:106 +0x865
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00009a600)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00009a600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc00009a600)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000481040, 0xc00009a600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000481040, {0xda67c0?, 0xc00044e540}, 0xc00009a700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xda4758?}, {0xda67c0?, 0xc00044e540?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0003a07e0, {0xda8a60, 0xc000365d70})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 16:04:32 server.go:3214: http: panic serving [::1]:61541: runtime error: invalid memory address or nil pointer dereference
+goroutine 58 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xb597a0?, 0x1344ca0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).Association(0xc000258000, {0xc6, {0xc00013e6f0, 0x24}, 0x3f0, {0xc00049e8f8, 0x6}, {0xc00049e900, 0x5}, {0xc000134720, ...}, ...}, ...)
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:47 +0x308
+go-websocket-server/service.CreateGroup(0xc000239200)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:106 +0x865
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000239200)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000239200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000239200)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000481040, 0xc000239200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000481040, {0xda67c0?, 0xc0005880e0}, 0xc000239300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xda4758?}, {0xda67c0?, 0xc0005880e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc00051e480, {0xda8a60, 0xc000365d70})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 16:04:32 server.go:3214: http: panic serving [::1]:61542: runtime error: invalid memory address or nil pointer dereference
+goroutine 96 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xb597a0?, 0x1344ca0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).Association(0xc000258150, {0xc7, {0xc00013e8a0, 0x24}, 0x3f0, {0xc00049ee38, 0x6}, {0xc00049ee40, 0x5}, {0xc000134990, ...}, ...}, ...)
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:47 +0x308
+go-websocket-server/service.CreateGroup(0xc000239600)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:106 +0x865
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000239600)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000239600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000239600)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000481040, 0xc000239600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000481040, {0xda67c0?, 0xc0005881c0}, 0xc000239500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xda4758?}, {0xda67c0?, 0xc0005881c0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0001adb90, {0xda8a60, 0xc000365d70})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 16:04:36 server.go:3214: http: panic serving [::1]:61556: runtime error: invalid memory address or nil pointer dereference
+goroutine 103 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xb597a0?, 0x1344ca0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).Association(0xc000236620, {0xc8, {0xc0003ea180, 0x24}, 0x3f0, {0xc00049e688, 0x6}, {0xc00049e690, 0x5}, {0xc000134630, ...}, ...}, ...)
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:47 +0x308
+go-websocket-server/service.CreateGroup(0xc000239100)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:106 +0x865
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000239100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000239100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000239100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000481040, 0xc000239100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000481040, {0xda67c0?, 0xc0001b21c0}, 0xc000239000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xda4758?}, {0xda67c0?, 0xc0001b21c0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc000010120, {0xda8a60, 0xc000365d70})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 16:05:05 server.go:3214: http: panic serving [::1]:61672: runtime error: invalid memory address or nil pointer dereference
+goroutine 144 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xb597a0?, 0x1344ca0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).Association(0xc000254000, {0xc9, {0xc00013e570, 0x24}, 0x3f0, {0xc00037a650, 0x6}, {0xc00037a660, 0xf}, {0xc00030a330, ...}, ...}, ...)
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:47 +0x308
+go-websocket-server/service.CreateGroup(0xc0003b1600)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:106 +0x865
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0003b1600)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0003b1600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc0003b1600)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000481040, 0xc0003b1600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000481040, {0xda67c0?, 0xc0000180e0}, 0xc0003b1700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xda4758?}, {0xda67c0?, 0xc0000180e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc00051eb40, {0xda8a60, 0xc000365d70})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 16:05:05 server.go:3214: http: panic serving [::1]:61673: runtime error: invalid memory address or nil pointer dereference
+goroutine 169 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xb597a0?, 0x1344ca0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).Association(0xc000254380, {0xca, {0xc00013e720, 0x24}, 0x3f0, {0xc00037aba0, 0x6}, {0xc00037abb0, 0xf}, {0xc00030a588, ...}, ...}, ...)
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:47 +0x308
+go-websocket-server/service.CreateGroup(0xc0003b1a00)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:106 +0x865
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0003b1a00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0003b1a00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc0003b1a00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000481040, 0xc0003b1a00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000481040, {0xda67c0?, 0xc0000181c0}, 0xc0003b1900)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xda4758?}, {0xda67c0?, 0xc0000181c0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc000010cf0, {0xda8a60, 0xc000365d70})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 16:06:17 server.go:3214: http: panic serving [::1]:61990: runtime error: invalid memory address or nil pointer dereference
+goroutine 63 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xa697a0?, 0x1254ca0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).Association(0xc0004782a0, {0xcb, {0xc00036bec0, 0x24}, 0x3f0, {0xc0002f5008, 0x6}, {0xc0002f5010, 0x3}, {0xc00029abe8, ...}, ...}, ...)
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:47 +0x308
+go-websocket-server/service.CreateGroup(0xc00031e400)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:106 +0x865
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00031e400)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00031e400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc00031e400)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0005141a0, 0xc00031e400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0005141a0, {0xcb67c0?, 0xc0001981c0}, 0xc00031e300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xcb4758?}, {0xcb67c0?, 0xc0001981c0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc00046aab0, {0xcb8a60, 0xc0002b91d0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 16:06:17 server.go:3214: http: panic serving [::1]:61992: runtime error: invalid memory address or nil pointer dereference
+goroutine 99 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xa697a0?, 0x1254ca0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).Association(0xc0004783f0, {0xcc, {0xc00035a060, 0x24}, 0x3f0, {0xc0002f55d8, 0x6}, {0xc0002f55e0, 0x3}, {0xc00029ae10, ...}, ...}, ...)
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:47 +0x308
+go-websocket-server/service.CreateGroup(0xc0000b1200)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:106 +0x865
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000b1200)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0000b1200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc0000b1200)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0005141a0, 0xc0000b1200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0005141a0, {0xcb67c0?, 0xc00048a0e0}, 0xc0000b1600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xcb4758?}, {0xcb67c0?, 0xc00048a0e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0000fec60, {0xcb8a60, 0xc0002b91d0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 16:06:19 server.go:3214: http: panic serving [::1]:61997: runtime error: invalid memory address or nil pointer dereference
+goroutine 102 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xa697a0?, 0x1254ca0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).Association(0xc000478000, {0xcd, {0xc0003be090, 0x24}, 0x3f0, {0xc0002f4aa8, 0x6}, {0xc0002f4ab0, 0x3}, {0xc00029a930, ...}, ...}, ...)
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:47 +0x308
+go-websocket-server/service.CreateGroup(0xc00052c300)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:106 +0x865
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00052c300)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00052c300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc00052c300)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0005141a0, 0xc00052c300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0005141a0, {0xcb67c0?, 0xc0005460e0}, 0xc00052c400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xcb4758?}, {0xcb67c0?, 0xc0005460e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0000feea0, {0xcb8a60, 0xc0002b91d0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:34:27 server.go:3214: http: panic serving [::1]:49921: runtime error: slice bounds out of range [3:1]
+goroutine 359 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xf23c60?, 0xc0001bf440?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc0000115b8, 0xc0005c24e0, {0xd1, {0xc000030930, 0x24}, 0x3f0, {0xc000602b78, 0x6}, {0xc000602b7e, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:113 +0xa85
+go-websocket-server/service.ExitGroup(0xc000146e00)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:622 +0x1154
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000146e00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000146e00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000146e00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000104b60, 0xc000146e00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000104b60, {0x10d8140?, 0xc0000fe620}, 0xc000146f00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x10d60d8?}, {0x10d8140?, 0xc0000fe620?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc000305cb0, {0x10da3e0, 0xc000472cf0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:34:27 server.go:3214: http: panic serving [::1]:51461: runtime error: slice bounds out of range [3:1]
+goroutine 1620 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xf23c60?, 0xc00012e078?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc0003915b8, 0xc0005c2c30, {0xd1, {0xc000030b10, 0x24}, 0x3f0, {0xc0006034f8, 0x6}, {0xc0006034fe, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:113 +0xa85
+go-websocket-server/service.ExitGroup(0xc000147100)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:622 +0x1154
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000147100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000147100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000147100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000104b60, 0xc000147100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000104b60, {0x10d8140?, 0xc0000fe700}, 0xc000147000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x10d60d8?}, {0x10d8140?, 0xc0000fe700?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc000687320, {0x10da3e0, 0xc000472cf0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:34:42 server.go:3214: http: panic serving [::1]:51635: runtime error: slice bounds out of range [3:1]
+goroutine 1727 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xf23c60?, 0xc000674858?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc0003915b8, 0xc00030e410, {0xd1, {0xc00036b9e0, 0x24}, 0x3f0, {0xc000356f28, 0x6}, {0xc000356f2e, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:113 +0xa85
+go-websocket-server/service.ExitGroup(0xc000319200)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:622 +0x1154
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000319200)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000319200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000319200)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000104b60, 0xc000319200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000104b60, {0x10d8140?, 0xc0008e00e0}, 0xc000319100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x10d60d8?}, {0x10d8140?, 0xc0008e00e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0000fd8c0, {0x10da3e0, 0xc000472cf0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:34:44 server.go:3214: http: panic serving [::1]:51636: runtime error: slice bounds out of range [3:1]
+goroutine 1778 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xf23c60?, 0xc000674a50?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc0000155b8, 0xc000168680, {0xd1, {0xc000644210, 0x24}, 0x3f0, {0xc000129098, 0x6}, {0xc00012909e, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:113 +0xa85
+go-websocket-server/service.ExitGroup(0xc000145400)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:622 +0x1154
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000145400)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000145400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000145400)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000104b60, 0xc000145400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000104b60, {0x10d8140?, 0xc0001360e0}, 0xc000145300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x10d60d8?}, {0x10d8140?, 0xc0001360e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0000fde60, {0x10da3e0, 0xc000472cf0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:34:58 server.go:3214: http: panic serving [::1]:51837: runtime error: slice bounds out of range [3:1]
+goroutine 114 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x1023c60?, 0xc000037740?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc00030b5b8, 0xc000576270, {0xd1, {0xc00036ba40, 0x24}, 0x3f0, {0xc000608fc8, 0x6}, {0xc000608fce, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:116 +0xa85
+go-websocket-server/service.ExitGroup(0xc000158400)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:622 +0x1154
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000158400)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000158400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000158400)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00050d860, 0xc000158400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00050d860, {0x11d81a0?, 0xc0005620e0}, 0xc0000b1b00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x11d6138?}, {0x11d81a0?, 0xc0005620e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0000fea20, {0x11da440, 0xc000472e10})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:34:58 server.go:3214: http: panic serving [::1]:51839: runtime error: slice bounds out of range [3:1]
+goroutine 130 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x1023c60?, 0xc0002456e0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc00030f5b8, 0xc000290a90, {0xd1, {0xc0001bee40, 0x24}, 0x3f0, {0xc0002f5418, 0x6}, {0xc0002f541e, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:116 +0xa85
+go-websocket-server/service.ExitGroup(0xc0002bcb00)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:622 +0x1154
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0002bcb00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0002bcb00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc0002bcb00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00050d860, 0xc0002bcb00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00050d860, {0x11d81a0?, 0xc0001981c0}, 0xc0002bca00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x11d6138?}, {0x11d81a0?, 0xc0001981c0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc00053d3b0, {0x11da440, 0xc000472e10})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:36:30 server.go:3214: http: panic serving [::1]:52956: runtime error: slice bounds out of range [3:1]
+goroutine 120 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x1243c60?, 0xc000134090?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc0000a75b8, 0xc0004d0000, {0xd1, {0xc0004a0180, 0x24}, 0x3f0, {0xc0004a8ad8, 0x6}, {0xc0004a8ade, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:116 +0xa85
+go-websocket-server/service.ExitGroup(0xc00009b000)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:623 +0x11ad
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00009b000)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00009b000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc00009b000)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00046f380, 0xc00009b000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00046f380, {0x13f8220?, 0xc0004a20e0}, 0xc00009b100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x13f61b8?}, {0x13f8220?, 0xc0004a20e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc000334000, {0x13fa4c0, 0xc00046d650})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:36:30 server.go:3214: http: panic serving [::1]:52958: runtime error: slice bounds out of range [3:1]
+goroutine 164 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x1243c60?, 0xc000036ae0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc00068f5b8, 0xc0002bac30, {0xd1, {0xc0004a0270, 0x24}, 0x3f0, {0xc0004a8f28, 0x6}, {0xc0004a8f2e, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:116 +0xa85
+go-websocket-server/service.ExitGroup(0xc00045e100)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:623 +0x11ad
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00045e100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00045e100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc00045e100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00046f380, 0xc00045e100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00046f380, {0x13f8220?, 0xc0001b22a0}, 0xc00045e000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x13f61b8?}, {0x13f8220?, 0xc0001b22a0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0001ac1b0, {0x13fa4c0, 0xc00046d650})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:37:12 server.go:3214: http: panic serving [::1]:53508: runtime error: slice bounds out of range [3:1]
+goroutine 600 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x1243c60?, 0xc0004ce1b0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc00068f5b8, 0xc0000428f0, {0xd1, {0xc000030450, 0x24}, 0x3f0, {0xc00000a1a8, 0x6}, {0xc00000a1ae, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:116 +0xa85
+go-websocket-server/service.ExitGroup(0xc000016a00)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:623 +0x11ad
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000016a00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000016a00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000016a00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00046f380, 0xc000016a00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00046f380, {0x13f8220?, 0xc000700000}, 0xc000016900)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x13f61b8?}, {0x13f8220?, 0xc000700000?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc00059ca20, {0x13fa4c0, 0xc00046d650})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:37:12 server.go:3214: http: panic serving [::1]:53510: runtime error: slice bounds out of range [3:1]
+goroutine 576 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x1243c60?, 0xc0004023d8?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc00068b5b8, 0xc0004d0750, {0xd1, {0xc000440240, 0x24}, 0x3f0, {0xc000326a78, 0x6}, {0xc000326a7e, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:116 +0xa85
+go-websocket-server/service.ExitGroup(0xc00053e100)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:623 +0x11ad
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00053e100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00053e100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc00053e100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00046f380, 0xc00053e100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00046f380, {0x13f8220?, 0xc0007000e0}, 0xc00053e000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x13f61b8?}, {0x13f8220?, 0xc0007000e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc000546090, {0x13fa4c0, 0xc00046d650})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:37:55 server.go:3214: http: panic serving [::1]:54035: runtime error: slice bounds out of range [3:1]
+goroutine 63 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xff3c60?, 0xc00012a498?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc0003495b8, 0xc000140750, {0xd1, {0xc0003b6270, 0x24}, 0x3f0, {0xc00012ec38, 0x6}, {0xc00012ec3e, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:116 +0xa85
+go-websocket-server/service.ExitGroup(0xc0005a4100)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:625 +0x12a8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0005a4100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0005a4100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc0005a4100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b4340, 0xc0005a4100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b4340, {0x11a8320?, 0xc0005c40e0}, 0xc0005a4000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x11a62b8?}, {0x11a8320?, 0xc0005c40e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc000178000, {0x11aa5c0, 0xc00017c270})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:37:55 server.go:3214: http: panic serving [::1]:54037: runtime error: slice bounds out of range [3:1]
+goroutine 131 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xff3c60?, 0xc00029a3c0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc0003455b8, 0xc0005ce270, {0xd1, {0xc00016a1e0, 0x24}, 0x3f0, {0xc0002f5c98, 0x6}, {0xc0002f5c9e, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:116 +0xa85
+go-websocket-server/service.ExitGroup(0xc000290a00)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:625 +0x12a8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000290a00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000290a00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000290a00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b4340, 0xc000290a00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b4340, {0x11a8320?, 0xc0001981c0}, 0xc000290900)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x11a62b8?}, {0x11a8320?, 0xc0001981c0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0005ae6c0, {0x11aa5c0, 0xc00017c270})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:38:14 server.go:3214: http: panic serving [::1]:54290: runtime error: slice bounds out of range [3:1]
+goroutine 349 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xff3c60?, 0xc0005a06c0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc0003495b8, 0xc0002a6340, {0xd1, {0xc00040a180, 0x24}, 0x3f0, {0xc0004a6a38, 0x6}, {0xc0004a6a3e, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:116 +0xa85
+go-websocket-server/service.ExitGroup(0xc000263200)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:625 +0x12a8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000263200)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000263200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000263200)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b4340, 0xc000263200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b4340, {0x11a8320?, 0xc0006880e0}, 0xc000263300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x11a62b8?}, {0x11a8320?, 0xc0006880e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0004e8090, {0x11aa5c0, 0xc00017c270})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:38:14 server.go:3214: http: panic serving [::1]:54291: runtime error: slice bounds out of range [3:1]
+goroutine 305 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xff3c60?, 0xc0005a0a98?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc00052b5b8, 0xc0002a6680, {0xd1, {0xc00040a360, 0x24}, 0x3f0, {0xc0004a72d8, 0x6}, {0xc0004a72de, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:116 +0xa85
+go-websocket-server/service.ExitGroup(0xc000263500)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:625 +0x12a8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000263500)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000263500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000263500)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0003b4340, 0xc000263500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0003b4340, {0x11a8320?, 0xc0006881c0}, 0xc000263400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x11a62b8?}, {0x11a8320?, 0xc0006881c0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0000ff4d0, {0x11aa5c0, 0xc00017c270})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:38:58 server.go:3214: http: panic serving [::1]:54833: runtime error: slice bounds out of range [3:1]
+goroutine 14 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xc93c60?, 0xc0000369a8?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc0001195b8, 0xc000469040, {0xd1, {0xc00036ba10, 0x24}, 0x3f0, {0xc0006bab28, 0x6}, {0xc0006bab2e, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:116 +0xa85
+go-websocket-server/service.ExitGroup(0xc000554400)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:623 +0x11ad
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000554400)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000554400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000554400)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000515860, 0xc000554400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000515860, {0xe48240?, 0xc00055e000}, 0xc000554300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xe461d8?}, {0xe48240?, 0xc00055e000?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc000494120, {0xe4a4e0, 0xc000155a70})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/14 21:38:58 server.go:3214: http: panic serving [::1]:54835: runtime error: slice bounds out of range [3:1]
+goroutine 15 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xc93c60?, 0xc0001bc1b0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/models.(*GroupUserRelative).DisAssociation(0xc0005535b8, 0xc000469520, {0xd1, {0xc00036bbf0, 0x24}, 0x3f0, {0xc0006bb3e8, 0x6}, {0xc0006bb3ee, 0x2}, ...})
+	D:/GoWorks/src/HiChat/hichat-service/models/group_user_relative_basic.go:116 +0xa85
+go-websocket-server/service.ExitGroup(0xc000554600)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:623 +0x11ad
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000554600)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000554600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func5(0xc000554600)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000515860, 0xc000554600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000515860, {0xe48240?, 0xc00055e0e0}, 0xc000554500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xe461d8?}, {0xe48240?, 0xc00055e0e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0004941b0, {0xe4a4e0, 0xc000155a70})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:30:52 server.go:3214: http: panic serving [::1]:61796: runtime error: slice bounds out of range [:-1]
+goroutine 92 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x10c3b60?, 0xc00016c4b0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc0000b1200)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:548 +0x2510
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0000b1200)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0000b1200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc0000b1200)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000105a00, 0xc0000b1200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000105a00, {0x12783c0?, 0xc0001982a0}, 0xc0005e1800)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x1276360?}, {0x12783c0?, 0xc0001982a0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0004ac750, {0x127a660, 0xc000473d70})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:37:43 server.go:3214: http: panic serving [::1]:64489: runtime error: slice bounds out of range [:-1]
+goroutine 57 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x1533b60?, 0xc00064ba58?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc0001c3f00)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:539 +0x2710
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0001c3f00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c3f00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc0001c3f00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0004809c0, 0xc0001c3f00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0004809c0, {0x16e8360?, 0xc000198380}, 0xc00034a600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x16e6300?}, {0x16e8360?, 0xc000198380?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0004b0630, {0x16ea600, 0xc00044a4e0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:37:43 server.go:3214: http: panic serving [::1]:64491: runtime error: slice bounds out of range [:-1]
+goroutine 96 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x1533b60?, 0xc00064ba88?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc000596300)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:539 +0x2710
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000596300)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000596300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc000596300)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0004809c0, 0xc000596300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0004809c0, {0x16e8360?, 0xc0005aa0e0}, 0xc000596800)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x16e6300?}, {0x16e8360?, 0xc0005aa0e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0006477a0, {0x16ea600, 0xc00044a4e0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:38:35 server.go:3214: http: panic serving [::1]:64700: runtime error: slice bounds out of range [:-1]
+goroutine 64 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x17c3b60?, 0xc0002d6ae0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc0001c8500)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:540 +0x27f0
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0001c8500)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c8500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc0001c8500)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000503ba0, 0xc0001c8500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000503ba0, {0x1978460?, 0xc0001fa0e0}, 0xc0001c8600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x1976400?}, {0x1978460?, 0xc0001fa0e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc00031e240, {0x197a700, 0xc000473110})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:38:35 server.go:3214: http: panic serving [::1]:64702: runtime error: slice bounds out of range [:-1]
+goroutine 83 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x17c3b60?, 0xc0002f90b0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc00049af00)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:540 +0x27f0
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00049af00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00049af00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc00049af00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000503ba0, 0xc00049af00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000503ba0, {0x1978460?, 0xc000424000}, 0xc00049a000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x1976400?}, {0x1978460?, 0xc000424000?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc000126000, {0x197a700, 0xc000473110})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:39:34 server.go:3214: http: panic serving [::1]:64944: runtime error: slice bounds out of range [:-1]
+goroutine 57 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xda3b60?, 0xc00016d1d0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc000152e00)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:540 +0x27d0
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000152e00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000152e00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc000152e00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0004809c0, 0xc000152e00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0004809c0, {0xf58440?, 0xc000198380}, 0xc000153000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xf563e0?}, {0xf58440?, 0xc000198380?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0000fe990, {0xf5a6e0, 0xc00044a720})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:39:34 server.go:3214: http: panic serving [::1]:64946: runtime error: slice bounds out of range [:-1]
+goroutine 58 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xda3b60?, 0xc00016d530?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc000153200)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:540 +0x27d0
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000153200)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000153200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc000153200)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0004809c0, 0xc000153200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0004809c0, {0xf58440?, 0xc000198540}, 0xc000153100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xf563e0?}, {0xf58440?, 0xc000198540?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0000fea20, {0xf5a6e0, 0xc00044a720})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:45:17 server.go:3214: http: panic serving [::1]:50199: runtime error: slice bounds out of range [:-1]
+goroutine 889 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xda3b60?, 0xc0003b4348?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc0001e9d00)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:540 +0x27d0
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0001e9d00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001e9d00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc0001e9d00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0004809c0, 0xc0001e9d00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0004809c0, {0xf58440?, 0xc0001982a0}, 0xc0001e9e00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xf563e0?}, {0xf58440?, 0xc0001982a0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0000ffd40, {0xf5a6e0, 0xc00044a720})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:45:17 server.go:3214: http: panic serving [::1]:50201: runtime error: slice bounds out of range [:-1]
+goroutine 924 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xda3b60?, 0xc0002f76e0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc0005f2400)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:540 +0x27d0
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0005f2400)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0005f2400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc0005f2400)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0004809c0, 0xc0005f2400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0004809c0, {0xf58440?, 0xc0005fc000}, 0xc0005f2300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xf563e0?}, {0xf58440?, 0xc0005fc000?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0001faea0, {0xf5a6e0, 0xc00044a720})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:52:31 server.go:3214: http: panic serving [::1]:52102: runtime error: slice bounds out of range [:-1]
+goroutine 57 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xe23b60?, 0xc000496150?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc00042bf00)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:544 +0x2a48
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00042bf00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00042bf00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc00042bf00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0005841a0, 0xc00042bf00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0005841a0, {0xfd8580?, 0xc0001181c0}, 0xc00042be00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xfd6520?}, {0xfd8580?, 0xc0001181c0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc00049e2d0, {0xfda820, 0xc000704510})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:52:31 server.go:3214: http: panic serving [::1]:52104: runtime error: slice bounds out of range [:-1]
+goroutine 62 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xe23b60?, 0xc000276450?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc000145400)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:544 +0x2a48
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000145400)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000145400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc000145400)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0005841a0, 0xc000145400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0005841a0, {0xfd8580?, 0xc0001682a0}, 0xc000145500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xfd6520?}, {0xfd8580?, 0xc0001682a0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc00049e3f0, {0xfda820, 0xc000704510})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:53:27 server.go:3214: http: panic serving [::1]:52363: runtime error: slice bounds out of range [:-1]
+goroutine 39 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xf73b60?, 0xc000130768?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc00046a000)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:546 +0x2a68
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00046a000)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00046a000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc00046a000)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000105ba0, 0xc00046a000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000105ba0, {0x1128580?, 0xc0001361c0}, 0xc00011e400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x1126520?}, {0x1128580?, 0xc0001361c0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0004a0750, {0x112a820, 0xc0004ab080})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:53:27 server.go:3214: http: panic serving [::1]:52365: runtime error: slice bounds out of range [:-1]
+goroutine 79 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xf73b60?, 0xc0004de2a0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc00052e100)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:546 +0x2a68
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00052e100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00052e100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc00052e100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000105ba0, 0xc00052e100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000105ba0, {0x1128580?, 0xc000552000}, 0xc00046a700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x1126520?}, {0x1128580?, 0xc000552000?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc00012afc0, {0x112a820, 0xc0004ab080})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:55:49 server.go:3214: http: panic serving [::1]:53029: runtime error: slice bounds out of range [:-1]
+goroutine 43 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xdb3b60?, 0xc000036ab0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc0004b2100)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:546 +0x2ac8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc0004b2100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0004b2100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc0004b2100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001051e0, 0xc0004b2100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001051e0, {0xf685c0?, 0xc0002920e0}, 0xc0000c2200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xf66560?}, {0xf685c0?, 0xc0002920e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0004a2870, {0xf6a860, 0xc00063fec0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:55:49 server.go:3214: http: panic serving [::1]:53031: runtime error: slice bounds out of range [:-1]
+goroutine 44 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0xdb3b60?, 0xc000656468?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc00062b100)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:546 +0x2ac8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00062b100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00062b100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc00062b100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001051e0, 0xc00062b100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001051e0, {0xf685c0?, 0xc0001982a0}, 0xc00062b000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0xf66560?}, {0xf685c0?, 0xc0001982a0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc0004a2900, {0xf6a860, 0xc00063fec0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:56:48 server.go:3214: http: panic serving [::1]:53339: runtime error: slice bounds out of range [:-1]
+goroutine 47 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x10b3b60?, 0xc00032af90?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc00060c100)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:552 +0x2adc
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc00060c100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00060c100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc00060c100)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000483860, 0xc00060c100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000483860, {0x12685a0?, 0xc00061e0e0}, 0xc00060c200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x1266540?}, {0x12685a0?, 0xc00061e0e0?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc00050c480, {0x126a840, 0xc0003653b0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/15 13:56:48 server.go:3214: http: panic serving [::1]:53341: runtime error: slice bounds out of range [:-1]
+goroutine 48 [running]:
+net/http.(*conn).serve.func1()
+	C:/Program Files/Go/src/net/http/server.go:1868 +0xb9
+panic({0x10b3b60?, 0xc00032b2f0?})
+	C:/Program Files/Go/src/runtime/panic.go:920 +0x270
+go-websocket-server/service.ExitGroup(0xc000012f00)
+	D:/GoWorks/src/HiChat/hichat-service/service/group_service.go:552 +0x2adc
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+go-websocket-server/service.IdentityCheck(0xc000012f00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000012f00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func4(0xc000012f00)
+	D:/GoWorks/src/HiChat/hichat-service/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000483860, 0xc000012f00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x65b
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000483860, {0x12685a0?, 0xc00061e000}, 0xc000256400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1dd
+net/http.serverHandler.ServeHTTP({0x1266540?}, {0x12685a0?, 0xc00061e000?}, 0x6?)
+	C:/Program Files/Go/src/net/http/server.go:2938 +0x8e
+net/http.(*conn).serve(0xc00060e000, {0x126a840, 0xc0003653b0})
+	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
+created by net/http.(*Server).Serve in goroutine 1
+	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb

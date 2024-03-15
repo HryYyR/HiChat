@@ -4,20 +4,17 @@ import (
 	// "crypto/ecdsa"
 	// "crypto/elliptic"
 	"crypto/md5"
-	"github.com/golang-jwt/jwt/v4"
 	"net"
+	"strconv"
 
 	// random "crypto/rand"
 	"crypto/tls"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"go-websocket-server/config"
-	"go-websocket-server/models"
 	"log"
 	"math/rand"
 	"net/smtp"
-	"sort"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -26,7 +23,7 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-// md5加密
+// Md5 md5加密
 func Md5(s string) string {
 	return fmt.Sprintf("%x", md5.Sum([]byte(s)))
 }
@@ -35,41 +32,7 @@ func Md5(s string) string {
 // 	return ecdsa.GenerateKey(elliptic.P256(), random.Reader)
 // }
 
-// token
-func GenerateToken(id int, UUID, name string, expiretime time.Duration) (string, error) {
-	uc := models.UserClaim{
-		ID:       id,
-		UUID:     UUID,
-		UserName: name,
-		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(expiretime)), // 定义过期时间 单位:分钟
-		},
-	}
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, uc)
-	ttoken, err := token.SignedString([]byte(config.JwtKey))
-	if err != nil {
-		fmt.Println("jwt error: ", err)
-		return "", err
-	}
-	return ttoken, nil
-}
-
-// 解密token
-func DecryptToken(token string) (*models.UserClaim, error) {
-	uc := new(models.UserClaim)
-	claims, err := jwt.ParseWithClaims(token, uc, func(tk *jwt.Token) (any, error) {
-		return []byte(config.JwtKey), nil
-	})
-	if err != nil {
-		return nil, err
-	}
-	if !claims.Valid {
-		return uc, errors.New("token is invalid")
-	}
-	return uc, nil
-}
-
-// 发送验证码邮件
+// MailSendCode 发送验证码邮件
 func MailSendCode(mail string, code string) {
 	e := email.NewEmail()
 	e.From = "HiChat <2452719312@qq.com>"
@@ -83,31 +46,31 @@ func MailSendCode(mail string, code string) {
 	}
 }
 
-// 生成随机验证码
+// RandCode 生成随机验证码
 func RandCode() string {
 	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 	code := fmt.Sprintf("%06v", rnd.Int31n(1000000))
 	return code
 }
 
-// 生成随机UUID
+// GenerateUUID 生成随机UUID
 func GenerateUUID() string {
 	u1, _ := uuid.NewV4()
 	return u1.String()
 }
 
-func GroupTimeSort(arr []models.ApplyJoinGroup, order string) {
-	sort.Slice(arr, func(i, j int) bool {
-		return arr[i].CreatedAt.After(arr[j].CreatedAt)
-	})
-}
-func UserTimeSort(arr []models.ApplyAddUser, order string) {
-	sort.Slice(arr, func(i, j int) bool {
-		return arr[i].CreatedAt.After(arr[j].CreatedAt)
-	})
-}
+//func GroupTimeSort(arr []models.ApplyJoinGroup, order string) {
+//	sort.Slice(arr, func(i, j int) bool {
+//		return arr[i].CreatedAt.After(arr[j].CreatedAt)
+//	})
+//}
+//func UserTimeSort(arr []models.ApplyAddUser, order string) {
+//	sort.Slice(arr, func(i, j int) bool {
+//		return arr[i].CreatedAt.After(arr[j].CreatedAt)
+//	})
+//}
 
-// 处理server参数 json -> struct
+// HandleJsonArgument 处理server参数 json -> struct
 func HandleJsonArgument(c *gin.Context, data any) error {
 	rawbyte, err := c.GetRawData()
 	if err != nil {
@@ -154,4 +117,48 @@ func H(c *gin.Context, status int, msg string, err error) {
 		"msg":   msg,
 		"error": err,
 	})
+}
+
+func IntArrToStrArr(intarr []int) []string {
+	var strarr []string
+	for _, in := range intarr {
+		strarr = append(strarr, strconv.Itoa(in))
+	}
+	return strarr
+}
+
+func StrArrToIntArr(strarr []string) []int {
+	var intarr []int
+	for _, st := range strarr {
+		str, err := strconv.Atoi(st)
+		if err != nil {
+			return []int{}
+		}
+		intarr = append(intarr, str)
+	}
+	return intarr
+}
+
+// DeleteSlice 删除指定元素。
+func DeleteStrSlice(a []string, elem string) []string {
+	j := 0
+	for _, v := range a {
+		if v != elem {
+			a[j] = v
+			j++
+		}
+	}
+	return a[:j]
+}
+
+// DeleteSlice 删除指定元素。
+func DeleteIntSlice(a []int, elem int) []int {
+	j := 0
+	for _, v := range a {
+		if v != elem {
+			a[j] = v
+			j++
+		}
+	}
+	return a[:j]
 }

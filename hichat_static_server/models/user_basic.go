@@ -570,7 +570,7 @@ func (u *Users) Login(logindata *ResponseUserData) error {
 		}
 		//根据未读消息排序
 		sort.Slice(grouplist, func(i, j int) bool {
-			return grouplist[i].GroupInfo.UnreadMessage > friendlist[j].UnreadMessage
+			return grouplist[i].GroupInfo.UnreadMessage > grouplist[j].GroupInfo.UnreadMessage
 		})
 		wg.Done()
 	}(cctx)
