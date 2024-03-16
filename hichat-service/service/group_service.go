@@ -141,6 +141,17 @@ func ApplyJoinGroup(c *gin.Context) {
 		return
 	}
 
+	applycount, err := adb.SqlStruct.Conn.Table("group_user_relative").Where("user_id = ? and handle_status=?", userdata.ID, 0).Count()
+	if err != nil {
+		fmt.Println(err)
+		util.H(c, http.StatusInternalServerError, "查询关系失败", nil)
+		return
+	}
+	if applycount >= 5 {
+		util.H(c, http.StatusBadRequest, "申请已达上限", nil)
+		return
+	}
+
 	//fmt.Println(userdata.ID, rawdata.GroupID)
 	exitgroup, err := adb.SqlStruct.Conn.Table("group_user_relative").Where("user_id = ? and group_id=?", userdata.ID, rawdata.GroupID).Exist()
 	if err != nil {
@@ -642,23 +653,17 @@ func SearchGroup(c *gin.Context) {
 	var rawdata searchgroupinfo
 	rawbyte, err := c.GetRawData()
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": err.Error(),
-		})
+		util.H(c, http.StatusBadRequest, "搜索失败", err)
 		return
 	}
 	err = json.Unmarshal(rawbyte, &rawdata)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": err.Error(),
-		})
+		util.H(c, http.StatusBadRequest, "搜索失败", err)
 		return
 	}
 
 	if len(strings.TrimSpace(rawdata.Searchstr)) == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "关键词不能为空!",
-		})
+		util.H(c, http.StatusBadRequest, "关键词不能为空", err)
 		return
 	}
 
@@ -671,9 +676,7 @@ func SearchGroup(c *gin.Context) {
 	grouplist := make([]models.Group, 0)
 	err = adb.SqlStruct.Conn.Table("group").Where("group_name LIKE ? or id=? and creater_id !=?", "%"+rawdata.Searchstr+"%", searchint, userdata.ID).Find(&grouplist)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": err.Error(),
-		})
+		util.H(c, http.StatusInternalServerError, "搜索失败", err)
 		return
 	}
 	var responsedata []models.Group
@@ -681,8 +684,10 @@ func SearchGroup(c *gin.Context) {
 		group.MemberCount = group.GetMemberCount()
 		responsedata = append(responsedata, group)
 	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"msg":       "search success",
 		"grouplist": responsedata,
 	})
+
 }

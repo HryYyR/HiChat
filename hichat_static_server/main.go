@@ -39,6 +39,8 @@ func main() {
 	usergroup.POST("/getuserapplyaddfriendlist", service.GetUserApplyAddFriendList) //获取用户的好友申请列表
 	usergroup.POST("/getuserapplyjoingrouplist", service.GetUserApplyJoinGroupList) //获取用户的群聊通知列表
 
+	usergroup.POST("/getusermessagelist", service.GetUserMessageList) //获取用户之间的消息(限定条数)
+
 	groupgroup := engine.Group("group", service.IdentityCheck)
 	groupgroup.POST("/searchgroup", service.SearchGroup)                 //搜索群聊
 	groupgroup.POST("/getgroupmessagelist", service.GetGroupMessageList) //获取指定群聊的消息(限定条数)

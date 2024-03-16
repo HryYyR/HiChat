@@ -2,6 +2,8 @@ package models
 
 import (
 	adb "HiChat/hichat-mq-service/ADB"
+	"encoding/json"
+	"errors"
 	"fmt"
 	"time"
 )
@@ -29,6 +31,25 @@ func (u *UserMessage) SaveFriendMsgToDb() error {
 	if _, err := adb.Ssql.Table("user_message").Insert(&u); err != nil {
 		return err
 	}
+	var key string
+
+	fmt.Println(u.UserID, u.ReceiveUserID)
+	fmt.Println(u.UserID > u.ReceiveUserID)
+	if u.UserID > u.ReceiveUserID {
+		key = fmt.Sprintf("%d%d", u.UserID, u.ReceiveUserID)
+	} else {
+		key = fmt.Sprintf("%d%d", u.ReceiveUserID, u.UserID)
+	}
+	jsondata, err := json.Marshal(u)
+	if err != nil {
+		return err
+	}
+
+	err = adb.Rediss.RPush(key, string(jsondata)).Err()
+	if err != nil {
+		fmt.Println(errors.New("保存好友消息失败"))
+	}
+
 	return nil
 }
 

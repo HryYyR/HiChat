@@ -462,12 +462,12 @@ func (u *Users) GetFriendListAndMEssage(friendresponselist *[]FriendResponse) er
 		return err
 	}
 
-	// 消息列表
-	var messagelist []UserMessageItem
-	err = adb.Ssql.Table("user_message").Omit("uuid,context").Where("user_id=? or receive_user_id=?", u.ID, u.ID).Find(&messagelist)
-	if err != nil {
-		return err
-	}
+	//// 消息列表
+	//var messagelist []UserMessageItem
+	//err = adb.Ssql.Table("user_message").Omit("uuid,context").Where("user_id=? or receive_user_id=?", u.ID, u.ID).Find(&messagelist)
+	//if err != nil {
+	//	return err
+	//}
 
 	// 每个好友的未读数量
 	var unreadmessagelist []UserUnreadMessage
@@ -485,12 +485,22 @@ func (u *Users) GetFriendListAndMEssage(friendresponselist *[]FriendResponse) er
 	//fmt.Printf("%+v\n", unreadmessagemap)
 	for _, resfriend := range friendlist {
 		msglist := make([]UserMessageItem, 0)
-		for _, msg := range messagelist {
-			if msg.ReceiveUserID == int(resfriend.Id) || msg.UserID == int(resfriend.Id) {
-				msglist = append(msglist, msg)
-			}
+		//for _, msg := range messagelist {
+		//	if msg.ReceiveUserID == int(resfriend.Id) || msg.UserID == int(resfriend.Id) {
+		//		msglist = append(msglist, msg)
+		//	}
+		//}
+		//从redis获取消息列表
+		userrelative := &UserUserRelative{
+			PreUserID:  u.ID,
+			BackUserID: int(resfriend.Id),
+		}
+		err := userrelative.GetUserMessageList(&msglist, 0)
+		if err != nil {
+			return err
 		}
 
+		//组装
 		resmsgitem := FriendResponse{
 			Id:            resfriend.Id,
 			UserName:      resfriend.UserName,

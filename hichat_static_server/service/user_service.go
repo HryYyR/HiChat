@@ -206,7 +206,7 @@ func GetUserApplyAddFriendList(c *gin.Context) {
 	})
 }
 
-type searchfriendingo struct {
+type searchfriendinfo struct {
 	Searchstr string
 }
 
@@ -232,7 +232,7 @@ func SearchUser(c *gin.Context) {
 		uufriendmap[int(f.Id)] = int(f.Id)
 	}
 
-	var data searchfriendingo
+	var data searchfriendinfo
 	rawbyte, err := c.GetRawData()
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -278,4 +278,47 @@ func SearchUser(c *gin.Context) {
 		"msg":  "搜索成功!",
 		"data": resultfriendlist,
 	})
+}
+
+type getusermessagelistinfo struct {
+	Targetuserid int
+	Currentnum   int
+}
+
+// GetUserMessageList 获取用户间消息列表
+func GetUserMessageList(c *gin.Context) {
+	ud, _ := c.Get("userdata")
+	userdata := ud.(*models.UserClaim)
+
+	var requestdata getusermessagelistinfo
+	rawbyte, err := c.GetRawData()
+	if err != nil {
+		util.H(c, http.StatusInternalServerError, "获取失败", nil)
+		return
+	}
+	err = json.Unmarshal(rawbyte, &requestdata)
+	if err != nil {
+		util.H(c, http.StatusBadRequest, "非法格式", nil)
+		return
+	}
+
+	user := &models.UserUserRelative{
+		PreUserID:  userdata.ID,
+		BackUserID: requestdata.Targetuserid,
+	}
+
+	fmt.Println(requestdata.Currentnum)
+
+	grouplist := make([]models.UserMessageItem, 0)
+	err = user.GetUserMessageList(&grouplist, requestdata.Currentnum)
+	if err != nil {
+		util.H(c, http.StatusInternalServerError, "获取失败", err)
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg":  "获取成功",
+		"data": grouplist,
+	})
+
 }

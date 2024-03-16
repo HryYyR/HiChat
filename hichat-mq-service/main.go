@@ -25,7 +25,7 @@ func main() {
 	msgs, err := adb.MQc.Consume(
 		adb.MQq.Name, // queue
 		"",           // consumer
-		true,         // auto-ack
+		false,        // auto-ack
 		false,        // exclusive
 		false,        // no-local
 		false,        // no-wait
@@ -71,9 +71,9 @@ func main() {
 			err := HandleMap[msgstruct.MsgType]()
 			if err != nil {
 				fmt.Println(err.Error())
-				//d.Nack(false, true)
+				d.Nack(false, true)
 			}
-			//d.Ack(false)
+			d.Ack(false)
 			continue
 		}
 
@@ -92,7 +92,9 @@ func main() {
 			err := HandleMap[msgstruct.MsgType]()
 			if err != nil {
 				fmt.Println(err.Error())
+				d.Nack(false, true)
 			}
+			d.Ack(false)
 			continue
 		}
 

@@ -106,11 +106,8 @@ func getMsgListFromCache(g *Group, currentnum int, msglist *[]GroupMessage) erro
 	var msgdata []GroupMessage
 	key := fmt.Sprintf("gm%s", strconv.Itoa(g.ID))
 	//判断redis缓存是否存在
-	lLen, err := adb.Rediss.LLen(key).Result()
+	lLen := adb.Rediss.LLen(key).Val()
 	fmt.Println("len", lLen)
-	if err != nil {
-		return err
-	}
 	if lLen == 0 {
 		return nil
 	}
