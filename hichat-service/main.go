@@ -51,7 +51,7 @@ func main() {
 		panic(err.Error())
 	}
 
-	go systeminit.PrintRoomInfo()
+	//go systeminit.PrintRoomInfo()
 
 	gin.SetMode(gin.ReleaseMode)
 	engine := gin.New()

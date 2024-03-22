@@ -54,18 +54,18 @@ func GetUserGroupList(ID int) (map[int]Group, error) {
 }
 
 // GetMemberCount 获取成员数量
-func (g *Group) GetMemberCount() int {
+func (g *Group) GetMemberCount() (int, error) {
 	result, err := adb.Rediss.HGet("GroupToUserMap", strconv.Itoa(g.ID)).Result()
 	if err != nil || len(result) == 0 {
 		sqlres, err := adb.SqlStruct.Conn.Table("group_user_relative").Where("group_id=?", g.ID).Count()
 		if err != nil {
 			fmt.Println("获取用户成员数量失败!", err)
-			return 0
+			return 0, err
 		}
-		return int(sqlres)
+		return int(sqlres), nil
 	}
 	redisres := strings.Split(result, ",")
-	return len(redisres)
+	return len(redisres), nil
 
 }
 

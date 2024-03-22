@@ -16,7 +16,7 @@ type Hub struct {
 	Clients   map[int]UserClient //用户列表  key:userid value:userclient
 	Broadcast chan []byte        //广播列表
 	Loginout  chan *UserClient   //退出登录的列表
-	Mutex     sync.RWMutex       // 互斥锁     多个结构体实例可以共享同一个锁时用指针,此处只会创建一个,所以不用指针
+	Mutex     *sync.RWMutex      // 互斥锁     用指针时多个结构体实例共享同一个锁,否则每个实例有属于自己的锁
 }
 
 func NewHub(HubID string) *Hub {
@@ -25,7 +25,7 @@ func NewHub(HubID string) *Hub {
 		Clients:   make(map[int]UserClient),
 		Broadcast: make(chan []byte),
 		Loginout:  make(chan *UserClient),
-		Mutex:     sync.RWMutex{},
+		Mutex:     &sync.RWMutex{},
 	}
 }
 
@@ -33,6 +33,7 @@ func (h *Hub) Run() {
 	defer func() {
 		close(h.Broadcast)
 		close(h.Loginout)
+
 	}()
 	for {
 		select {
@@ -51,12 +52,17 @@ func (h *Hub) Run() {
 			// 群聊消息
 			var msgstruct *Message
 			err := json.Unmarshal(message, &msgstruct)
+
 			if err == nil && len(strconv.Itoa(msgstruct.MsgType)) < 4 {
 				fmt.Println("groupmsg:", msgstruct.MsgType)
-				err := HandleGroupMsgMap[msgstruct.MsgType](msgstruct, message)
-				if err != nil {
-					log.Println(err)
+				//err := HandleGroupMsgMap[msgstruct.MsgType](msgstruct, message)
+				if msgfun, ok := HandleGroupMsgMap[msgstruct.MsgType]; ok {
+					err := msgfun(msgstruct, message)
+					if err != nil {
+						log.Println(err)
+					}
 				}
+
 				//todo
 				//if msgstruct.MsgType < 100 {
 				//	if err != nil {
@@ -73,10 +79,13 @@ func (h *Hub) Run() {
 			err = json.Unmarshal(message, &usermsgstruct)
 			if err == nil {
 				fmt.Println("friendmsg:", msgstruct.MsgType)
-				err := HandleFriendMsgMap[msgstruct.MsgType](usermsgstruct, message)
-				if err != nil {
-					log.Println(err)
+				if msgfun, ok := HandleFriendMsgMap[msgstruct.MsgType]; ok {
+					err := msgfun(usermsgstruct, message)
+					if err != nil {
+						log.Println(err)
+					}
 				}
+
 				//todo
 				//if usermsgstruct.MsgType < 1100 {
 				//	if err != nil {
@@ -88,7 +97,7 @@ func (h *Hub) Run() {
 				//}
 
 			} else {
-				log.Println(err)
+				//log.Println(err)
 				fmt.Println("解析消息体失败:error", err)
 			}
 		}

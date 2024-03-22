@@ -141,7 +141,7 @@ func ApplyJoinGroup(c *gin.Context) {
 		return
 	}
 
-	applycount, err := adb.SqlStruct.Conn.Table("group_user_relative").Where("user_id = ? and handle_status=?", userdata.ID, 0).Count()
+	applycount, err := adb.SqlStruct.Conn.Table("apply_join_group").Where("apply_user_id = ? and handle_status=?", userdata.ID, 0).Count()
 	if err != nil {
 		fmt.Println(err)
 		util.H(c, http.StatusInternalServerError, "查询关系失败", nil)
@@ -194,17 +194,6 @@ func ApplyJoinGroup(c *gin.Context) {
 		util.H(c, http.StatusBadRequest, "群聊不存在", nil)
 		return
 	}
-
-	//exitgroup, err = adb.SqlStruct.Conn.Table("group").Where("id = ?", rawdata.GroupID).Get(&applygroup)
-	//if err != nil {
-	//	fmt.Println(err)
-	//	util.H(c, http.StatusInternalServerError, "查询群聊失败", nil)
-	//	return
-	//}
-	//if !exitgroup {
-	//	util.H(c, http.StatusBadRequest, "群聊不存在", nil)
-	//	return
-	//}
 
 	applydata := models.ApplyJoinGroup{
 		ApplyUserID:   userdata.ID,
@@ -653,17 +642,17 @@ func SearchGroup(c *gin.Context) {
 	var rawdata searchgroupinfo
 	rawbyte, err := c.GetRawData()
 	if err != nil {
-		util.H(c, http.StatusBadRequest, "搜索失败", err)
+		util.H(c, http.StatusBadRequest, "非法访问", nil)
 		return
 	}
 	err = json.Unmarshal(rawbyte, &rawdata)
 	if err != nil {
-		util.H(c, http.StatusBadRequest, "搜索失败", err)
+		util.H(c, http.StatusBadRequest, "非法格式", nil)
 		return
 	}
 
 	if len(strings.TrimSpace(rawdata.Searchstr)) == 0 {
-		util.H(c, http.StatusBadRequest, "关键词不能为空", err)
+		util.H(c, http.StatusBadRequest, "关键词不能为空", nil)
 		return
 	}
 
@@ -674,19 +663,24 @@ func SearchGroup(c *gin.Context) {
 	}
 
 	grouplist := make([]models.Group, 0)
-	err = adb.SqlStruct.Conn.Table("group").Where("group_name LIKE ? or id=? and creater_id !=?", "%"+rawdata.Searchstr+"%", searchint, userdata.ID).Find(&grouplist)
+	err = adb.SqlStruct.Conn.Table("group").Where("group_name like ? or id=?", rawdata.Searchstr+"%", searchint).Where("creater_id !=?", userdata.ID).Find(&grouplist)
 	if err != nil {
 		util.H(c, http.StatusInternalServerError, "搜索失败", err)
 		return
 	}
-	var responsedata []models.Group
+
+	responsedata := &[]models.Group{}
 	for _, group := range grouplist {
-		group.MemberCount = group.GetMemberCount()
-		responsedata = append(responsedata, group)
+		count, err := group.GetMemberCount()
+		if err != nil {
+			log.Println(err)
+		}
+		group.MemberCount = count
+		*responsedata = append(*responsedata, group)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"msg":       "search success",
+		"msg":       "搜索成功",
 		"grouplist": responsedata,
 	})
 

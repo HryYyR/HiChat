@@ -4,7 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/goinggo/mapstructure"
 	adb "hichat_static_server/ADB"
+	"hichat_static_server/common"
 	"hichat_static_server/models"
 	"hichat_static_server/util"
 	"log"
@@ -28,24 +30,18 @@ func EditUserData(c *gin.Context) {
 	var data edituserdataform
 	err := json.Unmarshal(databyte, &data)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "信息输入有误!",
-		})
+		util.H(c, http.StatusBadRequest, "非法格式", nil)
 		return
 	}
 	// fmt.Printf("%+v\n", data)
 	age, err := strconv.Atoi(data.Age)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "信息输入有误!",
-		})
+		util.H(c, http.StatusBadRequest, "信息输入有误", nil)
 		return
 	}
 
 	if age < 0 || age > 200 {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "信息输入有误!",
-		})
+		util.H(c, http.StatusBadRequest, "信息输入有误", nil)
 		return
 	}
 
@@ -57,9 +53,7 @@ func EditUserData(c *gin.Context) {
 		Age:       age,
 		Introduce: data.Introduce,
 	}); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "修改失败!",
-		})
+		util.H(c, http.StatusInternalServerError, "修改失败", nil)
 		return
 	}
 	err = adb.Rediss.Del(strconv.Itoa(userdata.ID)).Err()
@@ -67,36 +61,52 @@ func EditUserData(c *gin.Context) {
 		log.Println(err.Error())
 		return
 	}
-
-	c.JSON(http.StatusOK, gin.H{
-		"msg": "修改成功!",
-	})
-
+	util.H(c, http.StatusOK, "修改成功", nil)
 }
 
 func GetUserData(c *gin.Context) {
 	data := new(models.Users)
 	err := util.HandleJsonArgument(c, data)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "JSON格式不正确!",
+		util.H(c, http.StatusBadRequest, "非法格式", nil)
+		return
+	}
+
+	var targetuserdata models.UserShowData
+
+	result, err := adb.Rediss.HGetAll(strconv.Itoa(data.ID)).Result()
+	if err == nil && len(result) != 0 {
+		fmt.Println("redis")
+		_ = mapstructure.Decode(result, &targetuserdata)
+		targetuserdata.ID, _ = strconv.Atoi(result["ID"])
+		targetuserdata.Age, _ = strconv.Atoi(result["Age"])
+		targetuserdata.CreatedAt, _ = common.ParseTime(result["CreatedAt"])
+		c.JSON(http.StatusOK, gin.H{
+			"data": targetuserdata,
 		})
 		return
 	}
 
-	var targetuserdata models.Users
-	exit, err := adb.Ssql.Omit("Password,Salt,Grade,IP").Table("users").ID(data.ID).Get(&targetuserdata)
+	var userdata models.Users
+	exit, err := adb.Ssql.Omit("Password,Salt,Grade,IP").Table("users").ID(data.ID).Get(&userdata)
 	if !exit {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "用户不存在!",
-		})
+		util.H(c, http.StatusBadRequest, "用户不存在!", nil)
 		return
 	}
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "查询用户信息失败!",
-		})
+		util.H(c, http.StatusInternalServerError, "查询用户信息失败!", nil)
 		return
+	}
+	targetuserdata = models.UserShowData{
+		ID:        userdata.ID,
+		UserName:  userdata.UserName,
+		NikeName:  userdata.NikeName,
+		Email:     userdata.Email,
+		Avatar:    userdata.Avatar,
+		City:      userdata.City,
+		Age:       userdata.Age,
+		Introduce: userdata.Introduce,
+		CreatedAt: userdata.CreatedAt,
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -257,7 +267,7 @@ func SearchUser(c *gin.Context) {
 
 	friendlist := make([]models.Users, 0)
 	err = adb.Ssql.Table("users").Omit("ip,password,salt,grade,uuid").Where("user_name LIKE ?  and user_name !=?",
-		"%"+data.Searchstr+"%", userdata.UserName).Find(&friendlist)
+		data.Searchstr+"%", userdata.UserName).Find(&friendlist)
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, gin.H{

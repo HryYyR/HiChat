@@ -18,6 +18,8 @@ func InitMySQL() {
 		fmt.Println(err)
 		log.Fatal(err)
 	}
+	engine.SetMaxIdleConns(config.MysqlMaxIdleConns)
+	engine.SetMaxOpenConns(config.MysqlMaxOpenConns)
 	fmt.Println("init mysql success")
 	//engine.ShowSQL(true)
 	engine.SetMapper(names.GonicMapper{})

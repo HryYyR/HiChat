@@ -1,3 +1,1621 @@
 2023/11/30 14:52:07 login_service.go:78: 请求超时
 2023/11/30 14:52:34 login_service.go:78: 请求失败(请求被取消)
 2023/11/30 14:54:16 login_service.go:78: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:05 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:05 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:06 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:07 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:12 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:13 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:14 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:15 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:16 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:16 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:16 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:17 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:18 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:18 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:19 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:19 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:20 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:21 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:21 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:22 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:23 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:24 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:25 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:25 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:26 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:27 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:27 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:27 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:27 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:28 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:28 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:28 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:28 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:28 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:28 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:29 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:30 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:30 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:30 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:31 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:31 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:32 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:33 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:34 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:35 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:36 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:36 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:36 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:37 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:38 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:38 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:38 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:39 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:39 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:40 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:40 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:40 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:40 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:41 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:41 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:41 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:41 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:41 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:42 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:43 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:44 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:44 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:44 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:44 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:44 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:44 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:44 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:44 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:44 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:44 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:44 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:44 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:44 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:44 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:45 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:45 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:45 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:46 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:47 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:47 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:47 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:47 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:47 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:48 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:48 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:48 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:48 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:48 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:49 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:49 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:50 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:50 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:45: dial tcp 127.0.0.1:3306: connectex: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:23:50 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 22:41:53 login_service_registry.go:24: Failed to listen: listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:41:59 login_service_registry.go:24: Failed to listen: listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:42:24 login_service_registry.go:24: Failed to listen: listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:42:37 login_service_registry.go:24: Failed to listen: listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:43:38 login_service_registry.go:24: Failed to listen: listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:43:45 login_service_registry.go:24: Failed to listen: listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:44:09 login_service_registry.go:24: Failed to listen: listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/03/16 22:50:51 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 23:00:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 23:00:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 23:00:29 login_service.go:79: 请求失败(请求被取消)
+2024/03/16 23:00:30 login_service.go:79: 请求失败(请求被取消)

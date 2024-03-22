@@ -44,6 +44,7 @@ func main() {
 	groupgroup := engine.Group("group", service.IdentityCheck)
 	groupgroup.POST("/searchgroup", service.SearchGroup)                 //搜索群聊
 	groupgroup.POST("/getgroupmessagelist", service.GetGroupMessageList) //获取指定群聊的消息(限定条数)
+	groupgroup.POST("/getgroupmemberdata", service.GetGroupMemberList)   //获取指定群聊的成员数据
 
 	//服务注册
 	addressIP := tool.GetIP()
@@ -69,6 +70,7 @@ func main() {
 	serverpost := fmt.Sprintf(":%s", strconv.Itoa(config.ServerPort))
 	err = engine.Run(serverpost)
 	if err != nil {
+		fmt.Println(err)
 		panic(err)
 	}
 }

@@ -4,7 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/goinggo/mapstructure"
 	adb "hichat_static_server/ADB"
+	"hichat_static_server/common"
+	"hichat_static_server/tool"
+	"log"
 	"sort"
 	"strconv"
 	"time"
@@ -57,17 +61,75 @@ type GroupMessage struct {
 	UpdatedAt   time.Time `xorm:"updated"`
 }
 
-//
-//type GroupUserRelative struct {
-//	ID        int `xorm:"pk autoincr notnull index"`
-//	UserID    int
-//	GroupID   int
-//	GroupUUID string
-//	CreatedAt time.Time `xorm:"created"`
-//	DeletedAt time.Time `xorm:"deleted"`
-//	UpdatedAt time.Time `xorm:"updated"`
-//}
+//	type GroupUserRelative struct {
+//		ID        int `xorm:"pk autoincr notnull index"`
+//		UserID    int
+//		GroupID   int
+//		GroupUUID string
+//		CreatedAt time.Time `xorm:"created"`
+//		DeletedAt time.Time `xorm:"deleted"`
+//		UpdatedAt time.Time `xorm:"updated"`
+//	}
 
+// SaveToRedis 保存群聊信息到redis
+func (g *Group) SaveToRedis() error {
+	key := fmt.Sprintf("group%d", g.ID)
+	_, err := adb.Rediss.HMSet(key, map[string]interface{}{
+		"ID":          g.ID,
+		"GroupName":   g.GroupName,
+		"Avatar":      g.Avatar,
+		"CreaterID":   g.CreaterID,
+		"CreaterName": g.CreaterName,
+		"Grade":       g.Grade,
+		"MemberCount": g.MemberCount,
+		"CreatedAt":   tool.FormatTime(g.CreatedAt),
+		"DeletedAt":   tool.FormatTime(g.DeletedAt),
+	}).Result()
+	if err != nil {
+		return err
+	}
+	adb.Rediss.Expire(key, time.Hour*360)
+	return nil
+}
+
+// GetGroupInfo 获取群聊信息
+func (g *Group) GetGroupInfo() (Group, error) {
+	var groupinfo Group
+	key := fmt.Sprintf("group%d", g.ID)
+	//从redis获取数据
+	var gdata = adb.Rediss.HGetAll(key).Val()
+	if len(gdata) != 0 {
+		fmt.Println("走redis")
+		_ = mapstructure.Decode(gdata, &groupinfo)
+		groupinfo.ID, _ = strconv.Atoi(gdata["ID"])
+		groupinfo.CreaterID, _ = strconv.Atoi(gdata["CreaterID"])
+		groupinfo.Grade, _ = strconv.Atoi(gdata["Grade"])
+		groupinfo.MemberCount, _ = strconv.Atoi(gdata["MemberCount"])
+		groupinfo.CreatedAt, _ = common.ParseTime(gdata["CreatedAt"])
+		fmt.Printf("%+v", gdata)
+		return groupinfo, nil
+	}
+	fmt.Println("走mysql")
+	exit, err := adb.Ssql.Table("group").Where("id =?", g.ID).Get(&groupinfo)
+	if !exit {
+		return Group{}, fmt.Errorf("用户不存在")
+	}
+	if err != nil {
+		fmt.Println("mysql查询失败", err)
+		return Group{}, err
+	}
+
+	err = groupinfo.SaveToRedis()
+	if err != nil {
+		fmt.Println("保存到redis失败", err)
+		log.Println("保存到redis失败", err)
+		return groupinfo, nil
+	}
+
+	return groupinfo, nil
+}
+
+// 获取消息列表
 func (g *Group) GetMessageList(grouplist *[]GroupMessage, currentnum int) error {
 	msglist := make([]GroupMessage, 0)
 
@@ -95,7 +157,7 @@ func (g *Group) GetMessageList(grouplist *[]GroupMessage, currentnum int) error 
 }
 func getMsgListFromDatabase(g *Group, currentnum int, msglist *[]GroupMessage) error {
 	var msgdata []GroupMessage
-	err := adb.Ssql.Table("group_message").Where("group_id = ?", g.ID).Desc("id").Limit(10, currentnum).Find(&msgdata)
+	err := adb.Ssql.Table("group_message").Where("group_id = ?", g.ID).Desc("id").Limit(20, currentnum).Find(&msgdata)
 	if err != nil {
 		return err
 	}
@@ -111,7 +173,7 @@ func getMsgListFromCache(g *Group, currentnum int, msglist *[]GroupMessage) erro
 	if lLen == 0 {
 		return nil
 	}
-	start := lLen - int64(currentnum) - 10
+	start := lLen - int64(currentnum) - 20
 	if start <= 0 {
 		start = 0
 	}

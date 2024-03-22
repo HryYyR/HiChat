@@ -1291,3 +1291,13 @@ net/http.(*conn).serve(0xc00060e000, {0x126a840, 0xc0003653b0})
 	C:/Program Files/Go/src/net/http/server.go:2009 +0x5f4
 created by net/http.(*Server).Serve in goroutine 1
 	C:/Program Files/Go/src/net/http/server.go:3086 +0x5cb
+2024/03/16 21:23:16 hub_basic.go:97: invalid character 'm' looking for beginning of object key string
+2024/03/16 21:23:44 hub_basic.go:97: invalid character 'm' looking for beginning of object key string
+2024/03/16 21:26:16 hub_basic.go:97: parsing time "2024-3-16" as "2006-01-02T15:04:05Z07:00": cannot parse "3-16" as "01"
+2024/03/16 21:26:25 hub_basic.go:97: parsing time "2006-01-02T15:04:05Z07:00": extra text: "07:00"
+2024/03/16 21:26:38 hub_basic.go:97: parsing time "2006-01-02T15:04:05Z0": extra text: "0"
+2024/03/16 21:26:43 hub_basic.go:97: parsing time "2006-01-02T15:04:05" as "2006-01-02T15:04:05Z07:00": cannot parse "" as "Z07:00"
+2024/03/16 21:26:50 hub_basic.go:97: parsing time "2006-01-02 15:04:05" as "2006-01-02T15:04:05Z07:00": cannot parse " 15:04:05" as "T"
+2024/03/16 21:27:01 hub_basic.go:97: parsing time "2006-01-02T15:04:05" as "2006-01-02T15:04:05Z07:00": cannot parse "" as "Z07:00"
+2024/03/16 21:27:12 hub_basic.go:97: parsing time "2006-01-02T15:04:05Z08:00": extra text: "08:00"
+2024/03/19 12:48:41 main.go:92: listen tcp :3004: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.

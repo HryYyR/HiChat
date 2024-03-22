@@ -230,7 +230,7 @@ func (u *Users) GetUserData(userdata *Users) error {
 	//从redis获取数据
 	var udata = adb.Rediss.HGetAll(strconv.Itoa(u.ID)).Val()
 	if len(udata) != 0 {
-		fmt.Println("走redis")
+		//fmt.Println("走redis")
 		_ = mapstructure.Decode(udata, &userinfo)
 		userinfo.ID, _ = strconv.Atoi(udata["ID"])
 		userinfo.Age, _ = strconv.Atoi(udata["Age"])
@@ -238,8 +238,7 @@ func (u *Users) GetUserData(userdata *Users) error {
 		*userdata = userinfo
 		return nil
 	}
-	fmt.Println("走mysql")
-
+	//fmt.Println("走mysql")
 	exit, err := adb.Ssql.Omit("Password,Salt,Grade,IP").Table("users").Where("id =?", u.ID).Get(&userinfo)
 	if !exit {
 		return fmt.Errorf("用户不存在")
@@ -278,21 +277,31 @@ func (u *Users) GetUserGroupList(grouplist *[]GroupDetail) error {
 			gur := bean.(*GroupUserRelative)
 
 			//群的信息
-			var group Group
-			_, err := adb.Ssql.Table("group").Where("id=?", gur.GroupID).Get(&group)
+			tempgroup := &Group{
+				ID: gur.GroupID,
+			}
+			group, err := tempgroup.GetGroupInfo()
 			if err != nil {
 				fmt.Println("根据群id查询群的详细信息error:", err)
 				return err
 			}
-			group.UnreadMessage = unreadmsgmap[group.ID] //设置未读数量
+			//设置未读数量
+			if num, ok := unreadmsgmap[group.ID]; ok {
+				group.UnreadMessage = num
+			}
 
 			//群的消息
 			tempdata := make([]GroupMessage, 0)
-			if err := adb.Ssql.Table("group_message").Where("group_id=?", gur.GroupID).
-				Desc("id").Limit(20).Find(&tempdata); err != nil {
+			err = group.GetMessageList(&tempdata, 0)
+			if err != nil {
 				fmt.Println("查询群消息失败error:", err)
 				return err
 			}
+			//if err := adb.Ssql.Table("group_message").Where("group_id=?", gur.GroupID).
+			//	Desc("id").Limit(20).Find(&tempdata); err != nil {
+			//	fmt.Println("查询群消息失败error:", err)
+			//	return err
+			//}
 			sort.Slice(tempdata, func(i, j int) bool {
 				return tempdata[i].ID < tempdata[j].ID
 			})

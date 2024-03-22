@@ -26,6 +26,11 @@ func ApplyAddUser(c *gin.Context) {
 		return
 	}
 
+	if data.ApplyUserID == data.PreApplyUserID {
+		util.H(c, http.StatusBadRequest, "不能添加自己为好友", nil)
+		return
+	}
+
 	// fmt.Printf("%+v", data)
 	exit, err := adb.SqlStruct.Conn.Table("apply_add_user").
 		Where("pre_apply_user_id=?  and apply_user_id=?  and handle_status=0",
@@ -50,6 +55,7 @@ func ApplyAddUser(c *gin.Context) {
 		return
 	}
 
+	fmt.Printf("%#v\n", data)
 	if _, err = adb.SqlStruct.Conn.Table("apply_add_user").Insert(&data); err != nil {
 		util.H(c, http.StatusInternalServerError, "申请添加好友失败", err)
 		return

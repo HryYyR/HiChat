@@ -36,14 +36,13 @@ func (m *Message) TableName() string {
 func (m *Message) AccordingToGroupidGetUserlist() ([]int, error) {
 	var useridlist []int
 
-	result, err := adb.Rediss.HGet("GroupToUserMap", strconv.Itoa(m.GroupID)).Result()
-	if err != nil || len(result) == 0 {
+	result := adb.Rediss.HGet("GroupToUserMap", strconv.Itoa(m.GroupID)).Val()
+	if len(result) == 0 {
 		if err := adb.SqlStruct.Conn.Cols("user_id").Table("group_user_relative").Where("group_id=?", m.GroupID).Find(&useridlist); err != nil {
 			fmt.Println(err.Error())
 			log.Println(err.Error())
 			return nil, err
 		}
-		return useridlist, nil
 	} else {
 		strarr := strings.Split(result, ",")
 		useridlist = util.StrArrToIntArr(strarr)
