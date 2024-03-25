@@ -1,6 +1,8 @@
 package service
 
 import (
+	"crypto/x509"
+	"encoding/pem"
 	"fmt"
 	"go-websocket-server/Token_packge"
 	"go-websocket-server/models"
@@ -25,7 +27,6 @@ var upgrader = websocket.Upgrader{
 // Connectws 连接ws
 func Connectws(c *gin.Context) {
 	token := c.Query("token")
-
 	userdata, err := Token_packge.DecryptToken(token)
 	if err != nil {
 		fmt.Println(err)
@@ -57,7 +58,9 @@ func Connectws(c *gin.Context) {
 		Status:   true,
 		Groups:   grouplist,
 		// CachingMessages: make(map[int]int, 0),
-		Mutex: &sync.RWMutex{},
+		Mutex:            &sync.RWMutex{},
+		HoldEncryptedKey: false,
+		EncryptedKey:     []byte{},
 	}
 
 	models.ServiceCenter.Mutex.Lock()
@@ -66,4 +69,12 @@ func Connectws(c *gin.Context) {
 
 	go client.WritePump()
 	go client.ReadPump()
+
+	// 将RSA公钥转换为PEM格式的字符串
+	rsaPublicKeyPEM := pem.EncodeToMemory(&pem.Block{
+		Type:  "RSA PUBLIC KEY",
+		Bytes: x509.MarshalPKCS1PublicKey(models.ServiceCenter.GetPublicKey()),
+	})
+
+	client.Send <- rsaPublicKeyPEM
 }

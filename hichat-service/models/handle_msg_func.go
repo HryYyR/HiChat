@@ -163,11 +163,16 @@ var HandleFriendMsgMap = map[int]FriendMsgfun{
 
 // HandleDefaultFriendMsg 1001  默认消息
 func HandleDefaultFriendMsg(msgstruct *UserMessage, msg []byte) error {
-
 	ctx, cancelFunc := context.WithCancel(context.Background())
 
+	//fmt.Println(msg)
+	//fmt.Println(string(msg))
+	var te UserMessage
+	_ = json.Unmarshal(msg, &te)
+	//fmt.Printf("%#v\n", te)
+	bytes, _ := json.Marshal(msgstruct)
 	// 保存消息进数据库
-	go func(msg []byte) {
+	go func() {
 		err := adb.MQc.Publish(
 			"",           // exchange
 			adb.MQq.Name, // routing key
@@ -175,18 +180,21 @@ func HandleDefaultFriendMsg(msgstruct *UserMessage, msg []byte) error {
 			false,        // immediate
 			amqp.Publishing{
 				ContentType: "application/json",
-				Body:        msg,
+				Body:        bytes,
 			})
 		if err != nil {
 			fmt.Printf("上传消息到队列失败!%s\n", err)
 			cancelFunc()
 		}
-	}(msg)
+
+	}()
 
 	FriendWriteSyncMsg(msgstruct)
 
-	ServiceCenter.Clients[msgstruct.UserID].Send <- msg
-	ServiceCenter.Clients[msgstruct.ReceiveUserID].Send <- msg
+	fmt.Println("未加密的消息", string(bytes))
+
+	ServiceCenter.Clients[msgstruct.UserID].Send <- bytes
+	ServiceCenter.Clients[msgstruct.ReceiveUserID].Send <- bytes
 
 	select {
 	case <-ctx.Done():

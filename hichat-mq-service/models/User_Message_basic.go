@@ -33,8 +33,8 @@ func (u *UserMessage) SaveFriendMsgToDb() error {
 	}
 	var key string
 
-	fmt.Println(u.UserID, u.ReceiveUserID)
-	fmt.Println(u.UserID > u.ReceiveUserID)
+	//fmt.Println(u.UserID, u.ReceiveUserID)
+	//fmt.Println(u.UserID > u.ReceiveUserID)
 	if u.UserID > u.ReceiveUserID {
 		key = fmt.Sprintf("%d%d", u.UserID, u.ReceiveUserID)
 	} else {
@@ -87,7 +87,7 @@ func (u *UserMessage) ClearFriendMsgNum() error {
 	_, err := adb.Ssql.Table("user_unread_message").Cols("unread_number").Where("user_id = ? and friend_id=?", u.ReceiveUserID, u.UserID).Update(&UserUnreadMessage{
 		UnreadNumber: 0,
 	})
-	fmt.Println("update ok")
+	//fmt.Println("update ok")
 	if err != nil {
 		return err
 	}

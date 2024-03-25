@@ -1,12 +1,19 @@
 package util
 
 import (
+	"bytes"
+	"crypto/aes"
+	"crypto/cipher"
+	"errors"
+	"io"
+
 	// "crypto/ecdsa"
 	// "crypto/elliptic"
 	"crypto/md5"
+	randd "crypto/rand"
+	"crypto/rsa"
 	"net"
 	"strconv"
-
 	// random "crypto/rand"
 	"crypto/tls"
 	"encoding/json"
@@ -139,7 +146,7 @@ func StrArrToIntArr(strarr []string) []int {
 	return intarr
 }
 
-// DeleteSlice 删除指定元素。
+// DeleteStrSlice DeleteSlice 删除指定元素。
 func DeleteStrSlice(a []string, elem string) []string {
 	j := 0
 	for _, v := range a {
@@ -151,7 +158,7 @@ func DeleteStrSlice(a []string, elem string) []string {
 	return a[:j]
 }
 
-// DeleteSlice 删除指定元素。
+// DeleteIntSlice DeleteSlice 删除指定元素。
 func DeleteIntSlice(a []int, elem int) []int {
 	j := 0
 	for _, v := range a {
@@ -161,4 +168,93 @@ func DeleteIntSlice(a []int, elem int) []int {
 		}
 	}
 	return a[:j]
+}
+
+// GenerateRsaKey 生成 rsa Key
+func GenerateRsaKey() (*rsa.PublicKey, *rsa.PrivateKey) {
+	privateKey, _ := rsa.GenerateKey(randd.Reader, 2048)
+	publicKey := privateKey.PublicKey
+	return &publicKey, privateKey
+}
+
+// DecryptRSA 解密 RSA 密文
+func DecryptRSA(encryptedKey []byte, privateKey *rsa.PrivateKey) ([]byte, error) {
+	// 使用 RSA 私钥解密加密后的对称密钥
+	decryptedKey, err := rsa.DecryptPKCS1v15(randd.Reader, privateKey, encryptedKey)
+	if err != nil {
+		return nil, err
+	}
+	return decryptedKey, nil
+}
+
+// DecryptAES DecryptData 解密 aes 密文
+func DecryptAES(encryptedData, iv, key []byte) ([]byte, error) {
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		return nil, err
+	}
+	if len(iv) != aes.BlockSize {
+		return nil, errors.New(" IV length must equal block size\n")
+	}
+	if err != nil {
+		fmt.Println("解码失败:", err)
+		return nil, err
+	}
+
+	// CBC 模式解密
+	mode := cipher.NewCBCDecrypter(block, iv)
+	mode.CryptBlocks(encryptedData, encryptedData)
+	// 去除填充
+	decryptedData := unpad(encryptedData)
+
+	//var decryptedDataJson EncryptedMessage
+	//err = json.Unmarshal(decryptedData, &decryptedDataJson)
+	//fmt.Printf("%v\n", decryptedDataJson)
+	//marshal, err := json.Marshal(decryptedDataJson.Message)
+	//if err != nil {
+	//	return nil, err
+	//}
+	return decryptedData, nil
+}
+
+type EncryptedMessage struct {
+	Message string
+}
+type EncryptedData struct {
+	Iv      []byte
+	Message []byte
+}
+
+// EncryptAESCBC 使用AES CBC模式对数据进行加密
+func EncryptAESCBC(data []byte, key []byte) (EncryptedData, error) {
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		return EncryptedData{}, err
+	}
+	// 创建一个随机IV
+	iv := make([]byte, aes.BlockSize)
+	if _, err := io.ReadFull(randd.Reader, iv); err != nil {
+		return EncryptedData{}, err
+	}
+	plaintext := pkcs7Pad(data, aes.BlockSize)
+	ciphertext := make([]byte, len(plaintext)) //用时2天解决的bug,在调用CryptBlocks时
+	// 使用CBC模式加密数据
+	mode := cipher.NewCBCEncrypter(block, iv)
+	mode.CryptBlocks(ciphertext, plaintext) //必须用一个新的变量来接加密数据,不然两个协程之间回共享变量,导致数据重复
+	// 返回加密数据和IV
+	return EncryptedData{Message: ciphertext, Iv: iv}, nil
+}
+
+// 去除填充
+func unpad(data []byte) []byte {
+	length := len(data)
+	unpadding := int(data[length-1])
+	return data[:(length - unpadding)]
+}
+
+// Pad 对数据进行填充
+func pkcs7Pad(data []byte, blockSize int) []byte {
+	padding := blockSize - len(data)%blockSize
+	padtext := bytes.Repeat([]byte{byte(padding)}, padding)
+	return append(data, padtext...)
 }

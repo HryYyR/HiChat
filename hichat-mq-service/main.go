@@ -25,7 +25,7 @@ func main() {
 	msgs, err := adb.MQc.Consume(
 		adb.MQq.Name, // queue
 		"",           // consumer
-		false,        // auto-ack
+		true,         // auto-ack
 		false,        // exclusive
 		false,        // no-local
 		false,        // no-wait
@@ -60,7 +60,7 @@ func main() {
 		var msgstruct *models.Message
 		err := json.Unmarshal(d.Body, &msgstruct)
 		if err == nil && msgstruct.MsgType < 500 {
-			//fmt.Println(msgstruct.MsgType)
+			fmt.Println(msgstruct.MsgType)
 			HandleMap := map[int]GroupMsgfun{
 				config.MsgTypeDefault:      msgstruct.SaveGroupMsgToDb,
 				config.MsgTypeImage:        msgstruct.SaveGroupMsgToDb,
@@ -71,17 +71,16 @@ func main() {
 			err := HandleMap[msgstruct.MsgType]()
 			if err != nil {
 				fmt.Println(err.Error())
-				d.Nack(false, true)
+				//d.Nack(false, true)
 			}
-			d.Ack(false)
+			//d.Ack(false)
 			continue
 		}
-
 		// 私聊消息
 		var usermsgstruct *models.UserMessage
 		err = json.Unmarshal(d.Body, &usermsgstruct)
 		if err == nil && msgstruct.MsgType > 1000 && msgstruct.MsgType < 1500 {
-			//fmt.Println(msgstruct.MsgType)
+			fmt.Println(msgstruct.MsgType)
 			HandleMap := map[int]FriendMsgfun{
 				config.MsgTypeFriendDefault:      usermsgstruct.SaveFriendMsgToDb,
 				config.MsgTypeFriendImage:        usermsgstruct.SaveFriendMsgToDb,
@@ -92,10 +91,12 @@ func main() {
 			err := HandleMap[msgstruct.MsgType]()
 			if err != nil {
 				fmt.Println(err.Error())
-				d.Nack(false, true)
+				//d.Nack(false, true)
 			}
-			d.Ack(false)
+			//d.Ack(false)
 			continue
+		} else {
+			fmt.Println("json Unmarshal error: ", err)
 		}
 
 		//// redis消息
