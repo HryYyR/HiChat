@@ -133,7 +133,7 @@ func (g *Group) GetGroupInfo() (Group, error) {
 func (g *Group) GetMessageList(grouplist *[]GroupMessage, currentnum int) error {
 	msglist := make([]GroupMessage, 0)
 
-	count, err := adb.Ssql.Table("group_message").Where("group_id = ?", g.ID).Count()
+	count, err := adb.Ssql.Table("group_message").Where("group_id = ? ", g.ID).Count()
 	if err != nil {
 		return err
 	}
@@ -190,7 +190,10 @@ func getMsgListFromCache(g *Group, currentnum int, msglist *[]GroupMessage) erro
 		bufferString := bytes.NewBufferString(msgstr).Bytes()
 		err := json.Unmarshal(bufferString, &msgstruct)
 		if err != nil {
-			continue
+			//todo: 解析有错误的不应该放入聊天记录,但是 因为只是类型转换错误导致的失败 而放弃这条记录,
+			//todo: 会导致总记录数量不正确,最终导致拉取记录出问题
+			//fmt.Println(err)
+			//continue
 		}
 		//fmt.Println(msgstruct)
 		msgdata = append(msgdata, msgstruct)

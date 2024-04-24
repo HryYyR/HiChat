@@ -3,6 +3,7 @@ package rpcserver
 import (
 	"context"
 	"fmt"
+	"go-websocket-server/config"
 	"go-websocket-server/models"
 	pb "go-websocket-server/proto"
 	"google.golang.org/grpc"
@@ -10,7 +11,7 @@ import (
 )
 
 func CallNoticeVideoStreamServer(info models.UserMessage) (*pb.Noticevideostreamserverres, error) {
-	conn, err := grpc.Dial("localhost:50052", grpc.WithInsecure())
+	conn, err := grpc.Dial(fmt.Sprintf("%s:%s", config.CallNoticeVideoStreamServerIP, config.CallNoticeVideoStreamServerPort), grpc.WithInsecure())
 	if err != nil {
 		fmt.Println(err)
 		log.Printf("did not connect: %v", err)

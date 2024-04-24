@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package="./;proto";
+// 定义包名
+package proto;
+
+message noticevideostreamserverreq
+{
+  int32 start_userid = 1;
+  string start_username = 2;
+  int32 receive_userid = 3;
+  string receive_username = 4;
+}
+
+message noticevideostreamserverres
+{
+  int32 status =1;
+  string msg = 2;
+}
+
+
+service videostreamservice {
+  rpc noticevideostreamserver (noticevideostreamserverreq) returns (noticevideostreamserverres) {}
+}

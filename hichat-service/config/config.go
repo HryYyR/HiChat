@@ -2,12 +2,18 @@ package config
 
 import "time"
 
+// var CallNoticeVideoStreamServerIP = "192.168.137.1"
+
+var CallNoticeVideoStreamServerIP = "127.0.0.1"
+var CallNoticeVideoStreamServerPort = "50052"
+
 var ServerPort = 3004
 var ConsulAddress = "127.0.0.1:8500"
 
 var JwtKey = "Hyyyh1527"
 
 // var MysqlAddress = "host.docker.internal:3306" //docker
+
 var MysqlAddress = "localhost:3306" //localhost
 
 var MysqlUserName = "root"

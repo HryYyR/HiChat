@@ -31,6 +31,11 @@ func ApplyAddUser(c *gin.Context) {
 		return
 	}
 
+	if len(data.ApplyMsg) > 50 {
+		util.H(c, http.StatusBadRequest, "申请理由超字数上限(50字)", nil)
+		return
+	}
+
 	// fmt.Printf("%+v", data)
 	exit, err := adb.SqlStruct.Conn.Table("apply_add_user").
 		Where("pre_apply_user_id=?  and apply_user_id=?  and handle_status=0",

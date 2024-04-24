@@ -41,6 +41,8 @@ func main() {
 
 	usergroup.POST("/getusermessagelist", service.GetUserMessageList) //获取用户之间的消息(限定条数)
 
+	usergroup.POST("/aimessage", service.AiMessage) //Ai问答
+
 	groupgroup := engine.Group("group", service.IdentityCheck)
 	groupgroup.POST("/searchgroup", service.SearchGroup)                 //搜索群聊
 	groupgroup.POST("/getgroupmessagelist", service.GetGroupMessageList) //获取指定群聊的消息(限定条数)

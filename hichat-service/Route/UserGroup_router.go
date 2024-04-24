@@ -15,6 +15,6 @@ func InItUserGroupRouter(usergroup *gin.RouterGroup) {
 	// usergroup.POST("/RefreshGroupList", service.RefreshGroupList) //获取用户信息
 	usergroup.POST("/applyadduser", service.ApplyAddUser)                         //申请添加好友
 	usergroup.POST("/handleadduser", service.HandleAddUser)                       //处理添加好友
-	usergroup.POST("/startusertouservideocall", service.StartUserToUserVideoCall) //检查指定用户登录状态
+	usergroup.POST("/startusertouservideocall", service.StartUserToUserVideoCall) //开始视频通话
 
 }

@@ -131,13 +131,18 @@ func ApplyJoinGroup(c *gin.Context) {
 	var rawdata applyjoingroupinfo
 	rawbyte, err := c.GetRawData()
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		util.H(c, http.StatusBadRequest, "非法访问", nil)
 	}
 	err = json.Unmarshal(rawbyte, &rawdata)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		util.H(c, http.StatusBadRequest, "非法格式", nil)
+		return
+	}
+
+	if len(rawdata.Msg) > 50 {
+		util.H(c, http.StatusBadRequest, "申请理由超字数上限(50字)", nil)
 		return
 	}
 
@@ -405,8 +410,10 @@ func HandleJoinGroup(c *gin.Context) {
 		}
 		session.Commit()
 
-		// 通知群里的其他成员有用户加入
 		msgbyte, _ := json.Marshal(groupmsg)
+		adb.Rediss.RPush(fmt.Sprintf("gm%d", grouplist.ID), string(msgbyte))
+
+		// 通知群里的其他成员有用户加入
 		for _, uid := range models.GroupUserList[grouplist.ID] {
 			models.ServiceCenter.Clients[uid].Send <- msgbyte
 			break
@@ -505,7 +512,6 @@ func ExitGroup(c *gin.Context) {
 
 	var willbedeleteuseridlist []int        //将被删除的用户群聊关系的用户id
 	if groupinfo.CreaterID == userdata.ID { //说明他是群主,删除所有联系
-
 		result := adb.Rediss.HGet("GroupToUserMap", strconv.Itoa(groupinfo.ID)).Val()
 		//查群里的user的id 如果redis不存在,查mysql,存redis
 		if len(result) == 0 {
@@ -547,6 +553,9 @@ func ExitGroup(c *gin.Context) {
 		//删redis群聊消息
 		rkey := fmt.Sprintf("gm%s", strconv.Itoa(groupinfo.ID))
 		redisSession.Del(rkey)
+
+		rrkey := fmt.Sprintf("group%s", strconv.Itoa(groupinfo.ID))
+		redisSession.Del(rrkey)
 
 		_, err := redisSession.Exec()
 		if err != nil {
@@ -619,8 +628,9 @@ func ExitGroup(c *gin.Context) {
 		//同步用户列表里相关信息
 		delete(models.ServiceCenter.Clients[userdata.ID].Groups, groupinfo.ID)
 
-		// 通知群里的其他成员有用户退出
 		msgbyte, _ := json.Marshal(groupmsg)
+		adb.Rediss.RPush(fmt.Sprintf("gm%s", strconv.Itoa(groupmsg.GroupID)), string(msgbyte))
+		// 通知群里的其他成员有用户退出
 		for _, userid := range groupuserlist {
 			models.ServiceCenter.Clients[userid].Send <- msgbyte
 		}
@@ -653,6 +663,11 @@ func SearchGroup(c *gin.Context) {
 
 	if len(strings.TrimSpace(rawdata.Searchstr)) == 0 {
 		util.H(c, http.StatusBadRequest, "关键词不能为空", nil)
+		return
+	}
+
+	if len(strings.TrimSpace(rawdata.Searchstr)) > 50 {
+		util.H(c, http.StatusBadRequest, "关键词超字数上限(50字)", nil)
 		return
 	}
 

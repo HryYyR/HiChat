@@ -230,10 +230,14 @@ func (u *Users) GetUserData(userdata *Users) error {
 	//从redis获取数据
 	var udata = adb.Rediss.HGetAll(strconv.Itoa(u.ID)).Val()
 	if len(udata) != 0 {
-		//fmt.Println("走redis")
+		//更新登陆时间
+		adb.Rediss.HSet(strconv.Itoa(u.ID), "LoginTime", tool.FormatTime(time.Now()))
+
 		_ = mapstructure.Decode(udata, &userinfo)
 		userinfo.ID, _ = strconv.Atoi(udata["ID"])
 		userinfo.Age, _ = strconv.Atoi(udata["Age"])
+		userinfo.LoginTime = time.Now().String()
+		userinfo.CreatedAt, _ = tool.ParseTime(udata["CreatedAt"])
 		fmt.Printf("%+v", userinfo)
 		*userdata = userinfo
 		return nil
@@ -317,67 +321,6 @@ func (u *Users) GetUserGroupList(grouplist *[]GroupDetail) error {
 		return err
 	}
 	return nil
-
-	//
-	//// 查询用户加入的群列表(没有详情)
-	//var gur []GroupUserRelative
-	//if err := adb.Ssql.Table("group_user_relative").Where("user_id=?", u.ID).Find(&gur); err != nil {
-	//	fmt.Println("查询用户加入的群列表error:", err)
-	//	return err
-	//}
-	//
-	//// 查询用户的所有消息
-	//usermessagelist := make([]GroupMessage, 0)
-	//if err := adb.Ssql.Table("group_message").Desc("id").Find(&usermessagelist); err != nil {
-	//	fmt.Println("查询所有消息error:", err)
-	//	return err
-	//}
-	////MessageTimeSort(usermessagelist, "desc")
-	//
-	//var unreadmsglist []GroupUnreadMessage
-	//if err := adb.Ssql.Table("group_unread_message").Where("user_id = ?", u.ID).Find(&unreadmsglist); err != nil {
-	//	return err
-	//}
-	//unreadmsgmap := make(map[int]int, len(unreadmsglist)+1) //k:groupid   v:unreadnum
-	//for _, UnreadMessage := range unreadmsglist {
-	//	unreadmsgmap[UnreadMessage.GroupID] = UnreadMessage.UnreadNumber
-	//}
-	//
-	//for _, g := range gur {
-	//	var group Group                //群详情
-	//	var messagelist []GroupMessage //群消息列表
-	//
-	//	//  根据群id查询群的详细信息
-	//	exit, err := adb.Ssql.Table("group").Where("uuid=?", g.GroupUUID).Get(&group)
-	//	if !exit {
-	//		continue
-	//	}
-	//	if err != nil {
-	//		fmt.Println("根据群id查询群的详细信息error:", err)
-	//		return err
-	//	}
-	//
-	//	group.UnreadMessage = unreadmsgmap[g.GroupID] //放入未读消息数量
-	//
-	//	// 将该群聊的消息放入消息列表
-	//	for _, m := range usermessagelist {
-	//		// fmt.Printf("%+v-----%+v\n", m.GroupID, g.ID)
-	//		if len(messagelist) >= 10 {
-	//			break
-	//		}
-	//		if m.GroupID == g.GroupID {
-	//			messagelist = append(messagelist, m)
-	//		}
-	//	}
-	//	sort.Slice(messagelist, func(i, j int) bool { return messagelist[i].ID < (messagelist[j].ID) })
-	//	//MessageTimeSort(messagelist, "asc")
-	//
-	//	var groupitem = GroupDetail{
-	//		GroupInfo:   group,
-	//		MessageList: messagelist,
-	//	}
-	//	*grouplist = append(*grouplist, groupitem)
-	//}
 }
 
 // GetApplyMsgList 获取用户的群聊通知列表
@@ -628,9 +571,9 @@ func (u *Users) Login(logindata *ResponseUserData) error {
 	case <-cctx.Done():
 		err := cctx.Err()
 		fmt.Println(err)
-		if err == context.Canceled {
+		if errors.Is(err, context.Canceled) {
 			reserr = errors.New("请求失败(请求被取消)")
-		} else if err == context.DeadlineExceeded {
+		} else if errors.Is(err, context.DeadlineExceeded) {
 			reserr = errors.New("请求超时")
 		}
 	default:

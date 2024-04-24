@@ -38,7 +38,7 @@ func GetGroupMessageList(c *gin.Context) {
 	group := models.Group{
 		ID: data.Groupid,
 	}
-	fmt.Println(data.Groupid, data.Currentnum)
+	fmt.Println("群id:", data.Groupid, " 当前条数:", data.Currentnum)
 	grouplist := make([]models.GroupMessage, 0)
 	err = group.GetMessageList(&grouplist, data.Currentnum)
 	if err != nil {

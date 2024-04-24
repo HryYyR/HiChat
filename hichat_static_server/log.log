@@ -1619,3 +1619,1804 @@
 2024/03/16 23:00:29 login_service.go:79: 请求失败(请求被取消)
 2024/03/16 23:00:29 login_service.go:79: 请求失败(请求被取消)
 2024/03/16 23:00:30 login_service.go:79: 请求失败(请求被取消)
+2024/04/14 14:52:04 login_service.go:79: 请求失败(请求被取消)
+2024/04/24 21:52:54 server.go:3413: http: panic serving [::1]:54812: runtime error: invalid memory address or nil pointer dereference
+goroutine 70 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x123d140?, 0x1a72fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0xc00030c818, 0x6})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0001d8700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001d8700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001d8700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001d8700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00016b6c0, 0xc0001d8700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00016b6c0, {0x149be90, 0xc0006a2000}, 0xc000784120)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1499d58?}, {0x149be90?, 0xc0006a2000?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0005b8090, {0x149d0e0, 0xc00000c3f0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:52:54 server.go:3413: http: panic serving [::1]:54813: runtime error: invalid memory address or nil pointer dereference
+goroutine 84 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x123d140?, 0x1a72fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0004c0000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0004c0000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0004c0000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0004c0000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00016b6c0, 0xc0004c0000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00016b6c0, {0x149be90, 0xc0004bc000}, 0xc0004a2000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1499d58?}, {0x149be90?, 0xc0004bc000?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0003f61b0, {0x149d0e0, 0xc00000c3f0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:52:54 server.go:3413: http: panic serving [::1]:54814: runtime error: invalid memory address or nil pointer dereference
+goroutine 29 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x123d140?, 0x1a72fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0000b8100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0000b8100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0000b8100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0000b8100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00016b6c0, 0xc0000b8100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00016b6c0, {0x149be90, 0xc0001b01c0}, 0xc0001a86c0)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1499d58?}, {0x149be90?, 0xc0001b01c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000782480, {0x149d0e0, 0xc00000c3f0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:52:54 server.go:3413: http: panic serving [::1]:54815: runtime error: invalid memory address or nil pointer dereference
+goroutine 30 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x123d140?, 0x1a72fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0xc000346358, 0x6})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0005c8100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0005c8100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0005c8100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0005c8100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00016b6c0, 0xc0005c8100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00016b6c0, {0x149be90, 0xc0005120e0}, 0xc00034c000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1499d58?}, {0x149be90?, 0xc0005120e0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000782510, {0x149d0e0, 0xc00000c3f0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:53:23 server.go:3413: http: panic serving [::1]:54889: runtime error: invalid memory address or nil pointer dereference
+goroutine 100 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x123d140?, 0x1a72fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0005c8200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0005c8200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0005c8200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0005c8200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00016b6c0, 0xc0005c8200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00016b6c0, {0x149be90, 0xc000512380}, 0xc00034cfc0)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1499d58?}, {0x149be90?, 0xc000512380?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0003501b0, {0x149d0e0, 0xc00000c3f0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:53:23 server.go:3413: http: panic serving [::1]:54890: runtime error: invalid memory address or nil pointer dereference
+goroutine 49 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x123d140?, 0x1a72fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0xc0003b83f8, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0004c0100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0004c0100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0004c0100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0004c0100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00016b6c0, 0xc0004c0100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00016b6c0, {0x149be90, 0xc0003fc1c0}, 0xc0003e2480)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1499d58?}, {0x149be90?, 0xc0003fc1c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0006fac60, {0x149d0e0, 0xc00000c3f0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:53:23 server.go:3413: http: panic serving [::1]:54891: runtime error: invalid memory address or nil pointer dereference
+goroutine 114 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x123d140?, 0x1a72fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0005c8300)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0005c8300)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0005c8300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0005c8300)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00016b6c0, 0xc0005c8300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00016b6c0, {0x149be90, 0xc000512540}, 0xc0003e25a0)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1499d58?}, {0x149be90?, 0xc000512540?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0006facf0, {0x149d0e0, 0xc00000c3f0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:53:55 server.go:3413: http: panic serving [::1]:54974: runtime error: invalid memory address or nil pointer dereference
+goroutine 41 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0xc00038c1f8, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc000128200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000128200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000128200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000128200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc000128200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00019e1c0}, 0xc000370360)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00019e1c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000606240, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:53:55 server.go:3413: http: panic serving [::1]:54973: runtime error: invalid memory address or nil pointer dereference
+goroutine 39 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0001c2400)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2400)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2400)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc0001c2400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00071a0e0}, 0xc000198b40)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00071a0e0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000606000, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:53:55 server.go:3413: http: panic serving [::1]:54975: runtime error: invalid memory address or nil pointer dereference
+goroutine 43 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc000128300)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000128300)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000128300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000128300)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc000128300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00019e380}, 0xc000199680)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00019e380?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000606630, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:54:37 server.go:3413: http: panic serving [::1]:55085: runtime error: invalid memory address or nil pointer dereference
+goroutine 116 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00071a380}, 0xc0002e26c0)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00071a380?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00027cea0, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:54:37 server.go:3413: http: panic serving [::1]:55084: runtime error: invalid memory address or nil pointer dereference
+goroutine 114 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc000440000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000440000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000440000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000440000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc000440000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00043c000}, 0xc000110c60)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00043c000?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00027ccf0, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:54:37 server.go:3413: http: panic serving [::1]:55086: runtime error: invalid memory address or nil pointer dereference
+goroutine 118 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0001c2700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc0001c2700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00071a540}, 0xc000370480)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00071a540?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00027d290, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:55:45 server.go:3413: http: panic serving [::1]:55287: runtime error: invalid memory address or nil pointer dereference
+goroutine 150 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc000440100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000440100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000440100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000440100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc000440100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00043c2a0}, 0xc000465680)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00043c2a0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00027de60, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:55:45 server.go:3413: http: panic serving [::1]:55288: runtime error: invalid memory address or nil pointer dereference
+goroutine 141 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0001c2800)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2800)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2800)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2800)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc0001c2800)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00071a700}, 0xc0002e3c20)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00071a700?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0004c1320, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:55:45 server.go:3413: http: panic serving [::1]:55289: runtime error: invalid memory address or nil pointer dereference
+goroutine 152 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0001c2900)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2900)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2900)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2900)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc0001c2900)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00071a8c0}, 0xc000465b00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00071a8c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00051c750, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:55:46 server.go:3413: http: panic serving [::1]:55294: runtime error: invalid memory address or nil pointer dereference
+goroutine 77 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0001c2a00)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2a00)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2a00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2a00)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc0001c2a00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00071aa80}, 0xc000590480)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00071aa80?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0003507e0, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:55:46 server.go:3413: http: panic serving [::1]:55295: runtime error: invalid memory address or nil pointer dereference
+goroutine 162 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc000128200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000128200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000128200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000128200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc000128200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc0005242a0}, 0xc000465c20)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc0005242a0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00019cea0, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:55:46 server.go:3413: http: panic serving [::1]:55297: runtime error: invalid memory address or nil pointer dereference
+goroutine 156 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0001c2400)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2400)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2400)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc0001c2400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00019e0e0}, 0xc000590000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00019e0e0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00051c360, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:55:46 server.go:3413: http: panic serving [::1]:55298: runtime error: invalid memory address or nil pointer dereference
+goroutine 157 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc000128300)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000128300)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000128300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000128300)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc000128300)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc000524460}, 0xc0005906c0)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc000524460?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00051c3f0, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:56:00 server.go:3413: http: panic serving [::1]:55330: runtime error: invalid memory address or nil pointer dereference
+goroutine 183 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0001c2500)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2500)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2500)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc0001c2500)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00019e380}, 0xc000464240)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00019e380?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00019d680, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:56:00 server.go:3413: http: panic serving [::1]:55329: runtime error: invalid memory address or nil pointer dereference
+goroutine 194 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00019e540}, 0xc000591200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00019e540?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00051c990, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:56:00 server.go:3413: http: panic serving [::1]:55331: runtime error: invalid memory address or nil pointer dereference
+goroutine 143 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc000394000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000394000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000394000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000394000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc000394000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00037c000}, 0xc000464480)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00037c000?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00027c000, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:56:00 server.go:3413: http: panic serving [::1]:55332: runtime error: invalid memory address or nil pointer dereference
+goroutine 210 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc000240000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000240000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000240000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000240000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc000240000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00071a1c0}, 0xc000591680)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00071a1c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000350360, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:56:01 server.go:3413: http: panic serving [::1]:55335: runtime error: invalid memory address or nil pointer dereference
+goroutine 212 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc000394100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000394100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000394100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000394100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc000394100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00037c1c0}, 0xc0003705a0)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00037c1c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000350750, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:56:01 server.go:3413: http: panic serving [::1]:55336: runtime error: invalid memory address or nil pointer dereference
+goroutine 226 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0x0, 0x0})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc000394200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000394200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000394200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000394200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc000394200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00037c380}, 0xc0005917a0)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00037c380?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00027c7e0, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:56:24 server.go:3413: http: panic serving [::1]:55435: runtime error: invalid memory address or nil pointer dereference
+goroutine 243 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0xc000516538, 0x6})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc00052d600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc00052d600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00052d600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc00052d600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc00052d600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00019e1c0}, 0xc000370360)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00019e1c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00027c090, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:56:24 server.go:3413: http: panic serving [::1]:55436: runtime error: invalid memory address or nil pointer dereference
+goroutine 200 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x184d140?, 0x2082fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0xc0005167e8, 0x6})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:29 +0x21
+hichat_static_server/service.AiMessage(0xc00052d700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2d8
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc00052d700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00052d700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc00052d700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001256c0, 0xc00052d700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001256c0, {0x1aabe90, 0xc00019e380}, 0xc0003707e0)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1aa9d58?}, {0x1aabe90?, 0xc00019e380?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0004f2360, {0x1aad0e0, 0xc0000a01b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:57:45 server.go:3413: http: panic serving [::1]:55674: runtime error: invalid memory address or nil pointer dereference
+goroutine 26 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0xddd140?, 0x1612fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0xc00037e6aa, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:30 +0x32
+hichat_static_server/service.AiMessage(0xc000142600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2fc
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000142600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000142600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000142600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000e11e0, 0xc000142600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000e11e0, {0x103bf50, 0xc0003ec1c0}, 0xc000390480)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1039e18?}, {0x103bf50?, 0xc0003ec1c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000234120, {0x103d1a0, 0xc0002c81b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 21:57:45 server.go:3413: http: panic serving [::1]:55675: runtime error: invalid memory address or nil pointer dereference
+goroutine 46 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0xddd140?, 0x1612fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0xc00037ecf8, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:30 +0x32
+hichat_static_server/service.AiMessage(0xc000142800)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2fc
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000142800)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000142800)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000142800)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000e11e0, 0xc000142800)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000e11e0, {0x103bf50, 0xc0003ec380}, 0xc00024c240)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1039e18?}, {0x103bf50?, 0xc0003ec380?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000386990, {0x103d1a0, 0xc0002c81b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:01:15 server.go:3413: http: panic serving [::1]:56345: runtime error: invalid memory address or nil pointer dereference
+goroutine 68 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0xcdd160?, 0x1512fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0xf3d1e8, 0x15cb440}, {0xc000274a50, 0x1, 0xc690e0?}, {0x0, 0x0, 0xc000049760?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0xf3d1e8, 0x15cb440}, {0xf397d8, 0x0}, {0xc00000bdda, 0x3}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc000044fd0, {0xc00000bdda, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:41 +0x12d
+hichat_static_server/service.AiMessage(0xc0001d8a00)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2fc
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001d8a00)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001d8a00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001d8a00)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00016ba00, 0xc0001d8a00)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00016ba00, {0xf3c0b0, 0xc0002701c0}, 0xc0004b2240)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0xf39f78?}, {0xf3c0b0?, 0xc0002701c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000538120, {0xf3d300, 0xc0000ffc20})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:01:15 server.go:3413: http: panic serving [::1]:56346: runtime error: invalid memory address or nil pointer dereference
+goroutine 55 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0xcdd160?, 0x1512fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0xf3d1e8, 0x15cb440}, {0xc000516120, 0x1, 0xc690e0?}, {0x0, 0x0, 0xc000619760?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0xf3d1e8, 0x15cb440}, {0xf397d8, 0x0}, {0xc00035c108, 0x3}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc000044fd0, {0xc00035c108, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:41 +0x12d
+hichat_static_server/service.AiMessage(0xc000496100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2fc
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000496100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000496100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000496100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00016ba00, 0xc000496100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00016ba00, {0xf3c0b0, 0xc00054a000}, 0xc000530360)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0xf39f78?}, {0xf3c0b0?, 0xc00054a000?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00014d3b0, {0xf3d300, 0xc0000ffc20})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:01:40 server.go:3413: http: panic serving [::1]:56433: runtime error: invalid memory address or nil pointer dereference
+goroutine 63 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0xcdd160?, 0x1512fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0xf3d1e8, 0x15cb440}, {0xc000516b40, 0x1, 0xc690e0?}, {0x0, 0x0, 0xc000619760?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0xf3d1e8, 0x15cb440}, {0xf397d8, 0x0}, {0xc00035c338, 0x3}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc000044fd0, {0xc00035c338, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:41 +0x12d
+hichat_static_server/service.AiMessage(0xc000496000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2fc
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000496000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000496000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000496000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00016ba00, 0xc000496000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00016ba00, {0xf3c0b0, 0xc00054a2a0}, 0xc0006207e0)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0xf39f78?}, {0xf3c0b0?, 0xc00054a2a0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0005386c0, {0xf3d300, 0xc0000ffc20})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:01:40 server.go:3413: http: panic serving [::1]:56434: runtime error: invalid memory address or nil pointer dereference
+goroutine 79 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0xcdd160?, 0x1512fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0xf3d1e8, 0x15cb440}, {0xc000516de0, 0x1, 0xc690e0?}, {0x0, 0x0, 0xc000391760?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0xf3d1e8, 0x15cb440}, {0xf397d8, 0x0}, {0xc00035c478, 0x3}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc000044fd0, {0xc00035c478, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:41 +0x12d
+hichat_static_server/service.AiMessage(0xc000496200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x2fc
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000496200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000496200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000496200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00016ba00, 0xc000496200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00016ba00, {0xf3c0b0, 0xc00054a460}, 0xc000620c60)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0xf39f78?}, {0xf3c0b0?, 0xc00054a460?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0002cc6c0, {0xf3d300, 0xc0000ffc20})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:03:03 server.go:3413: http: panic serving [::1]:56687: runtime error: invalid memory address or nil pointer dereference
+goroutine 57 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x14dd160?, 0x1d13fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0x173d208, 0x1dcc440}, {0xc00031c780, 0x1, 0x14690e0?}, {0x0, 0x0, 0xc000049750?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0x173d208, 0x1dcc440}, {0x17397f8, 0x0}, {0xc0002b2567, 0x3}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc00022a740, {0xc0002b2567, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:41 +0x12d
+hichat_static_server/service.AiMessage(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x33f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00015cb60, 0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00015cb60, {0x173c0d0, 0xc00019e460}, 0xc000438240)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1739f98?}, {0x173c0d0?, 0xc00019e460?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000128240, {0x173d320, 0xc00008a450})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:03:03 server.go:3413: http: panic serving [::1]:56688: runtime error: invalid memory address or nil pointer dereference
+goroutine 44 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x14dd160?, 0x1d13fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0x173d208, 0x1dcc440}, {0xc000516930, 0x1, 0x14690e0?}, {0x0, 0x0, 0xc00052d750?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0x173d208, 0x1dcc440}, {0x17397f8, 0x0}, {0xc00037a4c0, 0x3}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc00022a740, {0xc00037a4c0, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:41 +0x12d
+hichat_static_server/service.AiMessage(0xc0002fa000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x33f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0002fa000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0002fa000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0002fa000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00015cb60, 0xc0002fa000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00015cb60, {0x173c0d0, 0xc000432000}, 0xc000198b40)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1739f98?}, {0x173c0d0?, 0xc000432000?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00019d680, {0x173d320, 0xc00008a450})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:03:41 server.go:3413: http: panic serving [::1]:56822: runtime error: invalid memory address or nil pointer dereference
+goroutine 10 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x141d160?, 0x1c53fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0x167d208, 0x1d0c440}, {0xc00066ccc0, 0x1, 0x10?}, {0x0, 0x0, 0xc0?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0x167d208, 0x1d0c440}, {0x16797f8, 0x0}, {0xc00030555a, 0x3}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc0001abea0, {0xc00030555a, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:41 +0x12d
+hichat_static_server/service.AiMessage(0xc0002c6000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x345
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0002c6000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0002c6000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0002c6000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000e3860, 0xc0002c6000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000e3860, {0x167c0d0, 0xc0004cc000}, 0xc00031a5a0)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1679f98?}, {0x167c0d0?, 0xc0004cc000?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00000e120, {0x167d320, 0xc00066c5d0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:03:41 server.go:3413: http: panic serving [::1]:56824: runtime error: invalid memory address or nil pointer dereference
+goroutine 12 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x141d160?, 0x1c53fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0x167d208, 0x1d0c440}, {0xc000308690, 0x1, 0x0?}, {0x0, 0x0, 0x8?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0x167d208, 0x1d0c440}, {0x16797f8, 0x0}, {0xc000300218, 0x3}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc0001abea0, {0xc000300218, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:41 +0x12d
+hichat_static_server/service.AiMessage(0xc000142700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x345
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000142700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000142700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000142700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000e3860, 0xc000142700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000e3860, {0x167c0d0, 0xc00011e1c0}, 0xc0004d2240)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1679f98?}, {0x167c0d0?, 0xc00011e1c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00000e870, {0x167d320, 0xc00066c5d0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:03:58 server.go:3413: http: panic serving [::1]:56877: runtime error: invalid memory address or nil pointer dereference
+goroutine 83 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x145d160?, 0x1c93fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0x16bd248, 0x1d4c440}, {0xc000468000, 0x1, 0x13e90e0?}, {0x0, 0x0, 0xa0?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0x16bd248, 0x1d4c440}, {0x16b9838, 0x0}, {0xc0002c1c5a, 0x3}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc00011ec30, {0xc0002c1c5a, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:41 +0x12d
+hichat_static_server/service.AiMessage(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x34a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000110820, 0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000110820, {0x16bc110, 0xc00019e2a0}, 0xc0004e8480)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x16b9fd8?}, {0x16bc110?, 0xc00019e2a0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00039a090, {0x16bd360, 0xc00003f5c0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:03:58 server.go:3413: http: panic serving [::1]:56878: runtime error: invalid memory address or nil pointer dereference
+goroutine 51 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x145d160?, 0x1c93fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0x16bd248, 0x1d4c440}, {0xc000468750, 0x1, 0x13e90e0?}, {0x0, 0x0, 0xc00?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0x16bd248, 0x1d4c440}, {0x16b9838, 0x0}, {0xc000314d68, 0x3}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc00011ec30, {0xc000314d68, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:41 +0x12d
+hichat_static_server/service.AiMessage(0xc0001c2800)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x34a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2800)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2800)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2800)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000110820, 0xc0001c2800)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000110820, {0x16bc110, 0xc00019e460}, 0xc0004e8b40)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x16b9fd8?}, {0x16bc110?, 0xc00019e460?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000622000, {0x16bd360, 0xc00003f5c0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:04:40 server.go:3413: http: panic serving [::1]:57030: runtime error: invalid memory address or nil pointer dereference
+goroutine 54 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x14ed160?, 0x1d23fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0x174d248, 0x1ddc440}, {0xc0003108a0, 0x1, 0x0?}, {0x0, 0x0, 0x8?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0x174d248, 0x1ddc440}, {0x1749838, 0x0}, {0xc00037c8f0, 0x9}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc000045e40, {0xc00037c8f0, 0x9})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:41 +0x12d
+hichat_static_server/service.AiMessage(0xc000170600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x34a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000170600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000170600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000170600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000235a00, 0xc000170600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000235a00, {0x174c110, 0xc0001b40e0}, 0xc00010cc60)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1749fd8?}, {0x174c110?, 0xc0001b40e0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0000c6120, {0x174d360, 0xc0002cc1b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:04:40 server.go:3413: http: panic serving [::1]:57031: runtime error: invalid memory address or nil pointer dereference
+goroutine 55 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x14ed160?, 0x1d23fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0x174d248, 0x1ddc440}, {0xc000310b40, 0x1, 0x14790e0?}, {0x0, 0x0, 0xa80?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0x174d248, 0x1ddc440}, {0x1749838, 0x0}, {0xc00037cf60, 0x9}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc000045e40, {0xc00037cf60, 0x9})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:41 +0x12d
+hichat_static_server/service.AiMessage(0xc000170900)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x34a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000170900)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000170900)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000170900)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000235a00, 0xc000170900)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000235a00, {0x174c110, 0xc0001b42a0}, 0xc00010d440)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1749fd8?}, {0x174c110?, 0xc0001b42a0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0000c6240, {0x174d360, 0xc0002cc1b0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:05:03 server.go:3413: http: panic serving [::1]:57123: runtime error: invalid memory address or nil pointer dereference
+goroutine 15 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0xbbd160?, 0x13f3fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0xe1d268, 0x14ac440}, {0xc0000b7560, 0x1, 0x40?}, {0x0, 0x0, 0xc00040b740?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0xe1d268, 0x14ac440}, {0xe19858, 0x0}, {0xc0003b7ac0, 0x9}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc000696430, {0xc0003b7ac0, 0x9})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:43 +0x179
+hichat_static_server/service.AiMessage(0xc000302100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x34a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000302100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000302100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000302100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000124d00, 0xc000302100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000124d00, {0xe1c130, 0xc00019e1c0}, 0xc00041a360)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0xe19ff8?}, {0xe1c130?, 0xc00019e1c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0000f2000, {0xe1d380, 0xc0000b6420})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:05:03 server.go:3413: http: panic serving [::1]:57124: runtime error: invalid memory address or nil pointer dereference
+goroutine 16 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0xbbd160?, 0x13f3fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0xe1d268, 0x14ac440}, {0xc00046f380, 0x1, 0xc0?}, {0x0, 0x0, 0xc00040b740?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0xe1d268, 0x14ac440}, {0xe19858, 0x0}, {0xc0002ac2a0, 0x9}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc000696430, {0xc0002ac2a0, 0x9})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:43 +0x179
+hichat_static_server/service.AiMessage(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x34a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000124d00, 0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000124d00, {0xe1c130, 0xc00011e000}, 0xc00041ac60)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0xe19ff8?}, {0xe1c130?, 0xc00011e000?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0000f2090, {0xe1d380, 0xc0000b6420})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:05:38 server.go:3413: http: panic serving [::1]:57277: runtime error: invalid memory address or nil pointer dereference
+goroutine 59 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x10bd1e0?, 0x18f3fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0x131d328, 0x19ac440}, {0xc000498210, 0x1, 0x20?}, {0x0, 0x0, 0xc0004f1730?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0x131d328, 0x19ac440}, {0x1319918, 0x0}, {0xc00000b0aa, 0x6}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc000444e20, {0xc00000b0aa, 0x6})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:43 +0x199
+hichat_static_server/service.AiMessage(0xc00013a000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x34a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc00013a000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc00013a000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc00013a000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000e1860, 0xc00013a000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000e1860, {0x131c1f0, 0xc0004001c0}, 0xc00051e360)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x131a0b8?}, {0x131c1f0?, 0xc0004001c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00019cfc0, {0x131d440, 0xc000683cb0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:05:38 server.go:3413: http: panic serving [::1]:57278: runtime error: invalid memory address or nil pointer dereference
+goroutine 60 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x10bd1e0?, 0x18f3fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0x131d328, 0x19ac440}, {0xc000598690, 0x1, 0xc0?}, {0x0, 0x0, 0xc0004f1730?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0x131d328, 0x19ac440}, {0x1319918, 0x0}, {0xc0004a0408, 0x6}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc000444e20, {0xc0004a0408, 0x6})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:43 +0x199
+hichat_static_server/service.AiMessage(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x34a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000e1860, 0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000e1860, {0x131c1f0, 0xc0004b8000}, 0xc00051ec60)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x131a0b8?}, {0x131c1f0?, 0xc0004b8000?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00019d050, {0x131d440, 0xc000683cb0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:07:34 server.go:3413: http: panic serving [::1]:57783: runtime error: invalid memory address or nil pointer dereference
+goroutine 83 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x95d160?, 0x1193fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0xbbd248, 0x124c440}, {0xc0003acea0, 0x1, 0x10?}, {0x0, 0x0, 0x60?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0xbbd248, 0x124c440}, {0xbb9838, 0x0}, {0xc00000afda, 0x3}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc000514c10, {0xc00000afda, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:46 +0x12d
+hichat_static_server/service.AiMessage(0xc000170100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x34a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000170100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000170100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000170100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0006d8820, 0xc000170100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0006d8820, {0xbbc110, 0xc0005ae0e0}, 0xc000146240)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0xbb9fd8?}, {0xbbc110?, 0xc0005ae0e0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000394090, {0xbbd360, 0xc00003f5c0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:07:34 server.go:3413: http: panic serving [::1]:57784: runtime error: invalid memory address or nil pointer dereference
+goroutine 53 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x95d160?, 0x1193fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0xbbd248, 0x124c440}, {0xc00022de00, 0x1, 0x8e90e0?}, {0x0, 0x0, 0xc0?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0xbbd248, 0x124c440}, {0xbb9838, 0x0}, {0xc0002c0aa8, 0x3}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc000514c10, {0xc0002c0aa8, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:46 +0x12d
+hichat_static_server/service.AiMessage(0xc0001c2700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x34a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0006d8820, 0xc0001c2700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0006d8820, {0xbbc110, 0xc0004782a0}, 0xc000446000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0xbb9fd8?}, {0xbbc110?, 0xc0004782a0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000136630, {0xbbd360, 0xc00003f5c0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:07:57 server.go:3413: http: panic serving [::1]:57895: runtime error: invalid memory address or nil pointer dereference
+goroutine 57 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x129d1e0?, 0x1ad3fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0x14fd328, 0x1b8c440}, {0xc000328360, 0x1, 0xc0?}, {0x0, 0x0, 0xc000595730?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0x14fd328, 0x1b8c440}, {0x14f9918, 0x0}, {0xc000314d40, 0x9}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc00044cf50, {0xc000314d40, 0x9})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:47 +0x199
+hichat_static_server/service.AiMessage(0xc000324000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x34a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000324000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000324000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000324000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00063ad00, 0xc000324000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00063ad00, {0x14fc1f0, 0xc00060c7e0}, 0xc00026c5a0)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x14fa0b8?}, {0x14fc1f0?, 0xc00060c7e0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00059a3f0, {0x14fd440, 0xc0001c4330})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:07:57 server.go:3413: http: panic serving [::1]:57896: runtime error: invalid memory address or nil pointer dereference
+goroutine 67 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x129d1e0?, 0x1ad3fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+github.com/tmc/langchaingo/llms/ollama.(*LLM).GenerateContent(0x0, {0x14fd328, 0x1b8c440}, {0xc0003283c0, 0x1, 0xc00?}, {0x0, 0x0, 0xc000049730?})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:49 +0x55
+github.com/tmc/langchaingo/llms.GenerateFromSinglePrompt({0x14fd328, 0x1b8c440}, {0x14f9918, 0x0}, {0xc00000a250, 0x9}, {0x0, 0x0, 0x0})
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/llms.go:41 +0x1a3
+github.com/tmc/langchaingo/llms/ollama.(*LLM).Call(...)
+	D:/GoWorks/pkg/mod/github.com/tmc/langchaingo@v0.1.9/llms/ollama/ollamallm.go:43
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0xc00044cf50, {0xc00000a250, 0x9})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:47 +0x199
+hichat_static_server/service.AiMessage(0xc000324100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x34a
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000324100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000324100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000324100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00063ad00, 0xc000324100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00063ad00, {0x14fc1f0, 0xc00019e1c0}, 0xc0003f6120)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x14fa0b8?}, {0x14fc1f0?, 0xc00019e1c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00000e000, {0x14fd440, 0xc0001c4330})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:10:49 server.go:3413: http: panic serving [::1]:58711: runtime error: invalid memory address or nil pointer dereference
+goroutine 44 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x14bd1e0?, 0x1cf3fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0xc00037d18a, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:33 +0xa7
+hichat_static_server/service.AiMessage(0xc000146100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x345
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000146100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000146100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000146100)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001571e0, 0xc000146100)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001571e0, {0x171c230, 0xc0003881c0}, 0xc0002bc000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x171a0f8?}, {0x171c230?, 0xc0003881c0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0004101b0, {0x171d480, 0xc00010a3c0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:10:49 server.go:3413: http: panic serving [::1]:58712: runtime error: invalid memory address or nil pointer dereference
+goroutine 45 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x14bd1e0?, 0x1cf3fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0xc0003f2688, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:33 +0xa7
+hichat_static_server/service.AiMessage(0xc0001c2700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x345
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2700)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0001571e0, 0xc0001c2700)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0001571e0, {0x171c230, 0xc0002380e0}, 0xc0004b6000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x171a0f8?}, {0x171c230?, 0xc0002380e0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc000204000, {0x171d480, 0xc00010a3c0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:11:32 server.go:3413: http: panic serving [::1]:58929: runtime error: invalid memory address or nil pointer dereference
+goroutine 24 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0xbad1e0?, 0x13e3fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0xc00060654a, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:33 +0xa7
+hichat_static_server/service.AiMessage(0xc0000be200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x345
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0000be200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0000be200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0000be200)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000c5040, 0xc0000be200)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000c5040, {0xe0c230, 0xc0005b40e0}, 0xc0001a8900)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0xe0a0f8?}, {0xe0c230?, 0xc0005b40e0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0004b0090, {0xe0d480, 0xc0001822a0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:11:32 server.go:3413: http: panic serving [::1]:58930: runtime error: invalid memory address or nil pointer dereference
+goroutine 56 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0xbad1e0?, 0x13e3fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).SendMsg(0x0, {0xc000606bb8, 0x3})
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:33 +0xa7
+hichat_static_server/service.AiMessage(0xc0000be400)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:358 +0x345
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0000be400)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0000be400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0000be400)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000c5040, 0xc0000be400)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000c5040, {0xe0c230, 0xc0005b42a0}, 0xc0001a97a0)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0xe0a0f8?}, {0xe0c230?, 0xc0005b42a0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00008a000, {0xe0d480, 0xc0001822a0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:12:42 server.go:3413: http: panic serving [::1]:59303: runtime error: invalid memory address or nil pointer dereference
+goroutine 46 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x13ad140?, 0x1be2fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).GetConn(0x0)
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:18 +0x5a
+hichat_static_server/service.AiMessage(0xc000116000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:359 +0x337
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc000116000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc000116000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc000116000)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000e1520, 0xc000116000)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000e1520, {0x160bfd0, 0xc0006880e0}, 0xc0002cac60)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1609e98?}, {0x160bfd0?, 0xc0006880e0?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc0001662d0, {0x160d220, 0xc0000142a0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/04/24 22:12:42 server.go:3413: http: panic serving [::1]:59304: runtime error: invalid memory address or nil pointer dereference
+goroutine 82 [running]:
+net/http.(*conn).serve.func1()
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:1898 +0xbe
+panic({0x13ad140?, 0x1be2fd0?})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/runtime/panic.go:770 +0x132
+hichat_static_server/ADB.(*OllamaConn).GetConn(0x0)
+	D:/GoWorks/src/HiChat/hichat_static_server/ADB/ollama.go:18 +0x5a
+hichat_static_server/service.AiMessage(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/user_service.go:359 +0x337
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+hichat_static_server/service.IdentityCheck(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:44 +0x15c
+github.com/gin-gonic/gin.(*Context).Next(0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174 +0x2b
+main.main.Cors.func1(0xc0001c2600)
+	D:/GoWorks/src/HiChat/hichat_static_server/service/middleware.go:27 +0x16f
+github.com/gin-gonic/gin.(*Context).Next(...)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000e1520, 0xc0001c2600)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620 +0x66e
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000e1520, {0x160bfd0, 0xc000462000}, 0xc0002cb320)
+	D:/GoWorks/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576 +0x1b2
+net/http.serverHandler.ServeHTTP({0x1609e98?}, {0x160bfd0?, 0xc000462000?}, 0x6?)
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3137 +0x8e
+net/http.(*conn).serve(0xc00034a1b0, {0x160d220, 0xc0000142a0})
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
+created by net/http.(*Server).Serve in goroutine 1
+	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4

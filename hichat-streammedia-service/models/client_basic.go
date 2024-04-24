@@ -9,11 +9,12 @@ import (
 
 // 用户客户端
 type UserClient struct {
-	ClientID string
-	UserID   int
-	UserName string
-	Conn     *websocket.Conn
-	Send     chan []byte
+	ClientID       string
+	UserID         int
+	BelongRoomUUID string
+	UserName       string
+	Conn           *websocket.Conn
+	Send           chan []byte
 }
 
 // 读取用户发送的信息
@@ -28,11 +29,12 @@ func (c *UserClient) ReadPump() {
 		if err != nil {
 			fmt.Println(err)
 			if websocket.IsCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-				fmt.Println("有用户退出了")
+				fmt.Println("用户", c.UserName, "退出了")
 			}
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
 				fmt.Printf("IsUnexpectedCloseError: %v \n", err)
 			}
+			ServiceCenter.Loginout <- c
 			break
 		}
 		// fmt.Println(message)

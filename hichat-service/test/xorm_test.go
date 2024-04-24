@@ -9,6 +9,7 @@ import (
 	"encoding/base64"
 	"encoding/gob"
 	"fmt"
+	"go-websocket-server/util"
 	"testing"
 )
 
@@ -255,4 +256,9 @@ func unpad(src []byte) []byte {
 	length := len(src)
 	unpadding := int(src[length-1])
 	return src[:(length - unpadding)]
+}
+
+func TestGetIP(t *testing.T) {
+	ip := util.GetIP()
+	fmt.Println(ip)
 }

@@ -14,6 +14,14 @@ func FormatTime(t time.Time) string {
 	return t.Format(tstr)
 }
 
+func ParseTime(t string) (time.Time, error) {
+	parse, err := time.Parse(tstr, t)
+	if err != nil {
+		return time.Time{}, err
+	}
+	return parse, nil
+}
+
 func FormatTampTime(tamptime *timestamppb.Timestamp) string {
 	return tamptime.AsTime().Format(tstr)
 }

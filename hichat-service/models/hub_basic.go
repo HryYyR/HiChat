@@ -26,14 +26,14 @@ type Hub struct {
 func (h *Hub) setPrivateKey(pkey *rsa.PrivateKey) {
 	h.privateKey = pkey
 }
+func (h *Hub) GetPrivateKey() *rsa.PrivateKey {
+	return h.privateKey
+}
 func (h *Hub) setPublicKey(pkey *rsa.PublicKey) {
 	h.publicKey = pkey
 }
 func (h *Hub) GetPublicKey() *rsa.PublicKey {
 	return h.publicKey
-}
-func (h *Hub) GetPrivateKey() *rsa.PrivateKey {
-	return h.privateKey
 }
 
 func NewHub(HubID string) *Hub {

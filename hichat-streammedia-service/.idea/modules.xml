@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/hichat-streammedia-serivce.iml" filepath="$PROJECT_DIR$/.idea/hichat-streammedia-serivce.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/hichat-streammedia-service.iml" filepath="$PROJECT_DIR$/.idea/hichat-streammedia-service.iml" />
     </modules>
   </component>
 </project>

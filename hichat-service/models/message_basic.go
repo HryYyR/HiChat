@@ -35,14 +35,19 @@ func (m *Message) TableName() string {
 // 根据 groupid 获取用户列表
 func (m *Message) AccordingToGroupidGetUserlist() ([]int, error) {
 	var useridlist []int
-
-	result := adb.Rediss.HGet("GroupToUserMap", strconv.Itoa(m.GroupID)).Val()
+	strgroupid := strconv.Itoa(m.GroupID)
+	result := adb.Rediss.HGet("GroupToUserMap", strgroupid).Val()
 	if len(result) == 0 {
 		if err := adb.SqlStruct.Conn.Cols("user_id").Table("group_user_relative").Where("group_id=?", m.GroupID).Find(&useridlist); err != nil {
 			fmt.Println(err.Error())
 			log.Println(err.Error())
 			return nil, err
 		}
+		//存 redis
+		stringuseridlist := util.IntArrToStrArr(useridlist)
+		joinstr := strings.Join(stringuseridlist, ",")
+		adb.Rediss.HSet("GroupToUserMap", strgroupid, joinstr)
+
 	} else {
 		strarr := strings.Split(result, ",")
 		useridlist = util.StrArrToIntArr(strarr)

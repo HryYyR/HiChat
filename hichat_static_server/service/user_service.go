@@ -1,10 +1,12 @@
 package service
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/goinggo/mapstructure"
+	"github.com/tmc/langchaingo/llms/ollama"
 	adb "hichat_static_server/ADB"
 	"hichat_static_server/common"
 	"hichat_static_server/models"
@@ -237,7 +239,7 @@ func SearchUser(c *gin.Context) {
 		})
 		return
 	}
-	uufriendmap := make(map[int]int, 0)
+	uufriendmap := make(map[int]int)
 	for _, f := range uufriendlist {
 		uufriendmap[int(f.Id)] = int(f.Id)
 	}
@@ -330,5 +332,41 @@ func GetUserMessageList(c *gin.Context) {
 		"msg":  "获取成功",
 		"data": grouplist,
 	})
+
+}
+
+type AiMessageRequest struct {
+	Msg     string `json:"msg"`
+	MsgType int    `json:"msgtype"`
+}
+
+// AiMessage Ai问答
+func AiMessage(c *gin.Context) {
+	//ud, _ := c.Get("userdata")
+	//userdata := ud.(*models.UserClaim)
+	var requestdata AiMessageRequest
+	rawbyte, err := c.GetRawData()
+	if err != nil {
+		util.H(c, http.StatusInternalServerError, "获取失败", nil)
+		return
+	}
+	err = json.Unmarshal(rawbyte, &requestdata)
+	if err != nil {
+		util.H(c, http.StatusBadRequest, "非法格式", nil)
+		return
+	}
+
+	llm, err := ollama.New(ollama.WithModel("qwen"))
+	if err != nil {
+		util.H(c, http.StatusInternalServerError, "获取失败", err)
+		return
+	}
+	call, err := llm.Call(context.Background(), requestdata.Msg)
+	if err != nil {
+		util.H(c, http.StatusInternalServerError, "获取失败", err)
+		return
+	}
+
+	util.H(c, http.StatusOK, call, nil)
 
 }
