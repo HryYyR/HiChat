@@ -1,13 +1,12 @@
 package models
 
 import (
-	"sync"
 	"time"
 )
 
-var House sync.Map
-var RoomMutexes = make(map[string]*sync.Mutex) //房间锁
-var MutexForRoomMutexes = new(sync.Mutex)      //全局锁
+//var House sync.Map
+//var RoomMutexes = make(map[string]*sync.Mutex) //房间锁
+//var MutexForRoomMutexes = new(sync.Mutex)      //全局锁
 
 const (
 	// Time allowed to write a message to the peer.

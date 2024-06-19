@@ -19,6 +19,9 @@ func (s *Sql) CreateConn() error {
 	if err != nil {
 		return err
 	}
+
+	engine.SetMaxIdleConns(config.MysqlMaxIdleConns)
+	engine.SetMaxOpenConns(config.MysqlMaxOpenConns)
 	engine.SetMapper(names.GonicMapper{})
 	s.Status = 1
 	s.Conn = engine

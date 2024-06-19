@@ -2,6 +2,7 @@ package models
 
 import "time"
 
+// UserMessage 数据库的用户消息
 type UserMessage struct {
 	ID                int    `xorm:"pk autoincr index"`
 	UserID            int    `xorm:"notnull"`

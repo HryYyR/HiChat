@@ -5,23 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f746ac52-31e6-4de7-b32e-e2ea3fe7dd1b" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/models/BatchInsertMysql.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hichat-service/ADB/MysqlScripts/UsersScripts/users_interface.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hichat-service/ADB/MysqlScripts/UsersScripts/users_repositories.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/User_Message_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/User_Message_basic.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/message_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/message_basic.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat-service/Route/UserGroup_router.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/Route/UserGroup_router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/go-websocket-server.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/go-websocket-server.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat-service/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat-service/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/log.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/log/log.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/log/log.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat-service/models/group_message_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/group_message_basic.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/models/handle_msg_func.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/handle_msg_func.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat-service/models/hub_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/hub_basic.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat-service/models/message_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/message_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/rpcserver/call_notice_videostream_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/rpcserver/call_notice_videostream_server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/models/public.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/public.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/models/user_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/user_basic.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-service/models/user_message_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/models/user_message_basic.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat-service/service/group_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/service/group_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/service/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/service/user_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat-service/test/xorm_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-service/test/xorm_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat_static_server/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/log.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-streammedia-service/.idea/hichat-streammedia-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-streammedia-service/.idea/hichat-streammedia-service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-streammedia-service/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-streammedia-service/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-streammedia-service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-streammedia-service/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat-streammedia-service/models/hub.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat-streammedia-service/models/hub.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hichat_static_server/models/group_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/models/group_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat_static_server/models/user_basic.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/models/user_basic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat_static_server/service/group_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/service/group_server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hichat_static_server/tool/common_tool.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/tool/common_tool.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hichat_static_server/service/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../hichat_static_server/service/user_service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,41 +53,45 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2XT4wQwSmDWMSO05f1YqG3AFAAY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/GoWorks/src/HiChat/hichat-mq-service",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.general",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/GoWorks/src/HiChat/hichat-mq-service&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\GoWorks\src\HiChat\hichat-mq-service\ADB" />
       <recent name="D:\GoWorks\src\HiChat\hichat-mq-service\util" />
       <recent name="D:\GoWorks\src\HiChat\hichat-mq-service" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\GoWorks\src\HiChat\hichat-mq-service\models" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -85,6 +103,8 @@
       <option name="presentableId" value="Default" />
       <updated>1713078704453</updated>
       <workItem from="1713078705469" duration="2555000" />
+      <workItem from="1718181812584" duration="3887000" />
+      <workItem from="1718758326718" duration="3766000" />
     </task>
     <servers />
   </component>

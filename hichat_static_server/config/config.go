@@ -12,7 +12,7 @@ var LoginHttpAddr = ":8090"
 
 var JwtKey = "Hyyyh1527"
 
-var MysqlMaxIdleConns = 20
+var MysqlMaxIdleConns = 1000
 var MysqlMaxOpenConns = 2000
 var MysqlAddress = "localhost:3306" //localhost
 //var MysqlAddress = os.Getenv("DB_HOST") + ":3306" //localhost

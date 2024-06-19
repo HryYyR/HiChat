@@ -86,6 +86,7 @@ func (g *Group) SaveToRedis() error {
 		"DeletedAt":   tool.FormatTime(g.DeletedAt),
 	}).Result()
 	if err != nil {
+		log.Printf("Save to Redis failed for group %d: %v", g.ID, err)
 		return err
 	}
 	adb.Rediss.Expire(key, time.Hour*360)
@@ -129,7 +130,7 @@ func (g *Group) GetGroupInfo() (Group, error) {
 	return groupinfo, nil
 }
 
-// 获取消息列表
+// GetMessageList 获取消息列表
 func (g *Group) GetMessageList(grouplist *[]GroupMessage, currentnum int) error {
 	msglist := make([]GroupMessage, 0)
 
@@ -155,6 +156,8 @@ func (g *Group) GetMessageList(grouplist *[]GroupMessage, currentnum int) error 
 	*grouplist = msglist
 	return nil
 }
+
+// 从数据库获取消息列表
 func getMsgListFromDatabase(g *Group, currentnum int, msglist *[]GroupMessage) error {
 	var msgdata []GroupMessage
 	err := adb.Ssql.Table("group_message").Where("group_id = ?", g.ID).Desc("id").Limit(20, currentnum).Find(&msgdata)
@@ -164,6 +167,8 @@ func getMsgListFromDatabase(g *Group, currentnum int, msglist *[]GroupMessage) e
 	*msglist = msgdata
 	return nil
 }
+
+// 从redis获取消息列表
 func getMsgListFromCache(g *Group, currentnum int, msglist *[]GroupMessage) error {
 	var msgdata []GroupMessage
 	key := fmt.Sprintf("gm%s", strconv.Itoa(g.ID))

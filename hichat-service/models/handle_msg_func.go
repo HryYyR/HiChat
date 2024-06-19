@@ -3,6 +3,7 @@ package models
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	adb "go-websocket-server/ADB"
 	"go-websocket-server/config"
@@ -26,7 +27,6 @@ var HandleGroupMsgMap = map[int]GroupMsgfun{
 
 // HandleDefaultGroupMsg 1 默认消息
 func HandleDefaultGroupMsg(msgstruct *Message, msg []byte) error {
-
 	ctx, cancelFunc := context.WithCancel(context.Background())
 
 	// 保存消息进数据库
@@ -70,7 +70,7 @@ func HandleDefaultGroupMsg(msgstruct *Message, msg []byte) error {
 	select {
 	case <-ctx.Done():
 		err := ctx.Err()
-		if err == context.Canceled {
+		if errors.Is(err, context.Canceled) {
 			return err
 		}
 	default:
@@ -102,7 +102,7 @@ func HandleGroupClearSyncMsg(msgstruct *Message, msg []byte) error {
 	select {
 	case <-ctx.Done():
 		err := ctx.Err()
-		if err == context.Canceled {
+		if errors.Is(err, context.Canceled) {
 			return err
 		}
 	default:
@@ -143,7 +143,7 @@ func GroupWriteSyncMsg(msgstruct *Message) error {
 	select {
 	case <-ctx.Done():
 		err := ctx.Err()
-		if err == context.Canceled {
+		if errors.Is(err, context.Canceled) {
 			return err
 		}
 	default:
@@ -165,12 +165,7 @@ var HandleFriendMsgMap = map[int]FriendMsgfun{
 func HandleDefaultFriendMsg(msgstruct *UserMessage, msg []byte) error {
 	ctx, cancelFunc := context.WithCancel(context.Background())
 
-	//fmt.Println(msg)
-	//fmt.Println(string(msg))
-	var te UserMessage
-	_ = json.Unmarshal(msg, &te)
-	//fmt.Printf("%#v\n", te)
-	bytes, _ := json.Marshal(msgstruct)
+	//bytes, _ := json.Marshal(msgstruct)
 	// 保存消息进数据库
 	go func() {
 		err := adb.MQc.Publish(
@@ -180,7 +175,7 @@ func HandleDefaultFriendMsg(msgstruct *UserMessage, msg []byte) error {
 			false,        // immediate
 			amqp.Publishing{
 				ContentType: "application/json",
-				Body:        bytes,
+				Body:        msg,
 			})
 		if err != nil {
 			fmt.Printf("上传消息到队列失败!%s\n", err)
@@ -191,15 +186,15 @@ func HandleDefaultFriendMsg(msgstruct *UserMessage, msg []byte) error {
 
 	FriendWriteSyncMsg(msgstruct)
 
-	fmt.Println("未加密的消息", string(bytes))
+	//fmt.Println("未加密的消息", string(bytes))
 
-	ServiceCenter.Clients[msgstruct.UserID].Send <- bytes
-	ServiceCenter.Clients[msgstruct.ReceiveUserID].Send <- bytes
+	ServiceCenter.Clients[msgstruct.UserID].Send <- msg
+	ServiceCenter.Clients[msgstruct.ReceiveUserID].Send <- msg
 
 	select {
 	case <-ctx.Done():
 		err := ctx.Err()
-		if err == context.Canceled {
+		if errors.Is(err, context.Canceled) {
 			return err
 		}
 	default:
@@ -231,7 +226,7 @@ func HandleFriendClearSyncMsg(msgstruct *UserMessage, msg []byte) error {
 	select {
 	case <-ctx.Done():
 		err := ctx.Err()
-		if err == context.Canceled {
+		if errors.Is(err, context.Canceled) {
 			return err
 		}
 	default:
@@ -271,7 +266,7 @@ func FriendWriteSyncMsg(usermsgstruct *UserMessage) error {
 	select {
 	case <-ctx.Done():
 		err := ctx.Err()
-		if err == context.Canceled {
+		if errors.Is(err, context.Canceled) {
 			return err
 		}
 	default:

@@ -22,9 +22,12 @@ var GroupLock sync.Mutex
 type groupinfo struct {
 	Groupname string
 	Avatar    string `json:"Avatar"`
+}
 
-	// Createrid   int
-	// Creatername string
+// GroupDetail 用于返回结果的结构体
+type GroupDetail struct {
+	GroupInfo   models.Group
+	MessageList []models.GroupMessage
 }
 
 // CreateGroup 创建群聊
@@ -106,7 +109,7 @@ func CreateGroup(c *gin.Context) {
 
 	session.Commit()
 
-	responsedata := models.GroupDetail{
+	responsedata := GroupDetail{
 		GroupInfo:   groupdata,
 		MessageList: []models.GroupMessage{},
 	}
@@ -412,6 +415,7 @@ func HandleJoinGroup(c *gin.Context) {
 
 		msgbyte, _ := json.Marshal(groupmsg)
 		adb.Rediss.RPush(fmt.Sprintf("gm%d", grouplist.ID), string(msgbyte))
+		adb.Rediss.HSet(fmt.Sprintf("group%d", grouplist.ID), "MemberCount", grouplist.MemberCount+1)
 
 		// 通知群里的其他成员有用户加入
 		for _, uid := range models.GroupUserList[grouplist.ID] {

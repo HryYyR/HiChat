@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-// GroupMessage 群聊消息
+// GroupMessage 数据库的群聊消息
 type GroupMessage struct {
 	ID         int `xorm:"pk autoincr"`
 	UserID     int `xorm:"notnull index"`

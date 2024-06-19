@@ -14,12 +14,16 @@ import (
 type GroupMsgfun func() error
 type FriendMsgfun func() error
 
-//type RedisMsgfun func() error
+// type RedisMsgfun func() error
 
 func main() {
 	adb.InitMQ()
 	adb.InitMySQL()
 	adb.InitRedis()
+
+	go func() {
+		models.BI.InsertMessages()
+	}()
 
 	// 获取接收消息的Delivery通道
 	msgs, err := adb.MQc.Consume(
@@ -60,7 +64,7 @@ func main() {
 		var msgstruct *models.Message
 		err := json.Unmarshal(d.Body, &msgstruct)
 		if err == nil && msgstruct.MsgType < 500 {
-			fmt.Println(msgstruct.MsgType)
+			//fmt.Println(msgstruct.MsgType)
 			HandleMap := map[int]GroupMsgfun{
 				config.MsgTypeDefault:      msgstruct.SaveGroupMsgToDb,
 				config.MsgTypeImage:        msgstruct.SaveGroupMsgToDb,
@@ -80,7 +84,7 @@ func main() {
 		var usermsgstruct *models.UserMessage
 		err = json.Unmarshal(d.Body, &usermsgstruct)
 		if err == nil && msgstruct.MsgType > 1000 && msgstruct.MsgType < 1500 {
-			fmt.Println(msgstruct.MsgType)
+			//fmt.Println(msgstruct.MsgType)
 			HandleMap := map[int]FriendMsgfun{
 				config.MsgTypeFriendDefault:      usermsgstruct.SaveFriendMsgToDb,
 				config.MsgTypeFriendImage:        usermsgstruct.SaveFriendMsgToDb,

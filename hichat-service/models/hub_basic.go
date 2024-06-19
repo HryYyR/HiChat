@@ -74,16 +74,17 @@ func (h *Hub) Run() {
 			// 群聊消息
 			var msgstruct *Message
 			err := json.Unmarshal(message, &msgstruct)
-
 			if err == nil && len(strconv.Itoa(msgstruct.MsgType)) < 4 {
 				fmt.Println("groupmsg:", msgstruct.MsgType)
 				//err := HandleGroupMsgMap[msgstruct.MsgType](msgstruct, message)
 				if msgfun, ok := HandleGroupMsgMap[msgstruct.MsgType]; ok {
-					err := msgfun(msgstruct, message)
-					if err != nil {
-						log.Println("HandleGroupMsgMap error: ", err)
-						fmt.Println("HandleGroupMsgMap error: ", err)
-					}
+					go func(msgfunc GroupMsgfun) {
+						err := msgfunc(msgstruct, message)
+						if err != nil {
+							log.Println("HandleGroupMsgMap error: ", err)
+							fmt.Println("HandleGroupMsgMap error: ", err)
+						}
+					}(msgfun)
 				}
 
 				//todo
@@ -104,15 +105,17 @@ func (h *Hub) Run() {
 			if err == nil {
 				fmt.Println("friendmsg:", msgstruct.MsgType)
 				if msgfun, ok := HandleFriendMsgMap[msgstruct.MsgType]; ok {
-					err := msgfun(usermsgstruct, message)
-					if err != nil {
-						log.Println("HandleFriendMsgMap", err)
-						fmt.Println("HandleFriendMsgMap", err)
-					}
+					go func(msgfunc FriendMsgfun) {
+						err := msgfunc(usermsgstruct, message)
+						if err != nil {
+							log.Println("HandleFriendMsgMap", err)
+							fmt.Println("HandleFriendMsgMap", err)
+						}
+					}(msgfun)
 				}
 
 				//todo
-				//if usermsgstruct.MsgType < 1100 {
+				//if usermsgstruct.MsgType < 100 {
 				//	if err != nil {
 				//		sendAckMsg(1, usermsgstruct.UserID, 0)
 				//	} else {
@@ -123,7 +126,7 @@ func (h *Hub) Run() {
 
 			} else {
 				//log.Println(err)
-				fmt.Println("解析消息体失败:error", err)
+				log.Println("解析消息体失败:error", err)
 			}
 		}
 	}

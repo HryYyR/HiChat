@@ -6,7 +6,9 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/goinggo/mapstructure"
+	"github.com/tmc/langchaingo/chains"
 	"github.com/tmc/langchaingo/llms/ollama"
+	"github.com/tmc/langchaingo/memory"
 	adb "hichat_static_server/ADB"
 	"hichat_static_server/common"
 	"hichat_static_server/models"
@@ -121,18 +123,14 @@ func GetUserGroupList(c *gin.Context) {
 	data := new(models.Users)
 	err := util.HandleJsonArgument(c, data)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "JSON格式不正确!",
-		})
+		util.H(c, http.StatusBadRequest, "JSON格式不正确!", err)
 		return
 	}
 	grouplist := make([]models.GroupDetail, 0)
 	err = data.GetUserGroupList(&grouplist)
 	// fmt.Println("消息长度为:", len(grouplist[0].MessageList))
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "获取用户的群聊列表!",
-		})
+		util.H(c, http.StatusInternalServerError, "获取用户的群聊列表!", err)
 		return
 	}
 
@@ -147,17 +145,13 @@ func GetUserFriendList(c *gin.Context) {
 	data := new(models.Users)
 	err := util.HandleJsonArgument(c, data)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "JSON格式不正确!",
-		})
+		util.H(c, http.StatusBadRequest, "JSON格式不正确!", err)
 		return
 	}
 
 	friendlist := make([]models.FriendResponse, 0)
 	if err = data.GetFriendListAndMEssage(&friendlist); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "获取用户的好友列表失败!",
-		})
+		util.H(c, http.StatusInternalServerError, "获取用户的好友列表失败!", err)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -171,17 +165,13 @@ func GetUserApplyJoinGroupList(c *gin.Context) {
 	data := new(models.Users)
 	err := util.HandleJsonArgument(c, data)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "JSON格式不正确!",
-		})
+		util.H(c, http.StatusBadRequest, "JSON格式不正确!", err)
 		return
 	}
 
 	applyjoingrouplist := make([]models.ApplyJoinGroupResponse, 0)
 	if err = data.GetApplyMsgList(&applyjoingrouplist); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "获取用户的群聊通知列表失败!",
-		})
+		util.H(c, http.StatusInternalServerError, "获取用户的群聊通知列表失败!", err)
 	}
 
 	fmt.Println(applyjoingrouplist)
@@ -198,17 +188,13 @@ func GetUserApplyAddFriendList(c *gin.Context) {
 	data := new(models.Users)
 	err := util.HandleJsonArgument(c, data)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "JSON格式不正确!",
-		})
+		util.H(c, http.StatusBadRequest, "JSON格式不正确!", err)
 		return
 	}
 
 	applyaddfriendlist := make([]models.ApplyAddUser, 0)
 	if err = data.GetApplyAddUserList(&applyaddfriendlist); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "获取用户的好友申请列表失败!",
-		})
+		util.H(c, http.StatusInternalServerError, "获取用户的好友申请列表失败!", err)
 	}
 	util.UserTimeSort(applyaddfriendlist, "desc")
 
@@ -272,9 +258,7 @@ func SearchUser(c *gin.Context) {
 		data.Searchstr+"%", userdata.UserName).Find(&friendlist)
 	if err != nil {
 		fmt.Println(err)
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "搜索失败!",
-		})
+		util.H(c, http.StatusInternalServerError, "查询好友列表失败!", err)
 		return
 	}
 
@@ -339,11 +323,17 @@ type AiMessageRequest struct {
 	Msg     string `json:"msg"`
 	MsgType int    `json:"msgtype"`
 }
+type AiMessageList struct {
+	List map[int]*chains.LLMChain
+	Llm  *ollama.LLM
+}
+
+var AiMsgList = &AiMessageList{List: make(map[int]*chains.LLMChain), Llm: nil}
 
 // AiMessage Ai问答
 func AiMessage(c *gin.Context) {
-	//ud, _ := c.Get("userdata")
-	//userdata := ud.(*models.UserClaim)
+	ud, _ := c.Get("userdata")
+	userdata := ud.(*models.UserClaim)
 	var requestdata AiMessageRequest
 	rawbyte, err := c.GetRawData()
 	if err != nil {
@@ -356,17 +346,33 @@ func AiMessage(c *gin.Context) {
 		return
 	}
 
-	llm, err := ollama.New(ollama.WithModel("qwen"))
-	if err != nil {
-		util.H(c, http.StatusInternalServerError, "获取失败", err)
-		return
-	}
-	call, err := llm.Call(context.Background(), requestdata.Msg)
-	if err != nil {
-		util.H(c, http.StatusInternalServerError, "获取失败", err)
-		return
+	if AiMsgList.Llm == nil {
+		llm, err := ollama.New(ollama.WithModel("qwen"))
+		if err != nil {
+			util.H(c, http.StatusInternalServerError, "获取失败", err)
+			return
+		}
+		AiMsgList.Llm = llm
 	}
 
-	util.H(c, http.StatusOK, call, nil)
+	var response string
+	if userchains, ok := AiMsgList.List[userdata.ID]; !ok {
+		conversationWindowBuffer := memory.NewConversationWindowBuffer(20)
+		llmChain := chains.NewConversation(AiMsgList.Llm, conversationWindowBuffer)
+		AiMsgList.List[userdata.ID] = &llmChain
+		response, err = chains.Run(context.Background(), llmChain, requestdata.Msg)
+		if err != nil {
+			util.H(c, http.StatusInternalServerError, "获取失败", err)
+			return
+		}
+	} else {
+		response, err = chains.Run(context.Background(), userchains, requestdata.Msg)
+		if err != nil {
+			util.H(c, http.StatusInternalServerError, "获取失败", err)
+			return
+		}
+	}
+
+	util.H(c, http.StatusOK, response, nil)
 
 }

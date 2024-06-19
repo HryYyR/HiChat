@@ -14,6 +14,8 @@ var JwtKey = "Hyyyh1527"
 
 // var MysqlAddress = "host.docker.internal:3306" //docker
 
+var MysqlMaxIdleConns = 1000
+var MysqlMaxOpenConns = 2000
 var MysqlAddress = "localhost:3306" //localhost
 
 var MysqlUserName = "root"

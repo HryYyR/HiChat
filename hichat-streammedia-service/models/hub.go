@@ -82,6 +82,8 @@ func (h *Hub) Run() {
 				}
 				ServiceCenter.Clients[room.StartUserID].Send <- bytes
 				ServiceCenter.Clients[room.ReceivedUserID].Send <- bytes
+				ServiceCenter.Clients[room.StartUserID].Conn.Close()
+				ServiceCenter.Clients[room.ReceivedUserID].Conn.Close()
 			}
 			h.Mutex.Lock()
 			delete(ServiceCenter.Room, c.BelongRoomUUID)

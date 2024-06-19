@@ -14,3 +14,8 @@
 2024/04/14 16:32:38 call_notice_videostream_server.go:42: could not call service: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.137.1:50052: connectex: No connection could be made because the target machine actively refused it."
 2024/04/14 16:35:02 call_notice_videostream_server.go:42: could not call service: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50052: connectex: No connection could be made because the target machine actively refused it."
 2024/04/14 16:42:34 main.go:92: listen tcp :3004: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/06/11 16:04:34 main.go:91: listen tcp :3003: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/06/11 16:04:55 main.go:91: listen tcp :3003: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/06/11 16:06:40 main.go:91: listen tcp :3003: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/06/11 16:07:29 main.go:91: listen tcp :3003: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024/06/11 17:58:08 call_notice_videostream_server.go:42: could not call service: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50052: connectex: No connection could be made because the target machine actively refused it."

@@ -25,7 +25,6 @@ import (
 func main() {
 
 	flag.Parse()
-
 	adb.InitMySQL()
 	adb.InitRedis()
 	adb.InitMQ()

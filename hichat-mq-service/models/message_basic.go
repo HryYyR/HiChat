@@ -21,7 +21,7 @@ type Message struct {
 	UserAge     string
 	GroupID     int `xorm:"notnull"`
 	Msg         string
-	MsgType     int  `xorm:"notnull default(1)"` //1文字 2音频 3视频 4文件
+	MsgType     int  `xorm:"notnull default(1)"` //1 文字 2 音频 3 视频 4 文件
 	IsReply     bool //是否是回复消息
 	ReplyUserID int  //如果是,被回复的用户id
 	Context     []byte
@@ -30,11 +30,11 @@ type Message struct {
 	DeletedAt   time.Time `xorm:"deleted"`
 }
 
-func (Message) TableName() string {
+func (*Message) TableName() string {
 	return "group_message"
 }
 
-// 根据 groupid 获取用户列表
+// AccordingToGroupidGetUserlist 根据 groupid 获取用户列表
 func (m *Message) AccordingToGroupidGetUserlist() ([]int, error) {
 	var useridlist []int
 	if err := adb.Ssql.Cols("user_id").Table("group_user_relative").Where("group_id=?", m.GroupID).Find(&useridlist); err != nil {
@@ -47,10 +47,13 @@ func (m *Message) AccordingToGroupidGetUserlist() ([]int, error) {
 
 func (m *Message) SaveGroupMsgToDb() error {
 	// fmt.Printf("%+v\n", m)
-	if _, err := adb.Ssql.Table("group_message").Insert(&m); err != nil {
-		fmt.Println(err.Error())
-		return err
-	}
+	//if _, err := adb.Ssql.Table("group_message").Insert(&m); err != nil {
+	//	fmt.Println(err.Error())
+	//	return err
+	//}
+
+	BI.AddGroupMsg(m)
+
 	jsondata, err := json.Marshal(m)
 	if err != nil {
 		fmt.Println(err.Error())

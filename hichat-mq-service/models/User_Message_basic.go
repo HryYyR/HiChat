@@ -5,8 +5,17 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"sync"
 	"time"
 )
+
+var BI = &InsertMysqlBatch{
+	UserMsgList:  make([]UserMessage, 0),
+	GroupMsgList: make([]Message, 0),
+	Interval:     time.Second,
+	BatchSize:    1000,
+	Mu:           sync.Mutex{},
+}
 
 type UserMessage struct {
 	ID                int    `xorm:"pk autoincr index"`
@@ -28,13 +37,12 @@ type UserMessage struct {
 }
 
 func (u *UserMessage) SaveFriendMsgToDb() error {
-	if _, err := adb.Ssql.Table("user_message").Insert(&u); err != nil {
-		return err
-	}
-	var key string
+	//if _, err := adb.Ssql.Table("user_message").Insert(&u); err != nil {
+	//	return err
+	//}
+	BI.AddUserMsg(u)
 
-	//fmt.Println(u.UserID, u.ReceiveUserID)
-	//fmt.Println(u.UserID > u.ReceiveUserID)
+	var key string
 	if u.UserID > u.ReceiveUserID {
 		key = fmt.Sprintf("%d%d", u.UserID, u.ReceiveUserID)
 	} else {

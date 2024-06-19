@@ -10,6 +10,7 @@ import (
 	"time"
 )
 
+// Message 用户传输的消息结构体
 type Message struct {
 	ID          int    `xorm:"pk autoincr"`
 	UserID      int    `xorm:"notnull"`
@@ -32,7 +33,7 @@ func (m *Message) TableName() string {
 	return "group_message"
 }
 
-// 根据 groupid 获取用户列表
+// AccordingToGroupidGetUserlist 根据groupid获取用户列表
 func (m *Message) AccordingToGroupidGetUserlist() ([]int, error) {
 	var useridlist []int
 	strgroupid := strconv.Itoa(m.GroupID)
@@ -56,12 +57,12 @@ func (m *Message) AccordingToGroupidGetUserlist() ([]int, error) {
 
 }
 
-func (m *Message) SaveToDb() error {
-	fmt.Printf("%+v\n", m)
-	if _, err := adb.SqlStruct.Conn.Table("group_message").Insert(&m); err != nil {
-		fmt.Println(err.Error())
-		log.Println(err.Error())
-		return err
-	}
-	return nil
-}
+//func (m *Message) SaveToDb() error {
+//	fmt.Printf("%+v\n", m)
+//	if _, err := adb.SqlStruct.Conn.Table("group_message").Insert(&m); err != nil {
+//		fmt.Println(err.Error())
+//		log.Println(err.Error())
+//		return err
+//	}
+//	return nil
+//}

@@ -20,11 +20,11 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	engine := gin.New()
 	engine.Use(service.Cors())
-
-	engine.GET("/ws", service.Connectws) //用户连接
+	
+	engine.GET("/streammedia", service.Connectws) //用户连接
 	models.ServiceCenter = models.NewHub("1")
 	go models.ServiceCenter.Run()
-
+	
 	go func() {
 		ticker := time.NewTicker(3 * time.Second)
 		defer ticker.Stop()
@@ -42,7 +42,7 @@ func main() {
 			fmt.Println("")
 		}
 	}()
-
+	
 	//服务注册
 	dis := service_registry.DiscoveryConfig{
 		ID:      util.GenerateUUID(),
@@ -55,9 +55,9 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-
+	
 	go rpcserver.ListenNoticeVideoStreamRpcServer()
-
+	
 	fmt.Println("service run in ", 3009)
 	err = engine.Run(":3009")
 	if err != nil {
