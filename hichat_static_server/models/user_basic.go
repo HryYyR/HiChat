@@ -301,14 +301,10 @@ func (u *Users) GetUserGroupList(grouplist *[]GroupDetail) error {
 				fmt.Println("查询群消息失败error:", err)
 				return err
 			}
-			//if err := adb.Ssql.Table("group_message").Where("group_id=?", gur.GroupID).
-			//	Desc("id").Limit(20).Find(&tempdata); err != nil {
-			//	fmt.Println("查询群消息失败error:", err)
-			//	return err
-			//}
-			sort.Slice(tempdata, func(i, j int) bool {
-				return tempdata[i].ID < tempdata[j].ID
-			})
+			//todo 因为缓存里ID不正确的原因，这里的排序会出问题
+			//sort.Slice(tempdata, func(i, j int) bool {
+			//	return tempdata[i].ID < tempdata[j].ID
+			//})
 
 			var groupitem = GroupDetail{
 				GroupInfo:   group,

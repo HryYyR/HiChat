@@ -74,6 +74,7 @@ func ApplyAddUser(c *gin.Context) {
 	msgbyte, _ := json.Marshal(msg)
 	models.ServiceCenter.Clients[data.PreApplyUserID].Send <- msgbyte
 	models.ServiceCenter.Clients[data.ApplyUserID].Send <- msgbyte
+	models.TransmitMsg(msgbyte, config.MsgTypeRefreshFriendNotice)
 	util.H(c, http.StatusOK, "申请成功", nil)
 
 }
@@ -190,6 +191,7 @@ func StartUserToUserVideoCall(c *gin.Context) {
 
 		callmsgbyte, _ := json.Marshal(callmsg)
 		models.ServiceCenter.Clients[userinfo.ID].Send <- callmsgbyte
+		models.TransmitMsg(callmsgbyte, config.MsgTypeStartUserToUserVideoCall)
 
 		fmt.Println("创建房间成功")
 

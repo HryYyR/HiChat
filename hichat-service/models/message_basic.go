@@ -1,6 +1,7 @@
 package models
 
 import (
+	"encoding/json"
 	"fmt"
 	adb "go-websocket-server/ADB"
 	"go-websocket-server/util"
@@ -10,7 +11,7 @@ import (
 	"time"
 )
 
-// Message 用户传输的消息结构体
+// Message 用户传输的群聊消息结构体
 type Message struct {
 	ID          int    `xorm:"pk autoincr"`
 	UserID      int    `xorm:"notnull"`
@@ -31,6 +32,28 @@ type Message struct {
 
 func (m *Message) TableName() string {
 	return "group_message"
+}
+
+func (m Message) Transmit() error {
+	msgbytes, err := json.Marshal(m)
+	if err != nil {
+		return err
+	}
+	useridlist, err := m.AccordingToGroupidGetUserlist()
+	if err != nil {
+		return err
+	}
+	// 给这个列表里的用户发送消息
+	for _, userid := range useridlist {
+		client, ok := ServiceCenter.Clients[userid]
+		if ok {
+			if client.Status {
+				log.Println("给用户发信息", userid)
+				ServiceCenter.Clients[userid].Send <- msgbytes
+			}
+		}
+	}
+	return nil
 }
 
 // AccordingToGroupidGetUserlist 根据groupid获取用户列表

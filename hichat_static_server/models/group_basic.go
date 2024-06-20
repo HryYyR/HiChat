@@ -9,7 +9,6 @@ import (
 	"hichat_static_server/common"
 	"hichat_static_server/tool"
 	"log"
-	"sort"
 	"strconv"
 	"time"
 )
@@ -99,30 +98,29 @@ func (g *Group) GetGroupInfo() (Group, error) {
 	key := fmt.Sprintf("group%d", g.ID)
 	//从redis获取数据
 	var gdata = adb.Rediss.HGetAll(key).Val()
-	if len(gdata) != 0 {
-		fmt.Println("走redis")
+	if len(gdata) > 3 {
+		log.Println("走redis")
 		_ = mapstructure.Decode(gdata, &groupinfo)
 		groupinfo.ID, _ = strconv.Atoi(gdata["ID"])
 		groupinfo.CreaterID, _ = strconv.Atoi(gdata["CreaterID"])
 		groupinfo.Grade, _ = strconv.Atoi(gdata["Grade"])
 		groupinfo.MemberCount, _ = strconv.Atoi(gdata["MemberCount"])
 		groupinfo.CreatedAt, _ = common.ParseTime(gdata["CreatedAt"])
-		fmt.Printf("%+v", gdata)
+		log.Printf("%+v", gdata)
 		return groupinfo, nil
 	}
-	fmt.Println("走mysql")
+	log.Println("走mysql")
 	exit, err := adb.Ssql.Table("group").Where("id =?", g.ID).Get(&groupinfo)
 	if !exit {
 		return Group{}, fmt.Errorf("用户不存在")
 	}
 	if err != nil {
-		fmt.Println("mysql查询失败", err)
+		log.Println("mysql查询失败", err)
 		return Group{}, err
 	}
 
 	err = groupinfo.SaveToRedis()
 	if err != nil {
-		fmt.Println("保存到redis失败", err)
 		log.Println("保存到redis失败", err)
 		return groupinfo, nil
 	}
@@ -150,9 +148,9 @@ func (g *Group) GetMessageList(grouplist *[]GroupMessage, currentnum int) error 
 		}
 	}
 
-	sort.Slice(msglist, func(i, j int) bool {
-		return msglist[i].ID < (msglist[j].ID)
-	})
+	//sort.Slice(msglist, func(i, j int) bool {
+	//	return msglist[i].ID < (msglist[j].ID)
+	//})
 	*grouplist = msglist
 	return nil
 }
@@ -174,7 +172,7 @@ func getMsgListFromCache(g *Group, currentnum int, msglist *[]GroupMessage) erro
 	key := fmt.Sprintf("gm%s", strconv.Itoa(g.ID))
 	//判断redis缓存是否存在
 	lLen := adb.Rediss.LLen(key).Val()
-	fmt.Println("len", lLen)
+	log.Println("len", lLen)
 	if lLen == 0 {
 		return nil
 	}
@@ -197,10 +195,10 @@ func getMsgListFromCache(g *Group, currentnum int, msglist *[]GroupMessage) erro
 		if err != nil {
 			//todo: 解析有错误的不应该放入聊天记录,但是 因为只是类型转换错误导致的失败 而放弃这条记录,
 			//todo: 会导致总记录数量不正确,最终导致拉取记录出问题
-			//fmt.Println(err)
+			//log.Println(err)
 			//continue
 		}
-		//fmt.Println(msgstruct)
+		//log.Println(msgstruct)
 		msgdata = append(msgdata, msgstruct)
 	}
 	*msglist = msgdata

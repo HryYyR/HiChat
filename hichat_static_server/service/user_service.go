@@ -130,12 +130,12 @@ func GetUserGroupList(c *gin.Context) {
 	err = data.GetUserGroupList(&grouplist)
 	// fmt.Println("消息长度为:", len(grouplist[0].MessageList))
 	if err != nil {
-		util.H(c, http.StatusInternalServerError, "获取用户的群聊列表!", err)
+		util.H(c, http.StatusInternalServerError, "获取失败!", err)
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"msg":  "获取用户的群聊列表!",
+		"msg":  "获取成功!",
 		"data": grouplist,
 	})
 }

@@ -51,8 +51,6 @@ func (b *InsertMysqlBatch) InsertMessages() {
 				} else {
 					log.Printf("用户消息插入 %d 条消息,剩余%d", len(Userbatch), len(b.UserMsgList))
 				}
-
-				continue
 			}
 			if len(b.GroupMsgList) != 0 {
 				//批量插入群聊消息
@@ -62,15 +60,11 @@ func (b *InsertMysqlBatch) InsertMessages() {
 				}
 				b.GroupMsgList = b.GroupMsgList[len(Groupbatch):]
 
-				b.Mu.Unlock()
-
 				if _, err := adb.Ssql.Table("group_message").Insert(&Groupbatch); err != nil {
 					fmt.Println(err.Error())
 				} else {
 					log.Printf("群聊消息插入 %d 条消息,剩余%d", len(Groupbatch), len(b.GroupMsgList))
 				}
-
-				continue
 			}
 			b.Mu.Unlock()
 

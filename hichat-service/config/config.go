@@ -7,7 +7,7 @@ import "time"
 var CallNoticeVideoStreamServerIP = "127.0.0.1"
 var CallNoticeVideoStreamServerPort = "50052"
 
-var ServerPort = 3004
+var ServerPort = 3003
 var ConsulAddress = "127.0.0.1:8500"
 
 var JwtKey = "Hyyyh1527"

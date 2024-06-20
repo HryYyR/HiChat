@@ -3,6 +3,7 @@ module HiChat/hichat-mq-service
 go 1.20
 
 require (
+	github.com/bwmarrin/snowflake v0.3.0
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/gofrs/uuid v4.0.0+incompatible

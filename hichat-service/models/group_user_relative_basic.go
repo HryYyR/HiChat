@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	adb "go-websocket-server/ADB"
+	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -55,9 +56,14 @@ func (r *GroupUserRelative) Association(group Group, session *xorm.Session) erro
 	adb.Rediss.HSet("UserToGroupMap", strconv.Itoa(r.UserID), insertUserToGroupMapStr)
 	//fmt.Printf("groupid%d,userid%d\n", group.ID, r.UserID)
 
-	ServiceCenter.Clients[r.UserID].Mutex.Lock()
-	defer ServiceCenter.Clients[r.UserID].Mutex.Unlock()
-	ServiceCenter.Clients[r.UserID].Groups[group.ID] = group
+	client, ok := ServiceCenter.Clients[r.UserID]
+	if ok {
+		client.Mutex.Lock()
+		defer client.Mutex.Unlock()
+		client.Groups[group.ID] = group
+	} else {
+		log.Printf("为用户 %d 连接失败,用户不存在\n", r.UserID)
+	}
 
 	if _, ok := GroupUserList[group.ID]; !ok {
 		uidarr := make([]int, 0)

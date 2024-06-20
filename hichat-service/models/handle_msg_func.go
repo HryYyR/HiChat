@@ -4,11 +4,9 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
 	adb "go-websocket-server/ADB"
 	"go-websocket-server/config"
-
-	"github.com/streadway/amqp"
+	"log"
 )
 
 //	type GroupMsgfun interface {
@@ -31,73 +29,31 @@ func HandleDefaultGroupMsg(msgstruct *Message, msg []byte) error {
 
 	// 保存消息进数据库
 	go func(msg []byte) {
-		err := adb.MQc.Publish(
-			"",           // exchange
-			adb.MQq.Name, // routing key
-			false,        // mandatory
-			false,        // immediate
-			amqp.Publishing{
-				ContentType: "application/json",
-				Body:        msg,
-			})
-		if err != nil {
-			fmt.Printf("上传消息到队列失败!%s\n", err)
+		if err := adb.MqHub.PublishToNonImmediateTasksQueue(msg); err != nil {
+			log.Printf("上传消息到队列失败!%s\n", err)
 			cancelFunc()
 		}
 	}(msg)
-
-	//根据 groupid 获取用户id列表
-	useridlist, err := msgstruct.AccordingToGroupidGetUserlist()
-	if err != nil {
-		fmt.Printf("获取用户id列表失败!%s\n", err)
-		return err
-	}
 
 	// 写入同步消息
-	err = GroupWriteSyncMsg(msgstruct)
+	err := GroupWriteSyncMsg(msgstruct)
 	if err != nil {
 		return err
 	}
 
-	// 给这个列表里的用户发送消息
-	for _, userid := range useridlist {
-		fmt.Println("给用户发信息", userid)
-		if ServiceCenter.Clients[userid].Status {
-			ServiceCenter.Clients[userid].Send <- msg
-		}
-	}
-
-	select {
-	case <-ctx.Done():
-		err := ctx.Err()
-		if errors.Is(err, context.Canceled) {
-			return err
-		}
-	default:
-		return nil
-	}
-	return nil
-}
-
-// HandleGroupClearSyncMsg 401 清除同步消息
-func HandleGroupClearSyncMsg(msgstruct *Message, msg []byte) error {
-
-	ctx, cancelFunc := context.WithCancel(context.Background())
-	go func(msg []byte) {
-		err := adb.MQc.Publish(
-			"",           // exchange
-			adb.MQq.Name, // routing key
-			false,        // mandatory
-			false,        // immediate
-			amqp.Publishing{
-				ContentType: "application/json",
-				Body:        msg,
-			})
-		if err != nil {
-			fmt.Printf("上传消息到队列失败!%s\n", err)
-			cancelFunc()
-		}
-	}(msg)
+	////根据 groupid 获取用户id列表
+	//useridlist, err := msgstruct.AccordingToGroupidGetUserlist()
+	//if err != nil {
+	//	log.Printf("获取用户id列表失败!%s\n", err)
+	//	return err
+	//}
+	//// 给这个列表里的用户发送消息
+	//for _, userid := range useridlist {
+	//	log.Println("给用户发信息", userid)
+	//	if ServiceCenter.Clients[userid].Status {
+	//		ServiceCenter.Clients[userid].Send <- msg
+	//	}
+	//}
 
 	select {
 	case <-ctx.Done():
@@ -122,23 +78,41 @@ func GroupWriteSyncMsg(msgstruct *Message) error {
 	go func(syncmsg Message) {
 		msgbyte, err := json.Marshal(syncmsg)
 		if err != nil {
-			fmt.Printf("同步消息转换byte失败!%s\n", err.Error())
+			log.Printf("同步消息转换byte失败!%s\n", err.Error())
 			cancelFunc()
 		}
-		err = adb.MQc.Publish(
-			"",           // exchange
-			adb.MQq.Name, // routing key
-			false,        // mandatory
-			false,        // immediate
-			amqp.Publishing{
-				ContentType: "application/json",
-				Body:        msgbyte,
-			})
-		if err != nil {
-			fmt.Printf("上传消息到队列失败!%s\n", err)
-			cancelFunc()
-		}
+		// 保存消息进数据库
+		go func(msg []byte) {
+			if err := adb.MqHub.PublishToNonImmediateTasksQueue(msg); err != nil {
+				log.Printf("上传消息到队列失败!%s\n", err)
+				cancelFunc()
+			}
+		}(msgbyte)
 	}(*msgstruct)
+
+	select {
+	case <-ctx.Done():
+		err := ctx.Err()
+		if errors.Is(err, context.Canceled) {
+			return err
+		}
+	default:
+		return nil
+	}
+	return nil
+}
+
+// HandleGroupClearSyncMsg 401 清除同步消息
+func HandleGroupClearSyncMsg(msgstruct *Message, msg []byte) error {
+	ctx, cancelFunc := context.WithCancel(context.Background())
+
+	// 保存消息进数据库
+	go func(msg []byte) {
+		if err := adb.MqHub.PublishToNonImmediateTasksQueue(msg); err != nil {
+			log.Printf("上传消息到队列失败!%s\n", err)
+			cancelFunc()
+		}
+	}(msg)
 
 	select {
 	case <-ctx.Done():
@@ -165,31 +139,20 @@ var HandleFriendMsgMap = map[int]FriendMsgfun{
 func HandleDefaultFriendMsg(msgstruct *UserMessage, msg []byte) error {
 	ctx, cancelFunc := context.WithCancel(context.Background())
 
-	//bytes, _ := json.Marshal(msgstruct)
 	// 保存消息进数据库
-	go func() {
-		err := adb.MQc.Publish(
-			"",           // exchange
-			adb.MQq.Name, // routing key
-			false,        // mandatory
-			false,        // immediate
-			amqp.Publishing{
-				ContentType: "application/json",
-				Body:        msg,
-			})
-		if err != nil {
-			fmt.Printf("上传消息到队列失败!%s\n", err)
+	go func(msg []byte) {
+		if err := adb.MqHub.PublishToNonImmediateTasksQueue(msg); err != nil {
+			log.Printf("上传消息到队列失败!%s\n", err)
 			cancelFunc()
 		}
+	}(msg)
 
-	}()
-
-	FriendWriteSyncMsg(msgstruct)
-
+	if err := FriendWriteSyncMsg(msgstruct); err != nil {
+		log.Println("上传好友同步消息到队列失败,err")
+	}
 	//fmt.Println("未加密的消息", string(bytes))
-
-	ServiceCenter.Clients[msgstruct.UserID].Send <- msg
-	ServiceCenter.Clients[msgstruct.ReceiveUserID].Send <- msg
+	//ServiceCenter.Clients[msgstruct.UserID].Send <- msg
+	//ServiceCenter.Clients[msgstruct.ReceiveUserID].Send <- msg
 
 	select {
 	case <-ctx.Done():
@@ -207,18 +170,10 @@ func HandleDefaultFriendMsg(msgstruct *UserMessage, msg []byte) error {
 func HandleFriendClearSyncMsg(msgstruct *UserMessage, msg []byte) error {
 	ctx, cancelFunc := context.WithCancel(context.Background())
 
+	// 保存消息进数据库
 	go func(msg []byte) {
-		err := adb.MQc.Publish(
-			"",           // exchange
-			adb.MQq.Name, // routing key
-			false,        // mandatory
-			false,        // immediate
-			amqp.Publishing{
-				ContentType: "application/json",
-				Body:        msg,
-			})
-		if err != nil {
-			fmt.Printf("上传消息到队列失败!%s\n", err)
+		if err := adb.MqHub.PublishToNonImmediateTasksQueue(msg); err != nil {
+			log.Printf("上传消息到队列失败!%s\n", err)
 			cancelFunc()
 		}
 	}(msg)
@@ -243,22 +198,13 @@ func FriendWriteSyncMsg(usermsgstruct *UserMessage) error {
 	usermsgstruct.MsgType = config.MsgTypeSyncFriendMsg
 	// 写入同步库
 	// 4.将消息发布到声明的队列
-	go func(syncmsg UserMessage) {
-		msgbyte, err := json.Marshal(syncmsg)
+	go func(usermsgstruct UserMessage) {
+		msgbyte, err := json.Marshal(usermsgstruct)
 		if err != nil {
-			fmt.Printf("同步消息转换byte失败!%s\n", err.Error())
+			log.Printf("同步消息转换byte失败!%s\n", err.Error())
 		}
-		err = adb.MQc.Publish(
-			"",           // exchange
-			adb.MQq.Name, // routing key
-			false,        // mandatory
-			false,        // immediate
-			amqp.Publishing{
-				ContentType: "application/json",
-				Body:        msgbyte,
-			})
-		if err != nil {
-			fmt.Printf("上传消息到队列失败!%s\n", err)
+		if err := adb.MqHub.PublishToNonImmediateTasksQueue(msgbyte); err != nil {
+			log.Printf("上传消息到队列失败!%s\n", err)
 			cancelFunc()
 		}
 	}(*usermsgstruct)

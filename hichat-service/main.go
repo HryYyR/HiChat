@@ -19,7 +19,6 @@ import (
 	"go-websocket-server/util"
 	util2 "go-websocket-server/util"
 	"log"
-	"strconv"
 )
 
 func main() {
@@ -27,16 +26,16 @@ func main() {
 	flag.Parse()
 	adb.InitMySQL()
 	adb.InitRedis()
-	adb.InitMQ()
+	adb.MqHub.InitMQ()
 	defer func(SqlStruct *adb.Sql) {
 		err := SqlStruct.CloseConn()
 		if err != nil {
 			log.Println("mysql close error: ", err)
 		}
 	}(adb.SqlStruct)
+	go models.RunReceiveMQMsg() //启动消费消息列表
 
 	if err := systeminit.InitClientsToGrouplist(); err != nil {
-		fmt.Println(err)
 		log.Println(err)
 		panic(err.Error())
 	}
@@ -44,14 +43,13 @@ func main() {
 	models.ServiceCenter = models.NewHub(util.GenerateUUID())
 	go models.ServiceCenter.Run()
 
+	//todo delete
 	if err := systeminit.InitUserToClient(); err != nil {
-		fmt.Println(err)
 		log.Println(err)
 		panic(err.Error())
 	}
 
 	//go systeminit.PrintRoomInfo()
-
 	gin.SetMode(gin.ReleaseMode)
 	engine := gin.New()
 	engine.Use(service.Cors())
@@ -72,20 +70,20 @@ func main() {
 	//}()
 
 	//服务注册
-	dis := service_registry.DiscoveryConfig{
+	regsvconf := service_registry.DiscoveryConfig{
 		ID:      util2.GenerateUUID(),
 		Name:    "hichat-ws-server",
 		Tags:    nil,
 		Port:    config.ServerPort,
 		Address: util2.GetIP(),
 	}
-	err := service_registry.RegisterService(dis)
+	err := service_registry.RegisterService(regsvconf)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	fmt.Println("service run in ", config.ServerPort)
-	serverpost := fmt.Sprintf(":%s", strconv.Itoa(config.ServerPort))
+	serverpost := fmt.Sprintf(":%d", config.ServerPort)
+	log.Println("server run in ", util2.GetIP(), serverpost)
 	err = engine.Run(serverpost)
 	if err != nil {
 		log.Fatalln(err)

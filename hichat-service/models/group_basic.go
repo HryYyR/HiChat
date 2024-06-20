@@ -88,12 +88,6 @@ func (g *Group) InsertGroup(session *xorm.Session) (Group, error) {
 		return groupdata, err
 	}
 
-	//插入redis
-	err = adb.Rediss.RPush(fmt.Sprintf("gm%d", groupdata.ID), 0).Err()
-	if err != nil {
-		return groupdata, err
-	}
-
 	return groupdata, nil
 }
 

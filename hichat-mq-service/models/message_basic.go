@@ -4,6 +4,7 @@ import (
 	adb "HiChat/hichat-mq-service/ADB"
 	"encoding/json"
 	"fmt"
+	"github.com/bwmarrin/snowflake"
 	"log"
 	"strconv"
 	"sync"
@@ -11,6 +12,7 @@ import (
 )
 
 var M sync.Mutex
+var SnowFlakeNode *snowflake.Node
 
 type Message struct {
 	ID          int    `xorm:"pk autoincr"`
@@ -51,9 +53,9 @@ func (m *Message) SaveGroupMsgToDb() error {
 	//	fmt.Println(err.Error())
 	//	return err
 	//}
-
 	BI.AddGroupMsg(m)
 
+	//m.ID = int(SnowFlakeNode.Generate())
 	jsondata, err := json.Marshal(m)
 	if err != nil {
 		fmt.Println(err.Error())

@@ -1,6 +1,7 @@
 package models
 
 import (
+	"encoding/json"
 	"time"
 )
 
@@ -24,3 +25,20 @@ var (
 	Newline = []byte{'\n'}
 	Space   = []byte{' '}
 )
+
+// ConversionMsgBytesToMsgStruct 将消息字节转换为结构体
+func ConversionMsgBytesToMsgStruct(byte []byte) (MessageTransmitter, error) {
+	var groupMsgstruct *Message
+	err := json.Unmarshal(byte, &groupMsgstruct)
+	if err == nil {
+		return groupMsgstruct, nil
+	}
+
+	var userMsgStruct *UserMessage
+	err = json.Unmarshal(byte, &userMsgStruct)
+	if err == nil {
+		return userMsgStruct, nil
+	}
+
+	return nil, err
+}

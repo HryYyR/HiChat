@@ -8,6 +8,8 @@ import (
 	"HiChat/hichat-mq-service/util"
 	"encoding/json"
 	"fmt"
+	"github.com/bwmarrin/snowflake"
+	"log"
 	"strconv"
 )
 
@@ -25,8 +27,15 @@ func main() {
 		models.BI.InsertMessages()
 	}()
 
+	//初始化雪花算法
+	node, err := snowflake.NewNode(int64(config.ServerPort % 1023))
+	if err != nil {
+		log.Fatal("init snowflake error")
+	}
+	models.SnowFlakeNode = node
+
 	// 获取接收消息的Delivery通道
-	msgs, err := adb.MQc.Consume(
+	msgConsume, err := adb.MQc.Consume(
 		adb.MQq.Name, // queue
 		"",           // consumer
 		true,         // auto-ack
@@ -36,8 +45,8 @@ func main() {
 		nil,          // args
 	)
 	if err != nil {
-		fmt.Println("接收失败!")
-		panic(err)
+		fmt.Println("创建消费者失败!")
+		log.Fatal(err)
 	}
 
 	//服务注册
@@ -54,12 +63,12 @@ func main() {
 		panic(err)
 	}
 	serverpost := fmt.Sprintf(":%s", strconv.Itoa(config.ServerPort))
-	go service_registry.StartTcp(serverpost)
+	go service_registry.StartTcp(serverpost) //启动端口监听
 	fmt.Println("服务注册在", serverpost)
 
 	//go func() {
 	fmt.Println("开始消费!")
-	for d := range msgs {
+	for d := range msgConsume {
 		// 群聊消息
 		var msgstruct *models.Message
 		err := json.Unmarshal(d.Body, &msgstruct)
@@ -75,9 +84,7 @@ func main() {
 			err := HandleMap[msgstruct.MsgType]()
 			if err != nil {
 				fmt.Println(err.Error())
-				//d.Nack(false, true)
 			}
-			//d.Ack(false)
 			continue
 		}
 		// 私聊消息
@@ -92,33 +99,12 @@ func main() {
 				config.MsgTypeSyncFriendMsg:      usermsgstruct.SyncFriendMsgToDb,
 				config.MsgTypeClearSyncFriendMsg: usermsgstruct.ClearFriendMsgNum,
 			}
-			err := HandleMap[msgstruct.MsgType]()
-			if err != nil {
+			if err := HandleMap[msgstruct.MsgType](); err != nil {
 				fmt.Println(err.Error())
-				//d.Nack(false, true)
 			}
-			//d.Ack(false)
-			continue
 		} else {
 			fmt.Println("json Unmarshal error: ", err)
 		}
-
-		//// redis消息
-		//var redismsgstruct *models.RedisMessage
-		//err = json.Unmarshal(d.Body, &redismsgstruct)
-		//if err == nil {
-		//	HandleMap := map[int]RedisMsgfun{
-		//		config.MsgTypeRedisDelKey:    redismsgstruct.RedisDelKey,
-		//		config.MsgTypeRedisSetString: redismsgstruct.RedisSetString,
-		//		config.MsgTypeRedisRpushList: redismsgstruct.RedisRpushList,
-		//	}
-		//	err := HandleMap[redismsgstruct.MsgType]()
-		//	if err != nil {
-		//		fmt.Println(err.Error())
-		//	}
-		//	continue
-		//}
-
 	}
 	//}()
 

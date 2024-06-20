@@ -3,8 +3,6 @@ package models
 import (
 	"crypto/rsa"
 	"encoding/json"
-	"fmt"
-	"go-websocket-server/config"
 	"go-websocket-server/util"
 	"log"
 	"strconv"
@@ -13,12 +11,17 @@ import (
 
 var ServiceCenter *Hub
 
+type MessageTransmitter interface {
+	Transmit() error
+}
+
 type Hub struct {
-	HubID      string             //HUb的id
-	Clients    map[int]UserClient //用户列表  key:userid value:userclient
-	Broadcast  chan []byte        //广播列表
-	Loginout   chan *UserClient   //退出登录的列表
-	Mutex      *sync.RWMutex      // 互斥锁     用指针时多个结构体实例共享同一个锁,否则每个实例有属于自己的锁
+	HubID      string                  //HUb的id
+	Clients    map[int]UserClient      //用户列表  key:userid value:userclient
+	Broadcast  chan []byte             //广播列表
+	Loginout   chan *UserClient        //退出登录的列表
+	Transmit   chan MessageTransmitter //转发列表
+	Mutex      *sync.RWMutex           // 互斥锁     用指针时多个结构体实例共享同一个锁,否则每个实例有属于自己的锁
 	privateKey *rsa.PrivateKey
 	publicKey  *rsa.PublicKey
 }
@@ -42,6 +45,7 @@ func NewHub(HubID string) *Hub {
 		HubID:      HubID,
 		Clients:    make(map[int]UserClient),
 		Broadcast:  make(chan []byte),
+		Transmit:   make(chan MessageTransmitter),
 		Loginout:   make(chan *UserClient),
 		Mutex:      &sync.RWMutex{},
 		publicKey:  publicKey,
@@ -53,7 +57,6 @@ func (h *Hub) Run() {
 	defer func() {
 		close(h.Broadcast)
 		close(h.Loginout)
-
 	}()
 	for {
 		select {
@@ -70,75 +73,59 @@ func (h *Hub) Run() {
 
 		// 消息广播给指定用户
 		case message := <-h.Broadcast:
-
 			// 群聊消息
-			var msgstruct *Message
-			err := json.Unmarshal(message, &msgstruct)
-			if err == nil && len(strconv.Itoa(msgstruct.MsgType)) < 4 {
-				fmt.Println("groupmsg:", msgstruct.MsgType)
-				//err := HandleGroupMsgMap[msgstruct.MsgType](msgstruct, message)
-				if msgfun, ok := HandleGroupMsgMap[msgstruct.MsgType]; ok {
-					go func(msgfunc GroupMsgfun) {
-						err := msgfunc(msgstruct, message)
+			var groupmsgstruct *Message
+			err := json.Unmarshal(message, &groupmsgstruct)
+			if err == nil && len(strconv.Itoa(groupmsgstruct.MsgType)) < 4 {
+				log.Println("groupmsg:", groupmsgstruct.MsgType)
+				//err := HandleGroupMsgMap[groupmsgstruct.MsgType](groupmsgstruct, message)
+				if msgfun, ok := HandleGroupMsgMap[groupmsgstruct.MsgType]; ok {
+					go func(msgfunc GroupMsgfun, types int) {
+						err := msgfunc(groupmsgstruct, message)
 						if err != nil {
 							log.Println("HandleGroupMsgMap error: ", err)
-							fmt.Println("HandleGroupMsgMap error: ", err)
-						}
-					}(msgfun)
-				}
+						} else {
+							log.Println("转发消息")
+							if types < 399 {
+								TransmitMsg(message, types) //群聊消息保存成功后,转发消息
+							}
 
-				//todo
-				//if msgstruct.MsgType < 100 {
-				//	if err != nil {
-				//		sendAckMsg(2, msgstruct.UserID, 0)
-				//	} else {
-				//		sendAckMsg(2, msgstruct.UserID, 1)
-				//	}
-				//}
+						}
+
+					}(msgfun, groupmsgstruct.MsgType)
+				}
 				continue
 			}
 
 			// 好友消息
 			var usermsgstruct *UserMessage
 			err = json.Unmarshal(message, &usermsgstruct)
-			//fmt.Printf("%+v\n", usermsgstruct)
+			//log.Printf("%+v\n", usermsgstruct)
 			if err == nil {
-				fmt.Println("friendmsg:", msgstruct.MsgType)
-				if msgfun, ok := HandleFriendMsgMap[msgstruct.MsgType]; ok {
-					go func(msgfunc FriendMsgfun) {
+				log.Println("friendmsg:", usermsgstruct.MsgType)
+				if msgfun, ok := HandleFriendMsgMap[usermsgstruct.MsgType]; ok {
+					go func(msgfunc FriendMsgfun, types int) {
 						err := msgfunc(usermsgstruct, message)
 						if err != nil {
 							log.Println("HandleFriendMsgMap", err)
-							fmt.Println("HandleFriendMsgMap", err)
+						} else {
+							if types < 1399 {
+								log.Println("转发消息")
+								TransmitMsg(message, types) //用户保存成功后,转发消息
+							}
+
 						}
-					}(msgfun)
+					}(msgfun, usermsgstruct.MsgType)
+				} else {
+					log.Println("处理方法不存在")
 				}
-
-				//todo
-				//if usermsgstruct.MsgType < 100 {
-				//	if err != nil {
-				//		sendAckMsg(1, usermsgstruct.UserID, 0)
-				//	} else {
-				//		sendAckMsg(1, usermsgstruct.UserID, 1)
-				//	}
-				//
-				//}
-
-			} else {
-				//log.Println(err)
-				log.Println("解析消息体失败:error", err)
+			}
+		case msg := <-h.Transmit:
+			log.Printf("接收的interface,%+v", msg)
+			err := msg.Transmit()
+			if err != nil {
+				log.Println("HandleTransmit", err)
 			}
 		}
 	}
-}
-
-func sendAckMsg(msgsort, uid, status int) {
-	ackmsg := &AckMessage{
-		MsgType:   config.MsgTypeAckMsg,
-		AckStatus: status,
-		UserId:    uid,
-		MsgSort:   msgsort,
-	}
-	ackbytes, _ := json.Marshal(ackmsg)
-	ServiceCenter.Clients[uid].Send <- ackbytes
 }

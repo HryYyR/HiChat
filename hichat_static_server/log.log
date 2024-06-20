@@ -3420,3 +3420,63 @@ net/http.(*conn).serve(0xc00034a1b0, {0x160d220, 0xc0000142a0})
 	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:2039 +0x5e8
 created by net/http.(*Server).Serve in goroutine 1
 	D:/GoWorks/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.windows-amd64/src/net/http/server.go:3285 +0x4b4
+2024/06/20 18:43:07 group_basic.go:113: 走mysql
+2024/06/20 18:43:07 group_basic.go:176: len 2
+2024/06/20 18:43:17 group_basic.go:103: 走redis
+2024/06/20 18:43:17 group_basic.go:110: map[Avatar:static/1696349563.jpg CreatedAt:2024-06-20 18:28:49 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:222 MemberCount:2]
+2024/06/20 18:43:17 group_basic.go:176: len 2
+2024/06/20 18:44:16 group_basic.go:113: 走mysql
+2024/06/20 18:44:16 group_basic.go:176: len 3
+2024/06/20 18:44:16 group_basic.go:103: 走redis
+2024/06/20 18:44:16 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 18:44:16 group_basic.go:176: len 3
+2024/06/20 18:44:16 group_basic.go:103: 走redis
+2024/06/20 18:44:16 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 18:44:16 group_basic.go:176: len 3
+2024/06/20 18:44:26 group_basic.go:103: 走redis
+2024/06/20 18:44:26 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 18:44:26 group_basic.go:176: len 5
+2024/06/20 19:10:38 group_basic.go:103: 走redis
+2024/06/20 19:10:38 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:10:38 group_basic.go:176: len 5
+2024/06/20 19:11:23 group_basic.go:103: 走redis
+2024/06/20 19:11:23 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:11:32 group_basic.go:103: 走redis
+2024/06/20 19:11:32 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:18:32 group_basic.go:103: 走redis
+2024/06/20 19:18:32 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:18:41 group_basic.go:103: 走redis
+2024/06/20 19:18:41 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:19:28 group_basic.go:103: 走redis
+2024/06/20 19:19:28 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:19:28 group_basic.go:176: len 5
+2024/06/20 19:19:28 group_basic.go:103: 走redis
+2024/06/20 19:19:28 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:19:28 group_basic.go:176: len 5
+2024/06/20 19:19:45 group_basic.go:103: 走redis
+2024/06/20 19:19:45 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:19:45 group_basic.go:176: len 5
+2024/06/20 19:40:27 group_basic.go:103: 走redis
+2024/06/20 19:40:27 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:40:27 group_basic.go:176: len 5
+2024/06/20 19:40:56 group_basic.go:103: 走redis
+2024/06/20 19:40:56 group_basic.go:110: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:40:56 group_basic.go:176: len 5
+2024/06/20 19:43:40 group_basic.go:102: 走redis
+2024/06/20 19:43:40 group_basic.go:109: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:43:40 group_basic.go:175: len 5
+2024/06/20 19:43:50 group_basic.go:102: 走redis
+2024/06/20 19:43:50 group_basic.go:109: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:43:50 group_basic.go:175: len 5
+2024/06/20 19:44:13 group_basic.go:102: 走redis
+2024/06/20 19:44:13 group_basic.go:109: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:44:13 group_basic.go:175: len 7
+2024/06/20 19:44:34 group_basic.go:102: 走redis
+2024/06/20 19:44:34 group_basic.go:109: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:44:34 group_basic.go:175: len 10
+2024/06/20 19:44:34 group_basic.go:102: 走redis
+2024/06/20 19:44:34 group_basic.go:109: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:44:34 group_basic.go:175: len 10
+2024/06/20 19:44:34 group_basic.go:102: 走redis
+2024/06/20 19:44:34 group_basic.go:109: map[Avatar:static/1696352945.jpg CreatedAt:2024-06-20 18:44:06 CreaterID:1008 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:223 MemberCount:2]
+2024/06/20 19:44:34 group_basic.go:175: len 10

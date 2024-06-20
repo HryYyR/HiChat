@@ -232,6 +232,7 @@ func ApplyJoinGroup(c *gin.Context) {
 
 	//向群主发送验证申请信息
 	models.ServiceCenter.Clients[applygroup.CreaterID].Send <- msgbyte
+	models.TransmitMsg(msgbyte, config.MsgTypeRefreshGroupNotice)
 
 	util.H(c, http.StatusOK, "申请成功", nil)
 }
@@ -353,7 +354,7 @@ func HandleJoinGroup(c *gin.Context) {
 
 		util.H(c, http.StatusOK, "拒绝成功", nil)
 
-	} else if rawdata.HandleStatus == 1 {
+	} else if rawdata.HandleStatus == 1 { //同意申请
 		// 同意申请
 		session := adb.SqlStruct.Conn.NewSession()
 		session.Begin()
@@ -422,6 +423,7 @@ func HandleJoinGroup(c *gin.Context) {
 			models.ServiceCenter.Clients[uid].Send <- msgbyte
 			break
 		}
+		models.TransmitMsg(msgbyte, config.MsgTypeJoinGroup)
 
 		//通知申请用户刷新群聊列表
 		selfmsg := models.Message{
@@ -432,6 +434,7 @@ func HandleJoinGroup(c *gin.Context) {
 		}
 		selfmsgbyte, _ := json.Marshal(selfmsg)
 		models.ServiceCenter.Clients[applyuserdata.ID].Send <- selfmsgbyte
+		models.TransmitMsg(selfmsgbyte, config.MsgTypeRefreshGroup)
 
 		util.H(c, http.StatusOK, "用户已加入", nil)
 	}
@@ -449,6 +452,7 @@ func HandleJoinGroup(c *gin.Context) {
 		return
 	}
 	models.ServiceCenter.Clients[applyuserdata.ID].Send <- bytemsg
+	models.TransmitMsg(bytemsg, config.MsgTypeRefreshGroupNotice)
 
 }
 
@@ -594,6 +598,7 @@ func ExitGroup(c *gin.Context) {
 		for _, userid := range groupuserlist {
 			models.ServiceCenter.Clients[userid].Send <- msgbyte
 		}
+		models.TransmitMsg(msgbyte, config.MsgTypeDissolveGroup)
 
 	} else {
 		//只断开该用户对群的联系
@@ -638,6 +643,7 @@ func ExitGroup(c *gin.Context) {
 		for _, userid := range groupuserlist {
 			models.ServiceCenter.Clients[userid].Send <- msgbyte
 		}
+		models.TransmitMsg(msgbyte, config.MsgTypeQuitGroup)
 
 	}
 	session.Commit()
