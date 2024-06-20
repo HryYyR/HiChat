@@ -26,11 +26,7 @@ go >= 1.19
 2. ``start your consul``
 3. ``start your rabbitmq``
 4. ``git clone https://github.com/HryYyR/HiChat.git``
-5. ``./start-file.bat ``
-6. ``./start-static.bat``
-7. ``./start-mq.bat``
-8.  ``./start-stream.bat``
-9.   ``./start-ws.bat``
+5. ``./run.sh ``
 
 
 
