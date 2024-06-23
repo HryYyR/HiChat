@@ -1,44 +1,23 @@
 package models
 
 import (
-	"encoding/json"
 	"time"
 )
 
-//var House sync.Map
-//var RoomMutexes = make(map[string]*sync.Mutex) //房间锁
-//var MutexForRoomMutexes = new(sync.Mutex)      //全局锁
-
 const (
-	// Time allowed to write a message to the peer.
+	// WriteWait 定义了写操作的超时时间，为10秒
 	WriteWait = 10 * time.Second
-
-	// Time allowed to read the next pong message from the peer.
+	// PongWait 定义了读操作的超时时间，为60秒
 	PongWait = 60 * time.Second
-
+	// PingPeriod 定义了发送ping消息的周期，为PongWait的9/10，用于保持连接活跃
 	PingPeriod = (PongWait * 9) / 10
-
+	// MaxMessageSize 定义了最大消息大小，为1MB
 	MaxMessageSize = int64(1024 * 1024) //消息最大容量
 )
 
 var (
+	// Newline 表示换行的字节序列
 	Newline = []byte{'\n'}
-	Space   = []byte{' '}
+	// Space 表示空格的字节序列
+	Space = []byte{' '}
 )
-
-// ConversionMsgBytesToMsgStruct 将消息字节转换为结构体
-func ConversionMsgBytesToMsgStruct(byte []byte) (MessageTransmitter, error) {
-	var groupMsgstruct *Message
-	err := json.Unmarshal(byte, &groupMsgstruct)
-	if err == nil {
-		return groupMsgstruct, nil
-	}
-
-	var userMsgStruct *UserMessage
-	err = json.Unmarshal(byte, &userMsgStruct)
-	if err == nil {
-		return userMsgStruct, nil
-	}
-
-	return nil, err
-}

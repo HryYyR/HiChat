@@ -3,14 +3,11 @@ package models
 import (
 	"fmt"
 	adb "go-websocket-server/ADB"
-	"log"
 	"strconv"
 	"strings"
 	"time"
 	"xorm.io/xorm"
 )
-
-var GroupUserList = make(map[int][]int, 0) //群和用户的关系列表 k:group_id  v:[]user_id
 
 type GroupUserRelative struct {
 	ID        int `xorm:"pk autoincr notnull index"`
@@ -56,23 +53,6 @@ func (r *GroupUserRelative) Association(group Group, session *xorm.Session) erro
 	adb.Rediss.HSet("UserToGroupMap", strconv.Itoa(r.UserID), insertUserToGroupMapStr)
 	//fmt.Printf("groupid%d,userid%d\n", group.ID, r.UserID)
 
-	client, ok := ServiceCenter.Clients[r.UserID]
-	if ok {
-		client.Mutex.Lock()
-		defer client.Mutex.Unlock()
-		client.Groups[group.ID] = group
-	} else {
-		log.Printf("为用户 %d 连接失败,用户不存在\n", r.UserID)
-	}
-
-	if _, ok := GroupUserList[group.ID]; !ok {
-		uidarr := make([]int, 0)
-		uidarr = append(uidarr, r.UserID)
-		GroupUserList[group.ID] = uidarr
-	} else {
-		GroupUserList[group.ID] = append(GroupUserList[group.ID], r.UserID)
-	}
-
 	return nil
 }
 
@@ -90,17 +70,11 @@ func (r *GroupUserRelative) DisAssociation(session *xorm.Session, groupdata Grou
 	}
 
 	struid := adb.Rediss.HGet("GroupToUserMap", strconv.Itoa(r.GroupID)).Val()
-	//if err != nil {
-	//	return err
-	//}
 	if len(struid) == 0 {
 		return fmt.Errorf("查询失败")
 	}
 
 	strgid := adb.Rediss.HGet("UserToGroupMap", strconv.Itoa(r.UserID)).Val()
-	//if err != nil {
-	//	return err
-	//}
 	if len(strgid) == 0 {
 		return fmt.Errorf("查询失败")
 	}

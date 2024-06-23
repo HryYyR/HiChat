@@ -149,18 +149,11 @@ func (c *UserClient) WritePump() {
 				fmt.Println("WriterError", err)
 			}
 
-			//n := len(c.Send)
-			//for i := 0; i < n; i++ {
-			//	w.Write(Newline)
-			//	w.Write(<-c.Send)
-			//}
-
 			if err := w.Close(); err != nil {
 				fmt.Println("WriterCloseError", err)
 				return
 			}
 		case <-ticker.C:
-			// fmt.Println("ping")
 			c.Conn.SetWriteDeadline(time.Now().Add(WriteWait))
 			if err := c.Conn.WriteMessage(websocket.PingMessage, nil); err != nil {
 				return

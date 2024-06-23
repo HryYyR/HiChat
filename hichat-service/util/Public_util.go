@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
+	"encoding/binary"
 	"errors"
 	"io"
 
@@ -35,10 +36,6 @@ func Md5(s string) string {
 	return fmt.Sprintf("%x", md5.Sum([]byte(s)))
 }
 
-// func generateEcdsaPrivateKey() (*ecdsa.PrivateKey, error) {
-// 	return ecdsa.GenerateKey(elliptic.P256(), random.Reader)
-// }
-
 // MailSendCode 发送验证码邮件
 func MailSendCode(mail string, code string) {
 	e := email.NewEmail()
@@ -65,17 +62,6 @@ func GenerateUUID() string {
 	u1, _ := uuid.NewV4()
 	return u1.String()
 }
-
-//func GroupTimeSort(arr []models.ApplyJoinGroup, order string) {
-//	sort.Slice(arr, func(i, j int) bool {
-//		return arr[i].CreatedAt.After(arr[j].CreatedAt)
-//	})
-//}
-//func UserTimeSort(arr []models.ApplyAddUser, order string) {
-//	sort.Slice(arr, func(i, j int) bool {
-//		return arr[i].CreatedAt.After(arr[j].CreatedAt)
-//	})
-//}
 
 // HandleJsonArgument 处理server参数 json -> struct
 func HandleJsonArgument(c *gin.Context, data any) error {
@@ -257,4 +243,32 @@ func pkcs7Pad(data []byte, blockSize int) []byte {
 	padding := blockSize - len(data)%blockSize
 	padtext := bytes.Repeat([]byte{byte(padding)}, padding)
 	return append(data, padtext...)
+}
+
+func IntsToBytes(ints []int) ([]byte, error) {
+	// 创建一个字节缓冲区
+	buf := new(bytes.Buffer)
+	// 将 []int 写入缓冲区
+	for _, i := range ints {
+		err := binary.Write(buf, binary.LittleEndian, int32(i))
+		if err != nil {
+			return nil, err
+		}
+	}
+	return buf.Bytes(), nil
+}
+
+func BytesToInts(bytess []byte) ([]int, error) {
+	// 创建一个缓冲区
+	buf := bytes.NewBuffer(bytess)
+	ints := make([]int, 0, len(bytess)/4)
+	for {
+		var i int32
+		err := binary.Read(buf, binary.LittleEndian, &i)
+		if err != nil {
+			break
+		}
+		ints = append(ints, int(i))
+	}
+	return ints, nil
 }

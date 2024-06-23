@@ -7,7 +7,7 @@ import "time"
 var CallNoticeVideoStreamServerIP = "127.0.0.1"
 var CallNoticeVideoStreamServerPort = "50052"
 
-var ServerPort = 3003
+var ServerPort = 3004
 var ConsulAddress = "127.0.0.1:8500"
 
 var JwtKey = "Hyyyh1527"
@@ -50,12 +50,12 @@ var MsgTypeDissolveGroup = 204  //解散群聊
 var MsgTypeSyncMsg = 400      //同步消息
 var MsgTypeClearSyncMsg = 401 //同步消息清零
 
+// 用于通知的消息类型,不用于消息传输
+
 var MsgTypeRefreshGroup = 500        //刷新群聊列表
 var MsgTypeRefreshFriend = 501       //刷新好友列表
 var MsgTypeRefreshGroupNotice = 502  //刷新群聊通知列表
 var MsgTypeRefreshFriendNotice = 503 //刷新好友通知列表
-
-var MsgTypeAckMsg = 888 //确认消息
 
 var MsgTypeFriendDefault = 1001      //好友文字消息
 var MsgTypeFriendImage = 1002        //好友图片消息

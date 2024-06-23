@@ -26,7 +26,7 @@ func main() {
 	go models.ServiceCenter.Run()
 	
 	go func() {
-		ticker := time.NewTicker(3 * time.Second)
+		ticker := time.NewTicker(30 * time.Second)
 		defer ticker.Stop()
 		for range ticker.C {
 			fmt.Println(time.Now().Format(time.RFC3339))

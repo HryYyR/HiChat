@@ -4,11 +4,13 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"fmt"
+	adb "go-websocket-server/ADB"
 	"go-websocket-server/Token_packge"
 	"go-websocket-server/models"
 	"go-websocket-server/util"
 	"log"
 	"net/http"
+	"strconv"
 	"sync"
 
 	"github.com/gin-gonic/gin"
@@ -62,6 +64,8 @@ func Connectws(c *gin.Context) {
 		HoldEncryptedKey: false,
 		EncryptedKey:     []byte{},
 	}
+
+	adb.Rediss.HSet("UserClient", strconv.Itoa(userdata.ID), "1")
 
 	models.ServiceCenter.Mutex.Lock()
 	models.ServiceCenter.Clients[userdata.ID] = client

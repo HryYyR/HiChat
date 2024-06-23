@@ -2,8 +2,8 @@ package models
 
 import (
 	"encoding/json"
-	"fmt"
 	adb "go-websocket-server/ADB"
+	"go-websocket-server/config"
 	"go-websocket-server/util"
 	"log"
 	"strconv"
@@ -34,23 +34,83 @@ func (m *Message) TableName() string {
 	return "group_message"
 }
 
-func (m Message) Transmit() error {
-	msgbytes, err := json.Marshal(m)
+type GroupMsgTransmitFun func(groupmsg Message, msgbytes []byte) error
+
+var TransmitGroupMsgMap = map[int]GroupMsgTransmitFun{
+	config.MsgTypeDefault:        TransmitToAllFunc,         //1  群聊文字消息
+	config.MsgTypeImage:          TransmitToAllFunc,         //2  群聊图片消息
+	config.MsgTypeAudio:          TransmitToAllFunc,         //3  群聊音频消息
+	config.MsgTypeQuitGroup:      TransmitToAllFunc,         //201  退出群聊
+	config.MsgTypeJoinGroup:      TransmitToAllFunc,         //202  加入群聊
+	config.MsgTypeApplyJoinGroup: TransmitToUserIDFunc,      //203  申请加入群聊
+	config.MsgTypeDissolveGroup:  TransmitDissolveGroupFunc, //204  解散群聊
+
+	config.MsgTypeRefreshGroup:        TransmitToUserIDFunc, //500  刷新群聊列表
+	config.MsgTypeRefreshFriend:       TransmitToUserIDFunc, //501  刷新好友列表及好友通知列表
+	config.MsgTypeRefreshGroupNotice:  TransmitToUserIDFunc, //502  刷新群聊通知列表
+	config.MsgTypeRefreshFriendNotice: TransmitToUserIDFunc, //503  刷新好友通知列表
+}
+
+func TransmitDissolveGroupFunc(g Message, gbytes []byte) error {
+	useridlist, err := util.BytesToInts(g.Context)
 	if err != nil {
+		log.Println(err)
 		return err
 	}
-	useridlist, err := m.AccordingToGroupidGetUserlist()
+	//fmt.Printf("群id列表:%+v\n", useridlist)
+	// 给这个列表里的用户发送消息
+	for _, userid := range useridlist {
+		if client, ok := ServiceCenter.Clients[userid]; ok {
+			if client.Status {
+				//log.Println("给用户", userid, "群发信息", g.MsgType)
+				ServiceCenter.Clients[userid].Send <- gbytes
+			}
+		}
+	}
+	return nil
+}
+
+// TransmitToUserIDFunc 将此群聊消息转发给指定ID的用户
+func TransmitToUserIDFunc(g Message, gbytes []byte) error {
+	if c, ok := ServiceCenter.Clients[g.UserID]; ok {
+		if c.Status {
+			//fmt.Println("成功转发给", g.UserID)
+			ServiceCenter.Clients[g.UserID].Send <- gbytes
+		}
+	}
+	return nil
+}
+
+// TransmitToAllFunc 将此群聊消息转发给该群所有人
+func TransmitToAllFunc(g Message, gbytes []byte) error {
+	useridlist, err := g.AccordingToGroupidGetUserlist()
+	//fmt.Printf("群id列表:%+v\n", useridlist)
 	if err != nil {
 		return err
 	}
 	// 给这个列表里的用户发送消息
 	for _, userid := range useridlist {
-		client, ok := ServiceCenter.Clients[userid]
-		if ok {
+		if client, ok := ServiceCenter.Clients[userid]; ok {
 			if client.Status {
-				log.Println("给用户发信息", userid)
-				ServiceCenter.Clients[userid].Send <- msgbytes
+				//log.Println("给用户", userid, "群发信息", g.MsgType)
+				ServiceCenter.Clients[userid].Send <- gbytes
 			}
+		}
+	}
+	return nil
+}
+
+// Transmit 处理转发过来的消息
+func (m Message) Transmit() error {
+	msgbytes, err := json.Marshal(m)
+	if err != nil {
+		return err
+	}
+	//fmt.Println("开始处理群聊消息", m.MsgType)
+	if fun, ok := TransmitGroupMsgMap[m.MsgType]; ok {
+		err := fun(m, msgbytes)
+		if err != nil {
+			log.Println(err)
 		}
 	}
 	return nil
@@ -63,7 +123,6 @@ func (m *Message) AccordingToGroupidGetUserlist() ([]int, error) {
 	result := adb.Rediss.HGet("GroupToUserMap", strgroupid).Val()
 	if len(result) == 0 {
 		if err := adb.SqlStruct.Conn.Cols("user_id").Table("group_user_relative").Where("group_id=?", m.GroupID).Find(&useridlist); err != nil {
-			fmt.Println(err.Error())
 			log.Println(err.Error())
 			return nil, err
 		}
@@ -79,13 +138,3 @@ func (m *Message) AccordingToGroupidGetUserlist() ([]int, error) {
 	return useridlist, nil
 
 }
-
-//func (m *Message) SaveToDb() error {
-//	fmt.Printf("%+v\n", m)
-//	if _, err := adb.SqlStruct.Conn.Table("group_message").Insert(&m); err != nil {
-//		fmt.Println(err.Error())
-//		log.Println(err.Error())
-//		return err
-//	}
-//	return nil
-//}

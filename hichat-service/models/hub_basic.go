@@ -3,6 +3,7 @@ package models
 import (
 	"crypto/rsa"
 	"encoding/json"
+	adb "go-websocket-server/ADB"
 	"go-websocket-server/util"
 	"log"
 	"strconv"
@@ -62,12 +63,14 @@ func (h *Hub) Run() {
 		select {
 		// 退出登录
 		case UC := <-h.Loginout:
+			adb.Rediss.HSet("UserClient", strconv.Itoa(UC.UserID), "0")
+
+			ServiceCenter.Clients[UC.UserID].Mutex.Lock()
 			client := ServiceCenter.Clients[UC.UserID]
 			client.Status = false
 			client.Conn = nil
 			client.HoldEncryptedKey = false
 			client.EncryptedKey = []byte{}
-			ServiceCenter.Clients[UC.UserID].Mutex.Lock()
 			ServiceCenter.Clients[UC.UserID] = client
 			ServiceCenter.Clients[UC.UserID].Mutex.Unlock()
 
@@ -77,8 +80,6 @@ func (h *Hub) Run() {
 			var groupmsgstruct *Message
 			err := json.Unmarshal(message, &groupmsgstruct)
 			if err == nil && len(strconv.Itoa(groupmsgstruct.MsgType)) < 4 {
-				log.Println("groupmsg:", groupmsgstruct.MsgType)
-				//err := HandleGroupMsgMap[groupmsgstruct.MsgType](groupmsgstruct, message)
 				if msgfun, ok := HandleGroupMsgMap[groupmsgstruct.MsgType]; ok {
 					go func(msgfunc GroupMsgfun, types int) {
 						err := msgfunc(groupmsgstruct, message)
@@ -89,7 +90,6 @@ func (h *Hub) Run() {
 							if types < 399 {
 								TransmitMsg(message, types) //群聊消息保存成功后,转发消息
 							}
-
 						}
 
 					}(msgfun, groupmsgstruct.MsgType)
@@ -102,7 +102,7 @@ func (h *Hub) Run() {
 			err = json.Unmarshal(message, &usermsgstruct)
 			//log.Printf("%+v\n", usermsgstruct)
 			if err == nil {
-				log.Println("friendmsg:", usermsgstruct.MsgType)
+				//log.Println("friendmsg:", usermsgstruct.MsgType)
 				if msgfun, ok := HandleFriendMsgMap[usermsgstruct.MsgType]; ok {
 					go func(msgfunc FriendMsgfun, types int) {
 						err := msgfunc(usermsgstruct, message)
@@ -110,7 +110,6 @@ func (h *Hub) Run() {
 							log.Println("HandleFriendMsgMap", err)
 						} else {
 							if types < 1399 {
-								log.Println("转发消息")
 								TransmitMsg(message, types) //用户保存成功后,转发消息
 							}
 
@@ -121,11 +120,13 @@ func (h *Hub) Run() {
 				}
 			}
 		case msg := <-h.Transmit:
-			log.Printf("接收的interface,%+v", msg)
-			err := msg.Transmit()
-			if err != nil {
-				log.Println("HandleTransmit", err)
-			}
+			go func(m MessageTransmitter) {
+				err := m.Transmit()
+				if err != nil {
+					log.Println("HandleTransmit error:", err)
+				}
+			}(msg)
+
 		}
 	}
 }

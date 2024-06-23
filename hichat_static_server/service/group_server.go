@@ -71,7 +71,6 @@ func GetGroupMemberList(c *gin.Context) {
 	var uidlist []string
 
 	uidliststr := adb.Rediss.HGet("GroupToUserMap", strconv.Itoa(data.GroupId)).Val()
-
 	if len(uidliststr) == 0 {
 		err := adb.Ssql.Table("group_user_relative").Cols("user_id").Where("group_id=?", data.GroupId).Find(&uidlist)
 		if err != nil {

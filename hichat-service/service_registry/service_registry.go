@@ -4,6 +4,7 @@ import (
 	"fmt"
 	consulapi "github.com/hashicorp/consul/api"
 	"go-websocket-server/config"
+	"log"
 )
 
 type DiscoveryConfig struct {
@@ -21,6 +22,25 @@ func RegisterService(dis DiscoveryConfig) error {
 	if err != nil {
 		fmt.Printf("create consul client : %v\n", err.Error())
 	}
+
+	// 查询旧的服务实例并注销
+	services, _, err := client.Catalog().Service(dis.Name, "", nil)
+	if err != nil {
+		return fmt.Errorf("query services from consul: %v", err)
+	}
+	for _, service := range services {
+		if service.ServiceAddress == dis.Address && service.ServicePort == dis.Port {
+			// 注销旧的服务实例
+			err := client.Agent().ServiceDeregister(service.ServiceID)
+			if err != nil {
+				return fmt.Errorf("deregister service from consul: %v", err)
+			}
+			fmt.Printf("注销旧的服务实例: %s\n", service.ServiceID)
+			break
+		}
+	}
+
+	// 注册新的服务实例
 	registration := &consulapi.AgentServiceRegistration{
 		ID:      dis.ID,
 		Name:    dis.Name,
@@ -35,10 +55,11 @@ func RegisterService(dis DiscoveryConfig) error {
 	check.Timeout = "5s"
 	check.Interval = "5s"
 	check.DeregisterCriticalServiceAfter = "60s"
+
 	registration.Check = check
 
 	if err := client.Agent().ServiceRegister(registration); err != nil {
-		fmt.Printf("register to consul error: %v\n", err.Error())
+		log.Printf("register to consul error: %v\n", err.Error())
 		return err
 	}
 	return nil

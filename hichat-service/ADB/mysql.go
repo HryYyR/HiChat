@@ -39,7 +39,7 @@ func (s *Sql) CloseConn() error {
 var SqlStruct *Sql
 
 func InitMySQL() {
-	fmt.Println("init mysql success")
+	fmt.Println("初始化 Mysql 成功")
 	// engine.CreateTables(&models.User{})
 	SqlStruct = &Sql{
 		Conn:   nil,

@@ -94,7 +94,6 @@ func (m *MqStruct) InitMQ() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	fmt.Println("该服务器的MqName为:", TransmitQueue.Name)
 	//队列绑定到交换机
 	err = channel.QueueBind(
 		m.TransmitQueue.Name, // queue name
@@ -110,5 +109,5 @@ func (m *MqStruct) InitMQ() {
 	m.MqChannel = channel
 	m.NonImmediateTasksQueue = q
 	m.TransmitQueue = TransmitQueue
-	fmt.Println("init rabbitmq success")
+	fmt.Println("初始化 rabbitmq 成功 TransmitName::", m.TransmitQueue.Name)
 }

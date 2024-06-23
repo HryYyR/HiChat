@@ -192,7 +192,7 @@ func ApplyJoinGroup(c *gin.Context) {
 	applygroupdata := &models.Group{
 		ID: rawdata.GroupID,
 	}
-	applygroup, exit, err := applygroupdata.CheckGroupExit()
+	groupinfo, exit, err := applygroupdata.CheckGroupExit()
 	if err != nil {
 		fmt.Println("check group error", err)
 		util.H(c, http.StatusInternalServerError, "查询群聊失败", nil)
@@ -210,7 +210,7 @@ func ApplyJoinGroup(c *gin.Context) {
 		ApplyMsg:      rawdata.Msg,
 		ApplyWay:      rawdata.ApplyWay,
 	}
-	fmt.Printf("%#v\n", applydata)
+	//fmt.Printf("%#v\n", applydata)
 	err = applydata.InsertApply()
 	if err != nil {
 		fmt.Println("insert error", err)
@@ -223,15 +223,14 @@ func ApplyJoinGroup(c *gin.Context) {
 	//}
 
 	msg := models.Message{
-		UserID:   userdata.ID,
+		UserID:   groupinfo.CreaterID, //此id为群主的id,所以消息应该是通知群主
 		UserName: userdata.UserName,
 		GroupID:  applydata.GroupID,
 		MsgType:  config.MsgTypeRefreshGroupNotice,
 	}
 	msgbyte, _ := json.Marshal(msg)
-
 	//向群主发送验证申请信息
-	models.ServiceCenter.Clients[applygroup.CreaterID].Send <- msgbyte
+	//models.ServiceCenter.Clients[applygroup.CreaterID].Send <- msgbyte
 	models.TransmitMsg(msgbyte, config.MsgTypeRefreshGroupNotice)
 
 	util.H(c, http.StatusOK, "申请成功", nil)
@@ -265,27 +264,18 @@ func HandleJoinGroup(c *gin.Context) {
 	}
 	applyExit, applyjoindata, err := tempapplyjoindata.CheckApplyExit()
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		util.H(c, http.StatusInternalServerError, "查询申请失败", nil)
 		return
 	}
 	if !applyExit {
-		fmt.Println(err)
 		util.H(c, http.StatusBadRequest, "申请不存在", nil)
 		return
 	}
-
-	//has, err := adb.SqlStruct.Conn.Table("apply_join_group").Where("id = ?", rawdata.ApplyID).Get(&applyjoindata)
-	//if err != nil {
-	//	fmt.Println(err)
-	//	util.H(c, http.StatusInternalServerError, "查询申请失败", nil)
-	//	return
-	//}
-	//if !has {
-	//	fmt.Println(err)
-	//	util.H(c, http.StatusBadRequest, "申请不存在", nil)
-	//	return
-	//}
+	if applyjoindata.HandleStatus != 0 {
+		util.H(c, http.StatusBadRequest, "申请已处理", nil)
+		return
+	}
 
 	// 查用户是否存在
 	userdata := &models.Users{
@@ -302,22 +292,6 @@ func HandleJoinGroup(c *gin.Context) {
 		return
 	}
 
-	//has, err := adb.SqlStruct.Conn.Table("users").Where("id=?", applyjoindata.ApplyUserID).Get(&applyuserdata)
-	//if err != nil {
-	//	fmt.Println(err)
-	//	util.H(c, http.StatusInternalServerError, "查询用户信息失败", nil)
-	//	return
-	//}
-	//if !has {
-	//	util.H(c, http.StatusBadRequest, "用户不存在", nil)
-	//	return
-	//}
-
-	//上锁,以免数据错误
-	var mute sync.Mutex
-	mute.Lock()
-	defer mute.Unlock()
-
 	//查群是否存在
 	tempgroupdata := &models.Group{
 		ID: applyjoindata.GroupID,
@@ -333,21 +307,10 @@ func HandleJoinGroup(c *gin.Context) {
 		return
 	}
 
-	//
-	//has, err := adb.SqlStruct.Conn.Table("group").Where("id=?", applyjoindata.GroupID).Get(&grouplist)
-	//if err != nil {
-	//	fmt.Println(err)
-	//	util.H(c, http.StatusInternalServerError, "查询群聊失败", nil)
-	//	return
-	//}
-	//if !has {
-	//	util.H(c, http.StatusBadRequest, "群聊不存在", nil)
-	//	return
-	//}
-
 	// 拒绝申请
 	if rawdata.HandleStatus == -1 {
 		if _, err = adb.SqlStruct.Conn.Table("apply_join_group").ID(applyjoindata.ID).Update(models.ApplyJoinGroup{HandleStatus: rawdata.HandleStatus}); err != nil {
+			log.Println(err)
 			util.H(c, http.StatusInternalServerError, "拒绝失败", nil)
 			return
 		}
@@ -384,21 +347,11 @@ func HandleJoinGroup(c *gin.Context) {
 			return
 		}
 
-		//修改redis相关
-		//result, _ := adb.Rediss.HExists("GroupToUserMap", strconv.Itoa(grouplist.ID)).Result()
-		//if result {
-		//	datastr, _ := adb.Rediss.HGet("GroupToUserMap", strconv.Itoa(grouplist.ID)).Result()
-		//	splitarr := strings.Split(datastr, ",")
-		//	splitarr = append(splitarr, strconv.Itoa(applyuserdata.ID))
-		//	resstr := strings.Join(splitarr, ",")
-		//	adb.Rediss.HSet("GroupToUserMap", strconv.Itoa(grouplist.ID), resstr)
-		//}
-
-		groupmsg := models.GroupMessage{
+		groupmsg := models.Message{
 			UserID:     applyuserdata.ID,
 			UserName:   applyuserdata.UserName,
 			UserAvatar: applyuserdata.Avatar,
-			UserAge:    applyuserdata.Age,
+			UserAge:    strconv.Itoa(applyuserdata.Age),
 			UserCity:   applyuserdata.City,
 			GroupID:    grouplist.ID,
 			Msg:        fmt.Sprintf("%s加入了群聊", applyuserdata.UserName),
@@ -419,28 +372,24 @@ func HandleJoinGroup(c *gin.Context) {
 		adb.Rediss.HSet(fmt.Sprintf("group%d", grouplist.ID), "MemberCount", grouplist.MemberCount+1)
 
 		// 通知群里的其他成员有用户加入
-		for _, uid := range models.GroupUserList[grouplist.ID] {
-			models.ServiceCenter.Clients[uid].Send <- msgbyte
-			break
-		}
 		models.TransmitMsg(msgbyte, config.MsgTypeJoinGroup)
 
 		//通知申请用户刷新群聊列表
 		selfmsg := models.Message{
-			UserID:   applyuserdata.ID,
-			UserName: applyuserdata.UserName,
+			UserID:   applyjoindata.ApplyUserID,
+			UserName: applyjoindata.ApplyUserName,
 			GroupID:  grouplist.ID,
 			MsgType:  config.MsgTypeRefreshGroup,
 		}
 		selfmsgbyte, _ := json.Marshal(selfmsg)
-		models.ServiceCenter.Clients[applyuserdata.ID].Send <- selfmsgbyte
 		models.TransmitMsg(selfmsgbyte, config.MsgTypeRefreshGroup)
 
 		util.H(c, http.StatusOK, "用户已加入", nil)
+		return
 	}
 
 	//通知申请人,申请已被处理(刷新通知列表)
-	groupmsg := models.GroupMessage{
+	groupmsg := models.Message{
 		UserID:   applyuserdata.ID,
 		UserName: applyuserdata.UserName,
 		GroupID:  grouplist.ID,
@@ -448,10 +397,11 @@ func HandleJoinGroup(c *gin.Context) {
 	}
 	bytemsg, err := json.Marshal(groupmsg)
 	if err != nil {
+		log.Println(err)
 		util.H(c, http.StatusInternalServerError, "处理失败", nil)
 		return
 	}
-	models.ServiceCenter.Clients[applyuserdata.ID].Send <- bytemsg
+	//models.ServiceCenter.Clients[applyuserdata.ID].Send <- bytemsg
 	models.TransmitMsg(bytemsg, config.MsgTypeRefreshGroupNotice)
 
 }
@@ -503,7 +453,7 @@ func ExitGroup(c *gin.Context) {
 	// 相关删除操作
 
 	//在服务里找到群聊对应用户id
-	groupexist, groupuserlist, err := groupinfo.GetGroupUserIdLIst()
+	groupexist, _, err := groupinfo.GetGroupUserIdLIst()
 	if err != nil {
 		util.H(c, http.StatusInternalServerError, "操作失败", err)
 		return
@@ -525,6 +475,7 @@ func ExitGroup(c *gin.Context) {
 		if len(result) == 0 {
 			err := session.Table("group_user_relative").Cols("user_id").Where("group_id = ?", groupinfo.ID).Find(&willbedeleteuseridlist)
 			if err != nil {
+				log.Println(err)
 				session.Rollback()
 				util.H(c, http.StatusInternalServerError, "操作失败", err)
 				return
@@ -535,6 +486,14 @@ func ExitGroup(c *gin.Context) {
 			willbedeleteuseridlist = util.StrArrToIntArr(strings.Split(result, ","))
 		}
 
+		//唯一性约束自动删除:关系,消息,未读消息
+		_, err = session.Table("group").Where("id = ?", groupinfo.ID).Delete() //删群
+		if err != nil {
+			session.Rollback()
+			util.H(c, http.StatusInternalServerError, "操作失败", err)
+			return
+		}
+
 		//redis 事务
 		redisSession := adb.Rediss.Pipeline()
 		defer redisSession.Close()
@@ -542,6 +501,7 @@ func ExitGroup(c *gin.Context) {
 		uidarrstr := adb.Rediss.HGet("GroupToUserMap", strconv.Itoa(groupinfo.ID)).Val()
 
 		if len(uidarrstr) == 0 {
+			log.Println(err)
 			session.Rollback()
 			redisSession.Discard()
 			util.H(c, http.StatusInternalServerError, "操作失败", nil)
@@ -556,49 +516,45 @@ func ExitGroup(c *gin.Context) {
 			strSlice := util.DeleteStrSlice(gidarr, strconv.Itoa(groupinfo.ID))
 			redisSession.HSet("UserToGroupMap", uid, strings.Join(strSlice, ","))
 		}
-		fmt.Println("ok")
 
 		//删redis群聊消息
 		rkey := fmt.Sprintf("gm%s", strconv.Itoa(groupinfo.ID))
 		redisSession.Del(rkey)
-
 		rrkey := fmt.Sprintf("group%s", strconv.Itoa(groupinfo.ID))
 		redisSession.Del(rrkey)
+		redisSession.HDel("GroupToUserMap", strconv.Itoa(groupinfo.ID))
 
-		_, err := redisSession.Exec()
+		//将通知名单转为[]byte
+		willBeDeleteUserIdListBytes, err := util.IntsToBytes(willbedeleteuseridlist)
 		if err != nil {
+			log.Println(err)
+			session.Rollback()
+			util.H(c, http.StatusInternalServerError, "操作失败", nil)
+			return
+		}
+
+		_, err = redisSession.Exec()
+		if err != nil {
+			log.Println(err)
 			session.Rollback()
 			redisSession.Discard()
 			util.H(c, http.StatusInternalServerError, "操作失败", nil)
 			return
 		}
 
-		//唯一性约束自动删除:关系,消息,未读消息
-		_, err = session.Table("group").Where("id = ?", groupinfo.ID).Delete() //删群
-		if err != nil {
-			session.Rollback()
-			util.H(c, http.StatusInternalServerError, "操作失败", err)
-			return
+		// 通知群里的其他成员群聊已解散
+		groupmsg := models.Message{
+			MsgType: config.MsgTypeDissolveGroup,
+			GroupID: groupinfo.ID,
+			Context: willBeDeleteUserIdListBytes, //通知名单
 		}
+		msgbyte, _ := json.Marshal(groupmsg)
+		models.TransmitMsg(msgbyte, config.MsgTypeDissolveGroup)
 
 		//删用户的群聊列表里对应群聊
 		for _, userid := range willbedeleteuseridlist {
 			delete(models.ServiceCenter.Clients[userid].Groups, groupinfo.ID)
 		}
-
-		//同步群列表里相关信息
-		delete(models.GroupUserList, groupinfo.ID)
-
-		// 通知群里的其他成员群聊已解散
-		groupmsg := models.GroupMessage{
-			MsgType: config.MsgTypeDissolveGroup,
-			GroupID: groupinfo.ID,
-		}
-		msgbyte, _ := json.Marshal(groupmsg)
-		for _, userid := range groupuserlist {
-			models.ServiceCenter.Clients[userid].Send <- msgbyte
-		}
-		models.TransmitMsg(msgbyte, config.MsgTypeDissolveGroup)
 
 	} else {
 		//只断开该用户对群的联系
@@ -609,7 +565,6 @@ func ExitGroup(c *gin.Context) {
 		err := usergrouprealtive.DisAssociation(session, groupinfo)
 		if err != nil {
 			log.Println(err)
-			fmt.Println(err)
 			session.Rollback()
 			util.H(c, http.StatusInternalServerError, "退出失败", err)
 			return
@@ -637,15 +592,26 @@ func ExitGroup(c *gin.Context) {
 		//同步用户列表里相关信息
 		delete(models.ServiceCenter.Clients[userdata.ID].Groups, groupinfo.ID)
 
-		msgbyte, _ := json.Marshal(groupmsg)
-		adb.Rediss.RPush(fmt.Sprintf("gm%s", strconv.Itoa(groupmsg.GroupID)), string(msgbyte))
-		// 通知群里的其他成员有用户退出
-		for _, userid := range groupuserlist {
-			models.ServiceCenter.Clients[userid].Send <- msgbyte
-		}
-		models.TransmitMsg(msgbyte, config.MsgTypeQuitGroup)
+		bytes, _ := json.Marshal(groupmsg)
+		adb.Rediss.RPush(fmt.Sprintf("gm%s", strconv.Itoa(groupmsg.GroupID)), bytes)
 
+		//用于传输的消息体
+		transmitmsg := models.Message{
+			UserID:     userdata.ID,
+			UserName:   userdata.UserName,
+			UserCity:   handleuserdata.City,
+			UserAge:    strconv.Itoa(handleuserdata.Age),
+			UserAvatar: handleuserdata.Avatar,
+			GroupID:    groupinfo.ID,
+			Msg:        fmt.Sprintf("%s退出了群聊", userdata.UserName),
+			MsgType:    config.MsgTypeQuitGroup,
+			CreatedAt:  time.Now().Local(),
+		}
+		msgbyte, _ := json.Marshal(transmitmsg)
+		// 通知群里的其他成员有用户退出
+		models.TransmitMsg(msgbyte, config.MsgTypeQuitGroup)
 	}
+
 	session.Commit()
 
 	util.H(c, http.StatusOK, "退出群聊成功", nil)

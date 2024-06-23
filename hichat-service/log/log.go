@@ -8,7 +8,6 @@ import (
 )
 
 func init() {
-	fmt.Println("init log ....")
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
 	logFile, err := os.OpenFile("./log.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
@@ -21,4 +20,5 @@ func init() {
 	multiWriter := io.MultiWriter(os.Stdout, logFile)
 	// 设置日志输出到 multiWriter
 	log.SetOutput(multiWriter)
+	fmt.Println("初始化 Log 成功")
 }

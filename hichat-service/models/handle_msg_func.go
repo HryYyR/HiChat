@@ -15,12 +15,12 @@ import (
 type GroupMsgfun func(msgstruct *Message, msg []byte) error
 
 var HandleGroupMsgMap = map[int]GroupMsgfun{
-	1:   HandleDefaultGroupMsg,   //群聊文字
-	2:   HandleDefaultGroupMsg,   //群聊图片
-	3:   HandleDefaultGroupMsg,   //群聊音频
-	201: HandleDefaultGroupMsg,   //群聊退出
-	202: HandleDefaultGroupMsg,   //群聊加入
-	401: HandleGroupClearSyncMsg, //群聊清除同步库
+	config.MsgTypeDefault:      HandleDefaultGroupMsg,   //群聊文字	1
+	config.MsgTypeImage:        HandleDefaultGroupMsg,   //群聊图片	2
+	config.MsgTypeAudio:        HandleDefaultGroupMsg,   //群聊音频	3
+	config.MsgTypeQuitGroup:    HandleDefaultGroupMsg,   //群聊退出	201
+	config.MsgTypeJoinGroup:    HandleDefaultGroupMsg,   //群聊加入	202
+	config.MsgTypeClearSyncMsg: HandleGroupClearSyncMsg, //群聊清除同步库	401
 }
 
 // HandleDefaultGroupMsg 1 默认消息
@@ -40,20 +40,6 @@ func HandleDefaultGroupMsg(msgstruct *Message, msg []byte) error {
 	if err != nil {
 		return err
 	}
-
-	////根据 groupid 获取用户id列表
-	//useridlist, err := msgstruct.AccordingToGroupidGetUserlist()
-	//if err != nil {
-	//	log.Printf("获取用户id列表失败!%s\n", err)
-	//	return err
-	//}
-	//// 给这个列表里的用户发送消息
-	//for _, userid := range useridlist {
-	//	log.Println("给用户发信息", userid)
-	//	if ServiceCenter.Clients[userid].Status {
-	//		ServiceCenter.Clients[userid].Send <- msg
-	//	}
-	//}
 
 	select {
 	case <-ctx.Done():
@@ -129,10 +115,10 @@ func HandleGroupClearSyncMsg(msgstruct *Message, msg []byte) error {
 type FriendMsgfun func(msgstruct *UserMessage, msg []byte) error
 
 var HandleFriendMsgMap = map[int]FriendMsgfun{
-	1001: HandleDefaultFriendMsg,   //好友文字
-	1002: HandleDefaultFriendMsg,   //好友图片
-	1003: HandleDefaultFriendMsg,   //好友音频
-	1401: HandleFriendClearSyncMsg, //好友清除同步库
+	config.MsgTypeFriendDefault:      HandleDefaultFriendMsg,   //好友文字	1001
+	config.MsgTypeFriendImage:        HandleDefaultFriendMsg,   //好友图片	1002
+	config.MsgTypeFriendAudio:        HandleDefaultFriendMsg,   //好友音频	1003
+	config.MsgTypeClearSyncFriendMsg: HandleFriendClearSyncMsg, //好友清除同步库 1400
 }
 
 // HandleDefaultFriendMsg 1001  默认消息
@@ -150,9 +136,6 @@ func HandleDefaultFriendMsg(msgstruct *UserMessage, msg []byte) error {
 	if err := FriendWriteSyncMsg(msgstruct); err != nil {
 		log.Println("上传好友同步消息到队列失败,err")
 	}
-	//fmt.Println("未加密的消息", string(bytes))
-	//ServiceCenter.Clients[msgstruct.UserID].Send <- msg
-	//ServiceCenter.Clients[msgstruct.ReceiveUserID].Send <- msg
 
 	select {
 	case <-ctx.Done():

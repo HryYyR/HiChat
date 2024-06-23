@@ -10,6 +10,7 @@ import (
 	"go-websocket-server/rpcserver"
 	"go-websocket-server/util"
 	"net/http"
+	"strconv"
 )
 
 // ApplyAddUser 申请添加好友
@@ -158,8 +159,8 @@ func StartUserToUserVideoCall(c *gin.Context) {
 		return
 	}
 
-	var userinfo models.Users
-	has, err := adb.SqlStruct.Conn.Table("users").Where("id=?", data.Userid).Get(&userinfo)
+	var receiveuserinfo models.Users
+	has, err := adb.SqlStruct.Conn.Table("users").Where("id=?", data.Userid).Get(&receiveuserinfo)
 	if !has {
 		util.H(c, http.StatusBadRequest, "用户不存在", nil)
 		return
@@ -169,15 +170,16 @@ func StartUserToUserVideoCall(c *gin.Context) {
 		return
 	}
 
-	if models.ServiceCenter.Clients[userinfo.ID].Status == false {
+	receiveuserstatus := adb.Rediss.HGet("UserClient", strconv.Itoa(receiveuserinfo.ID)).Val()
+	if receiveuserstatus == "0" {
 		util.H(c, http.StatusBadRequest, "对方不在线", nil)
 		return
 	} else {
 		callmsg := models.UserMessage{
 			UserID:          userdata.ID,
 			UserName:        userdata.UserName,
-			ReceiveUserID:   userinfo.ID,
-			ReceiveUserName: userinfo.UserName,
+			ReceiveUserID:   receiveuserinfo.ID,
+			ReceiveUserName: receiveuserinfo.UserName,
 			Msg:             fmt.Sprintf("%s发起了视频通话", userdata.UserName),
 			MsgType:         config.MsgTypeStartUserToUserVideoCall,
 		}
@@ -190,7 +192,7 @@ func StartUserToUserVideoCall(c *gin.Context) {
 		}
 
 		callmsgbyte, _ := json.Marshal(callmsg)
-		models.ServiceCenter.Clients[userinfo.ID].Send <- callmsgbyte
+		//models.ServiceCenter.Clients[receiveuserinfo.ID].Send <- callmsgbyte
 		models.TransmitMsg(callmsgbyte, config.MsgTypeStartUserToUserVideoCall)
 
 		fmt.Println("创建房间成功")
@@ -199,4 +201,7 @@ func StartUserToUserVideoCall(c *gin.Context) {
 
 	}
 
+}
+func DeleteUser(c *gin.Context) {
+ 
 }
