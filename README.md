@@ -33,4 +33,5 @@ go >= 1.19
 ## 其他
 ![登录流程图](https://github.com/HryYyR/HiChat/assets/92864176/d521a456-f024-4859-82b5-e157008c8bff)
 
-![分布式高可用架构图](C:\Users\huang'rui\Desktop\大学\毕业设计\分布式高可用架构图.png)
+![分布式高可用架构图](https://github.com/HryYyR/HiChat/assets/92864176/1db3de2a-348c-4e71-a093-dd525e429121)
+
