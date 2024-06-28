@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"go-websocket-server/util"
+	"log"
 	"sync"
 	"time"
 
@@ -55,10 +56,14 @@ func (c *UserClient) ReadPump() {
 		//如果没有key  阻止消息,,直到获取到key为止
 		if !c.HoldEncryptedKey {
 			//fmt.Println("正在验证key")
-			encryptedKey, _ := base64.StdEncoding.DecodeString(string(message))
-			decryptRSABase64, _ := util.DecryptRSA(encryptedKey, ServiceCenter.GetPrivateKey())
+			encryptedKey, err := base64.StdEncoding.DecodeString(string(message))
+			decryptRSABase64, err := util.DecryptRSA(encryptedKey, ServiceCenter.GetPrivateKey())
 			//fmt.Println("验证成功 用户: ", c.UserName, "的aeskey: ", string(decryptRSABase64))
-			AesKey, _ := base64.StdEncoding.DecodeString(string(decryptRSABase64))
+			AesKey, err := base64.StdEncoding.DecodeString(string(decryptRSABase64))
+			if err != nil {
+				log.Println(err)
+				continue
+			}
 			c.EncryptedKey = AesKey
 			c.HoldEncryptedKey = true
 			continue

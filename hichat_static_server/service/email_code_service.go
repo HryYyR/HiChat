@@ -64,14 +64,6 @@ func EmailCode(c *gin.Context) {
 			fmt.Println("验证码发送失败", err)
 		}
 	}()
-	//发送验证码
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	c.JSON(http.StatusInternalServerError, gin.H{
-	// 		"msg": "发送验证码失败,请稍后再试!",
-	// 	})
-	// 	return
-	// }
 	c.JSON(http.StatusOK, gin.H{
 		"msg": "发送验证码成功!",
 	})

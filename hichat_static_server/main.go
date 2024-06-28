@@ -28,7 +28,7 @@ func main() {
 
 	engine.POST("/test", service.Test) //test
 
-	usergroup := engine.Group("user", service.IdentityCheck)
+	usergroup := engine.Group("user", service.IdentityCheck, service.FlowControl)
 	usergroup.POST("/edituserdata", service.EditUserData) //修改用户信息
 	usergroup.POST("/getuserdata", service.GetUserData)   //获取用户基本信息
 	usergroup.POST("/searchuser", service.SearchUser)     //搜索用户
@@ -43,7 +43,7 @@ func main() {
 
 	usergroup.POST("/aimessage", service.AiMessage) //Ai问答
 
-	groupgroup := engine.Group("group", service.IdentityCheck)
+	groupgroup := engine.Group("group", service.IdentityCheck, service.FlowControl)
 	groupgroup.POST("/searchgroup", service.SearchGroup)                 //搜索群聊
 	groupgroup.POST("/getgroupmessagelist", service.GetGroupMessageList) //获取指定群聊的消息(限定条数)
 	groupgroup.POST("/getgroupmemberdata", service.GetGroupMemberList)   //获取指定群聊的成员数据

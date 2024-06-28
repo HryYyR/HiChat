@@ -6,6 +6,7 @@ import (
 	"go-websocket-server/config"
 	"log"
 	"xorm.io/xorm"
+	"xorm.io/xorm/caches"
 	"xorm.io/xorm/names"
 )
 
@@ -22,18 +23,14 @@ func (s *Sql) CreateConn() error {
 	engine.SetMaxIdleConns(config.MysqlMaxIdleConns)
 	engine.SetMaxOpenConns(config.MysqlMaxOpenConns)
 	engine.SetMapper(names.GonicMapper{})
+	engine.SetDefaultCacher(caches.NewLRUCacher(caches.NewMemoryStore(), 1000)) //开启缓存,缓存struct的记录数为1000条
 	s.Status = 1
 	s.Conn = engine
 	return nil
 }
 
-func (s *Sql) CloseConn() error {
-	err := s.Conn.Close()
-	if err != nil {
-		return err
-	}
+func (s *Sql) CloseConn() {
 	s.Status = 0
-	return nil
 }
 
 var SqlStruct *Sql

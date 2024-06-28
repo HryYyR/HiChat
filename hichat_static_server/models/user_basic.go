@@ -410,13 +410,6 @@ func (u *Users) GetFriendListAndMEssage(friendresponselist *[]FriendResponse) er
 		return err
 	}
 
-	//// 消息列表
-	//var messagelist []UserMessageItem
-	//err = adb.Ssql.Table("user_message").Omit("uuid,context").Where("user_id=? or receive_user_id=?", u.ID, u.ID).Find(&messagelist)
-	//if err != nil {
-	//	return err
-	//}
-
 	// 每个好友的未读数量
 	var unreadmessagelist []UserUnreadMessage
 	err = adb.Ssql.Table("user_unread_message").Cols("user_id,friend_id,unread_number").Where("friend_id=?", u.ID).Find(&unreadmessagelist)

@@ -57,7 +57,7 @@ func Login(c *gin.Context) {
 		return
 	}
 	if util.Md5(data.Password+userdata.Salt) != userdata.Password {
-		c.JSON(http.StatusBadGateway, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"msg": "密码错误",
 		})
 		return

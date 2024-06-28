@@ -369,8 +369,10 @@ func HandleJoinGroup(c *gin.Context) {
 
 		msgbyte, _ := json.Marshal(groupmsg)
 		adb.Rediss.RPush(fmt.Sprintf("gm%d", grouplist.ID), string(msgbyte))
-		adb.Rediss.HSet(fmt.Sprintf("group%d", grouplist.ID), "MemberCount", grouplist.MemberCount+1)
-
+		err := adb.Rediss.HIncrBy(fmt.Sprintf("group%d", grouplist.ID), "MemberCount", 1).Err() //redis成员人数+1
+		if err != nil {
+			log.Println(err)
+		}
 		// 通知群里的其他成员有用户加入
 		models.TransmitMsg(msgbyte, config.MsgTypeJoinGroup)
 
@@ -379,10 +381,10 @@ func HandleJoinGroup(c *gin.Context) {
 			UserID:   applyjoindata.ApplyUserID,
 			UserName: applyjoindata.ApplyUserName,
 			GroupID:  grouplist.ID,
-			MsgType:  config.MsgTypeRefreshGroup,
+			MsgType:  config.MsgTypeRefreshGroupAndNotice,
 		}
 		selfmsgbyte, _ := json.Marshal(selfmsg)
-		models.TransmitMsg(selfmsgbyte, config.MsgTypeRefreshGroup)
+		models.TransmitMsg(selfmsgbyte, config.MsgTypeRefreshGroupAndNotice)
 
 		util.H(c, http.StatusOK, "用户已加入", nil)
 		return
@@ -594,6 +596,10 @@ func ExitGroup(c *gin.Context) {
 
 		bytes, _ := json.Marshal(groupmsg)
 		adb.Rediss.RPush(fmt.Sprintf("gm%s", strconv.Itoa(groupmsg.GroupID)), bytes)
+		err = adb.Rediss.HIncrBy(fmt.Sprintf("group%s", strconv.Itoa(groupmsg.GroupID)), "MemberCount", -1).Err()
+		if err != nil {
+			log.Println(err)
+		}
 
 		//用于传输的消息体
 		transmitmsg := models.Message{

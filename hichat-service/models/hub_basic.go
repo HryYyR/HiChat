@@ -86,7 +86,6 @@ func (h *Hub) Run() {
 						if err != nil {
 							log.Println("HandleGroupMsgMap error: ", err)
 						} else {
-							log.Println("转发消息")
 							if types < 399 {
 								TransmitMsg(message, types) //群聊消息保存成功后,转发消息
 							}

@@ -29,10 +29,7 @@ func main() {
 	go models.RunReceiveMQMsg() //启动消费消息列表
 	adb.InitMySQL()
 	defer func(SqlStruct *adb.Sql) {
-		err := SqlStruct.CloseConn()
-		if err != nil {
-			log.Println("mysql close error: ", err)
-		}
+		SqlStruct.CloseConn()
 	}(adb.SqlStruct)
 
 	models.ServiceCenter = models.NewHub(util.GenerateUUID())
@@ -42,7 +39,7 @@ func main() {
 	engine := gin.New()
 	engine.Use(service.Cors())
 	engine.GET("/ws", service.Connectws) //用户连接
-	usergroup := engine.Group("ws/user", service.IdentityCheck)
+	usergroup := engine.Group("ws/user", service.IdentityCheck, service.FlowControl)
 	Route.InItUserGroupRouter(usergroup)
 
 	serveraddress := util2.GetIP() //生产环境使用

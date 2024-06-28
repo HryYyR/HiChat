@@ -2,6 +2,7 @@ package models
 
 import (
 	"encoding/json"
+	"fmt"
 	adb "go-websocket-server/ADB"
 	"go-websocket-server/config"
 	"go-websocket-server/util"
@@ -37,18 +38,15 @@ func (m *Message) TableName() string {
 type GroupMsgTransmitFun func(groupmsg Message, msgbytes []byte) error
 
 var TransmitGroupMsgMap = map[int]GroupMsgTransmitFun{
-	config.MsgTypeDefault:        TransmitToAllFunc,         //1  群聊文字消息
-	config.MsgTypeImage:          TransmitToAllFunc,         //2  群聊图片消息
-	config.MsgTypeAudio:          TransmitToAllFunc,         //3  群聊音频消息
-	config.MsgTypeQuitGroup:      TransmitToAllFunc,         //201  退出群聊
-	config.MsgTypeJoinGroup:      TransmitToAllFunc,         //202  加入群聊
-	config.MsgTypeApplyJoinGroup: TransmitToUserIDFunc,      //203  申请加入群聊
-	config.MsgTypeDissolveGroup:  TransmitDissolveGroupFunc, //204  解散群聊
-
-	config.MsgTypeRefreshGroup:        TransmitToUserIDFunc, //500  刷新群聊列表
-	config.MsgTypeRefreshFriend:       TransmitToUserIDFunc, //501  刷新好友列表及好友通知列表
-	config.MsgTypeRefreshGroupNotice:  TransmitToUserIDFunc, //502  刷新群聊通知列表
-	config.MsgTypeRefreshFriendNotice: TransmitToUserIDFunc, //503  刷新好友通知列表
+	config.MsgTypeDefault:               TransmitToAllFunc,         //1  群聊文字消息
+	config.MsgTypeImage:                 TransmitToAllFunc,         //2  群聊图片消息
+	config.MsgTypeAudio:                 TransmitToAllFunc,         //3  群聊音频消息
+	config.MsgTypeQuitGroup:             TransmitToAllFunc,         //201  退出群聊
+	config.MsgTypeJoinGroup:             TransmitToAllFunc,         //202  加入群聊
+	config.MsgTypeApplyJoinGroup:        TransmitToUserIDFunc,      //203  申请加入群聊
+	config.MsgTypeDissolveGroup:         TransmitDissolveGroupFunc, //204  解散群聊
+	config.MsgTypeRefreshGroupAndNotice: TransmitToUserIDFunc,      //500  刷新群聊列表
+	config.MsgTypeRefreshGroupNotice:    TransmitToUserIDFunc,      //502  刷新群聊通知列表
 }
 
 func TransmitDissolveGroupFunc(g Message, gbytes []byte) error {
@@ -74,7 +72,7 @@ func TransmitDissolveGroupFunc(g Message, gbytes []byte) error {
 func TransmitToUserIDFunc(g Message, gbytes []byte) error {
 	if c, ok := ServiceCenter.Clients[g.UserID]; ok {
 		if c.Status {
-			//fmt.Println("成功转发给", g.UserID)
+			fmt.Println("成功转发给", g.UserID)
 			ServiceCenter.Clients[g.UserID].Send <- gbytes
 		}
 	}
@@ -106,7 +104,7 @@ func (m Message) Transmit() error {
 	if err != nil {
 		return err
 	}
-	//fmt.Println("开始处理群聊消息", m.MsgType)
+	fmt.Println("处理群聊消息", m.MsgType)
 	if fun, ok := TransmitGroupMsgMap[m.MsgType]; ok {
 		err := fun(m, msgbytes)
 		if err != nil {

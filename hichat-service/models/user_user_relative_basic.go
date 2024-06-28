@@ -12,15 +12,20 @@ type UserUserRelative struct {
 	DeletedAt    time.Time `xorm:"deleted"`
 	UpdatedAt    time.Time `xorm:"updated"`
 }
-type Friend struct {
-	Id        int32
-	UserName  string
-	NikeName  string
-	Email     string
-	Avatar    string
-	City      string
-	Age       string
-	CreatedAt time.Time
-	DeletedAt time.Time
-	UpdatedAt time.Time
+
+func (u *UserUserRelative) TableName() string {
+	return "user_user_relative"
 }
+
+//type Friend struct {
+//	Id        int32
+//	UserName  string
+//	NikeName  string
+//	Email     string
+//	Avatar    string
+//	City      string
+//	Age       string
+//	CreatedAt time.Time
+//	DeletedAt time.Time
+//	UpdatedAt time.Time
+//}

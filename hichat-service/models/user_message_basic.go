@@ -35,13 +35,13 @@ func (u UserMessage) Transmit() error {
 	//1501为视频通话,只需传给接收方
 	if ok1 && u.MsgType < 1500 {
 		if client1.Status {
-			//log.Println("发送给用户", u.UserName)
+			//log.Println("发送给用户", u.UserID)
 			ServiceCenter.Clients[u.UserID].Send <- bytes
 		}
 	}
 	if ok2 {
 		if client2.Status {
-			//log.Println("发送给用户", u.ReceiveUserName)
+			//log.Println("发送给用户", u.ReceiveUserID)
 			ServiceCenter.Clients[u.ReceiveUserID].Send <- bytes
 		}
 	}

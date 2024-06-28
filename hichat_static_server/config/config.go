@@ -33,6 +33,9 @@ var RabbitMQAddress = "amqp://guest:guest@host.docker.internal:5672/"
 
 //var RabbitMQAddress = "amqp://guest:guest@" + os.Getenv("MQ_HOST") + ":5672/"
 
+var FlowControlTime = 1 * time.Minute //接口限流每周期时间
+var FlowControlNum = 300              //接口限流每周期最大访问次数
+
 var EmailAccount = "2452719312@qq.com"
 var EmailPassword = "hdabghzavlyeeajj"
 

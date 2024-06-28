@@ -2,6 +2,9 @@ package service
 
 import (
 	"fmt"
+	adb "hichat_static_server/ADB"
+	"hichat_static_server/config"
+	"hichat_static_server/models"
 	"hichat_static_server/util"
 	"net/http"
 
@@ -41,5 +44,29 @@ func IdentityCheck(c *gin.Context) {
 		return
 	}
 	c.Set("userdata", userclaim)
+	c.Next()
+}
+
+func FlowControl(c *gin.Context) {
+	userclaim, _ := c.Get("userdata")
+	userdata := userclaim.(*models.UserClaim)
+	rkey := fmt.Sprintf("FC%d", userdata.ID)
+
+	ok := adb.Rediss.Exists(rkey).Val() //判断是否存在
+	if ok > 0 {
+		//存在就+1,判断是否触发限流
+		adb.Rediss.Incr(rkey)
+		Flow, err := adb.Rediss.Get(rkey).Int()
+		if err != nil || Flow > config.FlowControlNum {
+			util.H(c, http.StatusForbidden, "Access Denied", nil)
+			c.Abort()
+			return
+		}
+	} else {
+		//不存在就创建并设置过期时间
+		adb.Rediss.Incr(rkey)
+		adb.Rediss.Expire(rkey, config.FlowControlTime)
+	}
+
 	c.Next()
 }

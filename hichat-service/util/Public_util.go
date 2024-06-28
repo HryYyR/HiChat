@@ -7,6 +7,7 @@ import (
 	"encoding/binary"
 	"errors"
 	"io"
+	"strings"
 
 	// "crypto/ecdsa"
 	// "crypto/elliptic"
@@ -271,4 +272,20 @@ func BytesToInts(bytess []byte) ([]int, error) {
 		ints = append(ints, int(i))
 	}
 	return ints, nil
+}
+
+// 清除字符串中多余的逗号
+func removeConsecutiveCommas(s string) string {
+	var builder strings.Builder
+	lastChar := rune(0) // 记录上一个字符，用于判断是否是逗号
+
+	for _, char := range s {
+		if char != ',' || lastChar != ',' {
+			// 如果当前字符不是逗号，或者上一个字符不是逗号，则添加到builder中
+			builder.WriteRune(char)
+			lastChar = char
+		}
+	}
+
+	return builder.String()
 }
