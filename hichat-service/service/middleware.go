@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	adb "go-websocket-server/ADB"
+	"go-websocket-server/ADB/MysqlScripts/UsersScripts"
 	"go-websocket-server/Token_packge"
 	"go-websocket-server/config"
 	"go-websocket-server/models"
@@ -69,4 +70,14 @@ func FlowControl(c *gin.Context) {
 	}
 
 	c.Next()
+}
+
+// DependencyInjection 依赖注入
+func DependencyInjection() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		sqlconn := adb.GetMySQLConn()
+		userRepository := UsersScripts.NewUserRepository(sqlconn)
+		c.Set("userRepository", userRepository)
+		c.Next()
+	}
 }

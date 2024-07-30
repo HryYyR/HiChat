@@ -27,7 +27,7 @@ func main() {
 	adb.InitRedis()
 	adb.MqHub.InitMQ()
 	go models.RunReceiveMQMsg() //启动消费消息列表
-	adb.InitMySQL()
+	//adb.InitMySQL()
 	defer func(SqlStruct *adb.Sql) {
 		SqlStruct.CloseConn()
 	}(adb.SqlStruct)
@@ -38,7 +38,8 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	engine := gin.New()
 	engine.Use(service.Cors())
-	engine.GET("/ws", service.Connectws) //用户连接
+	engine.Use(service.DependencyInjection()) //依赖注入
+	engine.GET("/ws", service.Connectws)      //用户连接
 	usergroup := engine.Group("ws/user", service.IdentityCheck, service.FlowControl)
 	Route.InItUserGroupRouter(usergroup)
 

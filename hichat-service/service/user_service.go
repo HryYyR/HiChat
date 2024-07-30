@@ -10,6 +10,7 @@ import (
 	"go-websocket-server/models"
 	"go-websocket-server/rpcserver"
 	"go-websocket-server/util"
+	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -29,6 +30,8 @@ func ApplyAddUser(c *gin.Context) {
 		return
 	}
 
+	userRepository := c.MustGet("userRepository").(UsersScripts.UserRepository)
+
 	if data.ApplyUserID == data.PreApplyUserID {
 		util.H(c, http.StatusBadRequest, "不能添加自己为好友", nil)
 		return
@@ -39,26 +42,38 @@ func ApplyAddUser(c *gin.Context) {
 		return
 	}
 
+	//检查目标用户是否为好友
+	_, exist, err := userRepository.CheckUserIsFriend(data.ApplyUserID, data.PreApplyUserID)
+	if err != nil {
+		util.H(c, http.StatusInternalServerError, "查询申请信息失败", err)
+		return
+	}
+	if exist {
+		util.H(c, http.StatusBadRequest, "不能添加好友", nil)
+		return
+	}
+
 	// fmt.Printf("%+v", data)
-	exit, err := adb.SqlStruct.Conn.Table("apply_add_user").
+	exist, err = adb.SqlStruct.Conn.Table("apply_add_user").
 		Where("pre_apply_user_id=?  and apply_user_id=?  and handle_status=0",
 			data.PreApplyUserID, data.ApplyUserID).Exist()
 	if err != nil {
 		util.H(c, http.StatusInternalServerError, "查询申请信息失败", err)
 		return
 	}
-	if exit {
+	if exist {
 		util.H(c, http.StatusOK, "申请已存在", nil)
 		return
 	}
-	exit, err = adb.SqlStruct.Conn.Table("apply_add_user").
+
+	exist, err = adb.SqlStruct.Conn.Table("apply_add_user").
 		Where("pre_apply_user_id=?  and apply_user_id=?  and handle_status=0",
 			data.ApplyUserID, data.PreApplyUserID).Exist()
 	if err != nil {
 		util.H(c, http.StatusInternalServerError, "查询申请信息失败", err)
 		return
 	}
-	if exit {
+	if exist {
 		util.H(c, http.StatusOK, "申请已存在", nil)
 		return
 	}
@@ -171,13 +186,16 @@ func StartUserToUserVideoCall(c *gin.Context) {
 		return
 	}
 
-	var receiveuserinfo models.Users
-	has, err := adb.SqlStruct.Conn.Table("users").Where("id=?", data.Userid).Get(&receiveuserinfo)
+	userRepository := c.MustGet("userRepository").(UsersScripts.UserRepository)
+
+	receiveuserinfo, has, err := userRepository.GetUserByUserID(data.Userid)
+	//has, err := adb.SqlStruct.Conn.Table("users").Where("id=?", data.Userid).Get(&receiveuserinfo)
 	if !has {
 		util.H(c, http.StatusBadRequest, "用户不存在", nil)
 		return
 	}
 	if err != nil {
+		log.Println(err)
 		util.H(c, http.StatusInternalServerError, "查询失败", err)
 		return
 	}
@@ -220,6 +238,9 @@ type DeleteUserReq struct {
 // DeleteUser 删除好友
 func DeleteUser(c *gin.Context) {
 	info, _ := c.Get("userdata")
+
+	userRepository := c.MustGet("userRepository").(UsersScripts.UserRepository)
+
 	userdata := info.(*models.UserClaim)
 
 	req := new(DeleteUserReq)
@@ -229,8 +250,6 @@ func DeleteUser(c *gin.Context) {
 		util.H(c, http.StatusBadRequest, "参数有误", err)
 		return
 	}
-
-	userRepository := UsersScripts.NewUserRepository(adb.SqlStruct.Conn)
 
 	//检查目标用户是否存在
 	userIsExist := adb.Rediss.Exists(strconv.Itoa(req.UserID)).Val()
@@ -258,8 +277,15 @@ func DeleteUser(c *gin.Context) {
 		}
 	}
 	if sign == 0 {
-		util.H(c, http.StatusBadRequest, "该用户不是您的好友", err)
-		return
+		_, exist, err := userRepository.CheckUserIsFriend(userdata.ID, req.UserID)
+		if err != nil {
+			util.H(c, http.StatusInternalServerError, "删除好友失败", err)
+			return
+		}
+		if !exist {
+			util.H(c, http.StatusBadRequest, "该用户不是您的好友", err)
+			return
+		}
 	}
 
 	//删除关系
