@@ -38,7 +38,7 @@ var HeartbeatTicker = (ResponseWait * 9) / 10 //心跳检测间隔时间
 var MaxMessageSize = int64(1024 * 1024 * 10) //消息最大容量 10m
 
 var FlowControlTime = 1 * time.Minute //接口限流每周期时间
-var FlowControlNum = 300              //接口限流每周期最大访问次数
+var FlowControlNum = 150              //接口限流每周期最大访问次数
 
 var MsgTypeDefault = 1 //群聊文字消息
 var MsgTypeImage = 2   //群聊图片消息

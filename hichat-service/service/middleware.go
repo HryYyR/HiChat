@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	adb "go-websocket-server/ADB"
+	GroupScripts "go-websocket-server/ADB/MysqlScripts/GroupsScripts"
 	"go-websocket-server/ADB/MysqlScripts/UsersScripts"
 	"go-websocket-server/Token_packge"
 	"go-websocket-server/config"
@@ -39,7 +40,7 @@ func IdentityCheck(c *gin.Context) {
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusUnauthorized, gin.H{
-			"msg": "Invalid Authorization",
+			"msg_model": "Invalid Authorization",
 		})
 		c.Abort()
 		return
@@ -59,6 +60,7 @@ func FlowControl(c *gin.Context) {
 		adb.Rediss.Incr(rkey)
 		Flow, err := adb.Rediss.Get(rkey).Int()
 		if err != nil || Flow > config.FlowControlNum {
+			adb.Rediss.Expire(rkey, config.FlowControlTime)
 			util.H(c, http.StatusForbidden, "Access Denied", nil)
 			c.Abort()
 			return
@@ -73,11 +75,10 @@ func FlowControl(c *gin.Context) {
 }
 
 // DependencyInjection 依赖注入
-func DependencyInjection() gin.HandlerFunc {
+func DependencyInjection(userRepository UsersScripts.UserRepository, groupRepository GroupScripts.GroupRepository) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		sqlconn := adb.GetMySQLConn()
-		userRepository := UsersScripts.NewUserRepository(sqlconn)
 		c.Set("userRepository", userRepository)
+		c.Set("groupRepository", groupRepository)
 		c.Next()
 	}
 }

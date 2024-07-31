@@ -26,7 +26,7 @@ func RunReceiveMQMsg() {
 		msgbyte := delivery.Body
 		msgtype, err := strconv.Atoi(delivery.Type)
 		if err != nil {
-			log.Println("invaild msg type")
+			log.Println("invaild msg_model type")
 			continue
 		}
 
@@ -34,7 +34,7 @@ func RunReceiveMQMsg() {
 			var usermsgstruct UserMessage
 			err = json.Unmarshal(msgbyte, &usermsgstruct)
 			if err != nil {
-				log.Println("Conversion user msg error: ", err)
+				log.Println("Conversion user_model msg_model error: ", err)
 				//continue
 			}
 			ServiceCenter.Transmit <- usermsgstruct
@@ -43,7 +43,7 @@ func RunReceiveMQMsg() {
 			var groupmsgstruct Message
 			err := json.Unmarshal(msgbyte, &groupmsgstruct)
 			if err != nil {
-				log.Println("Conversion user msg error: ", err)
+				log.Println("Conversion group_model msg_model error: ", err)
 				//continue
 			}
 			ServiceCenter.Transmit <- groupmsgstruct
@@ -67,5 +67,4 @@ func TransmitMsg(msgbyte []byte, types int) {
 	if err != nil {
 		log.Println("转发消息失败", err)
 	}
-
 }

@@ -4215,3 +4215,333 @@ created by net/http.(*Server).Serve in goroutine 1
 2024/07/14 21:16:16 group_basic.go:102: 走redis
 2024/07/14 21:16:16 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
 2024/07/14 21:16:16 group_basic.go:175: len 6
+2024/07/30 19:30:25 group_basic.go:112: 走mysql
+2024/07/30 19:30:25 group_basic.go:175: len 6
+2024/07/30 22:47:51 group_basic.go:102: 走redis
+2024/07/30 22:47:51 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/30 22:47:51 group_basic.go:175: len 6
+2024/07/30 22:48:38 group_basic.go:102: 走redis
+2024/07/30 22:48:38 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/30 22:48:38 group_basic.go:175: len 6
+2024/07/31 10:31:19 group_basic.go:102: 走redis
+2024/07/31 10:31:19 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 10:31:19 group_basic.go:175: len 6
+2024/07/31 10:46:31 group_basic.go:102: 走redis
+2024/07/31 10:46:31 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 10:46:31 group_basic.go:175: len 6
+2024/07/31 10:49:26 group_basic.go:102: 走redis
+2024/07/31 10:49:26 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 10:49:26 group_basic.go:175: len 6
+2024/07/31 10:50:15 group_basic.go:102: 走redis
+2024/07/31 10:50:15 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 10:50:15 group_basic.go:175: len 6
+2024/07/31 10:51:22 group_basic.go:102: 走redis
+2024/07/31 10:51:22 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 10:51:22 group_basic.go:175: len 6
+2024/07/31 10:54:48 group_basic.go:102: 走redis
+2024/07/31 10:54:48 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 10:54:48 group_basic.go:175: len 6
+2024/07/31 10:55:23 group_basic.go:102: 走redis
+2024/07/31 10:55:23 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 10:55:23 group_basic.go:175: len 6
+2024/07/31 10:55:43 group_basic.go:102: 走redis
+2024/07/31 10:55:43 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 10:55:43 group_basic.go:175: len 6
+2024/07/31 10:56:19 group_basic.go:102: 走redis
+2024/07/31 10:56:19 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 10:56:19 group_basic.go:175: len 6
+2024/07/31 10:57:25 group_basic.go:102: 走redis
+2024/07/31 10:57:25 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 10:57:25 group_basic.go:175: len 6
+2024/07/31 10:59:28 group_basic.go:102: 走redis
+2024/07/31 10:59:28 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 10:59:28 group_basic.go:175: len 6
+2024/07/31 11:00:01 group_basic.go:102: 走redis
+2024/07/31 11:00:01 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:00:01 group_basic.go:175: len 6
+2024/07/31 11:01:06 group_basic.go:102: 走redis
+2024/07/31 11:01:06 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:01:06 group_basic.go:175: len 6
+2024/07/31 11:01:41 group_basic.go:102: 走redis
+2024/07/31 11:01:41 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:01:41 group_basic.go:175: len 6
+2024/07/31 11:02:12 group_basic.go:102: 走redis
+2024/07/31 11:02:12 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:02:12 group_basic.go:175: len 6
+2024/07/31 11:02:55 group_basic.go:102: 走redis
+2024/07/31 11:02:55 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:02:55 group_basic.go:175: len 6
+2024/07/31 11:03:30 group_basic.go:102: 走redis
+2024/07/31 11:03:30 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:03:30 group_basic.go:175: len 6
+2024/07/31 11:04:40 group_basic.go:102: 走redis
+2024/07/31 11:04:40 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:04:40 group_basic.go:175: len 6
+2024/07/31 11:05:21 group_basic.go:102: 走redis
+2024/07/31 11:05:21 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:05:21 group_basic.go:175: len 6
+2024/07/31 11:06:08 group_basic.go:102: 走redis
+2024/07/31 11:06:08 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:06:08 group_basic.go:175: len 6
+2024/07/31 11:07:11 group_basic.go:102: 走redis
+2024/07/31 11:07:11 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:07:11 group_basic.go:175: len 6
+2024/07/31 11:07:25 group_basic.go:102: 走redis
+2024/07/31 11:07:25 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:07:25 group_basic.go:175: len 6
+2024/07/31 11:08:01 group_basic.go:102: 走redis
+2024/07/31 11:08:01 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:08:01 group_basic.go:175: len 6
+2024/07/31 11:08:19 group_basic.go:102: 走redis
+2024/07/31 11:08:19 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:08:19 group_basic.go:175: len 6
+2024/07/31 11:08:50 group_basic.go:102: 走redis
+2024/07/31 11:08:50 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:08:50 group_basic.go:175: len 6
+2024/07/31 11:09:57 group_basic.go:102: 走redis
+2024/07/31 11:09:57 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:09:57 group_basic.go:175: len 6
+2024/07/31 11:10:32 group_basic.go:102: 走redis
+2024/07/31 11:10:32 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:10:32 group_basic.go:175: len 6
+2024/07/31 11:11:59 group_basic.go:102: 走redis
+2024/07/31 11:11:59 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:11:59 group_basic.go:175: len 6
+2024/07/31 11:28:30 group_basic.go:102: 走redis
+2024/07/31 11:28:30 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:28:30 group_basic.go:175: len 6
+2024/07/31 11:32:42 group_basic.go:102: 走redis
+2024/07/31 11:32:42 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:32:42 group_basic.go:175: len 6
+2024/07/31 11:33:16 group_basic.go:102: 走redis
+2024/07/31 11:33:16 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:33:16 group_basic.go:175: len 6
+2024/07/31 11:33:52 group_basic.go:102: 走redis
+2024/07/31 11:33:52 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:33:52 group_basic.go:175: len 6
+2024/07/31 11:34:25 group_basic.go:102: 走redis
+2024/07/31 11:34:25 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:34:25 group_basic.go:175: len 6
+2024/07/31 11:42:11 group_basic.go:102: 走redis
+2024/07/31 11:42:11 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:42:11 group_basic.go:175: len 6
+2024/07/31 11:45:09 group_basic.go:102: 走redis
+2024/07/31 11:45:09 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:45:09 group_basic.go:175: len 6
+2024/07/31 11:54:33 group_basic.go:102: 走redis
+2024/07/31 11:54:33 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 11:54:33 group_basic.go:175: len 6
+2024/07/31 12:11:05 group_basic.go:102: 走redis
+2024/07/31 12:11:05 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 12:11:05 group_basic.go:175: len 6
+2024/07/31 12:14:32 group_basic.go:102: 走redis
+2024/07/31 12:14:32 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 12:14:32 group_basic.go:175: len 6
+2024/07/31 12:17:01 group_basic.go:102: 走redis
+2024/07/31 12:17:01 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 12:17:01 group_basic.go:175: len 6
+2024/07/31 12:19:03 group_basic.go:102: 走redis
+2024/07/31 12:19:03 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 12:19:03 group_basic.go:175: len 6
+2024/07/31 12:21:23 group_basic.go:102: 走redis
+2024/07/31 12:21:23 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 12:21:23 group_basic.go:175: len 6
+2024/07/31 12:24:15 group_basic.go:102: 走redis
+2024/07/31 12:24:15 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 12:24:15 group_basic.go:175: len 6
+2024/07/31 12:24:35 group_basic.go:102: 走redis
+2024/07/31 12:24:35 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 12:24:35 group_basic.go:175: len 6
+2024/07/31 12:26:04 group_basic.go:102: 走redis
+2024/07/31 12:26:04 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 12:26:04 group_basic.go:175: len 6
+2024/07/31 12:27:18 group_basic.go:102: 走redis
+2024/07/31 12:27:18 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 12:27:18 group_basic.go:175: len 6
+2024/07/31 12:35:07 group_basic.go:102: 走redis
+2024/07/31 12:35:07 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 12:35:07 group_basic.go:175: len 6
+2024/07/31 12:39:26 group_basic.go:102: 走redis
+2024/07/31 12:39:26 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 12:39:26 group_basic.go:175: len 6
+2024/07/31 12:39:52 group_basic.go:102: 走redis
+2024/07/31 12:39:52 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 12:39:52 group_basic.go:175: len 6
+2024/07/31 13:11:56 group_basic.go:102: 走redis
+2024/07/31 13:11:56 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 13:11:56 group_basic.go:175: len 6
+2024/07/31 13:52:04 group_basic.go:102: 走redis
+2024/07/31 13:52:04 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 13:52:04 group_basic.go:175: len 6
+2024/07/31 13:52:28 group_basic.go:102: 走redis
+2024/07/31 13:52:28 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 13:52:28 group_basic.go:175: len 6
+2024/07/31 21:37:50 group_basic.go:102: 走redis
+2024/07/31 21:37:50 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 21:37:50 group_basic.go:175: len 8
+2024/07/31 21:45:46 group_basic.go:102: 走redis
+2024/07/31 21:45:46 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 21:45:46 group_basic.go:175: len 8
+2024/07/31 21:46:11 group_basic.go:102: 走redis
+2024/07/31 21:46:11 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 21:46:11 group_basic.go:175: len 8
+2024/07/31 21:46:11 group_basic.go:112: 走mysql
+2024/07/31 21:55:43 group_basic.go:102: 走redis
+2024/07/31 21:55:43 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 21:55:43 group_basic.go:175: len 8
+2024/07/31 21:55:55 group_basic.go:102: 走redis
+2024/07/31 21:55:55 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 21:55:55 group_basic.go:175: len 8
+2024/07/31 21:57:01 group_basic.go:102: 走redis
+2024/07/31 21:57:01 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 21:57:01 group_basic.go:175: len 8
+2024/07/31 21:57:01 group_basic.go:112: 走mysql
+2024/07/31 21:57:01 group_basic.go:175: len 3
+2024/07/31 21:57:25 group_basic.go:102: 走redis
+2024/07/31 21:57:25 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 21:57:25 group_basic.go:175: len 8
+2024/07/31 21:57:25 group_basic.go:102: 走redis
+2024/07/31 21:57:25 group_basic.go:109: map[Avatar:static/1722433058.jpg CreatedAt:2024-07-31 21:56:17 CreaterID:1016 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:240 MemberCount:2]
+2024/07/31 21:57:25 group_basic.go:175: len 8
+2024/07/31 22:06:34 group_basic.go:102: 走redis
+2024/07/31 22:06:34 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 22:06:34 group_basic.go:175: len 8
+2024/07/31 22:06:48 group_basic.go:102: 走redis
+2024/07/31 22:06:48 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-06-28 12:53:56 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test ID:238 MemberCount:2]
+2024/07/31 22:06:48 group_basic.go:175: len 8
+2024/07/31 22:22:02 group_basic.go:112: 走mysql
+2024/07/31 22:22:02 group_basic.go:175: len 1
+2024/07/31 22:22:02 group_basic.go:112: 走mysql
+2024/07/31 22:22:31 group_basic.go:102: 走redis
+2024/07/31 22:22:31 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:2]
+2024/07/31 22:22:31 group_basic.go:175: len 1
+2024/07/31 22:22:31 group_basic.go:102: 走redis
+2024/07/31 22:22:31 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:2]
+2024/07/31 22:22:31 group_basic.go:175: len 1
+2024/07/31 22:22:31 group_basic.go:102: 走redis
+2024/07/31 22:22:31 group_basic.go:109: map[Avatar:static/1722433058.jpg CreatedAt:2024-07-31 22:21:33 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test2 ID:241 MemberCount:2]
+2024/07/31 22:22:31 group_basic.go:175: len 2
+2024/07/31 22:23:15 group_basic.go:102: 走redis
+2024/07/31 22:23:15 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:1]
+2024/07/31 22:23:15 group_basic.go:175: len 4
+2024/07/31 22:23:15 group_basic.go:112: 走mysql
+2024/07/31 22:23:15 group_basic.go:175: len 2
+2024/07/31 22:24:00 group_basic.go:102: 走redis
+2024/07/31 22:24:00 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:1]
+2024/07/31 22:24:00 group_basic.go:175: len 4
+2024/07/31 22:24:28 group_basic.go:102: 走redis
+2024/07/31 22:24:28 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:1]
+2024/07/31 22:24:28 group_basic.go:175: len 4
+2024/08/08 12:52:08 group_basic.go:102: 走redis
+2024/08/08 12:52:08 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:1]
+2024/08/08 12:52:08 group_basic.go:175: len 4
+2024/08/08 12:54:38 group_basic.go:102: 走redis
+2024/08/08 12:54:38 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:1]
+2024/08/08 12:54:38 group_basic.go:175: len 4
+2024/08/08 12:57:03 group_basic.go:102: 走redis
+2024/08/08 12:57:03 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:1]
+2024/08/08 12:57:03 group_basic.go:175: len 4
+2024/08/08 13:18:38 user_service.go:362: 用户: 1015 不存在,新建对话,第一次提问: 中国最大的湖泊
+2024/08/08 13:19:46 user_service.go:374: 用户: 1015 存在,保持对话,最新提问: 世界最高的山
+2024/08/08 13:20:29 user_service.go:374: 用户: 1015 存在,保持对话,最新提问: 我刚才问了什么吗?
+2024/08/08 13:21:13 user_service.go:362: 用户: 1016 不存在,新建对话,第一次提问: 我刚才问了什么吗?
+2024/08/08 13:21:29 user_service.go:374: 用户: 1016 存在,保持对话,最新提问: 对的
+2024/08/08 13:49:18 group_basic.go:102: 走redis
+2024/08/08 13:49:18 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:1]
+2024/08/08 13:49:18 group_basic.go:175: len 4
+2024/08/25 12:46:24 group_basic.go:112: 走mysql
+2024/08/25 12:46:24 group_basic.go:175: len 4
+2024/08/25 12:48:32 group_basic.go:102: 走redis
+2024/08/25 12:48:32 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:1]
+2024/08/25 12:48:32 group_basic.go:175: len 4
+2024/08/25 13:41:46 group_basic.go:112: 走mysql
+2024/08/25 13:41:46 group_basic.go:175: len 1
+2024/08/25 13:55:27 group_basic.go:102: 走redis
+2024/08/25 13:55:27 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:1]
+2024/08/25 13:55:27 group_basic.go:175: len 4
+2024/08/27 19:00:28 group_basic.go:102: 走redis
+2024/08/27 19:00:28 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:3]
+2024/08/27 19:00:28 group_basic.go:175: len 6
+2024/08/27 19:05:31 group_basic.go:102: 走redis
+2024/08/27 19:05:31 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:3]
+2024/08/27 19:05:31 group_basic.go:175: len 6
+2024/08/27 19:05:45 group_basic.go:102: 走redis
+2024/08/27 19:05:45 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:3]
+2024/08/27 19:05:45 group_basic.go:175: len 6
+2024/08/27 19:11:54 group_basic.go:102: 走redis
+2024/08/27 19:11:54 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:3]
+2024/08/27 19:11:54 group_basic.go:175: len 6
+2024/08/27 19:13:26 group_basic.go:102: 走redis
+2024/08/27 19:13:26 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:3]
+2024/08/27 19:13:26 group_basic.go:175: len 6
+2024/08/27 19:13:34 group_basic.go:102: 走redis
+2024/08/27 19:13:34 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:3]
+2024/08/27 19:13:34 group_basic.go:175: len 6
+2024/08/27 19:15:12 group_basic.go:102: 走redis
+2024/08/27 19:15:12 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:3]
+2024/08/27 19:15:12 group_basic.go:175: len 6
+2024/08/27 19:15:12 group_basic.go:112: 走mysql
+2024/08/27 19:15:12 group_basic.go:175: len 2
+2024/08/27 19:15:13 group_basic.go:102: 走redis
+2024/08/27 19:15:13 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:3]
+2024/08/27 19:15:13 group_basic.go:175: len 6
+2024/08/27 19:15:13 group_basic.go:102: 走redis
+2024/08/27 19:15:13 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-08-27 19:14:24 CreaterID:1018 CreaterName:testtt DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:testtt的小群 ID:245 MemberCount:3]
+2024/08/27 19:15:13 group_basic.go:175: len 3
+2024/08/31 14:01:37 group_basic.go:102: 走redis
+2024/08/31 14:01:37 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:3]
+2024/08/31 14:01:37 group_basic.go:175: len 6
+2024/08/31 14:02:16 group_basic.go:102: 走redis
+2024/08/31 14:02:16 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:3]
+2024/08/31 14:02:16 group_basic.go:175: len 6
+2024/08/31 14:10:15 group_basic.go:102: 走redis
+2024/08/31 14:10:15 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:3]
+2024/08/31 14:10:15 group_basic.go:175: len 8
+2024/08/31 14:10:30 group_basic.go:102: 走redis
+2024/08/31 14:10:30 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:3]
+2024/08/31 14:10:30 group_basic.go:175: len 10
+2024/08/31 14:11:55 group_basic.go:102: 走redis
+2024/08/31 14:11:55 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:2]
+2024/08/31 14:11:55 group_basic.go:175: len 11
+2024/08/31 14:11:55 group_basic.go:112: 走mysql
+2024/08/31 14:11:55 group_basic.go:175: len 3
+2024/08/31 14:12:43 group_basic.go:102: 走redis
+2024/08/31 14:12:43 group_basic.go:109: map[Avatar:static/1719550435.jpg CreatedAt:2024-07-31 22:21:46 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:test3 ID:242 MemberCount:2]
+2024/08/31 14:12:43 group_basic.go:175: len 11
+2024/08/31 14:12:43 group_basic.go:102: 走redis
+2024/08/31 14:12:43 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-08-31 14:11:26 CreaterID:1016 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:nnn ID:246 MemberCount:2]
+2024/08/31 14:12:43 group_basic.go:175: len 5
+2024/08/31 14:25:52 group_basic.go:112: 走mysql
+2024/08/31 14:25:52 group_basic.go:175: len 1
+2024/08/31 14:27:11 group_basic.go:102: 走redis
+2024/08/31 14:27:11 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-08-31 14:25:05 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttt ID:247 MemberCount:2]
+2024/08/31 14:27:11 group_basic.go:175: len 4
+2024/08/31 14:32:17 group_basic.go:102: 走redis
+2024/08/31 14:32:17 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-08-31 14:25:05 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttt ID:247 MemberCount:2]
+2024/08/31 14:32:17 group_basic.go:175: len 6
+2024/08/31 14:33:48 group_basic.go:102: 走redis
+2024/08/31 14:33:48 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-08-31 14:25:05 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttt ID:247 MemberCount:2]
+2024/08/31 14:33:48 group_basic.go:175: len 6
+2024/08/31 14:38:28 group_basic.go:102: 走redis
+2024/08/31 14:38:28 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-08-31 14:25:05 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttt ID:247 MemberCount:2]
+2024/08/31 14:38:28 group_basic.go:175: len 6
+2024/08/31 17:51:09 group_basic.go:102: 走redis
+2024/08/31 17:51:09 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-08-31 14:25:05 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttt ID:247 MemberCount:2]
+2024/08/31 17:51:09 group_basic.go:175: len 6
+2024/09/07 19:59:41 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-08-31 14:25:05 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttt ID:247 MemberCount:2]
+2024/09/07 19:59:41 group_basic.go:175: len 6
+2024/09/07 19:59:41 group_basic.go:197: json: cannot unmarshal number into Go struct field GroupMessage.UserAge of type string
+2024/09/07 20:00:24 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-08-31 14:25:05 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttt ID:247 MemberCount:2]
+2024/09/07 20:00:24 group_basic.go:175: len 6
+2024/09/07 20:00:24 group_basic.go:197: json: cannot unmarshal number into Go struct field GroupMessage.UserAge of type string
+2024/09/07 20:33:18 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-08-31 14:25:05 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttt ID:247 MemberCount:2]
+2024/09/07 20:33:18 group_basic.go:175: len 9
+2024/09/07 20:33:18 group_basic.go:197: json: cannot unmarshal number into Go struct field GroupMessage.UserAge of type string
+2024/09/07 20:33:18 group_basic.go:197: json: cannot unmarshal number into Go struct field GroupMessage.UserAge of type string
+2024/09/07 20:39:14 group_basic.go:175: len 1
+2024/09/17 12:17:53 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-09-07 20:34:00 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttt ID:248 MemberCount:1]
+2024/09/17 12:17:53 group_basic.go:175: len 2
+2024/09/17 12:17:53 group_basic.go:197: json: cannot unmarshal number into Go struct field GroupMessage.UserAge of type string
+2024/09/17 14:03:22 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-09-07 20:34:00 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttt ID:248 MemberCount:1]
+2024/09/17 14:03:22 group_basic.go:175: len 2
+2024/09/17 14:03:22 group_basic.go:197: json: cannot unmarshal number into Go struct field GroupMessage.UserAge of type string

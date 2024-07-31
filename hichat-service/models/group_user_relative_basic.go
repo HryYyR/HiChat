@@ -51,7 +51,7 @@ func (r *GroupUserRelative) Association(group Group, session *xorm.Session) erro
 
 	//fmt.Println("reactive groupidarr:", insertUserToGroupMapStr)
 	adb.Rediss.HSet("UserToGroupMap", strconv.Itoa(r.UserID), insertUserToGroupMapStr)
-	//fmt.Printf("groupid%d,userid%d\n", group.ID, r.UserID)
+	//fmt.Printf("groupid%d,userid%d\n", group_model.ID, r.UserID)
 
 	return nil
 }
@@ -64,7 +64,7 @@ func (r *GroupUserRelative) DisAssociation(session *xorm.Session, groupdata Grou
 		return err
 	}
 	//更新人数
-	_, err = session.Table("group").Where("id = ?", r.GroupID).Update(Group{MemberCount: groupdata.MemberCount - 1})
+	_, err = session.Table("group_model").Where("id = ?", r.GroupID).Update(Group{MemberCount: groupdata.MemberCount - 1})
 	if err != nil {
 		return err
 	}

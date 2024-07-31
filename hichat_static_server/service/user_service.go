@@ -346,8 +346,10 @@ func AiMessage(c *gin.Context) {
 		return
 	}
 
+	var mu sync.Mutex
+
 	if AiMsgList.Llm == nil {
-		llm, err := ollama.New(ollama.WithModel("qwen"))
+		llm, err := ollama.New(ollama.WithModel("llama3.1"))
 		if err != nil {
 			util.H(c, http.StatusInternalServerError, "获取失败", err)
 			return
@@ -357,9 +359,11 @@ func AiMessage(c *gin.Context) {
 
 	var response string
 	if userchains, ok := AiMsgList.List[userdata.ID]; !ok {
-		conversationWindowBuffer := memory.NewConversationWindowBuffer(20)
+		conversationWindowBuffer := memory.NewConversationWindowBuffer(30)
 		llmChain := chains.NewConversation(AiMsgList.Llm, conversationWindowBuffer)
+		mu.Lock()
 		AiMsgList.List[userdata.ID] = &llmChain
+		mu.Unlock()
 		response, err = chains.Run(context.Background(), llmChain, requestdata.Msg)
 		if err != nil {
 			util.H(c, http.StatusInternalServerError, "获取失败", err)

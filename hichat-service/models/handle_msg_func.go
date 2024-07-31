@@ -10,7 +10,7 @@ import (
 )
 
 //	type GroupMsgfun interface {
-//		func(msgstruct *Message, msg []byte) error
+//		func(msgstruct *Message, msg_model []byte) error
 //	}
 type GroupMsgfun func(msgstruct *Message, msg []byte) error
 

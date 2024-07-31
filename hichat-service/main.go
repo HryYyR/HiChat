@@ -9,6 +9,8 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	adb "go-websocket-server/ADB"
+	GroupScripts "go-websocket-server/ADB/MysqlScripts/GroupsScripts"
+	"go-websocket-server/ADB/MysqlScripts/UsersScripts"
 	"go-websocket-server/Route"
 	"go-websocket-server/config"
 	_ "go-websocket-server/log"
@@ -24,29 +26,9 @@ func main() {
 	var port int
 	flag.IntVar(&port, "p", config.ServerPort, "端口号")
 	flag.Parse()
-	adb.InitRedis()
-	adb.MqHub.InitMQ()
-	go models.RunReceiveMQMsg() //启动消费消息列表
-	//adb.InitMySQL()
-	defer func(SqlStruct *adb.Sql) {
-		SqlStruct.CloseConn()
-	}(adb.SqlStruct)
-
-	models.ServiceCenter = models.NewHub(util.GenerateUUID())
-	go models.ServiceCenter.Run()
-
-	gin.SetMode(gin.ReleaseMode)
-	engine := gin.New()
-	engine.Use(service.Cors())
-	engine.Use(service.DependencyInjection()) //依赖注入
-	engine.GET("/ws", service.Connectws)      //用户连接
-	usergroup := engine.Group("ws/user", service.IdentityCheck, service.FlowControl)
-	Route.InItUserGroupRouter(usergroup)
 
 	serveraddress := util2.GetIP() //生产环境使用
 	//serveraddress := "192.168.137.1"
-
-	serverPort := fmt.Sprintf(":%v", port)
 
 	//服务注册
 	regsvconf := service_registry.DiscoveryConfig{
@@ -61,6 +43,32 @@ func main() {
 		log.Fatalln(err)
 	}
 
+	//初始化基础资源
+	adb.InitRedis()
+	adb.MqHub.InitMQ()
+	go models.RunReceiveMQMsg() //启动消费消息列表
+
+	//消息处理中心
+	models.ServiceCenter = models.NewHub(util.GenerateUUID())
+	go models.ServiceCenter.Run()
+
+	gin.SetMode(gin.ReleaseMode)
+	engine := gin.New()
+	engine.Use(service.Cors())
+
+	//依赖注入
+	sqlconn := adb.GetMySQLConn()
+	userRepository := UsersScripts.NewUserRepository(sqlconn)
+	groupRepository := GroupScripts.NewGroupRepository(sqlconn)
+
+	//路由注册
+	engine.Use(service.DependencyInjection(userRepository, groupRepository)) //依赖注入
+	engine.GET("/ws", service.Connectws)                                     //用户连接
+	usergrouprouter := engine.Group("ws/user_model", service.IdentityCheck, service.FlowControl)
+	Route.InItUserGroupRouter(usergrouprouter)
+
+	//启动服务
+	serverPort := fmt.Sprintf(":%v", port)
 	fmt.Println("服务运行在:  ", serveraddress, serverPort)
 	err = engine.Run(serverPort)
 	if err != nil {

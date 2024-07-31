@@ -21,7 +21,7 @@ type UserClient struct {
 	Conn     *websocket.Conn
 	Status   bool
 	Send     chan []byte
-	Groups   map[int]Group //群聊列表  key:group_id  value:group
+	Groups   map[int]Group //群聊列表  key:group_id  value:group_model
 	// CachingMessages map[int]int   // key:groupid  value:未读数量
 	Mutex            *sync.RWMutex // 互斥锁     多个结构体实例可以共享同一个锁时用指针,此处只会创建一个,所以不用指针
 	HoldEncryptedKey bool          //是否持有key,没key不接收消息

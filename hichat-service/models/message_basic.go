@@ -56,6 +56,7 @@ func TransmitDissolveGroupFunc(g Message, gbytes []byte) error {
 		return err
 	}
 	//fmt.Printf("群id列表:%+v\n", useridlist)
+	ServiceCenter.Mutex.Lock()
 	// 给这个列表里的用户发送消息
 	for _, userid := range useridlist {
 		if client, ok := ServiceCenter.Clients[userid]; ok {
@@ -65,6 +66,7 @@ func TransmitDissolveGroupFunc(g Message, gbytes []byte) error {
 			}
 		}
 	}
+	ServiceCenter.Mutex.Unlock()
 	return nil
 }
 
