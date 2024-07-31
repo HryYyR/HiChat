@@ -3,34 +3,33 @@ package UsersScripts
 import "go-websocket-server/models"
 
 // SelectUserGroupList 查询用户加入的群列表(没有详情)
-func (r *userRepository) SelectUserGroupList(userid int) error {
-	var gur []models.GroupUserRelative
-	return r.mysqldb.Table("group_user_relative").Where("user_id=?", userid).Find(&gur)
+func (r *userRepository) SelectUserGroupList(userid int) (gur []models.GroupUserRelative, err error) {
+	err = r.mysqldb.Table("group_user_relative").Where("user_id=?", userid).Find(&gur)
+	return
 }
 
 // GetUserByUsername 通过用户名获取一条数据
-func (r *userRepository) GetUserByUsername(username string) (*models.Users, error) {
-	var user models.Users
-	_, err := r.mysqldb.Where("username = ?", username).Get(&user)
-	return &user, err
+func (r *userRepository) GetUserByUsername(username string) (user models.Users, exist bool, err error) {
+	exist, err = r.mysqldb.Where("user_name = ?", username).Get(&user)
+	return
 }
 
 // GetUserByUserID 通过用户ID获取一条用户信息数据
-func (r *userRepository) GetUserByUserID(userid int) (userdata *models.Users, exist bool, err error) {
-	exist, err = r.mysqldb.Where("userid = ?", userid).Get(&userdata)
+func (r *userRepository) GetUserByUserID(userid int) (userdata models.Users, exist bool, err error) {
+	exist, err = r.mysqldb.Where("id = ?", userid).Get(&userdata)
 	return
 }
 
 // CheckUserIsExist 检查用户是否存在
-func (r *userRepository) CheckUserIsExist(userid int) (bool, *models.Users, error) {
+func (r *userRepository) CheckUserIsExist(userid int) (bool, models.Users, error) {
 	var user models.Users
-	exist, err := r.mysqldb.Table(user.TableName()).Where("id = ?", userid).Exist(&user)
-	return exist, &user, err
+	exist, err := r.mysqldb.Where("id = ?", userid).Get(&user)
+	return exist, user, err
 }
 
 // CheckUserIsFriend 检查是否为好友
-func (r *userRepository) CheckUserIsFriend(userid int, targetuserid int) (userrelative *models.UserUserRelative, exist bool, err error) {
-	exist, err = r.mysqldb.Table(userrelative.TableName()).Where("pre_user_id=? and back_user_id=?", userid, targetuserid).Or("pre_user_id=? and back_user_id=?", targetuserid, userid).Exist(&userrelative)
+func (r *userRepository) CheckUserIsFriend(userid int, targetuserid int) (userrelative models.UserUserRelative, exist bool, err error) {
+	exist, err = r.mysqldb.Table(userrelative.TableName()).Where("pre_user_id=? and back_user_id=?", userid, targetuserid).Or("pre_user_id=? and back_user_id=?", targetuserid, userid).Get(&userrelative)
 	return userrelative, exist, err
 }
 

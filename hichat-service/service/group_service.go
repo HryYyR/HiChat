@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	adb "go-websocket-server/ADB"
+	GroupScripts "go-websocket-server/ADB/MysqlScripts/GroupsScripts"
+	"go-websocket-server/ADB/MysqlScripts/UsersScripts"
 	"go-websocket-server/config"
 	"go-websocket-server/models"
 	"go-websocket-server/util"
@@ -44,6 +46,8 @@ func CreateGroup(c *gin.Context) {
 		return
 	}
 
+	groupRepository := c.MustGet("groupRepository").(GroupScripts.GroupRepository)
+
 	UUID := util.GenerateUUID()
 	var group = models.Group{
 		UUID:        UUID,
@@ -54,8 +58,9 @@ func CreateGroup(c *gin.Context) {
 		MemberCount: 1,
 	}
 
-	//判断群是否已存在,存在就禁止创建
-	isexit, err := adb.SqlStruct.Conn.Table("group").Where("group_name = ?", rowdata.Groupname).Exist()
+	//判断群名称是否占用,是则禁止创建
+	isexit, err := groupRepository.ByGroupNameCheckGroupIsExist(rowdata.Groupname)
+	//isexit, err := adb.SqlStruct.Conn.Table("group").Where("group_name = ?", rowdata.Groupname).Exist()
 	if err != nil {
 		util.H(c, http.StatusInternalServerError, "发生了未知的错误", nil)
 		fmt.Println(err)
@@ -149,7 +154,10 @@ func ApplyJoinGroup(c *gin.Context) {
 		return
 	}
 
-	applycount, err := adb.SqlStruct.Conn.Table("apply_join_group").Where("apply_user_id = ? and handle_status=?", userdata.ID, 0).Count()
+	groupRepository := c.MustGet("groupRepository").(GroupScripts.GroupRepository)
+
+	applycount, err := groupRepository.GetUserApplyJoinGroupCount(userdata.ID, 0)
+	//applycount, err := adb.SqlStruct.Conn.Table("apply_join_group").Where("apply_user_id = ? and handle_status=?", userdata.ID, 0).Count()
 	if err != nil {
 		fmt.Println(err)
 		util.H(c, http.StatusInternalServerError, "查询关系失败", nil)
@@ -161,9 +169,10 @@ func ApplyJoinGroup(c *gin.Context) {
 	}
 
 	//fmt.Println(userdata.ID, rawdata.GroupID)
-	exitgroup, err := adb.SqlStruct.Conn.Table("group_user_relative").Where("user_id = ? and group_id=?", userdata.ID, rawdata.GroupID).Exist()
+	//exitgroup, err := adb.SqlStruct.Conn.Table("group_user_relative").Where("user_id = ? and group_id=?", userdata.ID, rawdata.GroupID).Exist()
+	exitgroup, err := groupRepository.CheckUserIsExistInGroup(userdata.ID, rawdata.GroupID)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		util.H(c, http.StatusInternalServerError, "查询关系失败", nil)
 		return
 	}
@@ -177,14 +186,14 @@ func ApplyJoinGroup(c *gin.Context) {
 		ApplyUserID: userdata.ID,
 		GroupID:     rawdata.GroupID,
 	}
-	exit, tempapplydata, err2 := applymsgdata.CheckApplyExit()
+	exist, tempapplydata, err2 := applymsgdata.CheckApplyExit()
 	if err2 != nil {
 		fmt.Println("check apply error", err)
 		util.H(c, http.StatusInternalServerError, "查询申请失败", nil)
 		return
 	}
-	//fmt.Println("applydata:", exit, tempapplydata.HandleStatus)
-	if exit && tempapplydata.HandleStatus == 0 {
+	//fmt.Println("applydata:", exist, tempapplydata.HandleStatus)
+	if exist && tempapplydata.HandleStatus == 0 {
 		util.H(c, http.StatusBadRequest, "你已经申请过了", nil)
 		return
 	}
@@ -192,13 +201,13 @@ func ApplyJoinGroup(c *gin.Context) {
 	applygroupdata := &models.Group{
 		ID: rawdata.GroupID,
 	}
-	groupinfo, exit, err := applygroupdata.CheckGroupExit()
+	groupinfo, exist, err := applygroupdata.CheckGroupExit()
 	if err != nil {
 		fmt.Println("check group error", err)
 		util.H(c, http.StatusInternalServerError, "查询群聊失败", nil)
 		return
 	}
-	if !exit {
+	if !exist {
 		util.H(c, http.StatusBadRequest, "群聊不存在", nil)
 		return
 	}
@@ -217,10 +226,6 @@ func ApplyJoinGroup(c *gin.Context) {
 		util.H(c, http.StatusInternalServerError, "申请失败", nil)
 		return
 	}
-	//if _, err = adb.SqlStruct.Conn.Table("apply_join_group").Insert(&applydata); err != nil {
-	//	util.H(c, http.StatusInternalServerError, "申请失败", nil)
-	//	return
-	//}
 
 	msg := models.Message{
 		UserID:   groupinfo.CreaterID, //此id为群主的id,所以消息应该是通知群主
@@ -258,6 +263,7 @@ func HandleJoinGroup(c *gin.Context) {
 		return
 	}
 
+	groupRepository := c.MustGet("groupRepository").(GroupScripts.GroupRepository)
 	// 查询申请是否存在
 	tempapplyjoindata := &models.ApplyJoinGroup{
 		ID: rawdata.ApplyID,
@@ -281,6 +287,7 @@ func HandleJoinGroup(c *gin.Context) {
 	userdata := &models.Users{
 		ID: applyjoindata.ApplyUserID,
 	}
+
 	applyuserdata, userExit, err := userdata.CheckUserExit()
 	if err != nil {
 		fmt.Println(err)
@@ -309,11 +316,16 @@ func HandleJoinGroup(c *gin.Context) {
 
 	// 拒绝申请
 	if rawdata.HandleStatus == -1 {
-		if _, err = adb.SqlStruct.Conn.Table("apply_join_group").ID(applyjoindata.ID).Update(models.ApplyJoinGroup{HandleStatus: rawdata.HandleStatus}); err != nil {
+		if _, err := groupRepository.UpdateApplyJoinGroupStatus(applyjoindata.ID, rawdata.HandleStatus); err != nil {
 			log.Println(err)
 			util.H(c, http.StatusInternalServerError, "拒绝失败", nil)
 			return
 		}
+		//if _, err = adb.SqlStruct.Conn.Table("apply_join_group").ID(applyjoindata.ID).Update(models.ApplyJoinGroup{HandleStatus: rawdata.HandleStatus}); err != nil {
+		//	log.Println(err)
+		//	util.H(c, http.StatusInternalServerError, "拒绝失败", nil)
+		//	return
+		//}
 
 		util.H(c, http.StatusOK, "拒绝成功", nil)
 
@@ -335,11 +347,16 @@ func HandleJoinGroup(c *gin.Context) {
 			return
 		}
 		// 修改申请状态
-		if _, err = session.Table("apply_join_group").ID(applyjoindata.ID).Update(models.ApplyJoinGroup{HandleStatus: rawdata.HandleStatus}); err != nil {
+		if _, err := groupRepository.UpdateApplyJoinGroupStatus(applyjoindata.ID, rawdata.HandleStatus); err != nil {
 			session.Rollback()
 			util.H(c, http.StatusInternalServerError, "同意失败", nil)
 			return
 		}
+		//if _, err = session.Table("apply_join_group").ID(applyjoindata.ID).Update(models.ApplyJoinGroup{HandleStatus: rawdata.HandleStatus}); err != nil {
+		//	session.Rollback()
+		//	util.H(c, http.StatusInternalServerError, "同意失败", nil)
+		//	return
+		//}
 		// 修改群聊总人数
 		if _, err = session.Table("group").ID(applyjoindata.GroupID).Update(models.Group{MemberCount: grouplist.MemberCount + 1}); err != nil {
 			session.Rollback()
@@ -425,9 +442,12 @@ func ExitGroup(c *gin.Context) {
 		return
 	}
 
+	userRepository := c.MustGet("userRepository").(UsersScripts.UserRepository)
+
 	//查用户是否存在
-	var handleuserdata models.Users
-	has, err := adb.SqlStruct.Conn.Table("users").Where("id = ?", userdata.ID).Get(&handleuserdata)
+	//var handleuserdata models.Users
+	//has, err := adb.SqlStruct.Conn.Table("users").Where("id = ?", userdata.ID).Get(&handleuserdata)
+	has, handleuserdata, err := userRepository.CheckUserIsExist(userdata.ID)
 	if !has {
 		util.H(c, http.StatusBadRequest, "用户不存在", nil)
 		return
@@ -531,6 +551,7 @@ func ExitGroup(c *gin.Context) {
 		if err != nil {
 			log.Println(err)
 			session.Rollback()
+			redisSession.Discard()
 			util.H(c, http.StatusInternalServerError, "操作失败", nil)
 			return
 		}

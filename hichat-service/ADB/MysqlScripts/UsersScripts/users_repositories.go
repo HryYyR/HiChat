@@ -6,14 +6,14 @@ import (
 )
 
 type UserRepository interface {
-	SelectUserGroupList(userid int) error //查询用户加入的群列表(没有详情)
+	SelectUserGroupList(userid int) (gur []models.GroupUserRelative, err error) //查询用户加入的群列表(没有详情)
 
-	GetUserByUsername(username string) (*models.Users, error)                   //通过用户名获取一条用户信息数据
-	GetUserByUserID(userID int) (userdata *models.Users, exist bool, err error) //通过用户ID获取一条用户信息数据
+	GetUserByUsername(username string) (user models.Users, exist bool, err error) //通过用户名获取一条用户信息数据
+	GetUserByUserID(userID int) (userdata models.Users, exist bool, err error)    //通过用户ID获取一条用户信息数据
 
-	CheckUserIsExist(userid int) (bool, *models.Users, error)                                                      //检查用户是否存在
-	CheckUserIsFriend(userid int, targetuserid int) (userrelative *models.UserUserRelative, exist bool, err error) //检查是否为好友
-	DeleteFriendRelative(userid int, targetUserid int) (bool, error)                                               //删除好友关系
+	CheckUserIsExist(userid int) (bool, models.Users, error)                                                      //检查用户是否存在
+	CheckUserIsFriend(userid int, targetuserid int) (userrelative models.UserUserRelative, exist bool, err error) //检查是否为好友
+	DeleteFriendRelative(userid int, targetUserid int) (bool, error)                                              //删除好友关系
 }
 
 type userRepository struct {

@@ -128,7 +128,7 @@ func HandleAddUser(c *gin.Context) {
 	if data.HandleStatus == -1 {
 		util.H(c, http.StatusOK, "拒绝成功", nil)
 	} else {
-		insertdata := &models.UserUserRelative{
+		insertdata := models.UserUserRelative{
 			PreUserID:    applyadduserdata.PreApplyUserID,
 			PreUserName:  applyadduserdata.PreApplyUserName,
 			BackUserID:   applyadduserdata.ApplyUserID,

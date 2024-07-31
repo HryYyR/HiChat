@@ -74,7 +74,7 @@ func (g *Group) InsertGroup(session *xorm.Session) (Group, error) {
 	var groupdata Group
 
 	//插入mysql
-	_, err := session.Table("group").Insert(&g)
+	_, err := session.Table("group").Insert(g)
 	if err != nil {
 		return groupdata, err
 	}

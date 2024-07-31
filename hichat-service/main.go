@@ -9,6 +9,8 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	adb "go-websocket-server/ADB"
+	GroupScripts "go-websocket-server/ADB/MysqlScripts/GroupsScripts"
+	"go-websocket-server/ADB/MysqlScripts/UsersScripts"
 	"go-websocket-server/Route"
 	"go-websocket-server/config"
 	_ "go-websocket-server/log"
@@ -28,9 +30,9 @@ func main() {
 	adb.MqHub.InitMQ()
 	go models.RunReceiveMQMsg() //启动消费消息列表
 	//adb.InitMySQL()
-	defer func(SqlStruct *adb.Sql) {
-		SqlStruct.CloseConn()
-	}(adb.SqlStruct)
+	//defer func(SqlStruct *adb.Sql) {
+	//	SqlStruct.CloseConn()
+	//}(adb.SqlStruct)
 
 	models.ServiceCenter = models.NewHub(util.GenerateUUID())
 	go models.ServiceCenter.Run()
@@ -38,8 +40,13 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	engine := gin.New()
 	engine.Use(service.Cors())
-	engine.Use(service.DependencyInjection()) //依赖注入
-	engine.GET("/ws", service.Connectws)      //用户连接
+
+	sqlconn := adb.GetMySQLConn()
+	userRepository := UsersScripts.NewUserRepository(sqlconn)
+	groupRepository := GroupScripts.NewGroupRepository(sqlconn)
+
+	engine.Use(service.DependencyInjection(userRepository, groupRepository)) //依赖注入
+	engine.GET("/ws", service.Connectws)                                     //用户连接
 	usergroup := engine.Group("ws/user", service.IdentityCheck, service.FlowControl)
 	Route.InItUserGroupRouter(usergroup)
 
