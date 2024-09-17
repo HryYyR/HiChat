@@ -26,7 +26,7 @@ type Group struct {
 }
 
 func (g *Group) TableName() string {
-	return "group_model"
+	return "group"
 }
 
 // GetUserGroupList todo 没用redis
@@ -43,7 +43,7 @@ func GetUserGroupList(ID int) (map[int]Group, error) {
 
 	for _, groupid := range groupidlist {
 		var groupitem Group
-		if _, err := adb.SqlStruct.Conn.Table("group_model").Where("id=?", groupid).Get(&groupitem); err != nil {
+		if _, err := adb.SqlStruct.Conn.Table("group").Where("id=?", groupid).Get(&groupitem); err != nil {
 			fmt.Println(err.Error())
 			return nil, err
 		}
@@ -74,15 +74,15 @@ func (g *Group) InsertGroup(session *xorm.Session) (Group, error) {
 	var groupdata Group
 
 	//插入mysql
-	_, err := session.Table("group_model").Insert(g)
+	_, err := session.Table("group").Insert(g)
 	if err != nil {
 		return groupdata, err
 	}
 
 	//查询完整
-	has, err := session.Table("group_model").Where("id=?", g.ID).Get(&groupdata)
+	has, err := session.Table("group").Where("id=?", g.ID).Get(&groupdata)
 	if !has {
-		return groupdata, fmt.Errorf(`group_model %d not found`, g.ID)
+		return groupdata, fmt.Errorf(`group %d not found`, g.ID)
 	}
 	if err != nil {
 		return groupdata, err
@@ -94,7 +94,7 @@ func (g *Group) InsertGroup(session *xorm.Session) (Group, error) {
 // CheckGroupExit 检查群聊是否存在
 func (g *Group) CheckGroupExit() (Group, bool, error) {
 	var groupdata Group
-	exitgroup, err := adb.SqlStruct.Conn.Table("group_model").Where("id = ?", g.ID).Get(&groupdata)
+	exitgroup, err := adb.SqlStruct.Conn.Table("group").Where("id = ?", g.ID).Get(&groupdata)
 	if err != nil {
 		return groupdata, false, err
 	}
