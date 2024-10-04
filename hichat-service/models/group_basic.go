@@ -4,6 +4,7 @@ import (
 	"fmt"
 	adb "go-websocket-server/ADB"
 	"go-websocket-server/util"
+	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -23,17 +24,28 @@ type Group struct {
 	CreatedAt     time.Time `xorm:"created"`
 	DeletedAt     time.Time `xorm:"deleted"`
 	UpdatedAt     time.Time `xorm:"updated"`
+	Status        int       `xorm:"notnull default(0)"`
 }
 
 func (g *Group) TableName() string {
 	return "group"
 }
 
+// ByGroupIDSetGroupStatus 通过群聊id修改群聊状态（启用 | 已删除）
+func (g *Group) ByGroupIDSetGroupStatus(session *xorm.Session, status int) error {
+	g.Status = status
+	_, err := session.ID(g.ID).Cols("status").Update(g)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	return nil
+}
+
 // GetUserGroupList todo 没用redis
 // 获取指定用户的群聊列表
 func GetUserGroupList(ID int) (map[int]Group, error) {
-	grouplist := make(map[int]Group, 0)
-
+	grouplist := make(map[int]Group)
 	var groupidlist []int
 
 	if err := adb.SqlStruct.Conn.Cols("group_id").Table("group_user_relative").Where("user_id=?", ID).Find(&groupidlist); err != nil {

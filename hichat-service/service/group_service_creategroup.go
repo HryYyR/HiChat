@@ -51,7 +51,7 @@ func CreateGroup(c *gin.Context) {
 
 	//判断群名称是否占用,是则禁止创建
 	isexit, err := groupRepository.ByGroupNameCheckGroupIsExist(rowdata.Groupname)
-	//isexit, err := adb.SqlStruct.Conn.Table("group_model").Where("group_name = ?", rowdata.Groupname).Exist()
+	//isexit, err := adb.SqlStruct.Conn.Table("group").Where("group_name = ?", rowdata.Groupname).Exist()
 	if err != nil {
 		util.H(c, http.StatusInternalServerError, "发生了未知的错误", nil)
 		fmt.Println(err)
@@ -103,7 +103,7 @@ func CreateGroup(c *gin.Context) {
 		MessageList: []models.GroupMessage{},
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg_model": "创建成功",
-		"data":      responsedata,
+		"msg":  "创建成功",
+		"data": responsedata,
 	})
 }

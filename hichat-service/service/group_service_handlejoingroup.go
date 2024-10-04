@@ -126,7 +126,7 @@ func HandleJoinGroup(c *gin.Context) {
 			return
 		}
 		// 修改群聊总人数
-		if _, err = session.Table("group_model").ID(applyjoindata.GroupID).Update(models.Group{MemberCount: grouplist.MemberCount + 1}); err != nil {
+		if _, err = session.Table("group").ID(applyjoindata.GroupID).Update(models.Group{MemberCount: grouplist.MemberCount + 1}); err != nil {
 			session.Rollback()
 			util.H(c, http.StatusInternalServerError, "更新失败", nil)
 			return
@@ -146,7 +146,7 @@ func HandleJoinGroup(c *gin.Context) {
 		if err != nil {
 			session.Rollback()
 			c.JSON(http.StatusInternalServerError, gin.H{
-				"msg_model": err.Error(),
+				"msg": err.Error(),
 			})
 			return
 		}
@@ -154,7 +154,7 @@ func HandleJoinGroup(c *gin.Context) {
 
 		msgbyte, _ := json.Marshal(groupmsg)
 		adb.Rediss.RPush(fmt.Sprintf("gm%d", grouplist.ID), string(msgbyte))
-		err := adb.Rediss.HIncrBy(fmt.Sprintf("group_model%d", grouplist.ID), "MemberCount", 1).Err() //redis成员人数+1
+		err := adb.Rediss.HIncrBy(fmt.Sprintf("group%d", grouplist.ID), "MemberCount", 1).Err() //redis成员人数+1
 		if err != nil {
 			log.Println(err)
 		}

@@ -22,10 +22,13 @@ var SqlStruct = &Sql{
 
 // CreateConn 创建mysql连接
 func (s *Sql) CreateConn() error {
-	engine, err := xorm.NewEngine("mysql", fmt.Sprintf("%s:%s@/%s?charset=utf8mb4", config.MysqlUserName, config.MysqlPassword, config.MysqlDatabase))
+	mysqlconf := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4", config.MysqlUserName, config.MysqlPassword, config.MysqlAddress, config.MysqlDatabase)
+	engine, err := xorm.NewEngine("mysql", mysqlconf)
 	if err != nil {
+		log.Println(err)
 		return err
 	}
+	fmt.Println("初始化 MySQL :", mysqlconf)
 	engine.SetMaxIdleConns(config.MysqlMaxIdleConns)
 	engine.SetMaxOpenConns(config.MysqlMaxOpenConns)
 	engine.SetMapper(names.GonicMapper{})
@@ -46,7 +49,7 @@ func GetMySQLConn() *xorm.Engine {
 	if SqlStruct.Conn == nil || SqlStruct.Status == 0 {
 		err := SqlStruct.CreateConn()
 		if err != nil {
-			log.Fatal(err)
+			log.Panic(err)
 		}
 	}
 	return SqlStruct.Conn

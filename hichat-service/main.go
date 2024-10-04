@@ -64,7 +64,7 @@ func main() {
 	//路由注册
 	engine.Use(service.DependencyInjection(userRepository, groupRepository)) //依赖注入
 	engine.GET("/ws", service.Connectws)                                     //用户连接
-	usergrouprouter := engine.Group("ws/user_model", service.IdentityCheck, service.FlowControl)
+	usergrouprouter := engine.Group("ws/user", service.IdentityCheck, service.FlowControl)
 	Route.InItUserGroupRouter(usergrouprouter)
 
 	//启动服务

@@ -10,6 +10,7 @@ import (
 	"hichat_static_server/tool"
 	"log"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -153,6 +154,22 @@ func (g *Group) GetMessageList(grouplist *[]GroupMessage, currentnum int) error 
 	//})
 	*grouplist = msglist
 	return nil
+}
+
+// GetMemberCount 获取成员数量
+func (g *Group) GetMemberCount() (int, error) {
+	result, err := adb.Rediss.HGet("GroupToUserMap", strconv.Itoa(g.ID)).Result()
+	if err != nil || len(result) == 0 {
+		sqlres, err := adb.Ssql.Table("group_user_relative").Where("group_id=?", g.ID).Count()
+		if err != nil {
+			fmt.Println("获取用户成员数量失败!", err)
+			return 0, err
+		}
+		return int(sqlres), nil
+	}
+	redisres := strings.Split(result, ",")
+	return len(redisres), nil
+
 }
 
 // 从数据库获取消息列表

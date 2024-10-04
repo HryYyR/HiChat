@@ -262,7 +262,10 @@ func (u *Users) GetUserData(userdata *Users) error {
 	return nil
 }
 
-// GetUserGroupList 获取用户的群列表
+// GetUserGroupList
+// 从mysql中得到用户和群聊的关系 todo:尽量优先通过redis而不是mysql
+// 再从redis或mysql获取详细信息
+// 获取用户的群列表
 func (u *Users) GetUserGroupList(grouplist *[]GroupDetail) error {
 
 	//未读数量

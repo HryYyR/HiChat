@@ -40,7 +40,7 @@ func IdentityCheck(c *gin.Context) {
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusUnauthorized, gin.H{
-			"msg_model": "Invalid Authorization",
+			"msg": "Invalid Authorization",
 		})
 		c.Abort()
 		return

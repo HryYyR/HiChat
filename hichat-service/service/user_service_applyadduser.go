@@ -8,6 +8,7 @@ import (
 	"go-websocket-server/config"
 	"go-websocket-server/models"
 	"go-websocket-server/util"
+	"log"
 	"net/http"
 )
 
@@ -40,6 +41,7 @@ func ApplyAddUser(c *gin.Context) {
 	//检查目标用户是否为好友
 	_, exist, err := userRepository.CheckUserIsFriend(data.ApplyUserID, data.PreApplyUserID)
 	if err != nil {
+		log.Println(err)
 		util.H(c, http.StatusInternalServerError, "查询申请信息失败", err)
 		return
 	}
@@ -53,6 +55,7 @@ func ApplyAddUser(c *gin.Context) {
 		Where("pre_apply_user_id=?  and apply_user_id=?  and handle_status=0",
 			data.PreApplyUserID, data.ApplyUserID).Exist()
 	if err != nil {
+		log.Println(err)
 		util.H(c, http.StatusInternalServerError, "查询申请信息失败", err)
 		return
 	}
@@ -65,6 +68,7 @@ func ApplyAddUser(c *gin.Context) {
 		Where("pre_apply_user_id=?  and apply_user_id=?  and handle_status=0",
 			data.ApplyUserID, data.PreApplyUserID).Exist()
 	if err != nil {
+		log.Println(err)
 		util.H(c, http.StatusInternalServerError, "查询申请信息失败", err)
 		return
 	}
@@ -75,6 +79,7 @@ func ApplyAddUser(c *gin.Context) {
 
 	//fmt.Printf("%#v\n", data)
 	if _, err = adb.SqlStruct.Conn.Table("apply_add_user").Insert(&data); err != nil {
+		log.Println(err)
 		util.H(c, http.StatusInternalServerError, "申请添加好友失败", err)
 		return
 	}

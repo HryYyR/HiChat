@@ -3,6 +3,7 @@ package config
 import "time"
 
 // var CallNoticeVideoStreamServerIP = "192.168.137.1"
+
 var CallNoticeVideoStreamServerIP = "127.0.0.1"
 var CallNoticeVideoStreamServerPort = "50052"
 
@@ -15,17 +16,18 @@ var MysqlMaxIdleConns = 1000
 var MysqlMaxOpenConns = 2000
 
 // var MysqlAddress = "host.docker.internal:3306" //docker
-var MysqlAddress = "localhost:3306" //localhost
+
+var MysqlAddress = "127.0.0.1:3306" //localhost
 
 var MysqlUserName = "root"
 var MysqlPassword = "root"
 var MysqlDatabase = "go_websocket"
 
-var RedisAddr = "localhost:6379"
+var RedisAddr = "127.0.0.1:6379"
 var RedisPassword = ""
 var RedisDB = 0
 
-var RabbitMQAddress = "amqp://guest:guest@localhost:5672/"
+var RabbitMQAddress = "amqp://guest:guest@127.0.0.1:5672/"
 
 var EmailAccount = "2452719312@qq.com"
 var EmailPassword = "hdabghzavlyeeajj"

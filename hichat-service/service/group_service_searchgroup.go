@@ -32,12 +32,14 @@ func SearchGroup(c *gin.Context) {
 		return
 	}
 
-	if len(strings.TrimSpace(rawdata.Searchstr)) == 0 {
+	lenOfTrimStr := len(strings.TrimSpace(rawdata.Searchstr))
+
+	if lenOfTrimStr == 0 {
 		util.H(c, http.StatusBadRequest, "关键词不能为空", nil)
 		return
 	}
 
-	if len(strings.TrimSpace(rawdata.Searchstr)) > 50 {
+	if lenOfTrimStr > 50 {
 		util.H(c, http.StatusBadRequest, "关键词超字数上限(50字)", nil)
 		return
 	}
@@ -49,7 +51,7 @@ func SearchGroup(c *gin.Context) {
 	}
 
 	grouplist := make([]models.Group, 0)
-	err = adb.SqlStruct.Conn.Table("group_model").Where("group_name like ? or id=?", rawdata.Searchstr+"%", searchint).Where("creater_id !=?", userdata.ID).Find(&grouplist)
+	err = adb.SqlStruct.Conn.Table("group").Where("group_name like ? or id=?", rawdata.Searchstr+"%", searchint).Where("creater_id !=?", userdata.ID).Find(&grouplist)
 	if err != nil {
 		util.H(c, http.StatusInternalServerError, "搜索失败", err)
 		return
@@ -66,7 +68,7 @@ func SearchGroup(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"msg_model": "搜索成功",
+		"msg":       "搜索成功",
 		"grouplist": responsedata,
 	})
 

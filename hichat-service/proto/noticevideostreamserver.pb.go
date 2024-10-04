@@ -99,7 +99,7 @@ type Noticevideostreamserverres struct {
 	unknownFields protoimpl.UnknownFields
 
 	Status int32  `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Msg    string `protobuf:"bytes,2,opt,name=msg_model,proto3" json:"msg_model,omitempty"`
+	Msg    string `protobuf:"bytes,2,opt,name=msg_model,proto3" json:"msg,omitempty"`
 }
 
 func (x *Noticevideostreamserverres) Reset() {

@@ -17,6 +17,35 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
+
+-- ----------------------------
+-- Table structure for group
+-- ----------------------------
+DROP TABLE IF EXISTS `group`;
+CREATE TABLE `group`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `creater_id` int(11) NOT NULL,
+  `creater_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `group_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `grade` int(11) NULL DEFAULT 1,
+  `member_count` int(11) NULL DEFAULT NULL,
+  `unread_message` int(11) NULL DEFAULT NULL,
+  `created_at` datetime NULL DEFAULT NULL,
+  `deleted_at` datetime NULL DEFAULT NULL,
+  `updated_at` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `UQE_group_uuid`(`uuid` ASC) USING BTREE,
+  UNIQUE INDEX `UQE_group_group_name`(`group_name` ASC) USING BTREE,
+  INDEX `IDX_group_id`(`id` ASC) USING BTREE,
+  INDEX `group_ibfk_1`(`unread_message` ASC) USING BTREE,
+  INDEX `creater_id`(`creater_id` ASC, `creater_name` ASC) USING BTREE,
+  CONSTRAINT `group_ibfk_2` FOREIGN KEY (`creater_id`, `creater_name`) REFERENCES `users` (`id`, `user_name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 234 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+
+
 -- ----------------------------
 -- Table structure for apply_add_user
 -- ----------------------------
@@ -63,32 +92,6 @@ CREATE TABLE `apply_join_group`  (
   CONSTRAINT `apply_join_group_ibfk_1` FOREIGN KEY (`apply_user_id`, `apply_user_name`) REFERENCES `users` (`id`, `user_name`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `apply_join_group_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 439 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for group
--- ----------------------------
-DROP TABLE IF EXISTS `group`;
-CREATE TABLE `group`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `creater_id` int(11) NOT NULL,
-  `creater_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `group_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `grade` int(11) NULL DEFAULT 1,
-  `member_count` int(11) NULL DEFAULT NULL,
-  `unread_message` int(11) NULL DEFAULT NULL,
-  `created_at` datetime NULL DEFAULT NULL,
-  `deleted_at` datetime NULL DEFAULT NULL,
-  `updated_at` datetime NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `UQE_group_uuid`(`uuid` ASC) USING BTREE,
-  UNIQUE INDEX `UQE_group_group_name`(`group_name` ASC) USING BTREE,
-  INDEX `IDX_group_id`(`id` ASC) USING BTREE,
-  INDEX `group_ibfk_1`(`unread_message` ASC) USING BTREE,
-  INDEX `creater_id`(`creater_id` ASC, `creater_name` ASC) USING BTREE,
-  CONSTRAINT `group_ibfk_2` FOREIGN KEY (`creater_id`, `creater_name`) REFERENCES `users` (`id`, `user_name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 234 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for group_message
@@ -230,44 +233,6 @@ CREATE TABLE `user_user_relative`  (
   CONSTRAINT `user_user_relative_ibfk_1` FOREIGN KEY (`pre_user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_user_relative_ibfk_2` FOREIGN KEY (`back_user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for users
--- ----------------------------
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nike_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `salt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `age` int(11) NULL DEFAULT NULL,
-  `introduce` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `grade` int(11) NULL DEFAULT 1,
-  `created_at` datetime NULL DEFAULT NULL,
-  `deleted_at` datetime NULL DEFAULT NULL,
-  `updated_at` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `login_time` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `login_out` datetime NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `UQE_users_uuid`(`uuid` ASC) USING BTREE,
-  INDEX `IDX_users_id`(`id` ASC) USING BTREE,
-  INDEX `id`(`id` ASC, `user_name` ASC) USING BTREE,
-  INDEX `id_2`(`id` ASC, `user_name` ASC, `avatar` ASC, `city` ASC, `age` ASC) USING BTREE,
-  INDEX `id_3`(`id` ASC, `user_name` ASC, `avatar` ASC) USING BTREE,
-  INDEX `user_name`(`user_name` ASC, `avatar` ASC, `city` ASC, `age` ASC) USING BTREE,
-  INDEX `user_name_2`(`user_name` ASC) USING BTREE,
-  INDEX `avatar`(`avatar` ASC) USING BTREE,
-  INDEX `city`(`city` ASC) USING BTREE,
-  INDEX `age`(`age` ASC) USING BTREE,
-  INDEX `user_name_3`(`user_name` ASC, `avatar` ASC) USING BTREE,
-  INDEX `id_4`(`id` ASC, `age` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1014 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for users_file

@@ -4545,3 +4545,62 @@ created by net/http.(*Server).Serve in goroutine 1
 2024/09/17 14:03:22 group_basic.go:109: map[Avatar:static/1724757263.jpeg CreatedAt:2024-09-07 20:34:00 CreaterID:1015 CreaterName:adminn DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttt ID:248 MemberCount:1]
 2024/09/17 14:03:22 group_basic.go:175: len 2
 2024/09/17 14:03:22 group_basic.go:197: json: cannot unmarshal number into Go struct field GroupMessage.UserAge of type string
+2024/10/03 18:16:46 group_basic.go:110: map[Avatar:static/1722433058.jpg CreatedAt:2024-09-17 20:48:33 CreaterID:1016 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttkk ID:252 MemberCount:1]
+2024/10/03 18:19:35 group_basic.go:110: map[Avatar:static/1722433058.jpg CreatedAt:2024-09-17 20:48:33 CreaterID:1016 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttkk ID:252 MemberCount:1]
+2024/10/03 19:14:44 group_basic.go:110: map[Avatar:static/1722433058.jpg CreatedAt:2024-09-17 20:48:33 CreaterID:1016 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttkk ID:252 MemberCount:2]
+2024/10/03 19:14:44 group_basic.go:192: len 1
+2024/10/03 19:15:15 group_basic.go:192: len 4
+2024/10/03 19:15:34 group_basic.go:110: map[Avatar:static/1722433058.jpg CreatedAt:2024-09-17 20:48:33 CreaterID:1016 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttkk ID:252 MemberCount:2]
+2024/10/03 19:15:34 group_basic.go:192: len 4
+2024/10/03 19:18:01 group_basic.go:110: map[Avatar:static/1722433058.jpg CreatedAt:2024-09-17 20:48:33 CreaterID:1016 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttkk ID:252 MemberCount:2]
+2024/10/03 19:18:01 group_basic.go:192: len 6
+2024/10/03 19:18:21 group_basic.go:110: map[Avatar:static/1722433058.jpg CreatedAt:2024-09-17 20:48:33 CreaterID:1016 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:ttkk ID:252 MemberCount:2]
+2024/10/03 19:18:21 group_basic.go:192: len 6
+2024/10/03 19:19:30 group_basic.go:192: len 0
+2024/10/03 19:19:30 group_basic.go:192: len 1
+2024/10/03 19:23:12 group_basic.go:110: map[Avatar:static/1727954352.png CreatedAt:2024-10-03 19:19:14 CreaterID:1016 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:rtx ID:253 MemberCount:2]
+2024/10/03 19:23:12 group_basic.go:192: len 11
+2024/10/03 19:23:12 group_basic.go:214: json: cannot unmarshal number into Go struct field GroupMessage.UserAge of type string
+2024/10/04 16:01:14 group_basic.go:192: len 0
+2024/10/04 16:01:39 group_basic.go:110: map[Avatar:static/1727954352.png CreatedAt:2024-10-03 19:19:14 CreaterID:1016 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:rtx ID:253 MemberCount:2]
+2024/10/04 16:01:39 group_basic.go:192: len 0
+2024/10/04 16:18:05 group_basic.go:192: len 1
+2024/10/04 16:19:11 group_basic.go:110: map[Avatar:static/1727954352.png CreatedAt:2024-10-04 16:17:47 CreaterID:1016 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:tyu ID:254 MemberCount:2]
+2024/10/04 16:19:11 group_basic.go:192: len 0
+2024/10/04 16:19:35 group_basic.go:192: len 2
+2024/10/04 16:19:35 group_basic.go:192: len 2
+2024/10/04 16:19:35 group_basic.go:192: len 2
+2024/10/04 16:19:35 group_basic.go:192: len 2
+2024/10/04 16:19:35 group_basic.go:192: len 2
+2024/10/04 16:19:37 group_basic.go:192: len 2
+2024/10/04 16:19:37 group_basic.go:192: len 2
+2024/10/04 16:19:37 group_basic.go:192: len 2
+2024/10/04 16:19:37 group_basic.go:192: len 2
+2024/10/04 16:19:37 group_basic.go:192: len 2
+2024/10/04 16:19:37 group_basic.go:192: len 2
+2024/10/04 16:19:37 group_basic.go:192: len 2
+2024/10/04 16:19:37 group_basic.go:192: len 2
+2024/10/04 16:19:37 group_basic.go:192: len 2
+2024/10/04 16:19:38 group_basic.go:192: len 2
+2024/10/04 16:19:38 group_basic.go:192: len 2
+2024/10/04 16:19:38 group_basic.go:192: len 2
+2024/10/04 16:19:38 group_basic.go:192: len 2
+2024/10/04 16:19:38 group_basic.go:192: len 2
+2024/10/04 16:19:38 group_basic.go:192: len 2
+2024/10/04 16:20:35 group_basic.go:110: map[Avatar:static/1727954352.png CreatedAt:2024-10-04 16:17:47 CreaterID:1016 CreaterName:nekoni DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:tyu ID:254 MemberCount:2]
+2024/10/04 16:20:35 group_basic.go:192: len 7
+2024/10/04 16:20:35 group_basic.go:214: json: cannot unmarshal number into Go struct field GroupMessage.UserAge of type string
+2024/10/04 19:00:52 group_basic.go:192: len 1
+2024/10/04 19:01:08 group_basic.go:110: map[Avatar:static/1722433058.jpg CreatedAt:2024-10-04 18:57:25 CreaterID:1020 CreaterName:Hyyyh0261 DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:相亲相爱一家人 ID:255 MemberCount:1]
+2024/10/04 19:01:08 group_basic.go:192: len 1
+2024/10/04 19:02:35 group_basic.go:110: map[Avatar:static/1722433058.jpg CreatedAt:2024-10-04 18:57:25 CreaterID:1020 CreaterName:Hyyyh0261 DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:相亲相爱一家人 ID:255 MemberCount:1]
+2024/10/04 19:02:35 group_basic.go:192: len 2
+2024/10/04 19:02:46 group_basic.go:110: map[Avatar:static/1722433058.jpg CreatedAt:2024-10-04 18:57:25 CreaterID:1020 CreaterName:Hyyyh0261 DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:相亲相爱一家人 ID:255 MemberCount:1]
+2024/10/04 19:02:46 group_basic.go:192: len 3
+2024/10/04 19:04:59 group_basic.go:110: map[Avatar:static/1722433058.jpg CreatedAt:2024-10-04 18:57:25 CreaterID:1020 CreaterName:Hyyyh0261 DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:相亲相爱一家人 ID:255 MemberCount:1]
+2024/10/04 19:04:59 group_basic.go:192: len 3
+2024/10/04 19:05:26 group_basic.go:110: map[Avatar:static/1722433058.jpg CreatedAt:2024-10-04 18:57:25 CreaterID:1020 CreaterName:Hyyyh0261 DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:相亲相爱一家人 ID:255 MemberCount:2]
+2024/10/04 19:05:26 group_basic.go:192: len 4
+2024/10/04 19:07:22 group_basic.go:110: map[Avatar:static/1722433058.jpg CreatedAt:2024-10-04 18:57:25 CreaterID:1020 CreaterName:Hyyyh0261 DeletedAt:0001-01-01 00:00:00 Grade:0 GroupName:相亲相爱一家人 ID:255 MemberCount:3]
+2024/10/04 19:07:22 group_basic.go:192: len 10
+2024/10/04 19:07:22 group_basic.go:214: json: cannot unmarshal number into Go struct field GroupMessage.UserAge of type string

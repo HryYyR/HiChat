@@ -100,8 +100,21 @@ func ExitGroup(c *gin.Context) {
 		}
 
 		//唯一性约束自动删除:关系,消息,未读消息
-		//群不用删
-		//_, err = session.Table("group_model").Where("id = ?", groupinfo.ID).Delete() //删群
+		//todo 群不用删,但是关系也没删
+		gur := models.GroupUserRelative{GroupID: groupinfo.ID}
+		err := gur.DisAssociationAll(session)
+		if err != nil {
+			session.Rollback()
+			util.H(c, http.StatusInternalServerError, "操作失败", err)
+			return
+		}
+		err = groupinfo.ByGroupIDSetGroupStatus(session, -1)
+		if err != nil {
+			session.Rollback()
+			util.H(c, http.StatusInternalServerError, "操作失败", err)
+			return
+		}
+		//_, err = session.Table("group").Where("id = ?", groupinfo.ID).Delete() //删群
 		//if err != nil {
 		//	session.Rollback()
 		//	util.H(c, http.StatusInternalServerError, "操作失败", err)
@@ -134,7 +147,7 @@ func ExitGroup(c *gin.Context) {
 		//删redis群聊消息
 		rkey := fmt.Sprintf("gm%s", strconv.Itoa(groupinfo.ID))
 		redisSession.Del(rkey)
-		rrkey := fmt.Sprintf("group_model%s", strconv.Itoa(groupinfo.ID))
+		rrkey := fmt.Sprintf("group%s", strconv.Itoa(groupinfo.ID))
 		redisSession.Del(rrkey)
 		redisSession.HDel("GroupToUserMap", strconv.Itoa(groupinfo.ID))
 
@@ -212,7 +225,7 @@ func ExitGroup(c *gin.Context) {
 
 		bytes, _ := json.Marshal(groupmsg)
 		adb.Rediss.RPush(fmt.Sprintf("gm%s", strconv.Itoa(groupmsg.GroupID)), bytes)
-		err = adb.Rediss.HIncrBy(fmt.Sprintf("group_model%s", strconv.Itoa(groupmsg.GroupID)), "MemberCount", -1).Err()
+		err = adb.Rediss.HIncrBy(fmt.Sprintf("group%s", strconv.Itoa(groupmsg.GroupID)), "MemberCount", -1).Err()
 		if err != nil {
 			log.Println(err)
 		}

@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	adb "go-websocket-server/ADB"
+	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -51,7 +52,7 @@ func (r *GroupUserRelative) Association(group Group, session *xorm.Session) erro
 
 	//fmt.Println("reactive groupidarr:", insertUserToGroupMapStr)
 	adb.Rediss.HSet("UserToGroupMap", strconv.Itoa(r.UserID), insertUserToGroupMapStr)
-	//fmt.Printf("groupid%d,userid%d\n", group_model.ID, r.UserID)
+	//fmt.Printf("groupid%d,userid%d\n", group.ID, r.UserID)
 
 	return nil
 }
@@ -64,7 +65,7 @@ func (r *GroupUserRelative) DisAssociation(session *xorm.Session, groupdata Grou
 		return err
 	}
 	//更新人数
-	_, err = session.Table("group_model").Where("id = ?", r.GroupID).Update(Group{MemberCount: groupdata.MemberCount - 1})
+	_, err = session.Table("group").Where("id = ?", r.GroupID).Update(Group{MemberCount: groupdata.MemberCount - 1})
 	if err != nil {
 		return err
 	}
@@ -109,5 +110,15 @@ func (r *GroupUserRelative) DisAssociation(session *xorm.Session, groupdata Grou
 	adb.Rediss.HSet("GroupToUserMap", strconv.Itoa(r.GroupID), ansuid)
 	adb.Rediss.HSet("UserToGroupMap", strconv.Itoa(r.UserID), ansgid)
 
+	return nil
+}
+
+// DisAssociationAll  断开所有用户与此群的链接（解散群聊）
+func (r *GroupUserRelative) DisAssociationAll(session *xorm.Session) error {
+	_, err := session.Table(r.TableName()).Where("group_id=?", r.GroupID).Delete()
+	if err != nil {
+		log.Println(err)
+		return err
+	}
 	return nil
 }

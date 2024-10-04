@@ -12,7 +12,7 @@ var MqHub MqStruct
 
 type MqStruct struct {
 	MqChannel              *amqp.Channel
-	NonImmediateTasksQueue amqp.Queue //用于发送非即时任务的队列(仅作为生产者,消费者位于"hichat-msg_model-service")
+	NonImmediateTasksQueue amqp.Queue //用于发送非即时任务的队列(仅作为生产者,消费者位于"hichat-msg-service")
 	TransmitQueue          amqp.Queue //接收消息的队列(既作为生产者,也作为消费者)
 }
 

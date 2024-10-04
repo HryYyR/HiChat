@@ -88,7 +88,7 @@ func ApplyJoinGroup(c *gin.Context) {
 	}
 	groupinfo, exist, err := applygroupdata.CheckGroupExit()
 	if err != nil {
-		log.Println("check group_model error", err)
+		log.Println("check group error", err)
 		util.H(c, http.StatusInternalServerError, "查询群聊失败", nil)
 		return
 	}
