@@ -29,6 +29,11 @@ var RedisAddr = "localhost:6379"
 var RedisPassword = ""
 var RedisDB = 0
 
+var NebulaPort = 9669 // The default port of NebulaGraph 2.x is 9669.
+var NebulaUserName = "root"
+var NebulaPassWord = "nebula"
+var NebulaAddress = "127.0.0.1"
+
 var RabbitMQAddress = "amqp://guest:guest@host.docker.internal:5672/"
 
 //var RabbitMQAddress = "amqp://guest:guest@" + os.Getenv("MQ_HOST") + ":5672/"

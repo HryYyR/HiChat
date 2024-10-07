@@ -107,7 +107,7 @@ func (g *Group) GetGroupInfo() (Group, error) {
 		groupinfo.Grade, _ = strconv.Atoi(gdata["Grade"])
 		groupinfo.MemberCount, _ = strconv.Atoi(gdata["MemberCount"])
 		groupinfo.CreatedAt, _ = common.ParseTime(gdata["CreatedAt"])
-		log.Printf("%+v", gdata)
+		//fmt.Printf("%+v", gdata)
 		return groupinfo, nil
 	}
 	//log.Println("走mysql")
@@ -189,7 +189,7 @@ func getMsgListFromCache(g *Group, currentnum int, msglist *[]GroupMessage) erro
 	key := fmt.Sprintf("gm%s", strconv.Itoa(g.ID))
 	//判断redis缓存是否存在
 	lLen := adb.Rediss.LLen(key).Val()
-	log.Println("len", lLen)
+	//fmt.Println("len", lLen)
 	if lLen == 0 {
 		return nil
 	}

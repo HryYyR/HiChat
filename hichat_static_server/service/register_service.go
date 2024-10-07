@@ -3,14 +3,14 @@ package service
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	adb "hichat_static_server/ADB"
 	"hichat_static_server/models"
 	"hichat_static_server/util"
 	"log"
 	"net/http"
 	"time"
-
-	"github.com/gin-gonic/gin"
+	"xorm.io/xorm"
 )
 
 type registerpostform struct {
@@ -31,7 +31,7 @@ func Register(c *gin.Context) {
 	}
 	fmt.Printf("%+v\n", data)
 
-	if data.Username == "" || data.Password == "" || !util.EmailValid(data.Email) {
+	if data.Username == "" || len(data.Username) > 20 || data.Password == "" || len(data.Password) > 64 || !util.EmailValid(data.Email) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"msg": "Invalid username or password or email",
 		})
@@ -48,7 +48,7 @@ func Register(c *gin.Context) {
 	// 查询邮箱是否已被注册
 	hasemail, err := adb.Ssql.Table("users").Where("email = ? or user_name=? ", data.Email, data.Username).Exist()
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "查询邮箱失败!",
 		})
@@ -72,15 +72,39 @@ func Register(c *gin.Context) {
 		Salt:     salt,
 		Avatar:   "static/icon.png",
 	}
-	_, err = adb.Ssql.Table(&models.Users{}).Insert(&user)
+
+	session := adb.Ssql.NewSession()
+	defer func(session *xorm.Session) {
+		err := session.Close()
+		if err != nil {
+			log.Println(err)
+		}
+	}(session)
+
+	_, err = session.Table(&models.Users{}).Insert(&user)
 	if err != nil {
-		fmt.Println(err)
+		session.Rollback()
 		log.Println(err.Error())
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "注册失败!",
-		})
+		util.H(c, http.StatusInternalServerError, "注册失败", err)
 		return
 	}
+
+	var userdata models.Users
+	err = user.GetUserData(&userdata)
+	if err != nil {
+		session.Rollback()
+		util.H(c, http.StatusInternalServerError, "注册失败", err)
+		return
+	}
+
+	err = userdata.InsertUser2Nebula()
+	if err != nil {
+		session.Rollback()
+		util.H(c, http.StatusInternalServerError, "注册失败", err)
+		return
+	}
+
+	session.Commit()
 
 	//var UserData models.Users
 	//has, _ := adb.Ssql.Table("users").Where("user_name=? and email=?", data.Username, data.Email).Get(&UserData)

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"net"
+	"strings"
 	"time"
 )
 
@@ -44,4 +45,9 @@ func GetIP() string {
 		}
 	}
 	return ""
+}
+
+// RemoveStringDateTimeZone  删除字符串时间的 时区信息
+func RemoveStringDateTimeZone(datetimestr time.Time) string {
+	return strings.Split(datetimestr.String(), " +")[0]
 }

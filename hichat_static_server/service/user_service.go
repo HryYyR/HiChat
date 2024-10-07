@@ -52,19 +52,52 @@ func EditUserData(c *gin.Context) {
 	mlock.Lock()
 	defer mlock.Unlock()
 
-	if _, err := adb.Ssql.Table("users").Where("id=?", userdata.ID).Update(&models.Users{
+	session := adb.Ssql.NewSession()
+	defer session.Close()
+
+	if _, err := session.Table("users").Where("id=?", userdata.ID).Update(&models.Users{
 		City:      data.City,
 		Age:       age,
 		Introduce: data.Introduce,
 	}); err != nil {
+		log.Println(err)
+		session.Rollback()
 		util.H(c, http.StatusInternalServerError, "修改失败", nil)
 		return
 	}
-	err = adb.Rediss.Del(strconv.Itoa(userdata.ID)).Err()
+
+	//TODO 无法保证redis和nebula同时修改成功
+	var completeuserdata models.Users
+	tempuserdata := models.Users{ID: userdata.ID}
+	err = tempuserdata.GetUserData(&completeuserdata)
+	fmt.Printf("%+v\n", completeuserdata)
 	if err != nil {
+		session.Rollback()
 		log.Println(err.Error())
+		util.H(c, http.StatusInternalServerError, "修改失败", nil)
 		return
 	}
+
+	completeuserdata.Age = age
+	completeuserdata.Introduce = data.Introduce
+	completeuserdata.City = data.City
+
+	err = completeuserdata.UpdateUser2Nebula()
+	if err != nil {
+		session.Rollback()
+		util.H(c, http.StatusInternalServerError, "修改失败", nil)
+		return
+	}
+
+	err = adb.Rediss.Del(strconv.Itoa(userdata.ID)).Err()
+	if err != nil {
+		session.Rollback()
+		log.Println(err.Error())
+		util.H(c, http.StatusInternalServerError, "修改失败", nil)
+		return
+	}
+	session.Commit()
+
 	util.H(c, http.StatusOK, "修改成功", nil)
 }
 

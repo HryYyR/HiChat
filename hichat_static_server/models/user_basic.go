@@ -6,10 +6,12 @@ import (
 	"fmt"
 	"github.com/goinggo/mapstructure"
 	"github.com/golang-jwt/jwt/v4"
+	nebula "github.com/vesoft-inc/nebula-go/v3"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	adb "hichat_static_server/ADB"
 	"hichat_static_server/proto"
 	"hichat_static_server/tool"
+	"log"
 	"sort"
 	"strconv"
 	"sync"
@@ -188,6 +190,7 @@ func (u *Users) SaveToRedis() error {
 		"Age":       u.Age,
 		"City":      u.City,
 		"Introduce": u.Introduce,
+		"UUID":      u.UUID,
 		//"GroupList":   ru.GroupList,
 		//"ApplyList"     []ApplyJoinGroupResponse
 		//"ApplyUserList" []ApplyAddUser
@@ -210,9 +213,9 @@ type Users struct {
 	Salt      string `xorm:"notnull"`
 	IP        string
 	Avatar    string
-	City      string
-	Age       int
-	Introduce string
+	City      string    `xorm:"default(中国)"`
+	Age       int       `xorm:"default(18)"`
+	Introduce string    `xorm:"default()"`
 	Grade     int       `xorm:"default(1)"`
 	CreatedAt time.Time `xorm:"created"`
 	DeletedAt time.Time `xorm:"deleted"`
@@ -224,6 +227,7 @@ type Users struct {
 func (u *Users) TableName() string {
 	return "users"
 }
+
 func (u *Users) GetUserData(userdata *Users) error {
 	var userinfo Users
 
@@ -232,13 +236,12 @@ func (u *Users) GetUserData(userdata *Users) error {
 	if len(udata) != 0 {
 		//更新登陆时间
 		adb.Rediss.HSet(strconv.Itoa(u.ID), "LoginTime", tool.FormatTime(time.Now()))
-
 		_ = mapstructure.Decode(udata, &userinfo)
 		userinfo.ID, _ = strconv.Atoi(udata["ID"])
 		userinfo.Age, _ = strconv.Atoi(udata["Age"])
 		userinfo.LoginTime = time.Now().String()
 		userinfo.CreatedAt, _ = tool.ParseTime(udata["CreatedAt"])
-		fmt.Printf("%+v", userinfo)
+		//fmt.Printf("%v", userinfo)
 		*userdata = userinfo
 		return nil
 	}
@@ -252,7 +255,7 @@ func (u *Users) GetUserData(userdata *Users) error {
 		return err
 	}
 
-	err = u.SaveToRedis()
+	err = userinfo.SaveToRedis()
 	if err != nil {
 		fmt.Println("保存到redis失败", err)
 		//return err
@@ -573,4 +576,60 @@ func (u *Users) Login(logindata *ResponseUserData) error {
 	}
 
 	return reserr
+}
+
+// InsertUser2Nebula 向图数据库插入节点
+// %q	字符串带双引号，字符串中的引号带转义符
+func (u *Users) InsertUser2Nebula() error {
+	insertvertex := fmt.Sprintf("INSERT VERTEX user (user_name, age,city,created_at,uuid,user_id,introduce) VALUES %q:(%q,%d,%q,datetime(%q),%q,%d,%q)", u.UUID, u.UserName, u.Age, u.City, tool.RemoveStringDateTimeZone(u.CreatedAt), u.UUID, u.ID, u.Introduce)
+	resultSet, err := adb.NebulaInstance.GetNebulaSession().Execute(insertvertex)
+	if err != nil {
+		return err
+	}
+	if !checkResultSet(insertvertex, resultSet) {
+		return errors.New("插入节点失败")
+	}
+	return nil
+}
+
+// UpdateUser2Nebula 更新图数据库节点属性
+func (u *Users) UpdateUser2Nebula() error {
+	//检查节点是否存在
+	existvertex := fmt.Sprintf("FETCH PROP ON `user` %q YIELD properties(vertex)", u.UUID)
+	exist, err := adb.NebulaInstance.GetNebulaSession().Execute(existvertex)
+	if err != nil {
+		return err
+	}
+	if !checkResultSet(existvertex, exist) {
+		return errors.New("修改节点失败")
+	}
+	//不存在则新增
+	if exist.IsEmpty() {
+		err := u.InsertUser2Nebula()
+		if err != nil {
+			return err
+		}
+	}
+	//然后修改节点属性
+	updatevertex := fmt.Sprintf("UPSERT  VERTEX ON user %q SET age = %d , city = %q , introduce = %q ", u.UUID, u.Age, u.City, u.Introduce)
+	resultSet, err := adb.NebulaInstance.GetNebulaSession().Execute(updatevertex)
+	if err != nil {
+		return err
+	}
+	if !checkResultSet(updatevertex, resultSet) {
+		return errors.New("修改节点失败")
+	}
+
+	fmt.Println(updatevertex)
+	fmt.Println(resultSet)
+
+	return nil
+}
+
+func checkResultSet(prefix string, res *nebula.ResultSet) bool {
+	if !res.IsSucceed() {
+		log.Println(fmt.Sprintf("%s, ErrorCode: %v, ErrorMsg: %s", prefix, res.GetErrorCode(), res.GetErrorMsg()))
+		return false
+	}
+	return true
 }

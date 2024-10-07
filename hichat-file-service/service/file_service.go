@@ -51,6 +51,8 @@ func UploadFile(c *gin.Context) {
 		".gif":  "gif",
 		".mp3":  "mp3",
 		".webp": "webp",
+		".txt":  "txt",
+		".json": "json",
 	}
 	_, ok := extmap[strings.ToLower(extstring)]
 	if !ok {
@@ -91,7 +93,7 @@ func UploadFile(c *gin.Context) {
 		})
 		return
 	}
-	//根据当前时间鹾生成一个新的文件名
+	//根据当前时间戳生成一个新的文件名
 	fileNameInt := time.Now().Unix()
 	fileNameStr := strconv.FormatInt(fileNameInt, 10)
 	//新的文件名

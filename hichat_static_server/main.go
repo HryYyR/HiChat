@@ -18,6 +18,7 @@ func main() {
 	adb.InitMySQL()
 	adb.InitRedis()
 	//adb.InitMQ()
+	defer adb.NebulaInstance.CloseNebula()
 
 	gin.SetMode(gin.ReleaseMode)
 	engine := gin.New()

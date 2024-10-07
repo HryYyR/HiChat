@@ -22,7 +22,7 @@ import (
 	"github.com/jordan-wright/email"
 )
 
-// md5加密
+// Md5 md5加密
 func Md5(s string) string {
 	return fmt.Sprintf("%x", md5.Sum([]byte(s)))
 }
@@ -31,7 +31,7 @@ func GenerateEcdsaPrivateKey() (*ecdsa.PrivateKey, error) {
 	return ecdsa.GenerateKey(elliptic.P256(), random.Reader)
 }
 
-// token
+// GenerateToken token
 func GenerateToken(id int, UUID, name string, expiretime time.Duration) (string, error) {
 	uc := models.UserClaim{
 		ID:       id,
@@ -50,7 +50,7 @@ func GenerateToken(id int, UUID, name string, expiretime time.Duration) (string,
 	return ttoken, nil
 }
 
-// 解密token
+// DecryptToken 解密token
 func DecryptToken(token string) (*models.UserClaim, error) {
 	uc := new(models.UserClaim)
 	claims, err := jwt.ParseWithClaims(token, uc, func(tk *jwt.Token) (any, error) {
@@ -65,7 +65,7 @@ func DecryptToken(token string) (*models.UserClaim, error) {
 	return uc, nil
 }
 
-// 发送验证码邮件
+// MailSendCode 发送验证码邮件
 func MailSendCode(mail string, code string) error {
 	e := email.NewEmail()
 	e.From = "HiChat <2452719312@qq.com>"
@@ -80,14 +80,14 @@ func MailSendCode(mail string, code string) error {
 	return nil
 }
 
-// 生成随机验证码
+// RandCode 生成随机验证码
 func RandCode() string {
 	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 	code := fmt.Sprintf("%06v", rnd.Int31n(1000000))
 	return code
 }
 
-// 生成随机UUID
+// GenerateUUID 生成随机UUID
 func GenerateUUID() string {
 	u1, _ := uuid.NewV4()
 	return u1.String()
@@ -113,7 +113,7 @@ func TimeSortAddUserList(arr []models.ApplyAddUser, order string) {
 
 }
 
-// 处理server参数 json -> user struct
+// HandleJsonArgument 处理server参数 json -> user struct
 func HandleJsonArgument(c *gin.Context, data *models.Users) error {
 	rawbyte, err := c.GetRawData()
 	if err != nil {
