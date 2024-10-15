@@ -2,12 +2,15 @@ package service
 
 import (
 	"encoding/json"
+	"errors"
 	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis"
 	adb "go-websocket-server/ADB"
 	"go-websocket-server/ADB/MysqlScripts/UsersScripts"
 	"go-websocket-server/config"
 	"go-websocket-server/models"
 	"go-websocket-server/util"
+	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -70,23 +73,36 @@ func DeleteUser(c *gin.Context) {
 		}
 	}
 
+	//开启事务
+	session := adb.GetMySQLConn().NewSession()
+	session.Begin()
+	defer session.Close()
+
+	redissession := adb.Rediss.Pipeline()
+
 	//删除关系
-	isdel, err := userRepository.DeleteFriendRelative(userdata.ID, req.UserID)
+	isdel, err := userRepository.DeleteFriendRelative(userdata.ID, req.UserID, session)
 	if err != nil || !isdel {
+		log.Println(err)
+		session.Rollback()
 		util.H(c, http.StatusInternalServerError, "删除好友失败", err)
 		return
 	}
 
 	//	删除双方redis好友映射表
-	adb.Rediss.HSet("UserToUserRelative", strconv.Itoa(userdata.ID), strings.Join(flist, ","))
+	if err := redissession.HSet("UserToUserRelative", strconv.Itoa(userdata.ID), strings.Join(flist, ",")).Err(); err != nil && !errors.Is(err, redis.Nil) {
+		log.Println(err)
+		redissession.Discard()
+		session.Rollback()
+		util.H(c, http.StatusInternalServerError, "删除好友失败", err)
+		return
+	}
 
 	fstr = adb.Rediss.HGet("UserToUserRelative", strconv.Itoa(req.UserID)).Val()
 	flist = strings.Split(fstr, ",")
 	strtid = strconv.Itoa(userdata.ID)
-	sign = 0
 	for i, fid := range flist {
 		if fid == strtid {
-			sign = 1
 			if len(flist) > 1 {
 				flist = append(flist[:i], flist[i+1:]...)
 			} else {
@@ -95,7 +111,41 @@ func DeleteUser(c *gin.Context) {
 			break
 		}
 	}
-	adb.Rediss.HSet("UserToUserRelative", strconv.Itoa(req.UserID), strings.Join(flist, ","))
+	if err := adb.Rediss.HSet("UserToUserRelative", strconv.Itoa(req.UserID), strings.Join(flist, ",")).Err(); err != nil && !errors.Is(err, redis.Nil) {
+		log.Println(err)
+		redissession.Discard()
+		session.Rollback()
+		util.H(c, http.StatusInternalServerError, "删除好友失败", err)
+		return
+	}
+
+	srcuserdata, exist, err := userRepository.GetUserByUserID(req.UserID)
+	if err != nil || !exist {
+		log.Println(err)
+		redissession.Discard()
+		session.Rollback()
+		util.H(c, http.StatusInternalServerError, "删除好友失败", err)
+		return
+	}
+	dstuserdata, exist, err := userRepository.GetUserByUserID(userdata.ID)
+	if err != nil || !exist {
+		log.Println(err)
+		redissession.Discard()
+		session.Rollback()
+		util.H(c, http.StatusInternalServerError, "删除好友失败", err)
+		return
+	}
+	err = adb.NebulaInstance.DeleteEdge("UserAddUser ", srcuserdata.UUID, dstuserdata.UUID, true)
+	if err != nil {
+		log.Println(err)
+		redissession.Discard()
+		session.Rollback()
+		util.H(c, http.StatusInternalServerError, "删除好友失败", err)
+		return
+	}
+
+	redissession.Exec()
+	session.Commit()
 
 	umsg := models.UserMessage{
 		UserID:        userdata.ID,

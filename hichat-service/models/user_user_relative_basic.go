@@ -1,6 +1,8 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type UserUserRelative struct {
 	ID           int    `xorm:"pk autoincr notnull index"`

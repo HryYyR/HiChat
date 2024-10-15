@@ -27,6 +27,11 @@ var RedisAddr = "127.0.0.1:6379"
 var RedisPassword = ""
 var RedisDB = 0
 
+var NebulaPort = 9669 // The default port of NebulaGraph 2.x is 9669.
+var NebulaUserName = "root"
+var NebulaPassWord = "nebula"
+var NebulaAddress = "127.0.0.1"
+
 var RabbitMQAddress = "amqp://guest:guest@127.0.0.1:5672/"
 
 var EmailAccount = "2452719312@qq.com"

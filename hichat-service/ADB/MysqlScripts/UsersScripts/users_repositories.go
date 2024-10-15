@@ -13,7 +13,8 @@ type UserRepository interface {
 
 	CheckUserIsExist(userid int) (bool, models.Users, error)                                                      //检查用户是否存在
 	CheckUserIsFriend(userid int, targetuserid int) (userrelative models.UserUserRelative, exist bool, err error) //检查是否为好友
-	DeleteFriendRelative(userid int, targetUserid int) (bool, error)                                              //删除好友关系
+	DeleteFriendRelative(userid int, targetUserid int, session *xorm.Session) (bool, error)                       //删除好友关系
+	ConnectFriendRelative(relative *models.UserUserRelative, session *xorm.Session) (bool, error)                 //连接好友关系
 }
 
 type userRepository struct {

@@ -2,6 +2,7 @@ package UsersScripts
 
 import (
 	"go-websocket-server/models"
+	"xorm.io/xorm"
 )
 
 // SelectUserGroupList 查询用户加入的群列表(没有详情)
@@ -36,14 +37,41 @@ func (r *userRepository) CheckUserIsFriend(userid int, targetuserid int) (userre
 }
 
 // DeleteFriendRelative 删除好友关系
-func (r *userRepository) DeleteFriendRelative(userid int, targetUserid int) (bool, error) {
-	_, err := r.mysqldb.Table("user_user_relative").Where("pre_user_id=? and back_user_id=?", userid, targetUserid).Delete()
-	if err != nil {
-		return false, err
+func (r *userRepository) DeleteFriendRelative(userid int, targetUserid int, session *xorm.Session) (bool, error) {
+	if session != nil {
+		_, err := session.Table("user_user_relative").Where("pre_user_id=? and back_user_id=?", userid, targetUserid).Delete()
+		if err != nil {
+			return false, err
+		}
+		_, err = session.Table("user_user_relative").Where("pre_user_id=? and back_user_id=?", targetUserid, userid).Delete()
+		if err != nil {
+			return false, err
+		}
+	} else {
+		_, err := r.mysqldb.Table("user_user_relative").Where("pre_user_id=? and back_user_id=?", userid, targetUserid).Delete()
+		if err != nil {
+			return false, err
+		}
+		_, err = r.mysqldb.Table("user_user_relative").Where("pre_user_id=? and back_user_id=?", targetUserid, userid).Delete()
+		if err != nil {
+			return false, err
+		}
 	}
-	_, err = r.mysqldb.Table("user_user_relative").Where("pre_user_id=? and back_user_id=?", targetUserid, userid).Delete()
-	if err != nil {
-		return false, err
+	return true, nil
+}
+
+// ConnectFriendRelative 连接好友关系
+func (r *userRepository) ConnectFriendRelative(relative *models.UserUserRelative, session *xorm.Session) (bool, error) {
+	if session != nil {
+		_, err := session.Table("user_user_relative").Insert(relative)
+		if err != nil {
+			return false, err
+		}
+	} else {
+		_, err := r.mysqldb.Table("user_user_relative").Insert(relative)
+		if err != nil {
+			return false, err
+		}
 	}
 	return true, nil
 }

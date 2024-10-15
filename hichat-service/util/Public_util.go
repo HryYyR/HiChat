@@ -289,3 +289,8 @@ func removeConsecutiveCommas(s string) string {
 
 	return builder.String()
 }
+
+// RemoveStringDateTimeZone  删除时间的 时区信息
+func RemoveStringDateTimeZone(datetimestr time.Time) string {
+	return strings.Split(datetimestr.String(), " +")[0]
+}

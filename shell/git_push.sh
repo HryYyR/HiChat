@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ..
+
 # 检查是否提供了更新信息
 if [ -z "$1" ]; then
   echo "错误: 请提供提交的信息。"
@@ -9,6 +11,9 @@ fi
 
 # 获取提交信息
 commit_message=$1
+
+rm ./*/log.log
+
 
 # 执行 git add
 git add .
