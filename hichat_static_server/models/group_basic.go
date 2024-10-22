@@ -211,10 +211,10 @@ func getMsgListFromCache(g *Group, currentnum int, msglist *[]GroupMessage) erro
 		err := json.Unmarshal(bufferString, &msgstruct)
 		if err != nil {
 			//todo: 解析有错误的不应该放入聊天记录,但是 因为只是类型转换错误导致的失败 而放弃这条记录,会导致总记录数量不正确,最终导致拉取记录出问题
+			fmt.Printf("%+v\n", msgstruct)
 			log.Println(err)
 			//continue
 		}
-		//log.Println(msgstruct)
 		msgdata = append(msgdata, msgstruct)
 	}
 	*msglist = msgdata

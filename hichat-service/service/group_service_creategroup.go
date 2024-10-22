@@ -20,7 +20,7 @@ type groupinfo struct {
 // GroupDetail 用于返回结果的结构体
 type GroupDetail struct {
 	GroupInfo   models.Group
-	MessageList []models.GroupMessage
+	MessageList []models.Message
 }
 
 // CreateGroup 创建群聊
@@ -100,7 +100,7 @@ func CreateGroup(c *gin.Context) {
 
 	responsedata := GroupDetail{
 		GroupInfo:   groupdata,
-		MessageList: []models.GroupMessage{},
+		MessageList: []models.Message{},
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"msg":  "创建成功",

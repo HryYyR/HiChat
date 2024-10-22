@@ -100,7 +100,6 @@ func ExitGroup(c *gin.Context) {
 		}
 
 		//唯一性约束自动删除:关系,消息,未读消息
-		//todo 群不用删,但是关系也没删
 		gur := models.GroupUserRelative{GroupID: groupinfo.ID}
 		err := gur.DisAssociationAll(session)
 		if err != nil {
@@ -200,17 +199,18 @@ func ExitGroup(c *gin.Context) {
 		}
 
 		// 保存退出消息
-		groupmsg := models.GroupMessage{
+		groupmsg := models.Message{
 			UserID:     userdata.ID,
 			UserName:   userdata.UserName,
 			UserCity:   handleuserdata.City,
-			UserAge:    handleuserdata.Age,
+			UserAge:    strconv.Itoa(handleuserdata.Age),
 			UserAvatar: handleuserdata.Avatar,
 			GroupID:    groupinfo.ID,
 			Msg:        fmt.Sprintf("%s退出了群聊", userdata.UserName),
 			MsgType:    config.MsgTypeQuitGroup,
 			CreatedAt:  time.Now().Local(),
 		}
+
 		_, err = session.Table("group_message").Insert(&groupmsg)
 		if err != nil {
 			session.Rollback()
