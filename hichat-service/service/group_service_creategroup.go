@@ -91,7 +91,6 @@ func CreateGroup(c *gin.Context) {
 	if err != nil {
 		util.H(c, http.StatusInternalServerError, "群聊创建失败", nil)
 		log.Println(err)
-		fmt.Println(err)
 		session.Rollback()
 		return
 	}

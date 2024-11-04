@@ -1,0 +1,147 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: hichat-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - hichat-network
+    restart: always  
+
+  redis:
+    image: redis:6.0
+    container_name: hichat-redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - hichat-network
+    restart: always  
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: hichat-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin  # 设置默认用户名
+      RABBITMQ_DEFAULT_PASS: admin  # 设置默认密码
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    networks:
+      - hichat-network
+    restart: always  
+
+  consul:
+    image: consul:1.10
+    container_name: hichat-consul
+    ports:
+      - "9500:8500"
+    networks:
+      - hichat-network
+    restart: always  
+
+  hichat-ws-service:
+    image: hyyyh/hichat-ws-service:latest  
+    container_name: hichat-ws-service
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+      - consul
+    ports:
+      - "3004:3004"
+    networks:
+      - hichat-network
+    restart: always  
+
+  hichat-mq-service:
+    image: hyyyh/hichat-mq-service:latest  
+    container_name: hichat-mq-service
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+      - consul
+    ports:
+      - "3008:3008"
+    networks:
+      - hichat-network
+    restart: always  
+
+
+  hichat-static-service:
+    image: hyyyh/hichat-static-service:latest  
+    container_name: hichat-static-service
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+      - consul
+    ports:
+      - "3005:3005"
+    networks:
+      - hichat-network
+    restart: always  
+
+  hichat-file-service:
+    image: hyyyh/hichat-file-service:latest  
+    container_name: hichat-file-service
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+      - consul
+    ports:
+      - "3006:3006"
+    networks:
+      - hichat-network
+    restart: always  
+
+  hichat-stream-service:
+    image: hyyyh/hichat-stream-service:latest  
+    container_name: hichat-stream-service
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+      - consul
+    ports:
+      - "3009:3009"
+      - "50052:50052"
+    networks:
+      - hichat-network
+    restart: always  
+
+  nginx:
+    image: hyyyh/hichat-nginx-service:latest
+    container_name: hichat-nginx
+    depends_on:
+      - hichat-mq-service
+      - hichat-static-service
+      - hichat-ws-service
+      - hichat-file-service
+      - hichat-stream-service
+      - mysql
+      - redis
+      - rabbitmq
+      - consul
+    ports:
+      - "80:80"
+    networks:
+      - hichat-network
+    restart: always  
+
+volumes:
+  mysql-data:
+  redis-data:
+
+networks:
+  hichat-network:
+    driver: bridge

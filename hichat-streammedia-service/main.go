@@ -15,16 +15,23 @@ import (
 )
 
 func main() {
+	var port int
+	var env string
+	flag.IntVar(&port, "p", config.ServerPort, "端口号")
+	flag.StringVar(&env, "d", config.ENV, "运行环境")
+
 	flag.Parse()
+
+	config.SetEnvironment(env)
 
 	gin.SetMode(gin.ReleaseMode)
 	engine := gin.New()
 	engine.Use(service.Cors())
-	
+
 	engine.GET("/streammedia", service.Connectws) //用户连接
 	models.ServiceCenter = models.NewHub("1")
 	go models.ServiceCenter.Run()
-	
+
 	go func() {
 		ticker := time.NewTicker(30 * time.Second)
 		defer ticker.Stop()
@@ -42,7 +49,7 @@ func main() {
 			fmt.Println("")
 		}
 	}()
-	
+
 	//服务注册
 	dis := service_registry.DiscoveryConfig{
 		ID:      util.GenerateUUID(),
@@ -55,9 +62,9 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	
+
 	go rpcserver.ListenNoticeVideoStreamRpcServer()
-	
+
 	fmt.Println("service run in ", 3009)
 	err = engine.Run(":3009")
 	if err != nil {

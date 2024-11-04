@@ -1,6 +1,11 @@
 package config
 
-import "time"
+import (
+	"os"
+	"time"
+)
+
+var ENV = "dev"
 
 var ServerPort = 3006
 var ConsulAddress = "127.0.0.1:8500"
@@ -8,12 +13,12 @@ var ConsulAddress = "127.0.0.1:8500"
 var JwtKey = "Hyyyh1527"
 
 // var MysqlAddress = "host.docker.internal:3306" //docker
-var MysqlAddress = "localhost:3306" //localhost
+var MysqlAddress = "127.0.0.1:3306" //127.0.0.1
 var MysqlUserName = "root"
 var MysqlPassword = "root"
 var MysqlDatabase = "go_websocket"
 
-var RedisAddr = "localhost:6379"
+var RedisAddr = "127.0.0.1:6379"
 var RedisPassword = ""
 var RedisDB = 0
 
@@ -35,3 +40,26 @@ var MsgTypeRefreshGroup = 200 //刷新群聊
 var MsgTypeQuitGroup = 201    //退出群聊
 var MsgTypeSyncMsg = 400      //同步消息
 var MsgTypeClearSyncMsg = 401 //同步消息清零
+
+func SetEnvironment(env string) {
+	envJwtKey, exists := os.LookupEnv("JwtKey")
+	if exists {
+		JwtKey = envJwtKey
+	}
+	envEmailAccount, exists := os.LookupEnv("EmailAccount")
+	if exists {
+		EmailAccount = envEmailAccount
+	}
+	envEmailPassword, exists := os.LookupEnv("EmailPassword")
+	if exists {
+		EmailPassword = envEmailPassword
+	}
+
+	switch env {
+	case "docker":
+		MysqlAddress = "hichat-mysql:3306"
+		ConsulAddress = "hichat-consul:8500"
+		RedisAddr = "hichat-redis:6379"
+	default:
+	}
+}

@@ -16,8 +16,8 @@ type Users struct {
 	Salt      string `xorm:"notnull"`
 	IP        string
 	Avatar    string
-	City      string
-	Age       int
+	City      string `xorm:"default('')"`
+	Age       int    `xorm:"default(1)"`
 	Introduce string
 	Grade     int       `xorm:"default(1)"`
 	CreatedAt time.Time `xorm:"created"`

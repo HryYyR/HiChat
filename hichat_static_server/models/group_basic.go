@@ -43,22 +43,22 @@ type Group struct {
 
 // GroupMessage 群聊消息
 type GroupMessage struct {
-	ID          int `xorm:"pk autoincr"`
-	UserID      int `xorm:"notnull"`
-	UserUUID    string
-	UserName    string
-	UserAvatar  string
-	UserCity    string
-	UserAge     string
-	GroupID     int    `xorm:"notnull"`
-	Msg         string `xorm:"notnull"`
-	MsgType     int
-	IsReply     bool //是否是回复消息
-	ReplyUserID int  //如果是,被回复的用户id
-	Context     []byte
-	CreatedAt   time.Time `xorm:"created"`
-	DeletedAt   time.Time `xorm:"deleted"`
-	UpdatedAt   time.Time `xorm:"updated"`
+	ID         int `xorm:"pk autoincr"`
+	UserID     int `xorm:"notnull index"`
+	UserName   string
+	UserAvatar string
+	UserCity   string
+	UserUUID   string
+	UserAge    int
+	GroupID    int    `xorm:"notnull index"`
+	Msg        string `xorm:"varchar(2048) notnull "`
+	MsgType    int
+	IsReply    bool //是否是回复消息
+	ReplyMsgID int  //如果是,被回复的消息的id
+	Context    []byte
+	CreatedAt  time.Time `xorm:"created"`
+	DeletedAt  time.Time `xorm:"deleted"`
+	UpdatedAt  time.Time `xorm:"updated"`
 }
 
 //	type GroupUserRelative struct {
@@ -162,7 +162,7 @@ func (g *Group) GetMemberCount() (int, error) {
 	if err != nil || len(result) == 0 {
 		sqlres, err := adb.Ssql.Table("group_user_relative").Where("group_id=?", g.ID).Count()
 		if err != nil {
-			fmt.Println("获取用户成员数量失败!", err)
+			log.Println("获取用户成员数量失败!", err)
 			return 0, err
 		}
 		return int(sqlres), nil
@@ -211,7 +211,7 @@ func getMsgListFromCache(g *Group, currentnum int, msglist *[]GroupMessage) erro
 		err := json.Unmarshal(bufferString, &msgstruct)
 		if err != nil {
 			//todo: 解析有错误的不应该放入聊天记录,但是 因为只是类型转换错误导致的失败 而放弃这条记录,会导致总记录数量不正确,最终导致拉取记录出问题
-			fmt.Printf("%+v\n", msgstruct)
+			//fmt.Printf("%+v\n", msgstruct)
 			log.Println(err)
 			//continue
 		}

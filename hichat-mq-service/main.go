@@ -7,6 +7,7 @@ import (
 	"HiChat/hichat-mq-service/service_registry"
 	"HiChat/hichat-mq-service/util"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"github.com/bwmarrin/snowflake"
 	"log"
@@ -19,8 +20,19 @@ type FriendMsgfun func() error
 // type RedisMsgfun func() error
 
 func main() {
-	adb.InitMQ()
+	var port int
+	var env string
+	flag.IntVar(&port, "p", config.ServerPort, "")
+	flag.StringVar(&env, "d", config.ENV, "运行环境")
+
+	flag.Parse()
+
+	fmt.Println(env)
+
+	config.SetEnvironment(env)
+
 	adb.InitMySQL()
+	adb.InitMQ()
 	adb.InitRedis()
 
 	go func() {

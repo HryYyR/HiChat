@@ -11,7 +11,6 @@ import (
 	"go-websocket-server/util"
 	"log"
 	"net/http"
-	"strconv"
 )
 
 type joingroupinfo struct {
@@ -136,7 +135,7 @@ func HandleJoinGroup(c *gin.Context) {
 			UserID:     applyuserdata.ID,
 			UserName:   applyuserdata.UserName,
 			UserAvatar: applyuserdata.Avatar,
-			UserAge:    strconv.Itoa(applyuserdata.Age),
+			UserAge:    applyuserdata.Age,
 			UserCity:   applyuserdata.City,
 			GroupID:    grouplist.ID,
 			Msg:        fmt.Sprintf("%s加入了群聊", applyuserdata.UserName),

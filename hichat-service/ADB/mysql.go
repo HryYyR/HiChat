@@ -22,8 +22,16 @@ var SqlStruct = &Sql{
 
 // CreateConn 创建mysql连接
 func (s *Sql) CreateConn() error {
+	dataSource := fmt.Sprintf("%s:%s@tcp(%s)/?charset=utf8", config.MysqlUserName, config.MysqlPassword, config.MysqlAddress)
+	engine, err := xorm.NewEngine("mysql", dataSource)
+	if err != nil {
+		log.Println("连接数据库失败: ", err)
+		return err
+	}
+	_, _ = engine.Exec(fmt.Sprintf("CREATE DATABASE %s CHARACTER SET utf8mb4", config.MysqlDatabase))
+
 	mysqlconf := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4", config.MysqlUserName, config.MysqlPassword, config.MysqlAddress, config.MysqlDatabase)
-	engine, err := xorm.NewEngine("mysql", mysqlconf)
+	engine, err = xorm.NewEngine("mysql", mysqlconf)
 	if err != nil {
 		log.Println(err)
 		return err
@@ -33,6 +41,7 @@ func (s *Sql) CreateConn() error {
 	engine.SetMaxOpenConns(config.MysqlMaxOpenConns)
 	engine.SetMapper(names.GonicMapper{})
 	engine.SetDefaultCacher(caches.NewLRUCacher(caches.NewMemoryStore(), 1000)) //开启缓存,缓存struct的记录数为1000条
+
 	s.Status = 1
 	s.Conn = engine
 	return nil

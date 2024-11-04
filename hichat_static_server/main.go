@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	adb "hichat_static_server/ADB"
 	"hichat_static_server/config"
@@ -15,6 +16,18 @@ import (
 )
 
 func main() {
+	var port int
+	var env string
+	flag.IntVar(&port, "p", config.ServerPort, "")
+	flag.StringVar(&env, "d", config.ENV, "运行环境")
+	flag.Parse()
+
+	config.SetEnvironment(env)
+
+	fmt.Println(env)
+
+	fmt.Println(config.ConsulAddress)
+
 	adb.InitMySQL()
 	adb.InitRedis()
 	//adb.InitMQ()

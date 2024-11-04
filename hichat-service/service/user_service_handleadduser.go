@@ -127,14 +127,16 @@ func HandleAddUser(c *gin.Context) {
 		}
 
 		//nebula用户与用户关系联系
-		err = adb.NebulaInstance.InsertEdge("UserAddUser", srcuserdata.UUID, dstuserdata.UUID,
-			[]string{"start_id", "end_id", "created_at"}, []any{srcuserdata.ID, dstuserdata.ID, time.Now()})
-		if err != nil {
-			log.Println(err)
-			redisSession.Discard()
-			session.Rollback()
-			util.H(c, http.StatusInternalServerError, "处理好友请求失败", err)
-			return
+		if config.IsStartNebula {
+			err = adb.NebulaInstance.InsertEdge("UserAddUser", srcuserdata.UUID, dstuserdata.UUID,
+				[]string{"start_id", "end_id", "created_at"}, []any{srcuserdata.ID, dstuserdata.ID, time.Now()})
+			if err != nil {
+				log.Println(err)
+				redisSession.Discard()
+				session.Rollback()
+				util.H(c, http.StatusInternalServerError, "处理好友请求失败", err)
+				return
+			}
 		}
 
 		redisSession.Exec()

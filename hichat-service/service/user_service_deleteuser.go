@@ -135,13 +135,16 @@ func DeleteUser(c *gin.Context) {
 		util.H(c, http.StatusInternalServerError, "删除好友失败", err)
 		return
 	}
-	err = adb.NebulaInstance.DeleteEdge("UserAddUser ", srcuserdata.UUID, dstuserdata.UUID, true)
-	if err != nil {
-		log.Println(err)
-		redissession.Discard()
-		session.Rollback()
-		util.H(c, http.StatusInternalServerError, "删除好友失败", err)
-		return
+
+	if config.IsStartNebula {
+		err = adb.NebulaInstance.DeleteEdge("UserAddUser ", srcuserdata.UUID, dstuserdata.UUID, true)
+		if err != nil {
+			log.Println(err)
+			redissession.Discard()
+			session.Rollback()
+			util.H(c, http.StatusInternalServerError, "删除好友失败", err)
+			return
+		}
 	}
 
 	redissession.Exec()

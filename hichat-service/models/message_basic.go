@@ -19,7 +19,7 @@ type Message struct {
 	UserName   string `xorm:"notnull"`
 	UserAvatar string
 	UserCity   string
-	UserAge    string
+	UserAge    int
 	GroupID    int `xorm:"notnull"`
 	Msg        string
 	MsgType    int  `xorm:"notnull default(1)"` //1文字 2图片 3音频 4文件
@@ -29,10 +29,6 @@ type Message struct {
 	UpdatedAt  time.Time `xorm:"updated"`
 	CreatedAt  time.Time `xorm:"created"`
 	DeletedAt  time.Time `xorm:"deleted"`
-}
-
-func (m *Message) TableName() string {
-	return "group_message"
 }
 
 type GroupMsgTransmitFun func(groupmsg Message, msgbytes []byte) error

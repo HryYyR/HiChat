@@ -34,7 +34,7 @@ func (r *groupRepository) CheckGroupIsExist(groupId int) (groupData models.Group
 
 // ByGroupNameCheckGroupIsExist 检查群聊名称是否占用
 func (r *groupRepository) ByGroupNameCheckGroupIsExist(groupName string) (BeUse bool, err error) {
-	BeUse, err = r.db.Table("group").Where("group_name = ?", groupName).Exist()
+	BeUse, err = r.db.Table("group").Where("group_name = ? and status != -1", groupName).Exist()
 	return
 }
 

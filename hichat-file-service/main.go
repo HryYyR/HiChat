@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	adb "hichat-file-service/ADB"
@@ -12,6 +13,16 @@ import (
 )
 
 func main() {
+	var port int
+	var env string
+	flag.IntVar(&port, "p", config.ServerPort, "")
+	flag.StringVar(&env, "d", config.ENV, "运行环境")
+
+	flag.Parse()
+	fmt.Println(env)
+
+	config.SetEnvironment(env)
+
 	adb.InitMySQL()
 
 	gin.SetMode("release")

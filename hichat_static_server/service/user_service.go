@@ -11,6 +11,7 @@ import (
 	"github.com/tmc/langchaingo/memory"
 	adb "hichat_static_server/ADB"
 	"hichat_static_server/common"
+	"hichat_static_server/config"
 	"hichat_static_server/models"
 	"hichat_static_server/util"
 	"log"
@@ -82,11 +83,13 @@ func EditUserData(c *gin.Context) {
 	completeuserdata.Introduce = data.Introduce
 	completeuserdata.City = data.City
 
-	err = completeuserdata.UpdateUser2Nebula()
-	if err != nil {
-		session.Rollback()
-		util.H(c, http.StatusInternalServerError, "修改失败", nil)
-		return
+	if config.IsStartNebula {
+		err = completeuserdata.UpdateUser2Nebula()
+		if err != nil {
+			session.Rollback()
+			util.H(c, http.StatusInternalServerError, "修改失败", nil)
+			return
+		}
 	}
 
 	err = adb.Rediss.Del(strconv.Itoa(userdata.ID)).Err()

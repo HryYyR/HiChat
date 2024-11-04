@@ -1,6 +1,13 @@
 package config
 
-import "time"
+import (
+	"os"
+	"time"
+)
+
+var ENV = "dev"
+
+var IsStartNebula = false
 
 // var CallNoticeVideoStreamServerIP = "192.168.137.1"
 
@@ -14,8 +21,6 @@ var JwtKey = "Hyyyh1527"
 
 var MysqlMaxIdleConns = 1000
 var MysqlMaxOpenConns = 2000
-
-// var MysqlAddress = "host.docker.internal:3306" //docker
 
 var MysqlAddress = "127.0.0.1:3306" //localhost
 
@@ -76,3 +81,29 @@ var MsgTypeSyncFriendMsg = 1400      //同步好友消息
 var MsgTypeClearSyncFriendMsg = 1401 //同步好友消息清零
 
 var MsgTypeStartUserToUserVideoCall = 1501 //用户之间发起视频通话
+
+func SetEnvironment(env string) {
+	envJwtKey, exists := os.LookupEnv("JwtKey")
+	if exists {
+		JwtKey = envJwtKey
+	}
+	envEmailAccount, exists := os.LookupEnv("EmailAccount")
+	if exists {
+		EmailAccount = envEmailAccount
+	}
+	envEmailPassword, exists := os.LookupEnv("EmailPassword")
+	if exists {
+		EmailPassword = envEmailPassword
+	}
+
+	switch env {
+	case "docker":
+		CallNoticeVideoStreamServerIP = "hichat-stream-service"
+		MysqlAddress = "hichat-mysql:3306"
+		ConsulAddress = "hichat-consul:8500"
+		RedisAddr = "hichat-redis:6379"
+		NebulaAddress = "host.docker.internal"
+		RabbitMQAddress = "amqp://admin:admin@hichat-rabbitmq:5672/"
+	default:
+	}
+}

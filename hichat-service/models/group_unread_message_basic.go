@@ -3,7 +3,7 @@ package models
 import "time"
 
 type GroupUnreadMessage struct {
-	ID           int       `xorm:"pk autoincr notnull"`
+	ID           int       `xorm:"pk autoincr notnull index"`
 	UserName     string    `xorm:"notnull"`
 	UserID       int       `xorm:"notnull index"`
 	GroupID      int       `xorm:"notnull"`

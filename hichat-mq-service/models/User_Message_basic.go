@@ -29,7 +29,7 @@ type UserMessage struct {
 	Msg               string `xorm:"notnull"`
 	MsgType           int
 	IsReply           bool //是否是回复消息
-	ReplyUserID       int  //如果是,被回复的用户id
+	ReplyMsgID        int  //如果是,被回复的用户id
 	Context           []byte
 	CreatedAt         time.Time `xorm:"created"`
 	DeletedAt         time.Time `xorm:"deleted"`

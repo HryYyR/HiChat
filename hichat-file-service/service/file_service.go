@@ -31,11 +31,11 @@ func UploadFile(c *gin.Context) {
 	}
 	//文件大小
 	filesize := fileheader.Size
-	if filesize > 1024*1024*10 {
-		// fmt.Println("文件过大", err)
+	if filesize > 1024*1024*100 {
+		fmt.Println("文件过大", err)
 		c.JSON(http.StatusOK, gin.H{
 			"code": 1,
-			"msg":  "文件大小超过了10M",
+			"msg":  "文件大小不能超过了100M",
 		})
 		return
 	}
@@ -53,9 +53,11 @@ func UploadFile(c *gin.Context) {
 		".webp": "webp",
 		".txt":  "txt",
 		".json": "json",
+		".zip":  "zip",
 	}
 	_, ok := extmap[strings.ToLower(extstring)]
 	if !ok {
+		fmt.Println("不支持的文件类型", extstring)
 		c.JSON(http.StatusOK, gin.H{
 			"code": 1,
 			"msg":  "不支持的文件类型",
@@ -85,6 +87,7 @@ func UploadFile(c *gin.Context) {
 		return
 	}
 	if has {
+		fmt.Println("上传成功", rp.Path)
 		//判断hash在库中是否存在,如果存在直接返回
 		c.JSON(http.StatusOK, gin.H{
 			"code":    0,
@@ -111,6 +114,7 @@ func UploadFile(c *gin.Context) {
 	}
 	_, err = adb.Ssql.Table("users_file").Insert(data)
 	if err != nil {
+		fmt.Println("上传数据库失败", err)
 		c.JSON(http.StatusOK, gin.H{
 			"code": 1,
 			"msg":  "上传数据库失败!",

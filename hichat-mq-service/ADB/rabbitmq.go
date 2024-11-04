@@ -2,7 +2,6 @@ package adb
 
 import (
 	"HiChat/hichat-mq-service/config"
-	"fmt"
 	"github.com/streadway/amqp"
 )
 
@@ -14,14 +13,13 @@ func InitMQ() {
 	// 尝试建立连接
 	conn, err := amqp.Dial(config.RabbitMQAddress)
 	if err != nil {
-		fmt.Printf("Failed to connect to RabbitMQ: %s", err)
-		return
+		panic("Failed to connect to RabbitMQ:" + err.Error())
 	}
 
 	channel, err := conn.Channel()
 	if err != nil {
-		fmt.Printf("Failed to open a channel: %s", err)
 		closeConnection()
+		panic("Failed to open a channel: " + err.Error())
 		return
 	}
 
@@ -35,8 +33,8 @@ func InitMQ() {
 		nil,       // arguments
 	)
 	if err != nil {
-		fmt.Printf("Failed to declare queue: %s", err)
 		closeConnection()
+		panic("Failed to declare queue: " + err.Error())
 		return
 	}
 
@@ -49,7 +47,7 @@ func closeConnection() {
 	if conn != nil {
 		err := conn.Close()
 		if err != nil {
-			fmt.Printf("Failed to close the connection: %s", err)
+			panic("Failed to close the connection: " + err.Error())
 		}
 	}
 }

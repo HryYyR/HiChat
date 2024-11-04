@@ -13,7 +13,10 @@ import (
 var Ssql *xorm.Engine
 
 func InitMySQL() {
-	engine, err := xorm.NewEngine("mysql", fmt.Sprintf("%s:%s@/%s?charset=utf8mb4", config.MysqlUserName, config.MysqlPassword, config.MysqlDatabase))
+	//engine, err := xorm.NewEngine("mysql", fmt.Sprintf("%s:%s@/%s?charset=utf8mb4", config.MysqlUserName, config.MysqlPassword, config.MysqlDatabase))
+	mysqlconf := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4", config.MysqlUserName, config.MysqlPassword, config.MysqlAddress, config.MysqlDatabase)
+	fmt.Println(mysqlconf)
+	engine, err := xorm.NewEngine("mysql", mysqlconf)
 	if err != nil {
 		fmt.Println(err)
 		log.Fatal(err)

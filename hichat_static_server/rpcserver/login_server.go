@@ -19,6 +19,7 @@ func NewServer() *Server {
 	return &Server{}
 }
 
+// UserLogin todo 废弃
 func (s *Server) UserLogin(ctx context.Context, in *proto.UserData) (*proto.LoginResponse, error) {
 	if in.Username == "" || in.Password == "" {
 		return nil, errors.New("内容格式有误,请检查后重试")

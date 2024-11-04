@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	adb "hichat_static_server/ADB"
+	"hichat_static_server/config"
 	"hichat_static_server/models"
 	"hichat_static_server/util"
 	"log"
@@ -97,11 +98,13 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	err = userdata.InsertUser2Nebula()
-	if err != nil {
-		session.Rollback()
-		util.H(c, http.StatusInternalServerError, "注册失败", err)
-		return
+	if config.IsStartNebula {
+		err = userdata.InsertUser2Nebula()
+		if err != nil {
+			session.Rollback()
+			util.H(c, http.StatusInternalServerError, "注册失败", err)
+			return
+		}
 	}
 
 	session.Commit()

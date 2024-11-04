@@ -20,7 +20,7 @@ type Message struct {
 	UserName    string `xorm:"notnull"`
 	UserAvatar  string
 	UserCity    string
-	UserAge     string
+	UserAge     int
 	GroupID     int `xorm:"notnull"`
 	Msg         string
 	MsgType     int  `xorm:"notnull default(1)"` //1 文字 2 音频 3 视频 4 文件

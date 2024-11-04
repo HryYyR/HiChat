@@ -24,7 +24,7 @@ type Group struct {
 	CreatedAt     time.Time `xorm:"created"`
 	DeletedAt     time.Time `xorm:"deleted"`
 	UpdatedAt     time.Time `xorm:"updated"`
-	Status        int       `xorm:"notnull default(0)"`
+	Status        int       `xorm:"default(1)"`
 }
 
 func (g *Group) TableName() string {

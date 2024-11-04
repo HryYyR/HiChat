@@ -26,7 +26,7 @@ func (*GroupUserRelative) TableName() string {
 
 // Association 连接关系
 func (r *GroupUserRelative) Association(group Group, session *xorm.Session) error {
-	_, err := session.Table("group_user_relative").Insert(&r) //插入关系
+	_, err := session.Table("group_user_relative").Insert(r) //插入关系
 	if err != nil {
 		return err
 	}

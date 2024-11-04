@@ -1,8 +1,12 @@
 package config
 
 import (
+	"os"
 	"time"
 )
+
+var ENV = "dev"
+var IsStartNebula = false
 
 var ServerPort = 3005
 var ConsulAddress = "127.0.0.1:8500"
@@ -42,7 +46,7 @@ var FlowControlTime = 1 * time.Minute //接口限流每周期时间
 var FlowControlNum = 300              //接口限流每周期最大访问次数
 
 var EmailAccount = "2452719312@qq.com"
-var EmailPassword = "hdabghzavlyeeajj"
+var EmailPassword = "jqsahvfwkfnxecdc"
 
 var WriteWait = 10 * time.Second    //socket写入返回超时时间
 var ResponseWait = 60 * time.Second //socket反应返回超时时间
@@ -60,3 +64,28 @@ var MsgTypeClearSyncMsg = 401 //同步消息清零
 var MsgTypeRedisDelKey = 1601    //redis删除key
 var MsgTypeRedisSetString = 1602 //redis设置string
 var MsgTypeRedisRpushList = 1603 //redis向List添加元素
+
+func SetEnvironment(env string) {
+	envJwtKey, exists := os.LookupEnv("JwtKey")
+	if exists {
+		JwtKey = envJwtKey
+	}
+	envEmailAccount, exists := os.LookupEnv("EmailAccount")
+	if exists {
+		EmailAccount = envEmailAccount
+	}
+	envEmailPassword, exists := os.LookupEnv("EmailPassword")
+	if exists {
+		EmailPassword = envEmailPassword
+	}
+
+	switch env {
+	case "docker":
+		MysqlAddress = "hichat-mysql:3306"
+		ConsulAddress = "hichat-consul:8500"
+		RedisAddr = "hichat-redis:6379"
+		NebulaAddress = "host.docker.internal"
+		RabbitMQAddress = "amqp://admin:admin@hichat-rabbitmq:5672/"
+	default:
+	}
+}

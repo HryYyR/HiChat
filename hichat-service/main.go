@@ -24,9 +24,12 @@ import (
 
 func main() {
 	var port int
+	var env string
 	flag.IntVar(&port, "p", config.ServerPort, "端口号")
+	flag.StringVar(&env, "d", config.ENV, "运行环境")
 	flag.Parse()
 
+	config.SetEnvironment(env)
 	serveraddress := util2.GetIP() //生产环境使用
 	//serveraddress := "192.168.137.1"
 
@@ -41,6 +44,11 @@ func main() {
 	err := service_registry.RegisterService(regsvconf)
 	if err != nil {
 		log.Fatalln(err)
+	}
+	err = adb.GetMySQLConn().Sync(new(models.UsersFile), new(models.Users), new(models.UserUserRelative), new(models.UserUnreadMessage), new(models.User Message), new(models.GroupUserRelative), new(models.GroupUnreadMessage), new(models.GroupMessage), new(models.Group), new(models.ApplyJoinGroup), new(models.ApplyAddUser))
+	if err != nil {
+		log.Println("同步数据表失败: ", err)
+		panic(err)
 	}
 
 	//初始化基础资源
