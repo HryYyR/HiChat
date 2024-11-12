@@ -11,6 +11,15 @@ HiChat 是一个基于 Go 语言开发的分布式即时通讯系统。HiChat �
 ### 源码地址：[HiChatClient](https://github.com/HryYyR/HiChatClient)
 ### 下载地址：http://203.195.163.23/
 
+## 模块
+- HiChat-service：IM核心模块，实现消息的收发和维持客户端连接
+- HiChat-static-service:无状态服务，处理数据的增删改查
+- HiChat-file-service：文件服务，针对文件的上传和修改等操作
+- HiChat-streamdedia：流媒体服务，提供系统内音视频交流的信令服务器等功能
+- HiChat-mq-service：消息处理服务，目前主要作用为异步的持久化消息
+- HiChat-nginx-service：提供路由转发，负载均衡等功能
+
+
 ## 特性
 - 基于非对称和对称双重加密算法实现消息的加密通信以及消息鉴权
 - 基于Redis 缓存 聊天记录、用户群聊数据等信息、提高数据响应时间、降低数据库压力
@@ -44,9 +53,4 @@ QQ：2452719312@qq.com
 
 ## 其他
 
-![系统架构图](https://github.com/HryYyR/HiChat/assets/92864176/3e1cd465-be7c-4c59-988d-f311dfec7cb4)
-
-![登录流程图](https://github.com/HryYyR/HiChat/assets/92864176/d521a456-f024-4859-82b5-e157008c8bff)
-
-![分布式高可用架构图](https://github.com/HryYyR/HiChat/assets/92864176/1db3de2a-348c-4e71-a093-dd525e429121)
 
