@@ -47,23 +47,6 @@ services:
       - hichat-network
     restart: always  
 
-  traefik:
-    image: traefik:v3.2.0
-    container_name: traefik
-    command: --api.insecure=true --providers.docker --configFile=/etc/traefik/traefik.toml
-    ports:
-      - "80:80"      # HTTP
-      - "443:443"    # HTTPS
-      - "8080:8080"  # Dashboard
-    volumes:
-      - ./traefik.toml:/etc/traefik/traefik.toml  # 挂载 traefik.toml 配置文件
-      - /var/run/docker.sock:/var/run/docker.sock  # 使 Traefik 能够监控 Docker 容器
-    networks:
-      - hichat-network
-    restart: always  
-    depends_on:
-      - consul
-
   hichat-ws-service:
     image: hyyyh/hichat-ws-service:latest  
     container_name: hichat-ws-service
@@ -77,8 +60,6 @@ services:
     networks:
       - hichat-network
     restart: always  
-    labels:
-      - "traefik.http.routers.ws.rule=Host(`ws.docker.localhost`)"  # Traefik 路由规则
 
   hichat-mq-service:
     image: hyyyh/hichat-mq-service:latest  
@@ -93,9 +74,6 @@ services:
     networks:
       - hichat-network
     restart: always  
-    labels:
-      - "traefik.http.routers.mq.rule=Host(`mq.docker.localhost`)"  # Traefik 路由规则
-      
 
 
   hichat-static-service:
@@ -111,9 +89,7 @@ services:
     networks:
       - hichat-network
     restart: always  
-    labels:
-      - "traefik.http.routers.static.rule=Host(`static.docker.localhost`)"  # Traefik 路由规则
-      
+
   hichat-file-service:
     image: hyyyh/hichat-file-service:latest  
     container_name: hichat-file-service
@@ -127,12 +103,10 @@ services:
     networks:
       - hichat-network
     restart: always  
-    labels:
-      - "traefik.http.routers.file.rule=Host(`file.docker.localhost`)"  # Traefik 路由规则
-      
+
   hichat-stream-service:
-    image: hyyyh/hichat-streammedia-service:latest  
-    container_name: hichat-streammedia-service
+    image: hyyyh/hichat-stream-service:latest  
+    container_name: hichat-stream-service
     depends_on:
       - mysql
       - redis
@@ -144,9 +118,25 @@ services:
     networks:
       - hichat-network
     restart: always  
-    labels:
-      - "traefik.http.routers.stream.rule=Host(`streammedia.docker.localhost`)"  # Traefik 路由规则
-      
+
+  nginx:
+    image: hyyyh/hichat-nginx-service:latest
+    container_name: hichat-nginx
+    depends_on:
+      - hichat-mq-service
+      - hichat-static-service
+      - hichat-ws-service
+      - hichat-file-service
+      - hichat-stream-service
+      - mysql
+      - redis
+      - rabbitmq
+      - consul
+    ports:
+      - "80:80"
+    networks:
+      - hichat-network
+    restart: always  
 
 volumes:
   mysql-data:

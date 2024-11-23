@@ -6,6 +6,7 @@ import (
 )
 
 var ENV = "dev"
+var ServerName = "hichat-file-server"
 
 var ServerPort = 3006
 var ConsulAddress = "127.0.0.1:8500"

@@ -64,9 +64,12 @@ func main() {
 	//服务注册
 	addressIP := util.GetIP()
 	dis := service_registry.DiscoveryConfig{
-		ID:      util.GenerateUUID(),
-		Name:    "hichat-mq-server",
-		Tags:    nil,
+		ID:   util.GenerateUUID(),
+		Name: config.ServerName,
+		Tags: []string{
+			"traefik.enable=true",
+			fmt.Sprintf("traefik.http.services.%s.loadBalancer.server.port=%d", config.ServerName, config.ServerPort),
+		}, // 标签开启服务暴露
 		Port:    config.ServerPort,
 		Address: addressIP,
 	}

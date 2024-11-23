@@ -1,0 +1,25 @@
+# traefik.toml
+
+# Traefik 配置
+logLevel = "DEBUG"  # 设置日志级别
+defaultEntryPoints = ["http", "https"]
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"  # HTTP 入口，监听 80 端口
+
+  [entryPoints.https]
+  address = ":443"  # HTTPS 入口，监听 443 端口
+
+[providers]
+  [providers.docker]
+  exposedByDefault = false  # 不自动暴露所有服务
+
+  [providers.consul]
+  endpoint = "consul:9500"  # Consul 地址，假设您使用 Consul 存储动态服务配置
+  watch = true  # 启用动态配置更新
+
+[api]
+  dashboard = true  # 启用 Traefik Dashboard
+  insecure = true  # 开启不安全的 API 和 Dashboard 访问
+# PathRegexp(`(?i)^/products`)

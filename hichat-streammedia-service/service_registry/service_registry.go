@@ -21,6 +21,24 @@ func RegisterService(dis DiscoveryConfig) error {
 	if err != nil {
 		fmt.Printf("create consul client : %v\n", err.Error())
 	}
+
+	// 查询旧的服务实例并注销
+	services, _, err := client.Catalog().Service(dis.Name, "", nil)
+	if err != nil {
+		return fmt.Errorf("query services from consul: %v", err)
+	}
+	for _, service := range services {
+		if service.ServiceAddress == dis.Address && service.ServicePort == dis.Port {
+			// 注销旧的服务实例
+			err := client.Agent().ServiceDeregister(service.ServiceID)
+			if err != nil {
+				return fmt.Errorf("deregister service from consul: %v", err)
+			}
+			fmt.Printf("注销旧的服务实例: %s\n", service.ServiceID)
+			break
+		}
+	}
+
 	registration := &consulapi.AgentServiceRegistration{
 		ID:      dis.ID,
 		Name:    dis.Name,
@@ -28,6 +46,7 @@ func RegisterService(dis DiscoveryConfig) error {
 		Tags:    dis.Tags,
 		Address: dis.Address,
 	}
+
 	// 启动tcp的健康检测，注意address不能使用127.0.0.1或者localhost，因为consul-agent在docker容器里，如果用这个的话，
 	// consul会访问容器里的port就会出错，一直检查不到实例
 	check := &consulapi.AgentServiceCheck{}
