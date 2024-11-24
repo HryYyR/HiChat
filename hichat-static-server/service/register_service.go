@@ -65,13 +65,16 @@ func Register(c *gin.Context) {
 	salt := fmt.Sprintln(time.Now().Unix())
 	encodepwd := util.Md5(data.Password + salt)
 	user := &models.Users{
-		UUID:     util.GenerateUUID(),
-		UserName: data.Username,
-		NikeName: data.Username,
-		Password: encodepwd,
-		Email:    data.Email,
-		Salt:     salt,
-		Avatar:   "static/icon.png",
+		UUID:      util.GenerateUUID(),
+		UserName:  data.Username,
+		NikeName:  data.Username,
+		Password:  encodepwd,
+		Email:     data.Email,
+		Introduce: fmt.Sprintf("你好！我是%s", data.Username),
+		Age:       1,
+		City:      "中国",
+		Salt:      salt,
+		Avatar:    "static/icon.png",
 	}
 
 	session := adb.Ssql.NewSession()

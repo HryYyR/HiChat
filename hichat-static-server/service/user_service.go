@@ -24,6 +24,7 @@ type edituserdataform struct {
 	City      string `json:"city"`
 	Age       string `json:"age"`
 	Introduce string `json:"introduce"`
+	Avatar    string `json:"avatar"`
 }
 
 func EditUserData(c *gin.Context) {
@@ -60,6 +61,7 @@ func EditUserData(c *gin.Context) {
 		City:      data.City,
 		Age:       age,
 		Introduce: data.Introduce,
+		Avatar:    data.Avatar,
 	}); err != nil {
 		log.Println(err)
 		session.Rollback()
@@ -82,7 +84,9 @@ func EditUserData(c *gin.Context) {
 	completeuserdata.Age = age
 	completeuserdata.Introduce = data.Introduce
 	completeuserdata.City = data.City
+	completeuserdata.Avatar = data.Avatar
 
+	//todo nebula的头像没修改
 	if config.IsStartNebula {
 		err = completeuserdata.UpdateUser2Nebula()
 		if err != nil {
@@ -92,6 +96,7 @@ func EditUserData(c *gin.Context) {
 		}
 	}
 
+	//直接删除缓存
 	err = adb.Rediss.Del(strconv.Itoa(userdata.ID)).Err()
 	if err != nil {
 		session.Rollback()
@@ -289,6 +294,7 @@ func SearchUser(c *gin.Context) {
 		return
 	}
 
+	//todo  前端其实只需要id列表，点击申请才会去获取详细数据
 	friendlist := make([]models.Users, 0)
 	err = adb.Ssql.Table("users").Omit("ip,password,salt,grade,uuid").Where("user_name LIKE ?  and user_name !=?",
 		data.Searchstr+"%", userdata.UserName).Find(&friendlist)

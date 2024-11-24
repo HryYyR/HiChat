@@ -70,14 +70,17 @@ func (r *GroupUserRelative) DisAssociation(session *xorm.Session, groupdata Grou
 		return err
 	}
 
+	//todo  如果缓存不一致就忽略缓存，继续执行接下来的操作
 	struid := adb.Rediss.HGet("GroupToUserMap", strconv.Itoa(r.GroupID)).Val()
 	if len(struid) == 0 {
-		return fmt.Errorf("查询失败")
+		log.Println("查询GroupToUserMap失败，群聊:", r.GroupID, " 不存在")
+		return nil
 	}
 
 	strgid := adb.Rediss.HGet("UserToGroupMap", strconv.Itoa(r.UserID)).Val()
 	if len(strgid) == 0 {
-		return fmt.Errorf("查询失败")
+		log.Println("查询GroupToUserMap失败，用户:", r.UserID, " 不存在")
+		return nil
 	}
 
 	struidarr := strings.Split(struid, ",")
