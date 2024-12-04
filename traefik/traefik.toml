@@ -1,25 +1,65 @@
 # traefik.toml
 
-# Traefik 配置
-logLevel = "DEBUG"  # 设置日志级别
-defaultEntryPoints = ["http", "https"]
-
 [entryPoints]
   [entryPoints.http]
-  address = ":80"  # HTTP 入口，监听 80 端口
+    address = ":80"
+    
+[log]
+  level = "DEBUG"  # 或者更详细的级别
 
-  [entryPoints.https]
-  address = ":443"  # HTTPS 入口，监听 443 端口
-
-[providers]
-  [providers.docker]
-  exposedByDefault = false  # 不自动暴露所有服务
-
-  [providers.consul]
-  endpoint = "consul:9500"  # Consul 地址，假设您使用 Consul 存储动态服务配置
-  watch = true  # 启用动态配置更新
 
 [api]
-  dashboard = true  # 启用 Traefik Dashboard
-  insecure = true  # 开启不安全的 API 和 Dashboard 访问
-# PathRegexp(`(?i)^/products`)
+  dashboard = true
+  insecure = true
+
+[providers.consulCatalog]
+  # Consul 服务的地址
+  endpoint.address = "consul:8500"
+  # 开启服务标签和服务实例自动发现
+  exposedByDefault = false  # 默认不暴露服务，需要在 Consul 服务中配置 `traefik.enable=true`
+
+[http.routers]
+  # 定义多个路由规则
+  [http.routers.user-router]
+    rule = "PathPrefix(`/user`)"
+    service = "hichat-static-server"
+    entryPoints = ["http"]
+
+  [http.routers.group-router]
+    rule = "PathPrefix(`/group`)"
+    service = "hichat-static-server"
+    entryPoints = ["http"]
+
+  [http.routers.ws-router]
+    rule = "PathPrefix(`/ws`)"
+    service = "hichat-ws-server"
+    entryPoints = ["http"]
+
+  [http.routers.file-router]
+    rule = "PathPrefix(`/file`)"
+    service = "hichat-file-server"
+    entryPoints = ["http"]
+
+  [http.routers.static-router]
+    rule = "PathPrefix(`/static`)"
+    service = "hichat-file-server"
+    entryPoints = ["http"]
+
+  [http.routers.streammedia-router]
+    rule = "PathPrefix(`/streammedia`)"
+    service = "hichat-streammedia-server"
+    entryPoints = ["http"]
+
+
+[http.services]
+  [http.services.hichat-static-server.loadBalancer]
+    passHostHeader = true
+
+  [http.services.hichat-ws-server.loadBalancer]
+    passHostHeader = true
+
+  [http.services.hichat-file-server.loadBalancer]
+    passHostHeader = true
+
+  [http.services.hichat-streammedia-server.loadBalancer]
+    passHostHeader = true
