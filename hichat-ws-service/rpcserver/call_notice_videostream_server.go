@@ -39,8 +39,7 @@ func CallNoticeVideoStreamServer(info models.UserMessage) (*pb.Noticevideostream
 	// 调用 gRPC 服务
 	res, err := client.Noticevideostreamserver(context.Background(), req)
 	if err != nil {
-		log.Printf("could not call service: %v", err)
-		fmt.Printf("could not call service: %v", err)
+		log.Printf("调用 音视频RPC失败: %v", err)
 		return nil, err
 	}
 
