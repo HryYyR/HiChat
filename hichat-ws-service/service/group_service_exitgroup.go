@@ -231,20 +231,20 @@ func ExitGroup(c *gin.Context) {
 		}
 
 		//用于传输的消息体
-		transmitmsg := models.Message{
-			UserID:     userdata.ID,
-			UserName:   userdata.UserName,
-			UserCity:   handleuserdata.City,
-			UserAge:    handleuserdata.Age,
-			UserAvatar: handleuserdata.Avatar,
-			GroupID:    groupinfo.ID,
-			Msg:        fmt.Sprintf("%s退出了群聊", userdata.UserName),
-			MsgType:    config.MsgTypeQuitGroup,
-			CreatedAt:  time.Now().Local(),
-		}
-		msgbyte, _ := json.Marshal(transmitmsg)
+		//transmitmsg := models.Message{
+		//	UserID:     userdata.ID,
+		//	UserName:   userdata.UserName,
+		//	UserCity:   handleuserdata.City,
+		//	UserAge:    handleuserdata.Age,
+		//	UserAvatar: handleuserdata.Avatar,
+		//	GroupID:    groupinfo.ID,
+		//	Msg:        fmt.Sprintf("%s退出了群聊", userdata.UserName),
+		//	MsgType:    config.MsgTypeQuitGroup,
+		//	CreatedAt:  time.Now().Local(),
+		//}
+		//msgbyte, _ := json.Marshal(transmitmsg)
 		// 通知群里的其他成员有用户退出
-		models.TransmitMsg(msgbyte, config.MsgTypeQuitGroup)
+		models.TransmitMsg(bytes, config.MsgTypeQuitGroup)
 	}
 
 	session.Commit()

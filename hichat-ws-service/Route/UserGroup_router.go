@@ -15,5 +15,5 @@ func InItUserGroupRouter(usergroup *gin.RouterGroup) {
 	usergroup.POST("/handleadduser", service.HandleAddUser)                       //处理添加好友
 	usergroup.POST("/deletefriend", service.DeleteUser)                           //删除好友
 	usergroup.POST("/startusertouservideocall", service.StartUserToUserVideoCall) //开始视频通话
-	usergroup.POST("/test", service.TestUserService)                              //开始视频通话
+	usergroup.POST("/test", service.TestUserService)                              //测试
 }
