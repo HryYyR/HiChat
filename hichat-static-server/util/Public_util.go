@@ -32,11 +32,13 @@ func GenerateEcdsaPrivateKey() (*ecdsa.PrivateKey, error) {
 }
 
 // GenerateToken token
-func GenerateToken(id int, UUID, name string, expiretime time.Duration) (string, error) {
+func GenerateToken(id int, UUID, name string, useragent string, device int, expiretime time.Duration) (string, error) {
 	uc := models.UserClaim{
-		ID:       id,
-		UUID:     UUID,
-		UserName: name,
+		ID:        id,
+		UUID:      UUID,
+		UserName:  name,
+		UserAgent: useragent,
+		Device:    device,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(expiretime)), // 定义过期时间 单位:分钟
 		},

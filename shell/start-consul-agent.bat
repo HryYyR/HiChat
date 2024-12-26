@@ -1,1 +1,0 @@
-consul agent -dev

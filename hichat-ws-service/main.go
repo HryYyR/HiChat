@@ -30,11 +30,11 @@ func main() {
 	flag.Parse()
 
 	config.SetEnvironment(env)
-	serveraddress := util2.GetIP() //生产环境使用
-	//serveraddress := "192.168.137.1"
+	serverAddress := util2.GetIP() //生产环境使用
+	//serverAddress := "192.168.137.1"
 
 	//服务注册
-	regsvconf := service_registry.DiscoveryConfig{
+	regSvConf := service_registry.DiscoveryConfig{
 		ID:   util2.GenerateUUID(),
 		Name: config.ServerName,
 		Tags: []string{
@@ -43,9 +43,9 @@ func main() {
 			fmt.Sprintf("traefik.http.services.%s.loadBalancer.server.port=%d", config.ServerName, config.ServerPort),
 		}, // 标签开启服务暴露
 		Port:    port,
-		Address: serveraddress,
+		Address: serverAddress,
 	}
-	err := service_registry.RegisterService(regsvconf)
+	err := service_registry.RegisterService(regSvConf)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -69,19 +69,19 @@ func main() {
 	engine.Use(service.Cors())
 
 	//初始化依赖
-	sqlconn := adb.GetMySQLConn()
-	userRepository := UsersScripts.NewUserRepository(sqlconn)
-	groupRepository := GroupScripts.NewGroupRepository(sqlconn)
+	sqlConn := adb.GetMySQLConn()
+	userRepository := UsersScripts.NewUserRepository(sqlConn)
+	groupRepository := GroupScripts.NewGroupRepository(sqlConn)
 
 	//路由注册
 	engine.Use(service.DependencyInjection(userRepository, groupRepository)) //依赖注入
 	engine.GET("/ws", service.Connectws)                                     //用户连接
-	usergrouprouter := engine.Group("ws/user", service.IdentityCheck, service.FlowControl)
-	Route.InItUserGroupRouter(usergrouprouter)
+	userGroupRouter := engine.Group("ws/user", service.IdentityCheck, service.FlowControl)
+	Route.InItUserGroupRouter(userGroupRouter)
 
 	//启动服务
 	serverPort := fmt.Sprintf(":%v", port)
-	fmt.Println("服务运行在:  ", serveraddress, serverPort)
+	fmt.Println("服务运行在:  ", serverAddress, serverPort)
 	err = engine.Run(serverPort)
 	if err != nil {
 		log.Fatalln(err)

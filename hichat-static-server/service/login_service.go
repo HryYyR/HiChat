@@ -13,15 +13,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type loginpostform struct {
-	Username string
-	Password string
+type loginPostForm struct {
+	Username  string
+	Password  string
+	UserAgent string `json:"useragent"`
+	Device    int    `json:"device"`
 }
 
 func Login(c *gin.Context) {
 	databyte, _ := c.GetRawData()
 
-	var data loginpostform
+	var data loginPostForm
 	err := json.Unmarshal(databyte, &data)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -62,7 +64,7 @@ func Login(c *gin.Context) {
 		})
 		return
 	}
-	token, err := util.GenerateToken(userdata.ID, userdata.UUID, userdata.UserName, 24*time.Hour)
+	token, err := util.GenerateToken(userdata.ID, userdata.UUID, userdata.UserName, data.UserAgent, data.Device, 24*time.Hour)
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, gin.H{

@@ -3,6 +3,7 @@ package models
 import (
 	"github.com/golang-jwt/jwt/v4"
 	adb "go-websocket-server/ADB"
+	"go-websocket-server/config"
 	"time"
 )
 
@@ -45,8 +46,10 @@ func (u *Users) CheckUserExit() (Users, bool, error) {
 }
 
 type UserClaim struct {
-	ID       int
-	UUID     string
-	UserName string
+	ID        int
+	UUID      string
+	UserName  string
+	UserAgent string
+	Device    config.Device
 	jwt.RegisteredClaims
 }

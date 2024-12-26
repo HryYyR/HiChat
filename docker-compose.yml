@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   mysql:
@@ -64,9 +63,25 @@ services:
     depends_on:
       - consul
 
-  hichat-ws-service:
+  hichat-ws1-service:
     image: hyyyh/hichat-ws-service:latest  
-    container_name: hichat-ws-service
+    container_name: hichat-ws1-service
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+      - consul
+    ports:
+      - "3003:3003"
+    networks:
+      - hichat-network
+    restart: always  
+    labels:
+      - "traefik.http.routers.ws.rule=Host(`ws.docker.localhost`)"  # Traefik 路由规则
+
+  hichat-ws2-service:
+    image: hyyyh/hichat-ws-service:latest  
+    container_name: hichat-ws2-service
     depends_on:
       - mysql
       - redis

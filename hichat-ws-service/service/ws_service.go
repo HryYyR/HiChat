@@ -31,7 +31,7 @@ func Connectws(c *gin.Context) {
 	token := c.Query("token")
 	userdata, err := Token_packge.DecryptToken(token)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return
 	}
 	fmt.Printf("用户%v加入了房间\n", userdata.ID)
@@ -39,33 +39,35 @@ func Connectws(c *gin.Context) {
 	grouplist, err := models.GetUserGroupList(userdata.ID)
 	uuid := util.GenerateUUID()
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return
 	}
 
 	Conn, err := upgrader.Upgrade(c.Writer, c.Request, nil) //升级协议
 	if err != nil {
-		fmt.Println(err)
 		log.Println(err)
 		return
 	}
 
 	client := models.UserClient{
-		ClientID: uuid,
-		UserID:   userdata.ID,
-		UserUUID: userdata.UUID,
-		UserName: userdata.UserName,
-		Conn:     Conn,
-		Send:     make(chan []byte, 256),
-		Status:   true,
-		Groups:   grouplist,
-		// CachingMessages: make(map[int]int, 0),
+		ClientID:         uuid,
+		UserID:           userdata.ID,
+		UserUUID:         userdata.UUID,
+		UserName:         userdata.UserName,
+		Conn:             Conn,
+		Send:             make(chan []byte, 256),
+		Status:           true,
+		Groups:           grouplist,
 		Mutex:            &sync.RWMutex{},
 		HoldEncryptedKey: false,
 		EncryptedKey:     []byte{},
+		Device:           userdata.Device,
+		UserAgent:        userdata.UserAgent,
 	}
 
-	adb.Rediss.HSet("UserClient", strconv.Itoa(userdata.ID), "1")
+	//adb.Rediss.HSet("UserClient", strconv.Itoa(userdata.ID), "1")
+
+	adb.Rediss.HIncrBy("UserClient", strconv.Itoa(userdata.ID), int64(userdata.Device))
 
 	models.ServiceCenter.Mutex.Lock()
 	models.ServiceCenter.Clients[userdata.ID] = client

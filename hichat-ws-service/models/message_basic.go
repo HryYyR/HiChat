@@ -22,7 +22,7 @@ type Message struct {
 	UserAge    int
 	GroupID    int `xorm:"notnull"`
 	Msg        string
-	MsgType    int  `xorm:"notnull default(1)"` //1文字 2图片 3音频 4文件
+	MsgType    int  `xorm:"notnull default(1)"` //1文字 2 图片 3 音频 4 文件
 	IsReply    bool //是否是回复消息
 	ReplyMsgID int  //如果是,被回复的用户id
 	Context    []byte

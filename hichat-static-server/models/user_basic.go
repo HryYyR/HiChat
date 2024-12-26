@@ -19,9 +19,11 @@ import (
 )
 
 type UserClaim struct {
-	ID       int
-	UUID     string
-	UserName string
+	ID        int
+	UUID      string
+	UserName  string
+	UserAgent string
+	Device    int
 	jwt.RegisteredClaims
 }
 

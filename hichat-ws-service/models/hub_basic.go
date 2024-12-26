@@ -63,7 +63,8 @@ func (h *Hub) Run() {
 		select {
 		// 退出登录
 		case UC := <-h.Loginout:
-			adb.Rediss.HSet("UserClient", strconv.Itoa(UC.UserID), "0")
+			//adb.Rediss.HSet("UserClient", strconv.Itoa(UC.UserID), "0")
+			adb.Rediss.HIncrBy("UserClient", strconv.Itoa(UC.UserID), int64(UC.Device)*-1)
 
 			ServiceCenter.Clients[UC.UserID].Mutex.Lock()
 			client := ServiceCenter.Clients[UC.UserID]

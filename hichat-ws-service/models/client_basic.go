@@ -4,6 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"go-websocket-server/config"
 	"go-websocket-server/util"
 	"log"
 	"sync"
@@ -22,10 +23,12 @@ type UserClient struct {
 	Status   bool
 	Send     chan []byte
 	Groups   map[int]Group //群聊列表  key:group_id  value:group
-	// CachingMessages map[int]int   // key:groupid  value:未读数量
+	// CachingMessages map[int]int   // key:group_id  value:未读数量
 	Mutex            *sync.RWMutex // 互斥锁     多个结构体实例可以共享同一个锁时用指针,此处只会创建一个,所以不用指针
 	HoldEncryptedKey bool          //是否持有key,没key不接收消息
 	EncryptedKey     []byte
+	Device           config.Device
+	UserAgent        string
 }
 
 // ReadPump 读取用户发送的信息
@@ -73,7 +76,7 @@ func (c *UserClient) ReadPump() {
 
 		var data EncryptedData
 		if err = json.Unmarshal(message, &data); err != nil {
-			fmt.Println("Unmarshal rawdata error ", err)
+			fmt.Println("Unmarshal rawData error ", err)
 			continue
 		}
 		//fmt.Println("用户", c.UserName, " 的aeskey: ", base64.StdEncoding.EncodeToString(c.EncryptedKey))
@@ -132,7 +135,7 @@ func (c *UserClient) WritePump() {
 				//加密数据
 				EncryptMessageJson, err = util.EncryptAESCBC(message, c.EncryptedKey)
 				if err != nil {
-					fmt.Println("encryptmessage Error", err)
+					fmt.Println("encryptMessage Error", err)
 					return
 				}
 				//fmt.Println("用户", c.UserName, " 的aeskey: ", base64.StdEncoding.EncodeToString(c.EncryptedKey))
@@ -140,7 +143,7 @@ func (c *UserClient) WritePump() {
 				//fmt.Println("用户 ", c.UserName, "收到的base64 iv", base64.StdEncoding.EncodeToString(EncryptMessageJson.Iv))
 				AfterHandleMessage, err = json.Marshal(EncryptMessageJson)
 				if err != nil {
-					fmt.Println("Marshal encryptmessage Error", err)
+					fmt.Println("Marshal encryptMessage Error", err)
 					return
 				}
 				//fmt.Println("数据已加密")

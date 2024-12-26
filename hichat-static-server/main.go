@@ -81,12 +81,6 @@ func main() {
 		panic(err)
 	}
 
-	//注册login服务
-	go service_registry.LoginRegistryService(service_registry.LoginRegistryServiceConfig{
-		RpcAddr:  config.LoginRpcAddr,
-		HttpAddr: config.LoginHttpAddr,
-	})
-
 	fmt.Println("service run in ", config.ServerPort)
 	serverpost := fmt.Sprintf(":%s", strconv.Itoa(config.ServerPort))
 	err = engine.Run(serverpost)

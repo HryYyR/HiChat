@@ -16,7 +16,7 @@ type Group struct {
 	UUID          string `xorm:"notnull unique"`
 	CreaterID     int    `xorm:"notnull"`
 	CreaterName   string `xorm:"notnull"`
-	GroupName     string `xorm:"notnull unique"`
+	GroupName     string `xorm:"notnull"`
 	Avatar        string
 	Grade         int `xorm:"default(1)"`
 	MemberCount   int
