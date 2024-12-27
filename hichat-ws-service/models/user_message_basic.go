@@ -2,6 +2,7 @@ package models
 
 import (
 	"encoding/json"
+	"log"
 	"time"
 )
 
@@ -30,20 +31,32 @@ func (u UserMessage) Transmit() error {
 		return err
 	}
 
-	client1, ok1 := ServiceCenter.Clients[u.UserID]
-	client2, ok2 := ServiceCenter.Clients[u.ReceiveUserID]
+	sendClientList, ok1 := ServiceCenter.Clients[u.UserID]
+	ReceiveClientList, ok2 := ServiceCenter.Clients[u.ReceiveUserID]
 	//1501为视频通话,只需传给接收方
 	if ok1 && u.MsgType < 1500 {
-		if client1.Status {
-			//log.Println("发送给用户", u.UserID)
-			ServiceCenter.Clients[u.UserID].Send <- bytes
+		for i, client := range sendClientList {
+			if client.Status {
+				log.Println("发送给send用户", u.UserID)
+				ServiceCenter.Clients[u.UserID][i].Send <- bytes
+			} else {
+				log.Println("send用户", u.UserID, "不在线")
+
+			}
 		}
+
 	}
 	if ok2 {
-		if client2.Status {
-			//log.Println("发送给用户", u.ReceiveUserID)
-			ServiceCenter.Clients[u.ReceiveUserID].Send <- bytes
+		for i, client := range ReceiveClientList {
+			if client.Status {
+				log.Println("发送给Receive用户", u.ReceiveUserID)
+				ServiceCenter.Clients[u.ReceiveUserID][i].Send <- bytes
+			} else {
+				log.Println("Receive用户", u.ReceiveUserID, "不在线")
+
+			}
 		}
+
 	}
 
 	return nil

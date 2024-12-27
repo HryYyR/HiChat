@@ -8,6 +8,7 @@ import (
 	"hichat_static_server/util"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -64,6 +65,22 @@ func Login(c *gin.Context) {
 		})
 		return
 	}
+
+	UserClientDeviceSign := adb.Rediss.HGet("UserClient", strconv.Itoa(userdata.ID)).Val()
+	log.Println("用户设备标志", UserClientDeviceSign)
+	if len(UserClientDeviceSign) != 0 {
+		Sign, err := strconv.Atoi(UserClientDeviceSign)
+		if err != nil {
+			log.Println("解析用户设备标志失败：", err)
+			return
+		}
+		if (Sign & data.Device) == data.Device {
+			fmt.Println("已在其他设备上登录")
+			util.H(c, http.StatusBadRequest, "已在其他设备上登录", nil)
+			return
+		}
+	}
+
 	token, err := util.GenerateToken(userdata.ID, userdata.UUID, userdata.UserName, data.UserAgent, data.Device, 24*time.Hour)
 	if err != nil {
 		fmt.Println(err)

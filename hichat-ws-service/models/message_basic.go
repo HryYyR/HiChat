@@ -55,11 +55,14 @@ func TransmitDissolveGroupFunc(g Message, gbytes []byte) error {
 	ServiceCenter.Mutex.Lock()
 	// 给这个列表里的用户发送消息
 	for _, userid := range useridlist {
-		if client, ok := ServiceCenter.Clients[userid]; ok {
-			if client.Status {
-				//log.Println("给用户", userid, "群发信息", g.MsgType)
-				ServiceCenter.Clients[userid].Send <- gbytes
+		if clientlist, ok := ServiceCenter.Clients[userid]; ok {
+			for i, client := range clientlist {
+				if client.Status {
+					//log.Println("给用户", userid, "群发信息", g.MsgType)
+					ServiceCenter.Clients[userid][i].Send <- gbytes
+				}
 			}
+
 		}
 	}
 	ServiceCenter.Mutex.Unlock()
@@ -68,11 +71,14 @@ func TransmitDissolveGroupFunc(g Message, gbytes []byte) error {
 
 // TransmitToUserIDFunc 将此群聊消息转发给指定ID的用户
 func TransmitToUserIDFunc(g Message, gbytes []byte) error {
-	if c, ok := ServiceCenter.Clients[g.UserID]; ok {
-		if c.Status {
-			fmt.Println("成功转发给", g.UserID)
-			ServiceCenter.Clients[g.UserID].Send <- gbytes
+	if clientlist, ok := ServiceCenter.Clients[g.UserID]; ok {
+		for i, client := range clientlist {
+			if client.Status {
+				fmt.Println("成功转发给", g.UserID)
+				ServiceCenter.Clients[g.UserID][i].Send <- gbytes
+			}
 		}
+
 	}
 	return nil
 }
@@ -86,11 +92,14 @@ func TransmitToAllFunc(g Message, gbytes []byte) error {
 	}
 	// 给这个列表里的用户发送消息
 	for _, userid := range useridlist {
-		if client, ok := ServiceCenter.Clients[userid]; ok {
-			if client.Status {
-				//log.Println("给用户", userid, "群发信息", g.MsgType)
-				ServiceCenter.Clients[userid].Send <- gbytes
+		if clientlist, ok := ServiceCenter.Clients[userid]; ok {
+			for i, client := range clientlist {
+				if client.Status {
+					//log.Println("给用户", userid, "群发信息", g.MsgType)
+					ServiceCenter.Clients[userid][i].Send <- gbytes
+				}
 			}
+
 		}
 	}
 	return nil

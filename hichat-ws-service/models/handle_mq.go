@@ -2,6 +2,7 @@ package models
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/streadway/amqp"
 	adb "go-websocket-server/ADB"
 	"log"
@@ -37,6 +38,8 @@ func RunReceiveMQMsg() {
 				log.Println("Conversion user msg error: ", err)
 				//continue
 			}
+			fmt.Println("收到用户消息", usermsgstruct.UserID, usermsgstruct.Msg)
+
 			ServiceCenter.Transmit <- usermsgstruct
 
 		} else if msgtype > 0 {
@@ -46,6 +49,8 @@ func RunReceiveMQMsg() {
 				log.Println("Conversion group msg error: ", err)
 				//continue
 			}
+			fmt.Println("收到群聊消息", groupmsgstruct.UserID, groupmsgstruct.Msg)
+
 			ServiceCenter.Transmit <- groupmsgstruct
 		}
 	}

@@ -3,6 +3,7 @@ package models
 import (
 	"crypto/rsa"
 	"encoding/json"
+	"fmt"
 	adb "go-websocket-server/ADB"
 	"go-websocket-server/util"
 	"log"
@@ -18,7 +19,7 @@ type MessageTransmitter interface {
 
 type Hub struct {
 	HubID      string                  //HUb的id
-	Clients    map[int]UserClient      //用户列表  key:userid value:userclient
+	Clients    map[int][]*UserClient   //用户列表  key:userid value:userclient
 	Broadcast  chan []byte             //广播列表
 	Loginout   chan *UserClient        //退出登录的列表
 	Transmit   chan MessageTransmitter //转发列表
@@ -44,7 +45,7 @@ func NewHub(HubID string) *Hub {
 	publicKey, privateKey := util.GenerateRsaKey()
 	return &Hub{
 		HubID:      HubID,
-		Clients:    make(map[int]UserClient),
+		Clients:    make(map[int][]*UserClient),
 		Broadcast:  make(chan []byte),
 		Transmit:   make(chan MessageTransmitter),
 		Loginout:   make(chan *UserClient),
@@ -63,17 +64,21 @@ func (h *Hub) Run() {
 		select {
 		// 退出登录
 		case UC := <-h.Loginout:
-			//adb.Rediss.HSet("UserClient", strconv.Itoa(UC.UserID), "0")
-			adb.Rediss.HIncrBy("UserClient", strconv.Itoa(UC.UserID), int64(UC.Device)*-1)
-
-			ServiceCenter.Clients[UC.UserID].Mutex.Lock()
-			client := ServiceCenter.Clients[UC.UserID]
-			client.Status = false
-			client.Conn = nil
-			client.HoldEncryptedKey = false
-			client.EncryptedKey = []byte{}
-			ServiceCenter.Clients[UC.UserID] = client
-			ServiceCenter.Clients[UC.UserID].Mutex.Unlock()
+			if UC.Status == false {
+				continue
+			}
+			for _, client := range ServiceCenter.Clients[UC.UserID] {
+				fmt.Println(client.Status, client.UserID, client.Device)
+				if client.Device == UC.Device && client.Status {
+					client.Mutex.Lock()
+					adb.Rediss.HIncrBy("UserClient", strconv.Itoa(UC.UserID), -int64(UC.Device)) //修改设备标志
+					client.Status = false
+					//client.Conn = nil
+					client.HoldEncryptedKey = false
+					client.EncryptedKey = []byte{}
+					client.Mutex.Unlock()
+				}
+			}
 
 		// 消息广播给指定用户
 		case message := <-h.Broadcast:

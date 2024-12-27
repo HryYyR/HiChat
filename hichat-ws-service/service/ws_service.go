@@ -34,7 +34,12 @@ func Connectws(c *gin.Context) {
 		log.Println(err)
 		return
 	}
-	fmt.Printf("用户%v加入了房间\n", userdata.ID)
+
+	Conn, err := upgrader.Upgrade(c.Writer, c.Request, nil) //升级协议
+	if err != nil {
+		log.Println(err)
+		return
+	}
 
 	grouplist, err := models.GetUserGroupList(userdata.ID)
 	uuid := util.GenerateUUID()
@@ -43,13 +48,7 @@ func Connectws(c *gin.Context) {
 		return
 	}
 
-	Conn, err := upgrader.Upgrade(c.Writer, c.Request, nil) //升级协议
-	if err != nil {
-		log.Println(err)
-		return
-	}
-
-	client := models.UserClient{
+	client := &models.UserClient{
 		ClientID:         uuid,
 		UserID:           userdata.ID,
 		UserUUID:         userdata.UUID,
@@ -65,12 +64,23 @@ func Connectws(c *gin.Context) {
 		UserAgent:        userdata.UserAgent,
 	}
 
-	//adb.Rediss.HSet("UserClient", strconv.Itoa(userdata.ID), "1")
-
 	adb.Rediss.HIncrBy("UserClient", strconv.Itoa(userdata.ID), int64(userdata.Device))
 
 	models.ServiceCenter.Mutex.Lock()
-	models.ServiceCenter.Clients[userdata.ID] = client
+	if clientList, ok := models.ServiceCenter.Clients[userdata.ID]; ok {
+		f := false
+		for i, userClient := range clientList {
+			if userClient.Device == userdata.Device {
+				models.ServiceCenter.Clients[userdata.ID][i] = client
+				f = true
+			}
+		}
+		if !f {
+			models.ServiceCenter.Clients[userdata.ID] = append(models.ServiceCenter.Clients[userdata.ID], client)
+		}
+	} else {
+		models.ServiceCenter.Clients[userdata.ID] = append(models.ServiceCenter.Clients[userdata.ID], client)
+	}
 	models.ServiceCenter.Mutex.Unlock()
 
 	go client.WritePump()
@@ -81,6 +91,8 @@ func Connectws(c *gin.Context) {
 		Type:  "RSA PUBLIC KEY",
 		Bytes: x509.MarshalPKCS1PublicKey(models.ServiceCenter.GetPublicKey()),
 	})
+
+	fmt.Printf("用户%v加入了房间\n", userdata.ID)
 
 	client.Send <- rsaPublicKeyPEM
 }

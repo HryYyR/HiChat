@@ -181,7 +181,9 @@ func ExitGroup(c *gin.Context) {
 		//删用户的群聊列表里对应群聊
 		for _, userid := range willbedeleteuseridlist {
 			models.ServiceCenter.Mutex.Lock()
-			delete(models.ServiceCenter.Clients[userid].Groups, groupinfo.ID)
+			for i, _ := range models.ServiceCenter.Clients[userid] {
+				delete(models.ServiceCenter.Clients[userid][i].Groups, groupinfo.ID)
+			}
 			models.ServiceCenter.Mutex.Unlock()
 		}
 	} else {
@@ -220,7 +222,9 @@ func ExitGroup(c *gin.Context) {
 
 		//同步用户列表里相关信息
 		models.ServiceCenter.Mutex.Lock()
-		delete(models.ServiceCenter.Clients[userdata.ID].Groups, groupinfo.ID)
+		for i, _ := range models.ServiceCenter.Clients[userdata.ID] {
+			delete(models.ServiceCenter.Clients[userdata.ID][i].Groups, groupinfo.ID)
+		}
 		models.ServiceCenter.Mutex.Unlock()
 
 		bytes, _ := json.Marshal(groupmsg)
