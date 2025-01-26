@@ -67,7 +67,7 @@ func Login(c *gin.Context) {
 	}
 
 	UserClientDeviceSign := adb.Rediss.HGet("UserClient", strconv.Itoa(userdata.ID)).Val()
-	log.Println("用户设备标志", UserClientDeviceSign)
+	//log.Println("用户设备标志", UserClientDeviceSign)
 	if len(UserClientDeviceSign) != 0 {
 		Sign, err := strconv.Atoi(UserClientDeviceSign)
 		if err != nil {
@@ -75,7 +75,6 @@ func Login(c *gin.Context) {
 			return
 		}
 		if (Sign & data.Device) == data.Device {
-			fmt.Println("已在其他设备上登录")
 			util.H(c, http.StatusBadRequest, "已在其他设备上登录", nil)
 			return
 		}
