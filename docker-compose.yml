@@ -55,7 +55,7 @@ services:
       - "443:443"    # HTTPS
       - "8080:8080"  # Dashboard
     volumes:
-      - ./traefik/traefik.toml:/etc/traefik/traefik.toml  # 挂载 traefik.toml 配置文件
+      - ./traefik:/etc/traefik  # 挂载 traefik.toml 配置文件
       - /var/run/docker.sock:/var/run/docker.sock  # 使 Traefik 能够监控 Docker 容器
     networks:
       - hichat-network

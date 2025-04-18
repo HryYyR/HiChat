@@ -19,7 +19,6 @@ var BI = &InsertMysqlBatch{
 
 type UserMessage struct {
 	ID                int    `xorm:"pk autoincr index"`
-	UUID              string `xorm:"notnull"`
 	UserID            int    `xorm:"notnull"`
 	UserName          string `xorm:"notnull"`
 	UserAvatar        string

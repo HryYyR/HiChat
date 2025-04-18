@@ -15,21 +15,21 @@ var M sync.Mutex
 var SnowFlakeNode *snowflake.Node
 
 type Message struct {
-	ID          int    `xorm:"pk autoincr"`
-	UserID      int    `xorm:"notnull"`
-	UserName    string `xorm:"notnull"`
-	UserAvatar  string
-	UserCity    string
-	UserAge     int
-	GroupID     int `xorm:"notnull"`
-	Msg         string
-	MsgType     int  `xorm:"notnull default(1)"` //1 文字 2 音频 3 视频 4 文件
-	IsReply     bool //是否是回复消息
-	ReplyUserID int  //如果是,被回复的用户id
-	Context     []byte
-	UpdatedAt   time.Time `xorm:"updated"`
-	CreatedAt   time.Time `xorm:"created"`
-	DeletedAt   time.Time `xorm:"deleted"`
+	ID         int    `xorm:"pk autoincr"`
+	UserID     int    `xorm:"notnull"`
+	UserName   string `xorm:"notnull"`
+	UserAvatar string
+	UserCity   string
+	UserAge    int
+	GroupID    int `xorm:"notnull"`
+	Msg        string
+	MsgType    int  `xorm:"notnull default(1)"` //1 文字 2 音频 3 视频 4 文件
+	IsReply    bool //是否是回复消息
+	ReplyMsgID int  //如果是,被回复的用户id
+	Context    []byte
+	UpdatedAt  time.Time `xorm:"updated"`
+	CreatedAt  time.Time `xorm:"created"`
+	DeletedAt  time.Time `xorm:"deleted"`
 }
 
 func (*Message) TableName() string {
