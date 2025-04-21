@@ -63,8 +63,9 @@ func Connectws(c *gin.Context) {
 		Device:           userdata.Device,
 		UserAgent:        userdata.UserAgent,
 	}
-
-	adb.Rediss.HIncrBy("UserClient", strconv.Itoa(userdata.ID), int64(userdata.Device))
+	deviceSign, _ := adb.Rediss.HGet("UserClient", strconv.Itoa(userdata.ID)).Int()
+	newDeviceSign := deviceSign | int(userdata.Device)
+	adb.Rediss.HSet("UserClient", strconv.Itoa(userdata.ID), newDeviceSign)
 
 	models.ServiceCenter.Mutex.Lock()
 	if clientList, ok := models.ServiceCenter.Clients[userdata.ID]; ok {

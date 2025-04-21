@@ -75,9 +75,10 @@ func (h *Hub) Run() {
 					deviceSign, _ := adb.Rediss.HGet("UserClient", strconv.Itoa(UC.UserID)).Int()
 
 					// 更新设备标志
-					newDeviceSign := deviceSign | int(UC.Device)
+					newDeviceSign := deviceSign &^ int(UC.Device)
 					adb.Rediss.HSet("UserClient", strconv.Itoa(UC.UserID), newDeviceSign)
 					client.Mutex.Unlock()
+
 				}
 			}
 
