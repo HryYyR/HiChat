@@ -71,11 +71,12 @@ func (h *Hub) Run() {
 				fmt.Println(client.Status, client.UserID, client.Device)
 				if client.Device == UC.Device && client.Status {
 					client.Mutex.Lock()
-					adb.Rediss.HIncrBy("UserClient", strconv.Itoa(UC.UserID), -int64(UC.Device)) //修改设备标志
-					client.Status = false
-					//client.Conn = nil
-					client.HoldEncryptedKey = false
-					client.EncryptedKey = []byte{}
+					// 获取当前设备标志，处理可能的错误
+					deviceSign, _ := adb.Rediss.HGet("UserClient", strconv.Itoa(UC.UserID)).Int()
+
+					// 更新设备标志
+					newDeviceSign := deviceSign | int(UC.Device)
+					adb.Rediss.HSet("UserClient", strconv.Itoa(UC.UserID), newDeviceSign)
 					client.Mutex.Unlock()
 				}
 			}

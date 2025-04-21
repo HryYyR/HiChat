@@ -46,12 +46,13 @@ func (c *UserClient) ReadPump() {
 	for {
 		_, message, err := c.Conn.ReadMessage()
 		if err != nil {
+			ServiceCenter.Loginout <- c
 			//fmt.Println(err)
-			if websocket.IsCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-				ServiceCenter.Loginout <- c
+			if websocket.IsCloseError(err, websocket.CloseGoingAway) {
+				fmt.Printf("IsUnexpectedCloseError: %v\n", err)
 			}
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-				fmt.Printf("IsUnexpectedCloseError: %v\n", err)
+				log.Printf("IsUnexpectedCloseError: %v\n", err)
 			}
 
 			break

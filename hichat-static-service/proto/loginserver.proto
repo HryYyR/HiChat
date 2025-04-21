@@ -1,0 +1,153 @@
+syntax = "proto3";
+
+//option go_package = "path;name";
+//path 表示生成的go文件的存放地址，会自动生成目录的。
+//name 表示生成的go文件所属的包名
+option go_package = "./;proto";
+// 定义包名
+package proto;
+import "google/protobuf/timestamp.proto";
+
+import "google/api/annotations.proto";
+
+// 定义消息
+message UserData {
+  // 字段
+  string username = 1;
+  string password = 2;
+}
+
+message Group
+{
+  int32 id = 1;
+  string uuid = 2;
+  int32 creater_id = 3;
+  string creater_name = 4;
+  string group_name = 5;
+  string avatar = 6;
+  int32 grade = 7;
+  int32 member_count = 8;
+  int32 unread_message = 12;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp deleted_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+}
+
+message GroupMessage {
+  int32 id = 1;
+  int32 user_id = 2;
+  string user_uuid = 3;
+  string user_name = 4;
+  string user_avatar = 14;
+  string user_city = 15;
+  string user_age = 16;
+  int32 group_id = 5;
+  string msg = 6;
+  int32 msg_type = 7;
+  bool is_reply = 8;
+  int32 reply_user_id = 9;
+  bytes context = 10;
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp deleted_at = 12;
+  google.protobuf.Timestamp updated_at = 13;
+}
+
+message ApplyGroupList {
+  int32 id = 1;
+  int32 apply_user_id = 2;
+  string apply_user_name = 3;
+  int32 group_id = 4;
+  string group_name = 11;
+  string apply_msg = 5;
+  int32 apply_way = 6;
+  int32 handle_status = 10;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp deleted_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+message GroupList {
+  Group GroupInfo = 1;
+  repeated GroupMessage MessageList = 2;
+
+}
+
+message ApplyUserList {
+  int32 id = 1;
+  int32 pre_apply_user_id = 2;
+  string pre_apply_user_name = 3;
+  int32 apply_user_id = 4;
+  string apply_user_name = 5;
+  string apply_msg = 11;
+  int32 apply_way = 6;
+  int32 handle_status = 10;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp deleted_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+message UserMessage {
+  int32 ID = 1;
+  int32 UserID = 2;
+  string UserName = 3;
+  string UserAvatar = 4;
+  int32 ReceiveUserID = 5;
+  string ReceiveUserName = 6;
+  string ReceiveUserAvatar = 7;
+  string Msg = 8;
+  int32 MsgType = 9;
+  bool IsReply = 10;             //是否是回复消息
+  int32 ReplyUserID = 11;         //如果是,被回复的用户id
+  google.protobuf.Timestamp CreatedAt = 12;
+  google.protobuf.Timestamp DeletedAt = 13;
+  google.protobuf.Timestamp UpdatedAt = 14;
+}
+
+message FriendList {
+  int32 id = 1;
+  string user_name = 2;
+  string nike_name = 3;
+  string email = 4;
+  string avatar = 5;
+  string city = 6;
+  string age = 7;
+  int32  unread_message = 8;
+  repeated UserMessage MessageList = 12;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp deleted_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+}
+
+message ResponseUserData {
+  int32 ID = 1;
+  string UserName = 2;
+  string NikeName = 3;
+  string Email = 4;
+  google.protobuf.Timestamp CreatedTime = 5;
+  string    LoginTime = 6;
+  string   Avatar = 7;
+  int32   Age = 8;
+  string    City = 9;
+  string  Introduce = 10;
+  repeated GroupList GroupList = 11;
+  repeated ApplyGroupList ApplyList = 12;
+  repeated ApplyUserList ApplyUserList = 13;
+  repeated FriendList FriendList = 14;
+}
+
+message LoginResponse {
+  string msg = 1;
+  string token = 2;
+  ResponseUserData userdata = 3;
+}
+
+// 定义login服务
+service login {
+  // 定义GetUserGroupList方法，接受UserData消息， 并返回UserGroupList消息
+  rpc UserLogin (UserData) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/v1/user/login"
+      body: "*"
+    };
+  }
+}
