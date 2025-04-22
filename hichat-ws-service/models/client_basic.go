@@ -48,9 +48,6 @@ func (c *UserClient) ReadPump() {
 		if err != nil {
 			ServiceCenter.Loginout <- c
 			//fmt.Println(err)
-			if websocket.IsCloseError(err, websocket.CloseGoingAway) {
-				fmt.Printf("IsUnexpectedCloseError: %v\n", err)
-			}
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
 				log.Printf("IsUnexpectedCloseError: %v\n", err)
 			}

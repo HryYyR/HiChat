@@ -12,6 +12,11 @@ import (
 	"time"
 )
 
+type BasicMessage struct {
+	Type uint32          `json:"type"`
+	Data json.RawMessage `json:"data"`
+}
+
 // Message 用户传输的群聊消息结构体
 type Message struct {
 	ID         int    `xorm:"pk autoincr"`

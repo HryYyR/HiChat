@@ -84,35 +84,46 @@ func (h *Hub) Run() {
 
 		// 消息广播给指定用户
 		case message := <-h.Broadcast:
-			// 群聊消息
-			var groupmsgstruct *Message
-			err := json.Unmarshal(message, &groupmsgstruct)
-			if err == nil && len(strconv.Itoa(groupmsgstruct.MsgType)) < 4 {
-				if msgfun, ok := HandleGroupMsgMap[groupmsgstruct.MsgType]; ok {
-					go func(msgfunc GroupMsgfun, types int) {
-						err := msgfunc(groupmsgstruct, message)
-						if err != nil {
-							log.Println("HandleGroupMsgMap error: ", err)
-						} else {
-							if types < 399 {
-								TransmitMsg(message, types) //群聊消息保存成功后,转发消息
-							}
-						}
-
-					}(msgfun, groupmsgstruct.MsgType)
-				}
+			var basicMsg *BasicMessage
+			if err := json.Unmarshal(message, &basicMsg); err != nil {
+				fmt.Printf("msgtype:%d ,非法msg %s\n", basicMsg.Type, err)
 				continue
 			}
+			switch basicMsg.Type {
+			case 1:
+				// 群聊消息
+				var msg Message
+				if err := json.Unmarshal(basicMsg.Data, &msg); err != nil {
+					log.Printf("解析 GroupMessage 失败: %s\n", err)
+					continue
+				}
+				fmt.Println(msg)
+				if len(strconv.Itoa(msg.MsgType)) < 4 {
+					if msgfun, ok := HandleGroupMsgMap[msg.MsgType]; ok {
+						go func(msgfunc GroupMsgfun, types int) {
+							err := msgfunc(&msg, basicMsg.Data)
+							if err != nil {
+								log.Println("HandleGroupMsgMap error: ", err)
+							} else {
+								if types < 399 {
+									TransmitMsg(message, types) //群聊消息保存成功后,转发消息
+								}
+							}
 
-			// 好友消息
-			var usermsgstruct *UserMessage
-			err = json.Unmarshal(message, &usermsgstruct)
-			//log.Printf("%+v\n", usermsgstruct)
-			if err == nil {
-				//log.Println("friendmsg:", usermsgstruct.MsgType)
-				if msgfun, ok := HandleFriendMsgMap[usermsgstruct.MsgType]; ok {
+						}(msgfun, msg.MsgType)
+					}
+					continue
+				}
+			case 2:
+				var msg UserMessage
+				if err := json.Unmarshal(basicMsg.Data, &msg); err != nil {
+					log.Printf("解析 UserMessage 失败: %s\n", err)
+					continue
+				}
+				fmt.Println(msg)
+				if msgfun, ok := HandleFriendMsgMap[msg.MsgType]; ok {
 					go func(msgfunc FriendMsgfun, types int) {
-						err := msgfunc(usermsgstruct, message)
+						err := msgfunc(&msg, basicMsg.Data)
 						if err != nil {
 							log.Println("HandleFriendMsgMap", err)
 						} else {
@@ -121,11 +132,55 @@ func (h *Hub) Run() {
 							}
 
 						}
-					}(msgfun, usermsgstruct.MsgType)
+					}(msgfun, msg.MsgType)
 				} else {
-					log.Println("处理方法不存在")
+					log.Printf("处理方法不存在 type:%d\n", msg.MsgType)
 				}
+			default:
+				log.Printf("非法的消息类型 type:%d\n", basicMsg.Type)
 			}
+			//
+			//var groupmsgstruct *Message
+			//err := json.Unmarshal(message, &groupmsgstruct)
+			//if err == nil && len(strconv.Itoa(groupmsgstruct.MsgType)) < 4 {
+			//	if msgfun, ok := HandleGroupMsgMap[groupmsgstruct.MsgType]; ok {
+			//		go func(msgfunc GroupMsgfun, types int) {
+			//			err := msgfunc(groupmsgstruct, message)
+			//			if err != nil {
+			//				log.Println("HandleGroupMsgMap error: ", err)
+			//			} else {
+			//				if types < 399 {
+			//					TransmitMsg(message, types) //群聊消息保存成功后,转发消息
+			//				}
+			//			}
+			//
+			//		}(msgfun, groupmsgstruct.MsgType)
+			//	}
+			//	continue
+			//}
+
+			// 好友消息
+			//var usermsgstruct *UserMessage
+			//err = json.Unmarshal(message, &usermsgstruct)
+			////log.Printf("%+v\n", usermsgstruct)
+			//if err == nil {
+			//	//log.Println("friendmsg:", usermsgstruct.MsgType)
+			//	if msgfun, ok := HandleFriendMsgMap[usermsgstruct.MsgType]; ok {
+			//		go func(msgfunc FriendMsgfun, types int) {
+			//			err := msgfunc(usermsgstruct, message)
+			//			if err != nil {
+			//				log.Println("HandleFriendMsgMap", err)
+			//			} else {
+			//				if types < 1399 {
+			//					TransmitMsg(message, types) //用户保存成功后,转发消息
+			//				}
+			//
+			//			}
+			//		}(msgfun, usermsgstruct.MsgType)
+			//	} else {
+			//		log.Println("处理方法不存在")
+			//	}
+			//}
 		case msg := <-h.Transmit:
 			go func(m MessageTransmitter) {
 				err := m.Transmit()

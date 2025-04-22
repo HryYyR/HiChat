@@ -2,7 +2,6 @@ package models
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/streadway/amqp"
 	adb "go-websocket-server/ADB"
 	"log"
@@ -25,33 +24,34 @@ func RunReceiveMQMsg() {
 	}
 	for delivery := range consume {
 		msgbyte := delivery.Body
-		msgtype, err := strconv.Atoi(delivery.Type)
+		//msgtype, err := strconv.Atoi(delivery.Type)
 		if err != nil {
 			log.Println("invaild msg type")
 			continue
 		}
 
-		if msgtype > 1000 {
-			var usermsgstruct UserMessage
-			err = json.Unmarshal(msgbyte, &usermsgstruct)
-			if err != nil {
-				log.Println("Conversion user msg error: ", err)
-				//continue
+		var basicMsg BasicMessage
+		err = json.Unmarshal(msgbyte, &basicMsg)
+		if err != nil {
+			log.Println("Conversion user msg error: ", err)
+			//continue
+		}
+		switch basicMsg.Type {
+		case 1:
+			var msg Message
+			if err := json.Unmarshal(basicMsg.Data, &msg); err != nil {
+				log.Printf("解析 GroupMessage 失败: %s\n", err)
+				continue
 			}
-			fmt.Println("收到用户消息", usermsgstruct.UserID, usermsgstruct.Msg)
+			ServiceCenter.Transmit <- msg
 
-			ServiceCenter.Transmit <- usermsgstruct
-
-		} else if msgtype > 0 {
-			var groupmsgstruct Message
-			err := json.Unmarshal(msgbyte, &groupmsgstruct)
-			if err != nil {
-				log.Println("Conversion group msg error: ", err)
-				//continue
+		case 2:
+			var msg UserMessage
+			if err := json.Unmarshal(basicMsg.Data, &msg); err != nil {
+				log.Printf("解析 UserMessage 失败: %s\n", err)
+				continue
 			}
-			fmt.Println("收到群聊消息", groupmsgstruct.UserID, groupmsgstruct.Msg)
-
-			ServiceCenter.Transmit <- groupmsgstruct
+			ServiceCenter.Transmit <- msg
 		}
 	}
 
