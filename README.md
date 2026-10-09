@@ -9,7 +9,6 @@ HiChat 是一个基于 Go 语言开发的分布式即时通讯系统。HiChat �
 
 ## 客户端
 ### 源码地址：[HiChatClient](https://github.com/HryYyR/HiChatClient)
-### 下载地址：http://203.195.163.23/
 
 ## 模块
 - HiChat-service：IM核心模块，实现消息的收发和维持客户端连接
