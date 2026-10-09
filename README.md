@@ -42,7 +42,7 @@ HiChat 是一个基于 Go 语言开发的分布式即时通讯系统。HiChat �
 2. ``cd ./HiChat``
 3. ``docker-compose up -d --build``
 
-### 2.手动安装
+### 2.手动部署
 go >= 1.19
 1. ``git clone https://github.com/HryYyR/HiChat.git``
 2. ``cd ./HiChat``
@@ -53,4 +53,4 @@ go >= 1.19
 QQ：2452719312@qq.com
 
 ## 注意
-1. 项目已隐藏conf相关目录，请手动定义相关变量
+1. 项目已隐藏config目录，请手动定义相关变量或联系作者
